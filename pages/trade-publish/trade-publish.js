@@ -8,6 +8,7 @@ Page({
       { id: 'others', name: '其他' }
     ],
     categoryIndex: 0,
+    images: [],
     form: {
       title: '',
       price: '',
@@ -44,9 +45,38 @@ Page({
     this.setData({ [`form.${field}`]: value });
   },
 
+  onChooseImage() {
+    const remain = 3 - this.data.images.length;
+    if (remain <= 0) return;
+    wx.chooseMedia({
+      count: remain,
+      mediaType: ['image'],
+      sourceType: ['album', 'camera'],
+      success: (res) => {
+        const newImages = res.tempFiles.map(f => f.tempFilePath);
+        this.setData({ images: [...this.data.images, ...newImages] });
+      }
+    });
+  },
+
+  onRemoveImage(e) {
+    const { index } = e.currentTarget.dataset;
+    const images = [...this.data.images];
+    images.splice(index, 1);
+    this.setData({ images });
+  },
+
+  onPreviewImage(e) {
+    const { index } = e.currentTarget.dataset;
+    wx.previewImage({
+      current: this.data.images[index],
+      urls: this.data.images
+    });
+  },
+
   onSubmit() {
-    const { form, categories, categoryIndex } = this.data;
-    
+    const { form, categories, categoryIndex, images } = this.data;
+
     // 表单验证
     if (!form.title.trim()) {
       wx.showToast({ title: '请输入商品标题', icon: 'none' });
@@ -71,7 +101,7 @@ Page({
       price: parseFloat(form.price) || 0,
       originalPrice: parseFloat(form.originalPrice) || 0,
       category: categories[categoryIndex].id,
-      image: '',
+      images: images,
       seller: form.seller.trim(),
       time: '刚刚',
       location: form.location.trim() || '小区',

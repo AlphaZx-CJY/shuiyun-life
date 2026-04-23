@@ -4,7 +4,9 @@
   <view class="tab-bar">
     <view class="tab-item {{activeCategory === item.id ? 'tab-item--active' : ''}}" 
           wx:for="{{categories}}" wx:key="id" data-id="{{item.id}}" bindtap="onCategoryTap">
-      <text class="tab-icon">{{item.icon}}</text>
+      <view class="tab-icon-wrap">
+        <text class="tab-icon">{{item.icon}}</text>
+      </view>
       <text class="tab-text">{{item.name}}</text>
     </view>
   </view>

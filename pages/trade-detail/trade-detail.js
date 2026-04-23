@@ -85,9 +85,23 @@ Page({
         description: '磁控静音，阻力可调，占地面积小。带平板支架和心率监测。使用1年，功能完好。'
       }
     };
-    const trade = tradeData[id] || null;
+    let trade = tradeData[id] || null;
+
+    // 从已发布数据中查找
+    if (!trade) {
+      const published = wx.getStorageSync('publishedTrades') || [];
+      trade = published.find(item => String(item.id) === String(id)) || null;
+    }
+
     if (trade) {
       trade.discount = Math.round((trade.originalPrice - trade.price) / trade.originalPrice * 100);
+      // 兼容旧数据：单张图片转数组
+      if (trade.image && !trade.images) {
+        trade.images = [trade.image];
+      }
+      if (!trade.images) {
+        trade.images = [];
+      }
     }
     this.setData({ trade });
   },

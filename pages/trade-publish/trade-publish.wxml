@@ -2,6 +2,22 @@
 
 <view class="page-container">
   <view class="form-card ios-card">
+    <!-- 商品图片 -->
+    <view class="form-item">
+      <text class="form-label">商品图片 <text class="form-optional">（最多3张）</text></text>
+      <view class="image-upload-row">
+        <view class="image-thumb-wrap" wx:for="{{images}}" wx:key="*this">
+          <image class="image-thumb" src="{{item}}" mode="aspectFill" bindtap="onPreviewImage" data-index="{{index}}" />
+          <view class="image-remove" data-index="{{index}}" bindtap="onRemoveImage">
+            <text class="image-remove-icon">×</text>
+          </view>
+        </view>
+        <view wx:if="{{images.length < 3}}" class="image-upload-btn" bindtap="onChooseImage">
+          <text class="image-upload-plus">+</text>
+        </view>
+      </view>
+    </view>
+
     <!-- 商品标题 -->
     <view class="form-item">
       <text class="form-label">商品标题 <text class="form-required">*</text></text>

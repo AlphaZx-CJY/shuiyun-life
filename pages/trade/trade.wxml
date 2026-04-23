@@ -14,7 +14,7 @@
   <!-- 交易列表 -->
   <view class="trade-list">
     <view class="trade-card" wx:for="{{tradeList}}" wx:key="id" data-id="{{item.id}}" bindtap="onTradeTap">
-      <image wx:if="{{item.image}}" class="trade-image" src="{{item.image}}" mode="aspectFill" lazy-load />
+      <image wx:if="{{item.images && item.images.length}}" class="trade-image" src="{{item.images[0]}}" mode="aspectFill" lazy-load />
       <view wx:else class="trade-image trade-image--placeholder">
         <text class="trade-placeholder-text">🔄</text>
       </view>
