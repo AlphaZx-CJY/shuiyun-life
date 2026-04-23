@@ -41,8 +41,8 @@
 }
 
 .schedule-badge--upcoming {
-  background: rgba(255,255,255,0.1);
-  color: #FFFFFF;
+  background: rgba(0,0,0,0.05);
+  color: #1D1D1F;
 }
 
 .schedule-badge--ended {
@@ -58,7 +58,7 @@
 .schedule-title {
   font-size: 30rpx;
   font-weight: 600;
-  color: #FFFFFF;
+  color: #1D1D1F;
   display: block;
   margin-bottom: 8rpx;
 }
@@ -86,8 +86,8 @@
 }
 
 .schedule-status--upcoming {
-  background: rgba(255,255,255,0.08);
-  color: #FFFFFF;
+  background: rgba(0,0,0,0.04);
+  color: #1D1D1F;
 }
 
 .schedule-status--ended {

@@ -26,8 +26,8 @@
 .hot-badge {
   padding: 4rpx 12rpx;
   border-radius: var(--radius-pill);
-  background: #48484A;
-  color: #FFFFFF;
+  background: #F5F5F7;
+  color: #1D1D1F;
   font-size: 20rpx;
   font-weight: 700;
 }
@@ -40,7 +40,7 @@
 .payment-title {
   font-size: 32rpx;
   font-weight: 600;
-  color: #FFFFFF;
+  color: #1D1D1F;
   line-height: 1.4;
   display: block;
   margin-bottom: 12rpx;
@@ -60,7 +60,7 @@
   top: 50%;
   width: 16rpx;
   height: 16rpx;
-  border-top: 3rpx solid var(--ios-light-gray);
-  border-right: 3rpx solid var(--ios-light-gray);
+  border-top: 3rpx solid #D2D2D7;
+  border-right: 3rpx solid #D2D2D7;
   transform: translateY(-50%) rotate(45deg);
 }

@@ -26,17 +26,17 @@
 }
 
 .category-item--active {
-  background: #FFFFFF;
+  background: #1D1D1F;
 }
 
 .category-text {
   font-size: 26rpx;
-  color: #8E8E93;
+  color: #86868B;
   font-weight: 500;
 }
 
 .category-item--active .category-text {
-  color: #0A0A0A;
+  color: #FFFFFF;
 }
 
 /* 新闻卡片 */
@@ -75,7 +75,7 @@
 .news-card__title {
   font-size: 30rpx;
   font-weight: 600;
-  color: #FFFFFF;
+  color: #1D1D1F;
   line-height: 1.4;
   margin-bottom: 8rpx;
 }

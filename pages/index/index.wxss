@@ -8,13 +8,13 @@
 .header-title {
   font-size: 40rpx;
   font-weight: 700;
-  color: #FFFFFF;
+  color: #1D1D1F;
   letter-spacing: -0.5rpx;
 }
 
 .header-subtitle {
   font-size: 26rpx;
-  color: #8E8E93;
+  color: #86868B;
   margin-top: 8rpx;
 }
 
@@ -38,7 +38,7 @@
 .banner-image {
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, #2C2C2E 0%, #1C1C1E 100%);
+  background: linear-gradient(135deg, #F5F5F7 0%, #FFFFFF 100%);
 }
 
 .banner-mask {
@@ -51,7 +51,7 @@
 }
 
 .banner-title {
-  color: #FFFFFF;
+  color: #1D1D1F;
   font-size: 32rpx;
   font-weight: 600;
 }
@@ -94,7 +94,7 @@
 
 .quick-label {
   font-size: 24rpx;
-  color: #8E8E93;
+  color: #86868B;
   font-weight: 500;
 }
 
@@ -108,7 +108,7 @@
 
 .section-more {
   font-size: 24rpx;
-  color: #FFFFFF;
+  color: #1D1D1F;
   font-weight: 500;
 }
 
@@ -155,7 +155,7 @@
 .news-title {
   font-size: 28rpx;
   font-weight: 600;
-  color: #FFFFFF;
+  color: #1D1D1F;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -215,7 +215,7 @@
 }
 
 .schedule-dot--upcoming {
-  background: #FFFFFF;
+  background: #1D1D1F;
 }
 
 .schedule-dot--ongoing {
@@ -223,7 +223,7 @@
 }
 
 .schedule-dot--ended {
-  background: #48484A;
+  background: #F5F5F7;
 }
 
 .schedule-content {
@@ -234,7 +234,7 @@
 .schedule-title {
   font-size: 28rpx;
   font-weight: 500;
-  color: #FFFFFF;
+  color: #1D1D1F;
   display: block;
 }
 

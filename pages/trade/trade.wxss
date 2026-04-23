@@ -26,17 +26,17 @@
 }
 
 .category-item--active {
-  background: #FFFFFF;
+  background: #1D1D1F;
 }
 
 .category-text {
   font-size: 26rpx;
-  color: #8E8E93;
+  color: #86868B;
   font-weight: 500;
 }
 
 .category-item--active .category-text {
-  color: #0A0A0A;
+  color: #FFFFFF;
 }
 
 /* 交易列表 */
@@ -83,7 +83,7 @@
 .trade-title {
   font-size: 30rpx;
   font-weight: 600;
-  color: #FFFFFF;
+  color: #1D1D1F;
   line-height: 1.4;
   margin-bottom: 12rpx;
 }
@@ -99,7 +99,7 @@
 .trade-price {
   font-size: 36rpx;
   font-weight: 700;
-  color: #FFFFFF;
+  color: #1D1D1F;
 }
 
 .trade-original {
@@ -126,7 +126,7 @@
   width: 96rpx;
   height: 96rpx;
   border-radius: 50%;
-  background: #FFFFFF;
+  background: #1D1D1F;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -140,6 +140,6 @@
 
 .float-btn__icon {
   font-size: 48rpx;
-  color: #0A0A0A;
+  color: #FFFFFF;
   font-weight: 300;
 }

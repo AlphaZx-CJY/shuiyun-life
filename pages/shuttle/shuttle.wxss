@@ -9,7 +9,7 @@
 .route-name {
   font-size: 36rpx;
   font-weight: 700;
-  color: #FFFFFF;
+  color: #1D1D1F;
   display: block;
   margin-bottom: 12rpx;
 }
@@ -18,7 +18,7 @@
   display: inline-block;
   padding: 6rpx 20rpx;
   border-radius: var(--radius-pill);
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(0, 0, 0, 0.08);
   margin-bottom: 8rpx;
 }
 
@@ -28,12 +28,12 @@
 
 .route-note-text {
   font-size: 24rpx;
-  color: #FFFFFF;
+  color: #1D1D1F;
   font-weight: 500;
 }
 
 .route-note--secondary .route-note-text {
-  color: #8E8E93;
+  color: #86868B;
 }
 
 /* 时刻表 */
@@ -70,7 +70,7 @@
 }
 
 .schedule-dot--upcoming {
-  background: #FFFFFF;
+  background: #1D1D1F;
 }
 
 .schedule-dot--soon {
@@ -79,7 +79,7 @@
 }
 
 .schedule-dot--passed {
-  background: #48484A;
+  background: #F5F5F7;
 }
 
 .schedule-time-content {
@@ -90,7 +90,7 @@
 .schedule-time-text {
   font-size: 30rpx;
   font-weight: 600;
-  color: #FFFFFF;
+  color: #1D1D1F;
 }
 
 .schedule-time-status {
@@ -100,7 +100,7 @@
 }
 
 .schedule-item.passed .schedule-time-text {
-  color: #48484A;
+  color: #86868B;
   text-decoration: line-through;
 }
 
@@ -133,7 +133,7 @@
 }
 
 .stop-dot--start {
-  background: #FFFFFF;
+  background: #1D1D1F;
 }
 
 .stop-dot--end {
@@ -148,7 +148,7 @@
 
 .stop-name {
   font-size: 30rpx;
-  color: #8E8E93;
+  color: #86868B;
   font-weight: 500;
 }
 
@@ -168,25 +168,25 @@
 
 .contact-label {
   font-size: 24rpx;
-  color: #8E8E93;
+  color: #86868B;
   margin-bottom: 4rpx;
 }
 
 .contact-phone {
   font-size: 32rpx;
   font-weight: 600;
-  color: #FFFFFF;
+  color: #1D1D1F;
 }
 
 .contact-action {
   padding: 12rpx 28rpx;
   border-radius: var(--radius-pill);
-  background: #FFFFFF;
+  background: #1D1D1F;
 }
 
 .contact-action-text {
   font-size: 26rpx;
-  color: #0A0A0A;
+  color: #FFFFFF;
   font-weight: 500;
 }
 

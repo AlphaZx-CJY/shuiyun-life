@@ -26,7 +26,7 @@
   right: -12rpx;
   width: 36rpx;
   height: 36rpx;
-  background: #48484A;
+  background: #F5F5F7;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -35,7 +35,7 @@
 }
 
 .image-remove-icon {
-  color: #FFFFFF;
+  color: #1D1D1F;
   font-size: 24rpx;
   font-weight: 600;
   line-height: 1;
@@ -82,18 +82,18 @@
 .form-label {
   font-size: 28rpx;
   font-weight: 500;
-  color: #FFFFFF;
+  color: #1D1D1F;
   display: block;
   margin-bottom: 16rpx;
 }
 
 .form-required {
-  color: #8E8E93;
+  color: #86868B;
 }
 
 .form-input {
   font-size: 30rpx;
-  color: #FFFFFF;
+  color: #1D1D1F;
   height: 56rpx;
   line-height: 56rpx;
 }
@@ -105,14 +105,14 @@
 
 .form-price-symbol {
   font-size: 30rpx;
-  color: #FFFFFF;
+  color: #1D1D1F;
   font-weight: 600;
   margin-right: 12rpx;
 }
 
 .form-textarea {
   font-size: 30rpx;
-  color: #FFFFFF;
+  color: #1D1D1F;
   width: 100%;
   height: 160rpx;
   line-height: 1.6;
@@ -126,7 +126,7 @@
 
 .form-picker-text {
   font-size: 30rpx;
-  color: #FFFFFF;
+  color: #1D1D1F;
 }
 
 .form-actions {

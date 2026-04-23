@@ -15,7 +15,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #2C2C2E 0%, #1C1C1E 100%);
+  background: linear-gradient(135deg, #F5F5F7 0%, #FFFFFF 100%);
 }
 
 .detail-placeholder-text {
@@ -30,7 +30,7 @@
 .detail-trade-title {
   font-size: 36rpx;
   font-weight: 700;
-  color: #FFFFFF;
+  color: #1D1D1F;
   line-height: 1.4;
   display: block;
   margin-bottom: 20rpx;
@@ -46,7 +46,7 @@
 .detail-price {
   font-size: 48rpx;
   font-weight: 700;
-  color: #FFFFFF;
+  color: #1D1D1F;
 }
 
 .detail-original {
@@ -58,8 +58,8 @@
 .discount-badge {
   padding: 6rpx 16rpx;
   border-radius: var(--radius-pill);
-  background: #48484A;
-  color: #FFFFFF;
+  background: #F5F5F7;
+  color: #1D1D1F;
   font-size: 22rpx;
   font-weight: 600;
 }
@@ -83,14 +83,14 @@
 .detail-section-title {
   font-size: 30rpx;
   font-weight: 600;
-  color: #FFFFFF;
+  color: #1D1D1F;
   display: block;
   margin-bottom: 16rpx;
 }
 
 .detail-desc-text {
   font-size: 28rpx;
-  color: #8E8E93;
+  color: #86868B;
   line-height: 1.7;
   display: block;
 }
@@ -101,8 +101,8 @@
   left: 0;
   right: 0;
   padding: 24rpx 32rpx calc(24rpx + env(safe-area-inset-bottom));
-  background: #1C1C1E;
-  box-shadow: 0 -4rpx 20rpx rgba(0,0,0,0.3);
+  background: #F5F5F7;
+  box-shadow: 0 -4rpx 20rpx rgba(0,0,0,0.08);
 }
 
 .detail-call-btn {
