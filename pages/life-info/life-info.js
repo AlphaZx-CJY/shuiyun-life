@@ -1,11 +1,13 @@
 Page({
   data: {
     categories: [
-      { id: 'supermarket', name: '超市', icon: '🏪' },
-      { id: 'market', name: '菜场', icon: '🥬' },
-      { id: 'transport', name: '公共交通', icon: '🚌' },
-      { id: 'school', name: '学校', icon: '🏫' },
-      { id: 'leisure', name: '休闲', icon: '🌳' }
+      { id: 'supermarket', name: '超市', icon: '超', color: '#FF9500' },
+      { id: 'market', name: '菜场', icon: '菜', color: '#34C759' },
+      { id: 'food', name: '美食', icon: '食', color: '#FF3B30' },
+      { id: 'hotel', name: '酒店', icon: '住', color: '#AF52DE' },
+      { id: 'transport', name: '交通', icon: '交', color: '#007AFF' },
+      { id: 'school', name: '学校', icon: '学', color: '#5856D6' },
+      { id: 'leisure', name: '休闲', icon: '休', color: '#FF2D55' }
     ],
     activeCategory: 'supermarket',
     serviceList: []
@@ -182,6 +184,82 @@ Page({
           hours: '06:00-21:00',
           phone: '',
           tags: ['健身器材', '广场舞', '慢跑道']
+        }
+      ],
+      food: [
+        {
+          id: 17,
+          name: '重固老饭店',
+          address: '重固镇重固大街88号',
+          distance: '900m',
+          hours: '10:00-21:00',
+          phone: '021-69291001',
+          tags: ['本帮菜', '农家土菜', '聚餐']
+        },
+        {
+          id: 18,
+          name: '小杨生煎（福泉山路店）',
+          address: '重固镇福泉山路216号',
+          distance: '1.1km',
+          hours: '07:00-20:30',
+          phone: '021-69291002',
+          tags: ['生煎包', '快餐', '早餐']
+        },
+        {
+          id: 19,
+          name: '沙县小吃（重固大街店）',
+          address: '重固镇重固大街156号',
+          distance: '800m',
+          hours: '06:30-22:00',
+          phone: '021-69291003',
+          tags: ['特色小吃', '经济实惠', '夜宵']
+        },
+        {
+          id: 20,
+          name: '兰州拉面（赵重公路店）',
+          address: '重固镇赵重公路1838号',
+          distance: '1.5km',
+          hours: '08:00-22:00',
+          phone: '021-69291004',
+          tags: ['西北风味', '面食', '清真']
+        }
+      ],
+      hotel: [
+        {
+          id: 21,
+          name: '如家商旅酒店（赵巷店）',
+          address: '赵巷镇赵华路301号',
+          distance: '2.8km',
+          hours: '24小时',
+          phone: '021-69292001',
+          tags: ['经济型', '商务出行', '含早餐']
+        },
+        {
+          id: 22,
+          name: '汉庭酒店（青浦重固店）',
+          address: '重固镇福泉山路508号',
+          distance: '1.3km',
+          hours: '24小时',
+          phone: '021-69292002',
+          tags: ['连锁酒店', '干净舒适', '近地铁']
+        },
+        {
+          id: 23,
+          name: '全季酒店（青浦新城店）',
+          address: '青浦区外青松公路6188号',
+          distance: '6.5km',
+          hours: '24小时',
+          phone: '021-69292003',
+          tags: ['中高端', '品质住宿', '免费停车']
+        },
+        {
+          id: 24,
+          name: '格林豪泰（赵巷地铁站店）',
+          address: '赵巷镇盈港东路7799号',
+          distance: '3.2km',
+          hours: '24小时',
+          phone: '021-69292004',
+          tags: ['快捷酒店', '近地铁站', '性价比高']
         }
       ]
     };

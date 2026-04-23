@@ -1,15 +1,17 @@
 <nav-bar title="周边生活" showBack="{{true}}" />
 <view class="page-container">
   <!-- 分类Tab -->
-  <view class="tab-bar">
-    <view class="tab-item {{activeCategory === item.id ? 'tab-item--active' : ''}}" 
-          wx:for="{{categories}}" wx:key="id" data-id="{{item.id}}" bindtap="onCategoryTap">
-      <view class="tab-icon-wrap">
-        <text class="tab-icon">{{item.icon}}</text>
+  <scroll-view class="tab-scroll" scroll-x enhanced show-scrollbar="{{false}}">
+    <view class="tab-bar">
+      <view class="tab-item {{activeCategory === item.id ? 'tab-item--active' : ''}}" 
+            wx:for="{{categories}}" wx:key="id" data-id="{{item.id}}" bindtap="onCategoryTap">
+        <view class="tab-icon-wrap" style="background: {{item.color}};">
+          <text class="tab-icon">{{item.icon}}</text>
+        </view>
+        <text class="tab-text">{{item.name}}</text>
       </view>
-      <text class="tab-text">{{item.name}}</text>
     </view>
-  </view>
+  </scroll-view>
 
   <!-- 服务列表 -->
   <view class="service-list">
