@@ -4,7 +4,7 @@ Page({
     aboutItems: [
       { id: 1, title: '关于我们', icon: '🏠', path: '' },
       { id: 2, title: '意见反馈', icon: '✉️', path: '' },
-      { id: 3, title: '联系物业', icon: '📞', path: '' },
+      { id: 3, title: '联系方式', icon: '📞', path: '' },
       { id: 4, title: '使用指南', icon: '📖', path: '' }
     ]
   },
@@ -37,7 +37,7 @@ Page({
       default:
         wx.showModal({
           title: '关于水韵名邸生活号',
-          content: '本小程序由水韵名邸业委会运营，旨在为业主提供便捷的生活服务信息。如有建议欢迎联系物业。',
+          content: '本小程序由个人维护，旨在为小区居民提供便捷的生活服务信息。如有建议欢迎联系。',
           showCancel: false
         });
     }

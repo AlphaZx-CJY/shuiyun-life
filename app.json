@@ -5,6 +5,7 @@
     "pages/news-detail/news-detail",
     "pages/trade/trade",
     "pages/trade-detail/trade-detail",
+    "pages/trade-publish/trade-publish",
     "pages/life-info/life-info",
     "pages/payment/payment",
     "pages/payment-detail/payment-detail",

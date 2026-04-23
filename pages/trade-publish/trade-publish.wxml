@@ -1,0 +1,74 @@
+<nav-bar title="发布闲置" showBack="{{true}}" />
+
+<view class="page-container">
+  <view class="form-card ios-card">
+    <!-- 商品标题 -->
+    <view class="form-item">
+      <text class="form-label">商品标题 <text class="form-required">*</text></text>
+      <input class="form-input" placeholder="例如：宜家双人沙发，9成新" value="{{form.title}}" data-field="title" bindinput="onInputChange" maxlength="50" />
+    </view>
+
+    <!-- 分类 -->
+    <view class="form-item">
+      <text class="form-label">分类</text>
+      <picker mode="selector" range="{{categories}}" range-key="name" value="{{categoryIndex}}" bindchange="onCategoryChange">
+        <view class="form-picker">
+          <text class="form-picker-text">{{categories[categoryIndex].name}}</text>
+          <view class="ios-list-item__arrow"></view>
+        </view>
+      </picker>
+    </view>
+
+    <!-- 售价 -->
+    <view class="form-item">
+      <text class="form-label">售价 <text class="form-required">*</text></text>
+      <view class="form-price-input">
+        <text class="form-price-symbol">¥</text>
+        <input class="form-input" type="digit" placeholder="0.00" value="{{form.price}}" data-field="price" bindinput="onInputChange" />
+      </view>
+    </view>
+
+    <!-- 原价 -->
+    <view class="form-item">
+      <text class="form-label">原价</text>
+      <view class="form-price-input">
+        <text class="form-price-symbol">¥</text>
+        <input class="form-input" type="digit" placeholder="0.00" value="{{form.originalPrice}}" data-field="originalPrice" bindinput="onInputChange" />
+      </view>
+    </view>
+
+    <!-- 描述 -->
+    <view class="form-item">
+      <text class="form-label">商品描述</text>
+      <textarea class="form-textarea" placeholder="描述一下商品的使用情况、品牌、尺寸等信息..." value="{{form.description}}" data-field="description" bindinput="onInputChange" maxlength="500" />
+    </view>
+
+    <!-- 联系人 -->
+    <view class="form-item">
+      <text class="form-label">联系人 <text class="form-required">*</text></text>
+      <input class="form-input" placeholder="例如：3号楼王先生" value="{{form.seller}}" data-field="seller" bindinput="onInputChange" />
+    </view>
+
+    <!-- 联系电话 -->
+    <view class="form-item">
+      <text class="form-label">联系电话 <text class="form-required">*</text></text>
+      <input class="form-input" type="number" placeholder="请输入手机号" value="{{form.phone}}" data-field="phone" bindinput="onInputChange" maxlength="11" />
+    </view>
+
+    <!-- 位置 -->
+    <view class="form-item form-item--last">
+      <text class="form-label">位置</text>
+      <input class="form-input" placeholder="例如：3号楼1202室" value="{{form.location}}" data-field="location" bindinput="onInputChange" />
+    </view>
+  </view>
+
+  <!-- 操作按钮 -->
+  <view class="form-actions">
+    <view class="ios-btn ios-btn--secondary form-btn" bindtap="onCancel">
+      <text>取消</text>
+    </view>
+    <view class="ios-btn ios-btn--primary form-btn" bindtap="onSubmit">
+      <text>发布</text>
+    </view>
+  </view>
+</view>
