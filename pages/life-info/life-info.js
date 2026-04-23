@@ -190,17 +190,22 @@ Page({
 
   onServiceTap(e) {
     const { item } = e.currentTarget.dataset;
+    const itemList = ['查看地图'];
+    if (item.phone) {
+      itemList.push('拨打电话');
+    }
     wx.showActionSheet({
-      itemList: ['查看地图', '拨打电话'],
+      itemList,
       success: (res) => {
-        if (res.tapIndex === 0) {
+        const action = itemList[res.tapIndex];
+        if (action === '查看地图') {
           wx.openLocation({
             latitude: 31.220,
             longitude: 121.200,
             name: item.name,
             address: item.address
           });
-        } else if (res.tapIndex === 1 && item.phone) {
+        } else if (action === '拨打电话') {
           wx.makePhoneCall({ phoneNumber: item.phone });
         }
       }

@@ -29,8 +29,8 @@
 }
 
 .tab-icon-wrap {
-  width: 48rpx;
-  height: 48rpx;
+  width: 52rpx;
+  height: 52rpx;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -38,7 +38,7 @@
 }
 
 .tab-icon {
-  font-size: 40rpx;
+  font-size: 36rpx;
   line-height: 1;
 }
 
