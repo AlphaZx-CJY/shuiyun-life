@@ -4,7 +4,8 @@ Page({
       { id: 'supermarket', name: '超市', icon: '🏪' },
       { id: 'market', name: '菜场', icon: '🥬' },
       { id: 'transport', name: '公共交通', icon: '🚌' },
-      { id: 'school', name: '学校', icon: '🏫' }
+      { id: 'school', name: '学校', icon: '🏫' },
+      { id: 'leisure', name: '休闲', icon: '🌳' }
     ],
     activeCategory: 'supermarket',
     serviceList: []
@@ -134,6 +135,44 @@ Page({
           hours: '07:30-16:30',
           phone: '021-01234567',
           tags: ['公办幼儿园', '小区内']
+        }
+      ],
+      leisure: [
+        {
+          id: 12,
+          name: '新泾公园',
+          address: '金钟路280号',
+          distance: '700m',
+          hours: '05:00-21:00',
+          phone: '021-34567890',
+          tags: ['免费开放', '晨练', '散步']
+        },
+        {
+          id: 13,
+          name: '乐刻健身（福泉路店）',
+          address: '福泉路210号2楼',
+          distance: '280m',
+          hours: '24小时',
+          phone: '021-45678901',
+          tags: ['24小时', '月付制', '器械齐全']
+        },
+        {
+          id: 14,
+          name: '星巴克（金钟路店）',
+          address: '金钟路188号',
+          distance: '550m',
+          hours: '07:00-22:00',
+          phone: '021-56789012',
+          tags: ['Wi-Fi', '宠物友好', '社区聚会']
+        },
+        {
+          id: 15,
+          name: '新泾镇图书馆',
+          address: '福泉路350号',
+          distance: '450m',
+          hours: '09:00-20:00（周一闭馆）',
+          phone: '021-67890123',
+          tags: ['免费借阅', '自习室', '儿童阅读区']
         }
       ]
     };
