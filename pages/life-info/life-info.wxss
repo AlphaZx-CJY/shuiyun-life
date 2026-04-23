@@ -1,0 +1,106 @@
+/* 周边生活页样式 */
+
+.tab-bar {
+  display: flex;
+  background: var(--ios-card);
+  padding: 16rpx 0;
+  margin-bottom: 8rpx;
+}
+
+.tab-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 12rpx 0;
+  position: relative;
+}
+
+.tab-item--active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 30%;
+  right: 30%;
+  height: 4rpx;
+  background: var(--ios-blue);
+  border-radius: 2rpx;
+}
+
+.tab-icon {
+  font-size: 40rpx;
+  margin-bottom: 8rpx;
+}
+
+.tab-text {
+  font-size: 24rpx;
+  color: var(--ios-gray);
+  font-weight: 500;
+}
+
+.tab-item--active .tab-text {
+  color: var(--ios-blue);
+}
+
+/* 服务卡片 */
+.service-list {
+  padding: 16rpx 24rpx 32rpx;
+}
+
+.service-card {
+  padding: 28rpx;
+  margin-bottom: 16rpx;
+}
+
+.service-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16rpx;
+}
+
+.service-name {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #1C1C1E;
+}
+
+.service-distance {
+  font-size: 24rpx;
+  color: var(--ios-blue);
+  font-weight: 500;
+}
+
+.service-tags {
+  display: flex;
+  gap: 12rpx;
+  margin-bottom: 20rpx;
+  flex-wrap: wrap;
+}
+
+.service-info {
+  display: flex;
+  flex-direction: column;
+  gap: 12rpx;
+}
+
+.service-info-item {
+  display: flex;
+}
+
+.service-info-label {
+  width: 120rpx;
+  font-size: 24rpx;
+  color: var(--ios-gray);
+  flex-shrink: 0;
+}
+
+.service-info-value {
+  flex: 1;
+  font-size: 26rpx;
+  color: #3A3A3C;
+}
+
+.service-phone {
+  color: var(--ios-blue);
+}

@@ -1,0 +1,16 @@
+<nav-bar title="缴费详情" showBack="{{true}}" />
+<view class="page-container" wx:if="{{payment}}">
+  <view class="detail-header">
+    <text class="detail-tag ios-tag ios-tag--blue">{{payment.tag}}</text>
+    <text class="detail-title">{{payment.title}}</text>
+    <text class="detail-date">更新于 {{payment.date}}</text>
+  </view>
+
+  <view class="detail-content ios-card">
+    <rich-text nodes="{{payment.content}}"></rich-text>
+  </view>
+</view>
+
+<view class="empty-state" wx:else>
+  <text class="empty-state__text">内容加载失败</text>
+</view>

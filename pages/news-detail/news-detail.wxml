@@ -1,0 +1,19 @@
+<nav-bar title="资讯详情" showBack="{{true}}" />
+<view class="page-container" wx:if="{{news}}">
+  <view class="detail-header">
+    <text class="detail-tag ios-tag ios-tag--blue">{{news.source}}</text>
+    <text class="detail-title">{{news.title}}</text>
+    <view class="detail-meta">
+      <text class="detail-date">{{news.date}}</text>
+      <text class="detail-views">{{news.viewCount}} 阅读</text>
+    </view>
+  </view>
+
+  <view class="detail-content ios-card">
+    <rich-text nodes="{{news.content}}"></rich-text>
+  </view>
+</view>
+
+<view class="empty-state" wx:else>
+  <text class="empty-state__text">文章加载失败</text>
+</view>

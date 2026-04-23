@@ -1,0 +1,218 @@
+/* 班车信息页样式 */
+
+.route-header {
+  margin: 24rpx;
+  padding: 32rpx;
+  text-align: center;
+}
+
+.route-name {
+  font-size: 36rpx;
+  font-weight: 700;
+  color: #1C1C1E;
+  display: block;
+  margin-bottom: 12rpx;
+}
+
+.route-note {
+  display: inline-block;
+  padding: 6rpx 20rpx;
+  border-radius: var(--radius-pill);
+  background: rgba(0, 122, 255, 0.08);
+}
+
+.route-note-text {
+  font-size: 24rpx;
+  color: var(--ios-blue);
+  font-weight: 500;
+}
+
+/* 方向切换 */
+.direction-tabs {
+  display: flex;
+  margin: 0 24rpx 24rpx;
+  background: var(--ios-card);
+  border-radius: var(--radius-md);
+  padding: 6rpx;
+  box-shadow: var(--shadow-sm);
+}
+
+.direction-tab {
+  flex: 1;
+  padding: 16rpx 0;
+  text-align: center;
+  border-radius: var(--radius-sm);
+  transition: all 0.2s;
+}
+
+.direction-tab--active {
+  background: var(--ios-blue);
+}
+
+.direction-tab-text {
+  font-size: 28rpx;
+  color: #3A3A3C;
+  font-weight: 500;
+}
+
+.direction-tab--active .direction-tab-text {
+  color: #FFFFFF;
+}
+
+/* 时刻表 */
+.schedule-card {
+  margin: 0 24rpx;
+  padding: 24rpx 32rpx;
+}
+
+.schedule-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16rpx;
+}
+
+.schedule-item {
+  display: flex;
+  align-items: center;
+  width: calc(33.333% - 11rpx);
+  padding: 16rpx 0;
+}
+
+.schedule-time-marker {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 12rpx;
+}
+
+.schedule-dot {
+  width: 16rpx;
+  height: 16rpx;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.schedule-dot--upcoming {
+  background: var(--ios-blue);
+}
+
+.schedule-dot--soon {
+  background: var(--ios-orange);
+  box-shadow: 0 0 0 4rpx rgba(255, 149, 0, 0.2);
+}
+
+.schedule-dot--passed {
+  background: var(--ios-light-gray);
+}
+
+.schedule-time-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.schedule-time-text {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #1C1C1E;
+}
+
+.schedule-time-status {
+  font-size: 20rpx;
+  color: var(--ios-gray);
+  margin-top: 4rpx;
+}
+
+.schedule-item.passed .schedule-time-text {
+  color: var(--ios-light-gray);
+  text-decoration: line-through;
+}
+
+/* 站点 */
+.stops-card {
+  margin: 0 24rpx;
+  padding: 24rpx 32rpx;
+}
+
+.stop-item {
+  display: flex;
+  align-items: center;
+  padding: 16rpx 0;
+  position: relative;
+}
+
+.stop-marker {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 20rpx;
+}
+
+.stop-dot {
+  width: 20rpx;
+  height: 20rpx;
+  border-radius: 50%;
+  background: var(--ios-light-gray);
+  flex-shrink: 0;
+}
+
+.stop-dot--start {
+  background: var(--ios-green);
+}
+
+.stop-dot--end {
+  background: var(--ios-red);
+}
+
+.stop-line {
+  width: 2rpx;
+  height: 40rpx;
+  background: var(--ios-separator);
+}
+
+.stop-name {
+  font-size: 30rpx;
+  color: #3A3A3C;
+  font-weight: 500;
+}
+
+/* 联系 */
+.contact-card {
+  margin: 0 24rpx 48rpx;
+  padding: 28rpx 32rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.contact-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.contact-label {
+  font-size: 24rpx;
+  color: var(--ios-gray);
+  margin-bottom: 4rpx;
+}
+
+.contact-phone {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #1C1C1E;
+}
+
+.contact-action {
+  padding: 12rpx 28rpx;
+  border-radius: var(--radius-pill);
+  background: var(--ios-blue);
+}
+
+.contact-action-text {
+  font-size: 26rpx;
+  color: #FFFFFF;
+  font-weight: 500;
+}
+
+.contact-card:active {
+  opacity: 0.8;
+}

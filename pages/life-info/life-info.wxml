@@ -1,0 +1,38 @@
+<nav-bar title="周边生活" showBack="{{true}}" />
+<view class="page-container">
+  <!-- 分类Tab -->
+  <view class="tab-bar">
+    <view class="tab-item {{activeCategory === item.id ? 'tab-item--active' : ''}}" 
+          wx:for="{{categories}}" wx:key="id" data-id="{{item.id}}" bindtap="onCategoryTap">
+      <text class="tab-icon">{{item.icon}}</text>
+      <text class="tab-text">{{item.name}}</text>
+    </view>
+  </view>
+
+  <!-- 服务列表 -->
+  <view class="service-list">
+    <view class="service-card ios-card" wx:for="{{serviceList}}" wx:key="id" data-item="{{item}}" bindtap="onServiceTap">
+      <view class="service-header">
+        <text class="service-name">{{item.name}}</text>
+        <text class="service-distance">{{item.distance}}</text>
+      </view>
+      <view class="service-tags">
+        <text class="ios-tag ios-tag--blue" wx:for="{{item.tags}}" wx:for-item="tag" wx:key="*this">{{tag}}</text>
+      </view>
+      <view class="service-info">
+        <view class="service-info-item">
+          <text class="service-info-label">地址</text>
+          <text class="service-info-value">{{item.address}}</text>
+        </view>
+        <view class="service-info-item">
+          <text class="service-info-label">营业时间</text>
+          <text class="service-info-value">{{item.hours}}</text>
+        </view>
+        <view class="service-info-item" wx:if="{{item.phone}}">
+          <text class="service-info-label">电话</text>
+          <text class="service-info-value service-phone">{{item.phone}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

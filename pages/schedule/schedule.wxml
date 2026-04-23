@@ -1,0 +1,35 @@
+<view class="page-container">
+  <view class="schedule-list">
+    <!-- 即将开始 -->
+    <view class="ios-section" wx:if="{{upcomingList.length > 0}}">
+      <text class="ios-section-title">即将开始</text>
+      <view class="ios-card">
+        <view class="schedule-item" wx:for="{{upcomingList}}" wx:key="id" data-item="{{item}}" bindtap="onScheduleTap">
+          <view class="schedule-badge schedule-badge--upcoming">{{item.type}}</view>
+          <view class="schedule-content">
+            <text class="schedule-title">{{item.title}}</text>
+            <text class="schedule-info">{{item.date}} {{item.time}}</text>
+            <text class="schedule-location">📍 {{item.location}}</text>
+          </view>
+          <view class="schedule-status schedule-status--upcoming">即将开始</view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 已结束 -->
+    <view class="ios-section" wx:if="{{endedList.length > 0}}">
+      <text class="ios-section-title">已结束</text>
+      <view class="ios-card">
+        <view class="schedule-item schedule-item--ended" wx:for="{{endedList}}" wx:key="id" data-item="{{item}}" bindtap="onScheduleTap">
+          <view class="schedule-badge schedule-badge--ended">{{item.type}}</view>
+          <view class="schedule-content">
+            <text class="schedule-title">{{item.title}}</text>
+            <text class="schedule-info">{{item.date}} {{item.time}}</text>
+            <text class="schedule-location">📍 {{item.location}}</text>
+          </view>
+          <view class="schedule-status schedule-status--ended">已结束</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

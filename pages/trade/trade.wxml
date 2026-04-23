@@ -1,0 +1,39 @@
+<view class="page-container">
+  <!-- 分类筛选 -->
+  <view class="category-bar">
+    <scroll-view class="category-scroll" scroll-x enhanced show-scrollbar="{{false}}">
+      <view class="category-list">
+        <view class="category-item {{activeCategory === item.id ? 'category-item--active' : ''}}" 
+              wx:for="{{categories}}" wx:key="id" data-id="{{item.id}}" bindtap="onCategoryTap">
+          <text class="category-text">{{item.name}}</text>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+
+  <!-- 交易列表 -->
+  <view class="trade-list">
+    <view class="trade-card" wx:for="{{tradeList}}" wx:key="id" data-id="{{item.id}}" bindtap="onTradeTap">
+      <image wx:if="{{item.image}}" class="trade-image" src="{{item.image}}" mode="aspectFill" lazy-load />
+      <view wx:else class="trade-image trade-image--placeholder">
+        <text class="trade-placeholder-text">🔄</text>
+      </view>
+      <view class="trade-info">
+        <text class="trade-title">{{item.title}}</text>
+        <view class="trade-price-row">
+          <text class="trade-price">¥{{item.price}}</text>
+          <text class="trade-original">¥{{item.originalPrice}}</text>
+        </view>
+        <view class="trade-meta">
+          <text class="trade-seller">{{item.seller}}</text>
+          <text class="trade-time">{{item.time}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 发布按钮 -->
+  <view class="float-btn" bindtap="onPublishTap">
+    <text class="float-btn__icon">+</text>
+  </view>
+</view>

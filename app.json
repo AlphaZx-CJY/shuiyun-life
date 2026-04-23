@@ -1,0 +1,64 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/news/news",
+    "pages/news-detail/news-detail",
+    "pages/trade/trade",
+    "pages/trade-detail/trade-detail",
+    "pages/life-info/life-info",
+    "pages/payment/payment",
+    "pages/payment-detail/payment-detail",
+    "pages/schedule/schedule",
+    "pages/shuttle/shuttle",
+    "pages/profile/profile"
+  ],
+  "window": {
+    "backgroundTextStyle": "dark",
+    "navigationBarBackgroundColor": "#F2F2F7",
+    "navigationBarTitleText": "水韵名邸",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#F2F2F7",
+    "navigationStyle": "default"
+  },
+  "tabBar": {
+    "color": "#999999",
+    "selectedColor": "#007AFF",
+    "backgroundColor": "#FFFFFF",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "images/icons/home.png",
+        "selectedIconPath": "images/icons/home-active.png"
+      },
+      {
+        "pagePath": "pages/news/news",
+        "text": "资讯",
+        "iconPath": "images/icons/news.png",
+        "selectedIconPath": "images/icons/news-active.png"
+      },
+      {
+        "pagePath": "pages/trade/trade",
+        "text": "交易",
+        "iconPath": "images/icons/trade.png",
+        "selectedIconPath": "images/icons/trade-active.png"
+      },
+      {
+        "pagePath": "pages/schedule/schedule",
+        "text": "便民",
+        "iconPath": "images/icons/schedule.png",
+        "selectedIconPath": "images/icons/schedule-active.png"
+      },
+      {
+        "pagePath": "pages/profile/profile",
+        "text": "我的",
+        "iconPath": "images/icons/profile.png",
+        "selectedIconPath": "images/icons/profile-active.png"
+      }
+    ]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents"
+}

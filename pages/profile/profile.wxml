@@ -1,0 +1,31 @@
+<view class="page-container">
+  <!-- 用户头部 -->
+  <view class="profile-header">
+    <view class="profile-avatar">
+      <text class="profile-avatar-text">🏠</text>
+    </view>
+    <text class="profile-name">水韵名邸业主</text>
+    <text class="profile-address">新长宁水韵名邸</text>
+  </view>
+
+  <!-- 功能列表 -->
+  <view class="ios-section">
+    <view class="ios-card">
+      <view class="ios-list-item" wx:for="{{aboutItems}}" wx:key="id" data-item="{{item}}" bindtap="onItemTap">
+        <view class="ios-list-item__icon" style="background: #007AFF15;">
+          <text style="font-size: 32rpx;">{{item.icon}}</text>
+        </view>
+        <view class="ios-list-item__content">
+          <text class="ios-list-item__title">{{item.title}}</text>
+        </view>
+        <view class="ios-list-item__arrow"></view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 版本信息 -->
+  <view class="version-info">
+    <text>水韵名邸生活号 v{{version}}</text>
+    <text>由业委会运营维护</text>
+  </view>
+</view>

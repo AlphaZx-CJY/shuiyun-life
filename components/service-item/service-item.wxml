@@ -1,0 +1,23 @@
+<view class="service-card ios-card" bindtap="onTap">
+  <view class="service-header">
+    <text class="service-name">{{service.name}}</text>
+    <text class="service-distance">{{service.distance}}</text>
+  </view>
+  <view class="service-tags">
+    <text class="ios-tag ios-tag--blue" wx:for="{{service.tags}}" wx:for-item="tag" wx:key="*this">{{tag}}</text>
+  </view>
+  <view class="service-info">
+    <view class="service-info-item">
+      <text class="service-info-label">地址</text>
+      <text class="service-info-value">{{service.address}}</text>
+    </view>
+    <view class="service-info-item">
+      <text class="service-info-label">营业时间</text>
+      <text class="service-info-value">{{service.hours}}</text>
+    </view>
+    <view class="service-info-item" wx:if="{{service.phone}}">
+      <text class="service-info-label">电话</text>
+      <text class="service-info-value service-phone">{{service.phone}}</text>
+    </view>
+  </view>
+</view>

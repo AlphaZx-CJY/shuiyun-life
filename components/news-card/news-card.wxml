@@ -1,0 +1,11 @@
+<view class="news-card" bindtap="onTap">
+  <view class="news-card__content">
+    <view class="news-card__header">
+      <text class="ios-tag ios-tag--blue">{{news.tag}}</text>
+      <text class="news-card__date">{{news.date}}</text>
+    </view>
+    <text class="news-card__title">{{news.title}}</text>
+    <text class="news-card__summary">{{news.summary}}</text>
+  </view>
+  <image wx:if="{{news.cover}}" class="news-card__cover" src="{{news.cover}}" mode="aspectFill" lazy-load />
+</view>

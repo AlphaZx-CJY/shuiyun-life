@@ -1,0 +1,145 @@
+/* 闲置交易页样式 */
+
+.category-bar {
+  background: var(--ios-bg);
+  padding: 16rpx 0;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.category-scroll {
+  white-space: nowrap;
+}
+
+.category-list {
+  display: inline-flex;
+  padding: 0 24rpx;
+  gap: 16rpx;
+}
+
+.category-item {
+  padding: 12rpx 28rpx;
+  border-radius: var(--radius-pill);
+  background: var(--ios-card);
+  transition: all 0.2s;
+}
+
+.category-item--active {
+  background: var(--ios-green);
+}
+
+.category-text {
+  font-size: 26rpx;
+  color: #3A3A3C;
+  font-weight: 500;
+}
+
+.category-item--active .category-text {
+  color: #FFFFFF;
+}
+
+/* 交易列表 */
+.trade-list {
+  padding: 8rpx 24rpx 32rpx;
+}
+
+.trade-card {
+  display: flex;
+  background: var(--ios-card);
+  border-radius: var(--radius-md);
+  padding: 20rpx;
+  margin-bottom: 16rpx;
+  box-shadow: var(--shadow-sm);
+}
+
+.trade-image {
+  width: 200rpx;
+  height: 200rpx;
+  border-radius: var(--radius-sm);
+  flex-shrink: 0;
+  background: var(--ios-bg);
+}
+
+.trade-image--placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ec 100%);
+}
+
+.trade-placeholder-text {
+  font-size: 64rpx;
+}
+
+.trade-info {
+  flex: 1;
+  min-width: 0;
+  margin-left: 20rpx;
+  display: flex;
+  flex-direction: column;
+}
+
+.trade-title {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #1C1C1E;
+  line-height: 1.4;
+  margin-bottom: 12rpx;
+}
+
+.trade-price-row {
+  display: flex;
+  align-items: baseline;
+  gap: 16rpx;
+  margin-bottom: 12rpx;
+  margin-top: auto;
+}
+
+.trade-price {
+  font-size: 36rpx;
+  font-weight: 700;
+  color: var(--ios-red);
+}
+
+.trade-original {
+  font-size: 24rpx;
+  color: var(--ios-light-gray);
+  text-decoration: line-through;
+}
+
+.trade-meta {
+  display: flex;
+  justify-content: space-between;
+}
+
+.trade-seller, .trade-time {
+  font-size: 22rpx;
+  color: var(--ios-gray);
+}
+
+/* 发布按钮 */
+.float-btn {
+  position: fixed;
+  right: 32rpx;
+  bottom: 160rpx;
+  width: 96rpx;
+  height: 96rpx;
+  border-radius: 50%;
+  background: var(--ios-green);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-md);
+  z-index: 100;
+}
+
+.float-btn:active {
+  transform: scale(0.92);
+}
+
+.float-btn__icon {
+  font-size: 48rpx;
+  color: #FFFFFF;
+  font-weight: 300;
+}

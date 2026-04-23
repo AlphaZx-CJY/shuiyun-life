@@ -1,0 +1,77 @@
+<view class="page-container">
+  <!-- 头部 -->
+  <view class="header">
+    <view class="header-title">新长宁水韵名邸</view>
+    <view class="header-subtitle">让生活更便捷</view>
+  </view>
+
+  <!-- Banner轮播 -->
+  <view class="banner-section">
+    <swiper class="banner-swiper" indicator-dots autoplay circular interval="4000" duration="500" indicator-color="rgba(255,255,255,0.5)" indicator-active-color="#FFFFFF">
+      <swiper-item wx:for="{{banners}}" wx:key="id" data-id="{{item.id}}" bindtap="onBannerTap">
+        <view class="banner-item">
+          <image class="banner-image" src="{{item.image}}" mode="aspectFill" lazy-load />
+          <view class="banner-mask">
+            <text class="banner-title">{{item.title}}</text>
+          </view>
+        </view>
+      </swiper-item>
+    </swiper>
+  </view>
+
+  <!-- 快捷入口 -->
+  <view class="ios-section">
+    <view class="quick-grid">
+      <view class="quick-item" wx:for="{{quickEntries}}" wx:key="id" data-path="{{item.path}}" bindtap="onEntryTap">
+        <view class="quick-icon" style="background: {{item.color}}15; color: {{item.color}};">
+          <text class="quick-icon-text">{{item.icon}}</text>
+        </view>
+        <text class="quick-label">{{item.label}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 最新动态 -->
+  <view class="ios-section">
+    <view class="section-header">
+      <text class="ios-section-title">最新动态</text>
+      <text class="section-more" bindtap="onMoreNewsTap">查看更多</text>
+    </view>
+    <view class="ios-card">
+      <view class="news-item" wx:for="{{latestNews}}" wx:key="id" data-id="{{item.id}}" bindtap="onNewsTap">
+        <view class="news-content">
+          <view class="news-title-row">
+            <text class="news-tag ios-tag ios-tag--blue">{{item.tag}}</text>
+            <text class="news-title">{{item.title}}</text>
+          </view>
+          <text class="news-summary">{{item.summary}}</text>
+          <view class="news-meta">
+            <text class="news-source">{{item.source}}</text>
+            <text class="news-date">{{item.date}}</text>
+          </view>
+        </view>
+        <view class="ios-list-item__arrow"></view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 今日便民 -->
+  <view class="ios-section">
+    <view class="section-header">
+      <text class="ios-section-title">今日便民</text>
+      <text class="section-more" bindtap="onMoreScheduleTap">查看全部</text>
+    </view>
+    <view class="ios-card">
+      <view class="schedule-item" wx:for="{{todaySchedules}}" wx:key="id" data-id="{{item.id}}" bindtap="onScheduleTap">
+        <view class="schedule-dot schedule-dot--{{item.status}}"></view>
+        <view class="schedule-content">
+          <text class="schedule-title">{{item.title}}</text>
+          <text class="schedule-info">{{item.time}} · {{item.location}}</text>
+        </view>
+      </view>
+      <view class="empty-state" wx:if="{{todaySchedules.length === 0}}">
+        <text class="empty-state__text">今日暂无安排</text>
+      </view>
+    </view>
+  </view>
+</view>

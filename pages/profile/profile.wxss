@@ -1,0 +1,50 @@
+/* 我的页面样式 */
+
+.profile-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 64rpx 32rpx 48rpx;
+  background: var(--ios-bg);
+}
+
+.profile-avatar {
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #007AFF 0%, #5856D6 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24rpx;
+  box-shadow: 0 8rpx 24rpx rgba(0,122,255,0.25);
+}
+
+.profile-avatar-text {
+  font-size: 80rpx;
+}
+
+.profile-name {
+  font-size: 36rpx;
+  font-weight: 600;
+  color: #1C1C1E;
+  margin-bottom: 8rpx;
+}
+
+.profile-address {
+  font-size: 26rpx;
+  color: var(--ios-gray);
+}
+
+.version-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 48rpx 32rpx;
+  gap: 8rpx;
+}
+
+.version-info text {
+  font-size: 22rpx;
+  color: var(--ios-light-gray);
+}

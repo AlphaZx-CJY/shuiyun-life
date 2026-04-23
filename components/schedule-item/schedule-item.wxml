@@ -1,0 +1,11 @@
+<view class="schedule-item {{schedule.status === 'ended' ? 'schedule-item--ended' : ''}}" bindtap="onTap">
+  <view class="schedule-badge schedule-badge--{{schedule.status}}">{{schedule.type}}</view>
+  <view class="schedule-content">
+    <text class="schedule-title">{{schedule.title}}</text>
+    <text class="schedule-info">{{schedule.date}} {{schedule.time}}</text>
+    <text class="schedule-location">📍 {{schedule.location}}</text>
+  </view>
+  <view class="schedule-status schedule-status--{{schedule.status}}">
+    {{schedule.status === 'upcoming' ? '即将开始' : '已结束'}}
+  </view>
+</view>

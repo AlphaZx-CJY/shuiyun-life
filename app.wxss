@@ -1,0 +1,271 @@
+/* ================================
+   全局样式 - Apple Design 风格
+   ================================ */
+
+/* CSS Variables */
+page {
+  --ios-blue: #007AFF;
+  --ios-green: #34C759;
+  --ios-red: #FF3B30;
+  --ios-orange: #FF9500;
+  --ios-gray: #8E8E93;
+  --ios-light-gray: #C7C7CC;
+  --ios-bg: #F2F2F7;
+  --ios-card: #FFFFFF;
+  --ios-separator: #E5E5EA;
+  --ios-grouped-bg: #F2F2F7;
+  
+  --radius-sm: 8rpx;
+  --radius-md: 16rpx;
+  --radius-lg: 24rpx;
+  --radius-pill: 9999rpx;
+  
+  --space-xs: 8rpx;
+  --space-sm: 16rpx;
+  --space-md: 24rpx;
+  --space-lg: 32rpx;
+  --space-xl: 48rpx;
+  
+  --shadow-sm: 0 2rpx 8rpx rgba(0,0,0,0.04);
+  --shadow-md: 0 4rpx 16rpx rgba(0,0,0,0.08);
+  --shadow-lg: 0 8rpx 32rpx rgba(0,0,0,0.12);
+
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  background-color: var(--ios-bg);
+  color: #1C1C1E;
+  font-size: 28rpx;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* 重置 */
+view, text, image, navigator, scroll-view, swiper, swiper-item {
+  box-sizing: border-box;
+}
+
+/* 页面容器 */
+.page-container {
+  min-height: 100vh;
+  background-color: var(--ios-bg);
+  padding-bottom: constant(safe-area-inset-bottom);
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+/* iOS风格分组卡片 */
+.ios-section {
+  margin: var(--space-md) var(--space-md);
+}
+
+.ios-section-title {
+  font-size: 24rpx;
+  font-weight: 600;
+  color: var(--ios-gray);
+  text-transform: uppercase;
+  letter-spacing: 1rpx;
+  margin-bottom: var(--space-sm);
+  padding-left: var(--space-sm);
+}
+
+.ios-card {
+  background: var(--ios-card);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+}
+
+.ios-card + .ios-card {
+  margin-top: var(--space-sm);
+}
+
+/* iOS列表项 */
+.ios-list-item {
+  display: flex;
+  align-items: center;
+  padding: var(--space-md) var(--space-lg);
+  background: var(--ios-card);
+  position: relative;
+}
+
+.ios-list-item::after {
+  content: '';
+  position: absolute;
+  left: var(--space-lg);
+  right: 0;
+  bottom: 0;
+  height: 1rpx;
+  background: var(--ios-separator);
+  transform: scaleY(0.5);
+}
+
+.ios-list-item:last-child::after {
+  display: none;
+}
+
+.ios-list-item__icon {
+  width: 64rpx;
+  height: 64rpx;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: var(--space-md);
+  font-size: 32rpx;
+}
+
+.ios-list-item__content {
+  flex: 1;
+  min-width: 0;
+}
+
+.ios-list-item__title {
+  font-size: 30rpx;
+  font-weight: 500;
+  color: #1C1C1E;
+}
+
+.ios-list-item__subtitle {
+  font-size: 24rpx;
+  color: var(--ios-gray);
+  margin-top: 4rpx;
+}
+
+.ios-list-item__arrow {
+  width: 16rpx;
+  height: 16rpx;
+  border-top: 3rpx solid var(--ios-light-gray);
+  border-right: 3rpx solid var(--ios-light-gray);
+  transform: rotate(45deg);
+  margin-left: var(--space-sm);
+}
+
+/* iOS按钮 */
+.ios-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16rpx 40rpx;
+  border-radius: var(--radius-pill);
+  font-size: 28rpx;
+  font-weight: 500;
+  transition: opacity 0.2s;
+}
+
+.ios-btn:active {
+  opacity: 0.7;
+}
+
+.ios-btn--primary {
+  background: var(--ios-blue);
+  color: #FFFFFF;
+}
+
+.ios-btn--secondary {
+  background: var(--ios-separator);
+  color: var(--ios-blue);
+}
+
+.ios-btn--small {
+  padding: 10rpx 28rpx;
+  font-size: 24rpx;
+}
+
+/* iOS标签 */
+.ios-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 6rpx 16rpx;
+  border-radius: var(--radius-pill);
+  font-size: 22rpx;
+  font-weight: 500;
+}
+
+.ios-tag--blue {
+  background: rgba(0,122,255,0.1);
+  color: var(--ios-blue);
+}
+
+.ios-tag--green {
+  background: rgba(52,199,89,0.1);
+  color: var(--ios-green);
+}
+
+.ios-tag--orange {
+  background: rgba(255,149,0,0.1);
+  color: var(--ios-orange);
+}
+
+.ios-tag--gray {
+  background: var(--ios-separator);
+  color: var(--ios-gray);
+}
+
+/* 文本工具类 */
+.text-primary { color: #1C1C1E; }
+.text-secondary { color: #3A3A3C; }
+.text-tertiary { color: var(--ios-gray); }
+.text-blue { color: var(--ios-blue); }
+.text-green { color: var(--ios-green); }
+.text-orange { color: var(--ios-orange); }
+.text-red { color: var(--ios-red); }
+
+.text-xs { font-size: 22rpx; }
+.text-sm { font-size: 24rpx; }
+.text-base { font-size: 28rpx; }
+.text-lg { font-size: 32rpx; }
+.text-xl { font-size: 36rpx; }
+.text-2xl { font-size: 48rpx; }
+
+.font-medium { font-weight: 500; }
+.font-semibold { font-weight: 600; }
+.font-bold { font-weight: 700; }
+
+/* 图片圆角 */
+.img-rounded {
+  border-radius: var(--radius-sm);
+}
+
+.img-rounded-lg {
+  border-radius: var(--radius-md);
+}
+
+/* 淡入动画 */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(16rpx);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeInUp 0.4s ease-out forwards;
+}
+
+/* 安全区适配 */
+.safe-bottom {
+  padding-bottom: constant(safe-area-inset-bottom);
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+/* 空状态 */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-xl) var(--space-lg);
+}
+
+.empty-state__icon {
+  font-size: 96rpx;
+  margin-bottom: var(--space-md);
+  opacity: 0.3;
+}
+
+.empty-state__text {
+  font-size: 28rpx;
+  color: var(--ios-gray);
+}

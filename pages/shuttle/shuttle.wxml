@@ -1,0 +1,67 @@
+<nav-bar title="班车信息" showBack="{{true}}" />
+
+<view class="page-container">
+  <!-- 路线信息 -->
+  <view class="route-header ios-card">
+    <text class="route-name">{{routeName}}</text>
+    <view class="route-note">
+      <text class="route-note-text">工作日运行 · 节假日停运</text>
+    </view>
+  </view>
+
+  <!-- 方向切换 -->
+  <view class="direction-tabs">
+    <view class="direction-tab {{activeDirection === item.id ? 'direction-tab--active' : ''}}"
+          wx:for="{{directions}}" wx:key="id" data-id="{{item.id}}" bindtap="onDirectionTap">
+      <text class="direction-tab-text">{{item.name}}</text>
+    </view>
+  </view>
+
+  <!-- 时刻表 -->
+  <view class="ios-section">
+    <text class="ios-section-title">发车时刻</text>
+    <view class="ios-card schedule-card">
+      <view class="schedule-list">
+        <view class="schedule-item {{item.status}}" wx:for="{{activeDirection === 'go' ? goSchedule : backSchedule}}" wx:key="time">
+          <view class="schedule-time-marker">
+            <view class="schedule-dot schedule-dot--{{item.status}}"></view>
+            <view wx:if="{{index !== (activeDirection === 'go' ? goSchedule.length : backSchedule.length) - 1}}" class="schedule-line"></view>
+          </view>
+          <view class="schedule-time-content">
+            <text class="schedule-time-text">{{item.time}}</text>
+            <text class="schedule-time-status" wx:if="{{item.status === 'soon'}}">即将发车</text>
+            <text class="schedule-time-status" wx:if="{{item.status === 'passed'}}">已发车</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 站点信息 -->
+  <view class="ios-section">
+    <text class="ios-section-title">途经站点</text>
+    <view class="ios-card stops-card">
+      <view class="stop-item" wx:for="{{activeDirection === 'go' ? stops.go : stops.back}}" wx:key="*this">
+        <view class="stop-marker">
+          <view class="stop-dot {{index === 0 ? 'stop-dot--start' : (index === (activeDirection === 'go' ? stops.go.length : stops.back.length) - 1 ? 'stop-dot--end' : '')}}"></view>
+          <view wx:if="{{index !== (activeDirection === 'go' ? stops.go.length : stops.back.length) - 1}}" class="stop-line"></view>
+        </view>
+        <text class="stop-name">{{item}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 联系信息 -->
+  <view class="ios-section">
+    <text class="ios-section-title">联系方式</text>
+    <view class="ios-card contact-card" bindtap="onCallTap">
+      <view class="contact-content">
+        <text class="contact-label">班车调度</text>
+        <text class="contact-phone">{{contactPhone}}</text>
+      </view>
+      <view class="contact-action">
+        <text class="contact-action-text">拨打</text>
+      </view>
+    </view>
+  </view>
+</view>

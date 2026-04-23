@@ -1,0 +1,31 @@
+<view class="page-container">
+  <!-- 分类标签 -->
+  <view class="category-bar">
+    <scroll-view class="category-scroll" scroll-x enhanced show-scrollbar="{{false}}">
+      <view class="category-list">
+        <view class="category-item {{activeCategory === item.id ? 'category-item--active' : ''}}" 
+              wx:for="{{categories}}" wx:key="id" data-id="{{item.id}}" bindtap="onCategoryTap">
+          <text class="category-text">{{item.name}}</text>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+
+  <!-- 新闻列表 -->
+  <view class="news-list">
+    <view class="news-card" wx:for="{{newsList}}" wx:key="id" data-id="{{item.id}}" bindtap="onNewsTap">
+      <view class="news-card__content">
+        <view class="news-card__header">
+          <text class="ios-tag ios-tag--blue">{{item.tag}}</text>
+          <text class="news-card__date">{{item.date}}</text>
+        </view>
+        <text class="news-card__title">{{item.title}}</text>
+        <text class="news-card__summary">{{item.summary}}</text>
+        <view class="news-card__footer">
+          <text class="news-card__source">{{item.source}}</text>
+        </view>
+      </view>
+      <image wx:if="{{item.cover}}" class="news-card__cover" src="{{item.cover}}" mode="aspectFill" lazy-load />
+    </view>
+  </view>
+</view>

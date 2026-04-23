@@ -1,0 +1,96 @@
+/* 便民安排页样式 */
+
+.schedule-list {
+  padding-top: 8rpx;
+}
+
+.schedule-item {
+  display: flex;
+  align-items: flex-start;
+  padding: 24rpx;
+  position: relative;
+}
+
+.schedule-item::after {
+  content: '';
+  position: absolute;
+  left: 24rpx;
+  right: 24rpx;
+  bottom: 0;
+  height: 1rpx;
+  background: var(--ios-separator);
+  transform: scaleY(0.5);
+}
+
+.schedule-item:last-child::after {
+  display: none;
+}
+
+.schedule-item--ended {
+  opacity: 0.7;
+}
+
+.schedule-badge {
+  padding: 6rpx 16rpx;
+  border-radius: var(--radius-pill);
+  font-size: 22rpx;
+  font-weight: 500;
+  margin-right: 16rpx;
+  margin-top: 4rpx;
+  flex-shrink: 0;
+}
+
+.schedule-badge--upcoming {
+  background: rgba(0,122,255,0.1);
+  color: var(--ios-blue);
+}
+
+.schedule-badge--ended {
+  background: var(--ios-separator);
+  color: var(--ios-gray);
+}
+
+.schedule-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.schedule-title {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #1C1C1E;
+  display: block;
+  margin-bottom: 8rpx;
+}
+
+.schedule-info {
+  font-size: 24rpx;
+  color: var(--ios-gray);
+  display: block;
+  margin-bottom: 4rpx;
+}
+
+.schedule-location {
+  font-size: 24rpx;
+  color: var(--ios-light-gray);
+  display: block;
+}
+
+.schedule-status {
+  font-size: 22rpx;
+  font-weight: 500;
+  padding: 6rpx 14rpx;
+  border-radius: var(--radius-pill);
+  flex-shrink: 0;
+  margin-left: 12rpx;
+}
+
+.schedule-status--upcoming {
+  background: rgba(52,199,89,0.1);
+  color: var(--ios-green);
+}
+
+.schedule-status--ended {
+  background: var(--ios-separator);
+  color: var(--ios-gray);
+}

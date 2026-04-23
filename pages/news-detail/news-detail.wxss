@@ -1,0 +1,41 @@
+/* 资讯详情页样式 */
+
+.detail-header {
+  padding: 32rpx 24rpx;
+  background: var(--ios-bg);
+}
+
+.detail-tag {
+  margin-bottom: 16rpx;
+  display: inline-flex;
+}
+
+.detail-title {
+  font-size: 40rpx;
+  font-weight: 700;
+  color: #1C1C1E;
+  line-height: 1.4;
+  display: block;
+  margin-bottom: 16rpx;
+}
+
+.detail-meta {
+  display: flex;
+  gap: 24rpx;
+}
+
+.detail-date, .detail-views {
+  font-size: 24rpx;
+  color: var(--ios-gray);
+}
+
+.detail-content {
+  margin: 0 24rpx 48rpx;
+  padding: 32rpx;
+}
+
+.detail-content rich-text {
+  font-size: 30rpx;
+  line-height: 1.8;
+  color: #3A3A3C;
+}
