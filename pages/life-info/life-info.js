@@ -1,13 +1,13 @@
 Page({
   data: {
     categories: [
-      { id: 'supermarket', name: '超市', icon: '超', color: '#FF9500' },
-      { id: 'market', name: '菜场', icon: '菜', color: '#34C759' },
-      { id: 'food', name: '美食', icon: '食', color: '#FF3B30' },
-      { id: 'hotel', name: '酒店', icon: '住', color: '#AF52DE' },
-      { id: 'transport', name: '交通', icon: '交', color: '#007AFF' },
-      { id: 'school', name: '学校', icon: '学', color: '#5856D6' },
-      { id: 'leisure', name: '休闲', icon: '休', color: '#FF2D55' }
+      { id: 'supermarket', name: '超市', icon: '超' },
+      { id: 'market', name: '菜场', icon: '菜' },
+      { id: 'food', name: '美食', icon: '食' },
+      { id: 'hotel', name: '酒店', icon: '住' },
+      { id: 'transport', name: '交通', icon: '交' },
+      { id: 'school', name: '学校', icon: '学' },
+      { id: 'leisure', name: '休闲', icon: '休' }
     ],
     activeCategory: 'supermarket',
     serviceList: []

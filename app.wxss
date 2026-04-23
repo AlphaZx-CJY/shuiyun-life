@@ -4,16 +4,15 @@
 
 /* CSS Variables */
 page {
-  --ios-blue: #007AFF;
-  --ios-green: #34C759;
-  --ios-red: #FF3B30;
-  --ios-orange: #FF9500;
+  --ios-accent: #FFFFFF;
   --ios-gray: #8E8E93;
-  --ios-light-gray: #C7C7CC;
-  --ios-bg: #F2F2F7;
-  --ios-card: #FFFFFF;
-  --ios-separator: #E5E5EA;
-  --ios-grouped-bg: #F2F2F7;
+  --ios-light-gray: #636366;
+  --ios-bg: #0A0A0A;
+  --ios-card: #1C1C1E;
+  --ios-separator: #38383A;
+  --ios-grouped-bg: #0A0A0A;
+  --ios-elevated: #2C2C2E;
+  --ios-muted: #48484A;
   
   --radius-sm: 8rpx;
   --radius-md: 16rpx;
@@ -26,13 +25,13 @@ page {
   --space-lg: 32rpx;
   --space-xl: 48rpx;
   
-  --shadow-sm: 0 2rpx 8rpx rgba(0,0,0,0.04);
-  --shadow-md: 0 4rpx 16rpx rgba(0,0,0,0.08);
-  --shadow-lg: 0 8rpx 32rpx rgba(0,0,0,0.12);
+  --shadow-sm: 0 2rpx 8rpx rgba(0,0,0,0.2);
+  --shadow-md: 0 4rpx 16rpx rgba(0,0,0,0.3);
+  --shadow-lg: 0 8rpx 32rpx rgba(0,0,0,0.4);
 
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   background-color: var(--ios-bg);
-  color: #1C1C1E;
+  color: #FFFFFF;
   font-size: 28rpx;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
@@ -120,7 +119,7 @@ view, text, image, navigator, scroll-view, swiper, swiper-item {
 .ios-list-item__title {
   font-size: 30rpx;
   font-weight: 500;
-  color: #1C1C1E;
+  color: #FFFFFF;
 }
 
 .ios-list-item__subtitle {
@@ -155,13 +154,13 @@ view, text, image, navigator, scroll-view, swiper, swiper-item {
 }
 
 .ios-btn--primary {
-  background: var(--ios-blue);
-  color: #FFFFFF;
+  background: #FFFFFF;
+  color: #0A0A0A;
 }
 
 .ios-btn--secondary {
-  background: var(--ios-separator);
-  color: var(--ios-blue);
+  background: #2C2C2E;
+  color: #FFFFFF;
 }
 
 .ios-btn--small {
@@ -180,33 +179,33 @@ view, text, image, navigator, scroll-view, swiper, swiper-item {
 }
 
 .ios-tag--blue {
-  background: rgba(0,122,255,0.1);
-  color: var(--ios-blue);
+  background: rgba(255,255,255,0.1);
+  color: #FFFFFF;
 }
 
 .ios-tag--green {
-  background: rgba(52,199,89,0.1);
-  color: var(--ios-green);
+  background: rgba(255,255,255,0.08);
+  color: #8E8E93;
 }
 
 .ios-tag--orange {
-  background: rgba(255,149,0,0.1);
-  color: var(--ios-orange);
+  background: rgba(255,255,255,0.06);
+  color: #636366;
 }
 
 .ios-tag--gray {
-  background: var(--ios-separator);
-  color: var(--ios-gray);
+  background: #2C2C2E;
+  color: #8E8E93;
 }
 
 /* 文本工具类 */
-.text-primary { color: #1C1C1E; }
-.text-secondary { color: #3A3A3C; }
-.text-tertiary { color: var(--ios-gray); }
-.text-blue { color: var(--ios-blue); }
-.text-green { color: var(--ios-green); }
-.text-orange { color: var(--ios-orange); }
-.text-red { color: var(--ios-red); }
+.text-primary { color: #FFFFFF; }
+.text-secondary { color: #8E8E93; }
+.text-tertiary { color: #636366; }
+.text-blue { color: #FFFFFF; }
+.text-green { color: #8E8E93; }
+.text-orange { color: #636366; }
+.text-red { color: #48484A; }
 
 .text-xs { font-size: 22rpx; }
 .text-sm { font-size: 24rpx; }

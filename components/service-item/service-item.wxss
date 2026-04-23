@@ -13,12 +13,12 @@
 .service-name {
   font-size: 32rpx;
   font-weight: 600;
-  color: #1C1C1E;
+  color: #FFFFFF;
 }
 
 .service-distance {
   font-size: 24rpx;
-  color: var(--ios-blue);
+  color: #FFFFFF;
   font-weight: 500;
 }
 
@@ -49,9 +49,9 @@
 .service-info-value {
   flex: 1;
   font-size: 26rpx;
-  color: #3A3A3C;
+  color: #8E8E93;
 }
 
 .service-phone {
-  color: var(--ios-blue);
+  color: #FFFFFF;
 }

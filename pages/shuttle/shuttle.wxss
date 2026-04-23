@@ -9,7 +9,7 @@
 .route-name {
   font-size: 36rpx;
   font-weight: 700;
-  color: #1C1C1E;
+  color: #FFFFFF;
   display: block;
   margin-bottom: 12rpx;
 }
@@ -18,22 +18,22 @@
   display: inline-block;
   padding: 6rpx 20rpx;
   border-radius: var(--radius-pill);
-  background: rgba(0, 122, 255, 0.08);
+  background: rgba(255, 255, 255, 0.08);
   margin-bottom: 8rpx;
 }
 
 .route-note--secondary {
-  background: rgba(52, 199, 89, 0.08);
+  background: rgba(255, 255, 255, 0.06);
 }
 
 .route-note-text {
   font-size: 24rpx;
-  color: var(--ios-blue);
+  color: #FFFFFF;
   font-weight: 500;
 }
 
 .route-note--secondary .route-note-text {
-  color: var(--ios-green);
+  color: #8E8E93;
 }
 
 /* 时刻表 */
@@ -70,16 +70,16 @@
 }
 
 .schedule-dot--upcoming {
-  background: var(--ios-blue);
+  background: #FFFFFF;
 }
 
 .schedule-dot--soon {
-  background: var(--ios-orange);
-  box-shadow: 0 0 0 4rpx rgba(255, 149, 0, 0.2);
+  background: #8E8E93;
+  box-shadow: 0 0 0 4rpx rgba(255, 255, 255, 0.1);
 }
 
 .schedule-dot--passed {
-  background: var(--ios-light-gray);
+  background: #48484A;
 }
 
 .schedule-time-content {
@@ -90,7 +90,7 @@
 .schedule-time-text {
   font-size: 30rpx;
   font-weight: 600;
-  color: #1C1C1E;
+  color: #FFFFFF;
 }
 
 .schedule-time-status {
@@ -100,7 +100,7 @@
 }
 
 .schedule-item.passed .schedule-time-text {
-  color: var(--ios-light-gray);
+  color: #48484A;
   text-decoration: line-through;
 }
 
@@ -133,11 +133,11 @@
 }
 
 .stop-dot--start {
-  background: var(--ios-green);
+  background: #FFFFFF;
 }
 
 .stop-dot--end {
-  background: var(--ios-red);
+  background: #8E8E93;
 }
 
 .stop-line {
@@ -148,7 +148,7 @@
 
 .stop-name {
   font-size: 30rpx;
-  color: #3A3A3C;
+  color: #8E8E93;
   font-weight: 500;
 }
 
@@ -168,25 +168,25 @@
 
 .contact-label {
   font-size: 24rpx;
-  color: var(--ios-gray);
+  color: #8E8E93;
   margin-bottom: 4rpx;
 }
 
 .contact-phone {
   font-size: 32rpx;
   font-weight: 600;
-  color: #1C1C1E;
+  color: #FFFFFF;
 }
 
 .contact-action {
   padding: 12rpx 28rpx;
   border-radius: var(--radius-pill);
-  background: var(--ios-blue);
+  background: #FFFFFF;
 }
 
 .contact-action-text {
   font-size: 26rpx;
-  color: #FFFFFF;
+  color: #0A0A0A;
   font-weight: 500;
 }
 

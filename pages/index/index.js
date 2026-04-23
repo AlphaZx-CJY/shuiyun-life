@@ -36,12 +36,12 @@ Page({
     ];
 
     const quickEntries = [
-      { id: 1, icon: '🏪', label: '周边生活', color: '#007AFF', path: '/pages/life-info/life-info' },
-      { id: 2, icon: '🔄', label: '闲置交易', color: '#34C759', path: '/pages/trade/trade' },
-      { id: 3, icon: '📰', label: '新闻资讯', color: '#FF9500', path: '/pages/news/news' },
-      { id: 4, icon: '💰', label: '缴费知识', color: '#AF52DE', path: '/pages/payment/payment' },
-      { id: 5, icon: '📅', label: '便民安排', color: '#FF3B30', path: '/pages/schedule/schedule' },
-      { id: 6, icon: '🚌', label: '班车信息', color: '#5AC8FA', path: '/pages/shuttle/shuttle' }
+      { id: 1, icon: '🏪', label: '周边生活', color: '#FFFFFF', path: '/pages/life-info/life-info' },
+      { id: 2, icon: '🔄', label: '闲置交易', color: '#FFFFFF', path: '/pages/trade/trade' },
+      { id: 3, icon: '📰', label: '新闻资讯', color: '#FFFFFF', path: '/pages/news/news' },
+      { id: 4, icon: '💰', label: '缴费知识', color: '#FFFFFF', path: '/pages/payment/payment' },
+      { id: 5, icon: '📅', label: '便民安排', color: '#FFFFFF', path: '/pages/schedule/schedule' },
+      { id: 6, icon: '🚌', label: '班车信息', color: '#FFFFFF', path: '/pages/shuttle/shuttle' }
     ];
 
     const latestNews = [

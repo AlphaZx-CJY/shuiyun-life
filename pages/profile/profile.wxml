@@ -2,7 +2,7 @@
   <!-- 用户头部 -->
   <view class="profile-header">
     <view class="profile-avatar">
-      <text class="profile-avatar-text">🏠</text>
+      <image class="profile-logo" src="/images/logo-white.png" mode="aspectFit" style="width: 120rpx; height: 120rpx;" />
     </view>
     <text class="profile-name">水韵名邸业主</text>
     <text class="profile-address">新长宁水韵名邸</text>
@@ -12,7 +12,7 @@
   <view class="ios-section">
     <view class="ios-card">
       <view class="ios-list-item" wx:for="{{aboutItems}}" wx:key="id" data-item="{{item}}" bindtap="onItemTap">
-        <view class="ios-list-item__icon" style="background: #007AFF15;">
+        <view class="ios-list-item__icon" style="background: #2C2C2E;">
           <text style="font-size: 32rpx;">{{item.icon}}</text>
         </view>
         <view class="ios-list-item__content">

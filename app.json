@@ -14,18 +14,18 @@
     "pages/profile/profile"
   ],
   "window": {
-    "backgroundTextStyle": "dark",
-    "navigationBarBackgroundColor": "#F2F2F7",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#0A0A0A",
     "navigationBarTitleText": "水韵名邸",
-    "navigationBarTextStyle": "black",
-    "backgroundColor": "#F2F2F7",
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#0A0A0A",
     "navigationStyle": "default"
   },
   "tabBar": {
-    "color": "#999999",
-    "selectedColor": "#007AFF",
-    "backgroundColor": "#FFFFFF",
-    "borderStyle": "white",
+    "color": "#636366",
+    "selectedColor": "#FFFFFF",
+    "backgroundColor": "#0A0A0A",
+    "borderStyle": "black",
     "list": [
       {
         "pagePath": "pages/index/index",
