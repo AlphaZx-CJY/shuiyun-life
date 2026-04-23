@@ -4,7 +4,7 @@ Page({
     aboutItems: [
       { id: 1, title: '关于我们', icon: '🏠', path: '' },
       { id: 2, title: '意见反馈', icon: '✉️', path: '' },
-      { id: 3, title: '联系方式', icon: '📞', path: '' },
+      { id: 3, title: '联系物业', icon: '📞', path: '' },
       { id: 4, title: '使用指南', icon: '📖', path: '' }
     ]
   },
@@ -26,7 +26,13 @@ Page({
     const { item } = e.currentTarget.dataset;
     switch (item.id) {
       case 3:
-        wx.makePhoneCall({ phoneNumber: '021-12345678' });
+        wx.showActionSheet({
+          itemList: ['物业前台 59251006', '监控室夜班 59251005', '重固派出所 021-59781249'],
+          success: (res) => {
+            const phones = ['59251006', '59251005', '021-59781249'];
+            wx.makePhoneCall({ phoneNumber: phones[res.tapIndex] });
+          }
+        });
         break;
       case 2:
         wx.showToast({ title: '反馈功能即将上线', icon: 'none' });

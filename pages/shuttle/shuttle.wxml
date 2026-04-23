@@ -5,15 +5,10 @@
   <view class="route-header ios-card">
     <text class="route-name">{{routeName}}</text>
     <view class="route-note">
-      <text class="route-note-text">工作日运行 · 节假日停运</text>
+      <text class="route-note-text">{{runNote}}</text>
     </view>
-  </view>
-
-  <!-- 方向切换 -->
-  <view class="direction-tabs">
-    <view class="direction-tab {{activeDirection === item.id ? 'direction-tab--active' : ''}}"
-          wx:for="{{directions}}" wx:key="id" data-id="{{item.id}}" bindtap="onDirectionTap">
-      <text class="direction-tab-text">{{item.name}}</text>
+    <view class="route-note route-note--secondary">
+      <text class="route-note-text">中途不停靠</text>
     </view>
   </view>
 
@@ -22,10 +17,10 @@
     <text class="ios-section-title">发车时刻</text>
     <view class="ios-card schedule-card">
       <view class="schedule-list">
-        <view class="schedule-item {{item.status}}" wx:for="{{activeDirection === 'go' ? goSchedule : backSchedule}}" wx:key="time">
+        <view class="schedule-item {{item.status}}" wx:for="{{schedule}}" wx:key="time">
           <view class="schedule-time-marker">
             <view class="schedule-dot schedule-dot--{{item.status}}"></view>
-            <view wx:if="{{index !== (activeDirection === 'go' ? goSchedule.length : backSchedule.length) - 1}}" class="schedule-line"></view>
+            <view wx:if="{{index !== schedule.length - 1}}" class="schedule-line"></view>
           </view>
           <view class="schedule-time-content">
             <text class="schedule-time-text">{{item.time}}</text>
@@ -41,10 +36,10 @@
   <view class="ios-section">
     <text class="ios-section-title">途经站点</text>
     <view class="ios-card stops-card">
-      <view class="stop-item" wx:for="{{activeDirection === 'go' ? stops.go : stops.back}}" wx:key="*this">
+      <view class="stop-item" wx:for="{{stops}}" wx:key="*this">
         <view class="stop-marker">
-          <view class="stop-dot {{index === 0 ? 'stop-dot--start' : (index === (activeDirection === 'go' ? stops.go.length : stops.back.length) - 1 ? 'stop-dot--end' : '')}}"></view>
-          <view wx:if="{{index !== (activeDirection === 'go' ? stops.go.length : stops.back.length) - 1}}" class="stop-line"></view>
+          <view class="stop-dot {{index === 0 ? 'stop-dot--start' : (index === stops.length - 1 ? 'stop-dot--end' : '')}}"></view>
+          <view wx:if="{{index !== stops.length - 1}}" class="stop-line"></view>
         </view>
         <text class="stop-name">{{item}}</text>
       </view>
