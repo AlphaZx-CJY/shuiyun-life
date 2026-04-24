@@ -1,0 +1,9 @@
+{
+  "name": "hello",
+  "version": "1.0.0",
+  "description": "示例云函数：返回调用者 openid，用于云开发连通性验证",
+  "main": "index.js",
+  "dependencies": {
+    "wx-server-sdk": "latest"
+  }
+}
