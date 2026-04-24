@@ -2,3 +2,4 @@ node_modules/
 *.log
 .DS_Store
 env.ts
+project.private.config.json
