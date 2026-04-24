@@ -310,6 +310,11 @@ export const serviceData: Record<string, ServiceItem[]> = {
       hours: '08:00-17:00',
       phone: '021-59781041',
       tags: ['社区医疗', '全科门诊', '医保定点'],
+      jump: {
+        type: 'miniprogram',
+        appId: 'wx_example_medical',
+        path: 'pages/index/index',
+      },
     },
   ],
   mall: [

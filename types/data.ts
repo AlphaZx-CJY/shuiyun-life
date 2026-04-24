@@ -78,6 +78,8 @@ export interface Category {
   icon: string;
 }
 
+export type JumpType = 'miniprogram' | 'officialAccount';
+
 export interface ServiceItem {
   id: number;
   name: string;
@@ -86,6 +88,12 @@ export interface ServiceItem {
   hours: string;
   phone: string;
   tags: string[];
+  jump?: {
+    type: JumpType;
+    appId?: string;
+    username?: string;
+    path?: string;
+  };
 }
 
 /** ========== 便民安排 ========== */
