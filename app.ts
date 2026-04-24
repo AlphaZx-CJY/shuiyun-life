@@ -1,18 +1,21 @@
-App({
+interface IAppGlobalData {
+  userInfo: WechatMiniprogram.UserInfo | null;
+  systemInfo: WechatMiniprogram.SystemInfo | null;
+}
+
+App<{ globalData: IAppGlobalData }>({
   globalData: {
     userInfo: null,
-    systemInfo: null
+    systemInfo: null,
   },
 
   onLaunch() {
-    // 获取系统信息
     const systemInfo = wx.getSystemInfoSync();
-    this.globalData.systemInfo = systemInfo;
+    this.globalData!.systemInfo = systemInfo;
 
-    // 设置导航栏为白色（iOS风格）
     wx.setNavigationBarColor({
       frontColor: '#000000',
-      backgroundColor: '#F2F2F7'
+      backgroundColor: '#F2F2F7',
     });
   },
 
@@ -22,5 +25,5 @@ App({
 
   onHide() {
     console.log('App Hide');
-  }
+  },
 });
