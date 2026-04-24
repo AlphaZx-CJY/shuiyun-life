@@ -1,7 +1,7 @@
 <view class="page-container">
   <!-- 头部 -->
   <view class="header">
-    <image class="header-logo" src="/images/logo-dark.png" mode="aspectFit" style="width: 200rpx; height: 80rpx; margin-bottom: 16rpx;" />
+    <view class="header-title">新长宁水韵名邸</view>
     <view class="header-subtitle">让生活更便捷</view>
   </view>
 
