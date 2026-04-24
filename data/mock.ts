@@ -219,6 +219,8 @@ export const serviceCategories: Category[] = [
   { id: 'transport', name: '交通', icon: '交' },
   { id: 'school', name: '学校', icon: '学' },
   { id: 'leisure', name: '休闲', icon: '休' },
+  { id: 'medical', name: '医疗', icon: '医' },
+  { id: 'mall', name: '商场', icon: '商' },
 ];
 
 export const serviceData: Record<string, ServiceItem[]> = {
@@ -297,6 +299,28 @@ export const serviceData: Record<string, ServiceItem[]> = {
       hours: '24小时',
       phone: '021-69292001',
       tags: ['经济型', '商务出行'],
+    },
+  ],
+  medical: [
+    {
+      id: 25,
+      name: '重固镇社区卫生服务中心',
+      address: '重固镇福泉山路558号',
+      distance: '1.0km',
+      hours: '08:00-17:00',
+      phone: '021-59781041',
+      tags: ['社区医疗', '全科门诊', '医保定点'],
+    },
+  ],
+  mall: [
+    {
+      id: 26,
+      name: '青浦百联奥特莱斯',
+      address: '沪青平公路2888号',
+      distance: '5.0km',
+      hours: '10:00-21:00',
+      phone: '021-59755555',
+      tags: ['品牌折扣', '购物餐饮'],
     },
   ],
 };

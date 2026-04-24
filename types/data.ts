@@ -2,7 +2,7 @@
 
 export type NewsCategory = 'all' | 'notice' | 'policy' | 'around';
 export type TradeCategory = 'all' | 'furniture' | 'appliance' | 'baby' | 'books' | 'others';
-export type ServiceCategory = 'supermarket' | 'market' | 'food' | 'hotel' | 'transport' | 'school' | 'leisure';
+export type ServiceCategory = 'supermarket' | 'market' | 'food' | 'hotel' | 'transport' | 'school' | 'leisure' | 'medical' | 'mall';
 export type ScheduleStatus = 'upcoming' | 'ended';
 export type ShuttleStatus = 'passed' | 'soon' | 'upcoming';
 
