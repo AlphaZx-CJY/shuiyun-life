@@ -1,3 +1,5 @@
+import { CLOUD_ENV } from './env';
+
 interface IAppGlobalData {
   userInfo: WechatMiniprogram.UserInfo | null;
   systemInfo: WechatMiniprogram.SystemInfo | null;
@@ -19,9 +21,8 @@ App<{ globalData: IAppGlobalData }>({
     });
 
     // 初始化云开发环境
-    // TODO: 开通云开发后，将 env 替换为云控制台中的真实环境 ID
     wx.cloud.init({
-      env: 'your-env-id',
+      env: CLOUD_ENV,
       traceUser: true,
     });
   },
