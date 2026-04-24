@@ -18,7 +18,7 @@
 
 .service-distance {
   font-size: 24rpx;
-  color: #1D1D1F;
+  color: #0071e3;
   font-weight: 500;
 }
 
@@ -53,5 +53,5 @@
 }
 
 .service-phone {
-  color: #1D1D1F;
+  color: #0071e3;
 }

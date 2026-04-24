@@ -42,7 +42,7 @@
 
 .schedule-badge--upcoming {
   background: rgba(0,0,0,0.05);
-  color: #1D1D1F;
+  color: #0071e3;
 }
 
 .schedule-badge--ended {
@@ -87,7 +87,7 @@
 
 .schedule-status--upcoming {
   background: rgba(0,0,0,0.04);
-  color: #1D1D1F;
+  color: #0071e3;
 }
 
 .schedule-status--ended {

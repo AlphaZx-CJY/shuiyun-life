@@ -70,7 +70,7 @@
 }
 
 .schedule-dot--upcoming {
-  background: #1D1D1F;
+  background: #0071e3;
 }
 
 .schedule-dot--soon {
@@ -90,7 +90,7 @@
 .schedule-time-text {
   font-size: 30rpx;
   font-weight: 600;
-  color: #1D1D1F;
+  color: #0071e3;
 }
 
 .schedule-time-status {
@@ -133,7 +133,7 @@
 }
 
 .stop-dot--start {
-  background: #1D1D1F;
+  background: #0071e3;
 }
 
 .stop-dot--end {
@@ -175,13 +175,13 @@
 .contact-phone {
   font-size: 32rpx;
   font-weight: 600;
-  color: #1D1D1F;
+  color: #0071e3;
 }
 
 .contact-action {
   padding: 12rpx 28rpx;
   border-radius: var(--radius-pill);
-  background: #1D1D1F;
+  background: #0071e3;
 }
 
 .contact-action-text {

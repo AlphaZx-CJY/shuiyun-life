@@ -29,7 +29,7 @@
   left: 30%;
   right: 30%;
   height: 4rpx;
-  background: #1D1D1F;
+  background: #0071e3;
   border-radius: 2rpx;
 }
 
@@ -57,7 +57,7 @@
 }
 
 .tab-item--active .tab-text {
-  color: #1D1D1F;
+  color: #0071e3;
 }
 
 /* 服务卡片 */
@@ -85,7 +85,7 @@
 
 .service-distance {
   font-size: 24rpx;
-  color: #1D1D1F;
+  color: #0071e3;
   font-weight: 500;
 }
 
@@ -120,5 +120,5 @@
 }
 
 .service-phone {
-  color: #1D1D1F;
+  color: #0071e3;
 }

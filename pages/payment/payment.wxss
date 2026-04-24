@@ -26,8 +26,8 @@
 .hot-badge {
   padding: 4rpx 12rpx;
   border-radius: var(--radius-pill);
-  background: #F5F5F7;
-  color: #1D1D1F;
+  background: #0071e3;
+  color: #FFFFFF;
   font-size: 20rpx;
   font-weight: 700;
 }

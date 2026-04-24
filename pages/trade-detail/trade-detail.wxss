@@ -46,7 +46,7 @@
 .detail-price {
   font-size: 48rpx;
   font-weight: 700;
-  color: #1D1D1F;
+  color: #0071e3;
 }
 
 .detail-original {
@@ -59,7 +59,7 @@
   padding: 6rpx 16rpx;
   border-radius: var(--radius-pill);
   background: #F5F5F7;
-  color: #1D1D1F;
+  color: #0071e3;
   font-size: 22rpx;
   font-weight: 600;
 }

@@ -108,7 +108,7 @@
 
 .section-more {
   font-size: 24rpx;
-  color: #1D1D1F;
+  color: #0071e3;
   font-weight: 500;
 }
 
@@ -215,7 +215,7 @@
 }
 
 .schedule-dot--upcoming {
-  background: #1D1D1F;
+  background: #0071e3;
 }
 
 .schedule-dot--ongoing {
