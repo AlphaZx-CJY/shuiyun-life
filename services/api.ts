@@ -14,90 +14,58 @@ import type {
   Category,
 } from '../types/data';
 
-import {
-  banners,
-  quickEntries,
-  latestNews,
-  todaySchedules,
-  allNews,
-  newsDetails,
-  trades,
-  tradeDetails,
-  tradeCategories,
-  serviceCategories,
-  serviceData,
-  schedules,
-  payments,
-  paymentDetails,
-  shuttleSchedule,
-  shuttleStops,
-  shuttleContactPhone,
-  shuttleRouteName,
-  shuttleRunNote,
-  profileItems,
-  contactPhones,
-} from '../data/mock';
-
 /** ========== 首页 ========== */
 
 export function getBanners(): Banner[] {
-  return banners;
+  return [];
 }
 
 export function getQuickEntries(): QuickEntry[] {
-  return quickEntries;
+  return [];
 }
 
 export function getLatestNews(): NewsItem[] {
-  return latestNews;
+  return [];
 }
 
 export function getTodaySchedules(): Pick<ScheduleItem, 'id' | 'title' | 'time' | 'location' | 'status'>[] {
-  return todaySchedules;
+  return [];
 }
 
 /** ========== 新闻资讯 ========== */
 
 export function getNewsList(): NewsItem[] {
-  return allNews;
+  return [];
 }
 
-export function getNewsDetail(id: number): NewsDetail | null {
-  return newsDetails[id] || null;
+export function getNewsDetail(_id: number): NewsDetail | null {
+  return null;
 }
 
 /** ========== 闲置交易 ========== */
 
 export function getTradeCategories(): Category[] {
-  return tradeCategories;
+  return [];
 }
 
 export function getTradeList(): TradeItem[] {
-  return trades;
+  return [];
 }
 
 export function getTradeDetail(id: number): TradeDetail | null {
-  // 先从 mock 数据中查找
-  let detail = tradeDetails[id] || null;
-
-  // 再从已发布数据中查找
-  if (!detail) {
-    const published = wx.getStorageSync('publishedTrades') as TradeItem[] || [];
-    const found = published.find(item => String(item.id) === String(id));
-    if (found) {
-      detail = { ...found };
-    }
+  const published = wx.getStorageSync('publishedTrades') as TradeItem[] || [];
+  const found = published.find(item => String(item.id) === String(id));
+  if (!found) {
+    return null;
   }
 
-  if (detail) {
-    detail.discount = Math.round((detail.originalPrice - detail.price) / detail.originalPrice * 100);
-    // 兼容旧数据：单张图片转数组
-    if ((detail as TradeItem & { image?: string }).image && !detail.images) {
-      detail.images = [(detail as TradeItem & { image?: string }).image!];
-    }
-    if (!detail.images) {
-      detail.images = [];
-    }
+  const detail: TradeDetail = { ...found };
+  detail.discount = Math.round((detail.originalPrice - detail.price) / detail.originalPrice * 100);
+  if ((detail as TradeItem & { image?: string }).image && !detail.images) {
+    detail.images = [(detail as TradeItem & { image?: string }).image!];
+  }
+  if (!detail.images) {
+    detail.images = [];
   }
 
   return detail;
@@ -119,57 +87,57 @@ export function savePublishedTrade(trade: TradeItem): void {
 /** ========== 周边生活 ========== */
 
 export function getServiceCategories(): Category[] {
-  return serviceCategories;
+  return [];
 }
 
-export function getServiceList(category: string): ServiceItem[] {
-  return serviceData[category] || [];
+export function getServiceList(_category: string): ServiceItem[] {
+  return [];
 }
 
 /** ========== 便民安排 ========== */
 
 export function getSchedules(): ScheduleItem[] {
-  return schedules;
+  return [];
 }
 
 /** ========== 缴费知识 ========== */
 
 export function getPaymentList(): PaymentItem[] {
-  return payments;
+  return [];
 }
 
-export function getPaymentDetail(id: number): PaymentDetail | null {
-  return paymentDetails[id] || null;
+export function getPaymentDetail(_id: number): PaymentDetail | null {
+  return null;
 }
 
 /** ========== 班车信息 ========== */
 
 export function getShuttleSchedule(): ShuttleTime[] {
-  return shuttleSchedule.map(item => ({ ...item }));
+  return [];
 }
 
 export function getShuttleStops(): string[] {
-  return shuttleStops;
+  return [];
 }
 
 export function getShuttleContactPhone(): string {
-  return shuttleContactPhone;
+  return '';
 }
 
 export function getShuttleRouteName(): string {
-  return shuttleRouteName;
+  return '';
 }
 
 export function getShuttleRunNote(): string {
-  return shuttleRunNote;
+  return '';
 }
 
 /** ========== 个人中心 ========== */
 
 export function getProfileItems(): ProfileItem[] {
-  return profileItems;
+  return [];
 }
 
 export function getContactPhones(): { label: string; number: string }[] {
-  return contactPhones;
+  return [];
 }
