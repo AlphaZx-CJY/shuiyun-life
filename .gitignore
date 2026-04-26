@@ -3,3 +3,4 @@ node_modules/
 .DS_Store
 env.ts
 project.private.config.json
+services-seed.json
