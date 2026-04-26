@@ -67,5 +67,26 @@ export function add<T = any>(collection: string, data: Record<string, any>): Pro
   });
 }
 
+/**
+ * 更新文档
+ * @param collection 集合名称
+ * @param docId 文档 _id
+ * @param data 更新数据对象
+ * @returns Promise<更新结果>
+ */
+export function update(
+  collection: string,
+  docId: string,
+  data: Record<string, any>,
+): Promise<any> {
+  return new Promise((resolve, reject) => {
+    db.collection(collection).doc(docId).update({
+      data,
+      success: (res) => resolve(res),
+      fail: (err) => reject(err),
+    });
+  });
+}
+
 /** 导出原始数据库实例，供高级查询使用 */
 export { db };

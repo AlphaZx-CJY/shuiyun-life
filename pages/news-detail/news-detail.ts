@@ -18,6 +18,9 @@ Page<INewsDetailData, WechatMiniprogram.IAnyObject>({
     try {
       const detail = await api.getNewsDetail(id);
       this.setData({ news: detail });
+      if (detail) {
+        api.incrementNewsViewCount(String(id));
+      }
     } catch (err) {
       console.error('loadNewsDetail failed', err);
     }

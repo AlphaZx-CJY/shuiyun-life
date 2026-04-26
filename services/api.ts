@@ -98,6 +98,16 @@ export async function getNewsDetail(_id: number | string): Promise<NewsDetail | 
   }
 }
 
+export async function incrementNewsViewCount(_id: string): Promise<void> {
+  try {
+    await cloud.update('news', _id, {
+      viewCount: cloud.db.command.inc(1),
+    });
+  } catch (e) {
+    console.error('[cloud] increment viewCount failed:', e);
+  }
+}
+
 /** ========== 闲置交易 ========== */
 
 export function getTradeCategories(): Category[] {
