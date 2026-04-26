@@ -1,0 +1,117 @@
+/* 邻里互助列表页 */
+
+.voice-list {
+  padding: 0 24rpx;
+}
+
+.voice-card {
+  margin-bottom: 24rpx;
+  padding: 32rpx;
+  position: relative;
+}
+
+.voice-card--expired {
+  opacity: 0.6;
+}
+
+.voice-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16rpx;
+}
+
+.voice-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 6rpx 18rpx;
+  background: rgba(7, 193, 96, 0.1);
+  color: var(--wx-primary);
+  border-radius: var(--radius-pill);
+  font-size: 24rpx;
+  font-weight: 500;
+}
+
+.voice-status {
+  font-size: 24rpx;
+  color: var(--ios-gray);
+}
+
+.voice-content {
+  font-size: 30rpx;
+  color: var(--wx-text);
+  line-height: 1.6;
+  display: block;
+  margin-bottom: 16rpx;
+  word-break: break-all;
+}
+
+.voice-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.voice-date {
+  font-size: 24rpx;
+  color: var(--ios-gray);
+}
+
+.voice-contact {
+  font-size: 24rpx;
+  color: var(--wx-primary);
+}
+
+/* 空状态 */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 120rpx 48rpx;
+}
+
+.empty-state__text {
+  font-size: 30rpx;
+  color: var(--ios-gray);
+  margin-bottom: 12rpx;
+}
+
+.empty-state__hint {
+  font-size: 26rpx;
+  color: var(--md-on-surface-variant);
+}
+
+/* 浮动发布按钮 */
+.voice-float-btn {
+  position: fixed;
+  right: 32rpx;
+  bottom: calc(32rpx + env(safe-area-inset-bottom));
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+  background: var(--wx-primary);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4rpx 20rpx rgba(7, 193, 96, 0.35);
+  z-index: 100;
+}
+
+.voice-float-btn:active {
+  transform: scale(0.92);
+}
+
+.voice-float-icon {
+  font-size: 40rpx;
+  color: #FFFFFF;
+  font-weight: 300;
+  line-height: 1;
+}
+
+.voice-float-text {
+  font-size: 20rpx;
+  color: #FFFFFF;
+  margin-top: 4rpx;
+}

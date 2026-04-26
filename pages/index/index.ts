@@ -31,7 +31,7 @@ Page<IIndexData, WechatMiniprogram.IAnyObject>({
       { id: 3, label: '便民安排', path: '/pages/schedule/schedule', icon: ICON_SCHEDULE },
       { id: 4, label: '缴费知识', path: '/pages/payment/payment', icon: ICON_SERVICE },
       { id: 5, label: '闲置交易', path: '/pages/trade/trade', icon: ICON_TRADE },
-      { id: 6, label: '社区心声', path: '/pages/voice-publish/voice-publish', icon: ICON_VOICE },
+      { id: 6, label: '邻里互助', path: '/pages/voice/voice', icon: ICON_VOICE },
     ],
     noticeNews: [],
     todaySchedules: [],
@@ -65,7 +65,7 @@ Page<IIndexData, WechatMiniprogram.IAnyObject>({
   async loadData() {
     try {
       const [noticeNews, todaySchedules, routeName, shuttleSchedule] = await Promise.all([
-        api.getNoticeNews(2),
+        api.getNoticeNews(1),
         api.getTodaySchedules(),
         api.getShuttleRouteName(),
         api.getShuttleSchedule(),

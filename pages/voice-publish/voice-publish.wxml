@@ -5,12 +5,7 @@
   <view class="feedback-form ios-card">
     <view class="form-group">
       <text class="form-label">诉求类型</text>
-      <picker mode="selector" range="{{types}}" value="{{typeIndex}}" bindchange="onTypeChange">
-        <view class="form-picker">
-          <text class="form-picker-text">{{types[typeIndex]}}</text>
-          <view class="ios-list-item__arrow"></view>
-        </view>
-      </picker>
+      <input class="form-input" placeholder="如：求购、顺风车、求代购..." bindinput="onTypeInput" value="{{type}}" />
     </view>
 
     <view class="form-group">

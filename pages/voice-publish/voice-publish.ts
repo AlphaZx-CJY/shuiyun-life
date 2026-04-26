@@ -1,26 +1,22 @@
 import * as api from '../../services/api';
 
-interface IVoiceData {
-  types: string[];
-  typeIndex: number;
+interface IVoicePublishData {
+  type: string;
   content: string;
   contact: string;
   submitting: boolean;
 }
 
-const VOICE_TYPES = ['求购', '求代购', '顺风车', '其他'];
-
-Page<IVoiceData, WechatMiniprogram.IAnyObject>({
+Page<IVoicePublishData, WechatMiniprogram.IAnyObject>({
   data: {
-    types: VOICE_TYPES,
-    typeIndex: 0,
+    type: '',
     content: '',
     contact: '',
     submitting: false,
   },
 
-  onTypeChange(e: WechatMiniprogram.TouchEvent) {
-    this.setData({ typeIndex: Number(e.detail.value) });
+  onTypeInput(e: WechatMiniprogram.TouchEvent) {
+    this.setData({ type: (e.detail as any).value as string });
   },
 
   onContentInput(e: WechatMiniprogram.TouchEvent) {
@@ -32,8 +28,12 @@ Page<IVoiceData, WechatMiniprogram.IAnyObject>({
   },
 
   async onSubmit() {
-    const { content, contact, typeIndex, submitting } = this.data;
+    const { type, content, contact, submitting } = this.data;
     if (submitting) return;
+    if (!type.trim()) {
+      wx.showToast({ title: '请填写诉求类型', icon: 'none' });
+      return;
+    }
     if (!content.trim()) {
       wx.showToast({ title: '请填写诉求内容', icon: 'none' });
       return;
@@ -41,7 +41,7 @@ Page<IVoiceData, WechatMiniprogram.IAnyObject>({
 
     this.setData({ submitting: true });
     try {
-      await api.submitVoice(VOICE_TYPES[typeIndex], content.trim(), contact.trim());
+      await api.submitVoice(type.trim(), content.trim(), contact.trim());
       wx.showToast({ title: '发布成功', icon: 'success' });
       setTimeout(() => wx.navigateBack(), 1500);
     } catch (err) {

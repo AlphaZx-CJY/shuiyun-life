@@ -13,6 +13,7 @@
     "pages/shuttle/shuttle",
     "pages/profile/profile",
     "pages/feedback/feedback",
+    "pages/voice/voice",
     "pages/voice-publish/voice-publish",
     "pages/guide/guide",
     "pages/guide-detail/guide-detail"

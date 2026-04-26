@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "邻里互助",
+  "navigationStyle": "custom",
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "nav-bar": "/components/nav-bar/nav-bar"
+  }
+}

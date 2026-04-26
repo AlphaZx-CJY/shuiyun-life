@@ -1,0 +1,30 @@
+<nav-bar title="邻里互助" showBack="{{true}}" />
+
+<view class="page-container">
+  <!-- 诉求列表 -->
+  <view class="voice-list" wx:if="{{voiceList.length > 0}}">
+    <view class="voice-card ios-card {{item.expired ? 'voice-card--expired' : ''}}" wx:for="{{voiceList}}" wx:key="id" data-item="{{item}}" bindtap="onVoiceTap">
+      <view class="voice-header">
+        <text class="voice-tag">{{item.type}}</text>
+        <text class="voice-status" wx:if="{{item.expired}}">已过期</text>
+      </view>
+      <text class="voice-content">{{item.content}}</text>
+      <view class="voice-meta">
+        <text class="voice-date">{{item.createTime}}</text>
+        <text class="voice-contact" wx:if="{{item.contact}}">{{item.contact}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 空状态 -->
+  <view class="empty-state" wx:if="{{voiceList.length === 0}}">
+    <text class="empty-state__text">暂无邻里互助信息</text>
+    <text class="empty-state__hint">点击右下角按钮发布您的诉求</text>
+  </view>
+
+  <!-- 发布按钮 -->
+  <view class="voice-float-btn" bindtap="onPublishTap">
+    <text class="voice-float-icon">+</text>
+    <text class="voice-float-text">发布</text>
+  </view>
+</view>

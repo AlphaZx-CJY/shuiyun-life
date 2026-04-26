@@ -17,6 +17,7 @@ import type {
   FeedbackConfig,
   GuideItem,
   GuideDetail,
+  VoiceItem,
 } from '../types/data';
 
 /** 通用安全查询：自动映射 _id → id，出错返回空数组 */
@@ -109,14 +110,17 @@ export async function incrementNewsViewCount(_id: string): Promise<void> {
 }
 
 export async function submitVoice(type: string, content: string, contact: string): Promise<void> {
-  await cloud.add('feedback', {
+  await cloud.add('voices', {
     type,
     content,
     contact,
-    category: 'voice',
-    status: 'pending',
+    expired: false,
     createTime: new Date().toISOString(),
   });
+}
+
+export async function getVoiceList(): Promise<VoiceItem[]> {
+  return safeQuery<VoiceItem>('voices', {}, { orderBy: [{ field: 'createTime', desc: true }] });
 }
 
 /** ========== 闲置交易 ========== */

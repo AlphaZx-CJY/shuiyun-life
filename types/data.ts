@@ -155,6 +155,17 @@ export interface ContactItem {
   number: string;
 }
 
+/** ========== 社区心声 ========== */
+
+export interface VoiceItem {
+  id: number | string;
+  type: string;
+  content: string;
+  contact: string;
+  expired: boolean;
+  createTime: string;
+}
+
 /** ========== 反馈配置 ========== */
 
 export interface FeedbackConfig {

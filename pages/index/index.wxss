@@ -24,6 +24,7 @@
 /* Banner */
 .banner-section {
   margin: 0 32rpx;
+  height: 340rpx;
 }
 
 
