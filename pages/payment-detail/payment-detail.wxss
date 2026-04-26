@@ -25,12 +25,13 @@
 }
 
 .detail-content {
-  margin: 0 24rpx 48rpx;
-  padding: 32rpx;
+  margin: 0 24rpx 64rpx;
+  padding: 48rpx 32rpx;
 }
 
 .detail-content rich-text {
-  font-size: 30rpx;
-  line-height: 1.8;
-  color: var(--md-on-surface-variant);
+  font-size: 32rpx;
+  line-height: 2.0;
+  color: var(--wx-text);
+  word-break: break-all;
 }

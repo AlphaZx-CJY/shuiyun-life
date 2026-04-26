@@ -25,9 +25,10 @@
 }
 
 .detail-content {
-  margin: 0 24rpx 32rpx;
-  padding: 32rpx;
-  font-size: 30rpx;
-  line-height: 1.8;
-  color: var(--md-on-surface);
+  margin: 0 24rpx 64rpx;
+  padding: 48rpx 32rpx;
+  font-size: 32rpx;
+  line-height: 2.0;
+  color: var(--wx-text);
+  word-break: break-all;
 }
