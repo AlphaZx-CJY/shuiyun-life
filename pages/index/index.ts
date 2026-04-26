@@ -1,5 +1,5 @@
 import * as api from '../../services/api';
-import type { NewsItem, ShuttleTime, Banner, ScheduleItem } from '../../types/data';
+import type { NewsItem, ShuttleTime, ScheduleItem } from '../../types/data';
 
 interface IQuickEntry {
   id: number;
@@ -9,12 +9,10 @@ interface IQuickEntry {
 }
 
 interface IIndexData {
-  banners: Banner[];
   quickEntries: IQuickEntry[];
   noticeNews: NewsItem[];
   todaySchedules: Pick<ScheduleItem, 'id' | 'title' | 'time' | 'location' | 'status'>[];
   routeName: string;
-  shuttlePreview: ShuttleTime[];
   nextShuttle: ShuttleTime | null;
 }
 
@@ -23,18 +21,17 @@ const ICON_NOTICE = '📢';
 const ICON_SCHEDULE = '📅';
 const ICON_SERVICE = '💡';
 const ICON_TRADE = '🛍️';
-const ICON_BUS = '🚌';
+const ICON_VOICE = '📢';
 
 Page<IIndexData, WechatMiniprogram.IAnyObject>({
   data: {
-    banners: [],
     quickEntries: [
       { id: 1, label: '周边生活', path: '/pages/life-info/life-info', icon: ICON_LIFE },
       { id: 2, label: '社区通知', path: '/pages/news/news', icon: ICON_NOTICE },
       { id: 3, label: '便民安排', path: '/pages/schedule/schedule', icon: ICON_SCHEDULE },
       { id: 4, label: '缴费知识', path: '/pages/payment/payment', icon: ICON_SERVICE },
       { id: 5, label: '闲置交易', path: '/pages/trade/trade', icon: ICON_TRADE },
-      { id: 6, label: '班车服务', path: '/pages/shuttle/shuttle', icon: ICON_BUS },
+      { id: 6, label: '社区心声', path: '/pages/voice-publish/voice-publish', icon: ICON_VOICE },
     ],
     noticeNews: [],
     todaySchedules: [],
@@ -67,23 +64,17 @@ Page<IIndexData, WechatMiniprogram.IAnyObject>({
 
   async loadData() {
     try {
-      const [banners, noticeNews, todaySchedules, routeName, shuttleSchedule] = await Promise.all([
-        api.getBanners(),
+      const [noticeNews, todaySchedules, routeName, shuttleSchedule] = await Promise.all([
         api.getNoticeNews(2),
         api.getTodaySchedules(),
         api.getShuttleRouteName(),
         api.getShuttleSchedule(),
       ]);
       const nextShuttle = shuttleSchedule.find((s: ShuttleTime) => s.status !== 'passed') || shuttleSchedule[shuttleSchedule.length - 1] || null;
-      this.setData({ banners, noticeNews, todaySchedules, routeName, shuttleSchedule, nextShuttle });
+      this.setData({ noticeNews, todaySchedules, routeName, shuttleSchedule, nextShuttle });
     } catch (err) {
       console.error('loadData failed', err);
     }
-  },
-
-  onBannerTap(e: WechatMiniprogram.TouchEvent) {
-    const { id } = e.currentTarget.dataset as { id: number | string };
-    wx.showToast({ title: `Banner ${id}`, icon: 'none' });
   },
 
   onShuttleBannerTap() {

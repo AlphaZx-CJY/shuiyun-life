@@ -5,41 +5,26 @@
     <view class="header-subtitle">让生活更便捷</view>
   </view>
 
-  <!-- Banner轮播 -->
-  <view class="banner-section" wx:if="{{banners.length > 0 || nextShuttle}}">
-    <swiper class="banner-swiper" indicator-dots autoplay circular interval="4000" duration="500" indicator-color="rgba(255,255,255,0.5)" indicator-active-color="#FFFFFF">
-      <!-- 班车信息卡片（首屏） -->
-      <swiper-item wx:if="{{nextShuttle}}" bindtap="onShuttleBannerTap">
-        <view class="banner-shuttle-card">
-          <view class="banner-shuttle-content">
-            <view class="banner-shuttle-tag">社区班车</view>
-            <text class="banner-shuttle-route">{{routeName}}</text>
-            <view class="banner-shuttle-time-wrap">
-              <block wx:if="{{nextShuttle.status === 'passed'}}">
-                <text class="banner-shuttle-status passed">今日已结束</text>
-              </block>
-              <block wx:else>
-                <text class="banner-shuttle-time">{{nextShuttle.time}}</text>
-                <text class="banner-shuttle-status {{nextShuttle.status}}">{{nextShuttle.status === 'soon' ? '即将发车' : '下一班'}}</text>
-              </block>
-            </view>
-          </view>
-          <view class="banner-shuttle-arrow">
-            <view class="shuttle-arrow-icon"></view>
-          </view>
+  <!-- 班车信息卡片 -->
+  <view class="banner-section" wx:if="{{nextShuttle}}" bindtap="onShuttleBannerTap">
+    <view class="banner-shuttle-card">
+      <view class="banner-shuttle-content">
+        <view class="banner-shuttle-tag">社区班车</view>
+        <text class="banner-shuttle-route">{{routeName}}</text>
+        <view class="banner-shuttle-time-wrap">
+          <block wx:if="{{nextShuttle.status === 'passed'}}">
+            <text class="banner-shuttle-status passed">今日已结束</text>
+          </block>
+          <block wx:else>
+            <text class="banner-shuttle-time">{{nextShuttle.time}}</text>
+            <text class="banner-shuttle-status {{nextShuttle.status}}">{{nextShuttle.status === 'soon' ? '即将发车' : '下一班'}}</text>
+          </block>
         </view>
-      </swiper-item>
-
-      <!-- 常规图片 Banner -->
-      <swiper-item wx:for="{{banners}}" wx:key="id" data-id="{{item.id}}" bindtap="onBannerTap">
-        <view class="banner-item">
-          <image class="banner-image" src="{{item.image}}" mode="aspectFill" lazy-load />
-          <view class="banner-mask">
-            <text class="banner-title">{{item.title}}</text>
-          </view>
-        </view>
-      </swiper-item>
-    </swiper>
+      </view>
+      <view class="banner-shuttle-arrow">
+        <view class="shuttle-arrow-icon"></view>
+      </view>
+    </view>
   </view>
 
   <!-- 快捷入口 -->

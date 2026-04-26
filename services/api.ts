@@ -108,6 +108,17 @@ export async function incrementNewsViewCount(_id: string): Promise<void> {
   }
 }
 
+export async function submitVoice(type: string, content: string, contact: string): Promise<void> {
+  await cloud.add('feedback', {
+    type,
+    content,
+    contact,
+    category: 'voice',
+    status: 'pending',
+    createTime: new Date().toISOString(),
+  });
+}
+
 /** ========== 闲置交易 ========== */
 
 export function getTradeCategories(): Category[] {
