@@ -1,0 +1,37 @@
+{"name": "永辉超市", "category": "supermarket", "address": "青浦区重固镇福贸路阳光新生活广场", "distance": "步行约10分钟", "hours": "07:30-22:00", "phone": "", "tags": ["生鲜", "日用百货"], "enabled": true, "sort": 1}
+{"name": "盒小马", "category": "supermarket", "address": "青浦区重固镇福茂路北侧重固新菜场三层", "distance": "步行约12分钟", "hours": "07:00-22:00", "phone": "", "tags": ["生鲜", "可配送"], "enabled": true, "sort": 2}
+{"name": "吉麦隆生活卖场", "category": "supermarket", "address": "青浦区重固镇赵重公路", "distance": "步行约15分钟", "hours": "07:30-21:30", "phone": "", "tags": ["日用百货"], "enabled": true, "sort": 3}
+{"name": "联华超市", "category": "supermarket", "address": "青浦区重固镇赵重公路", "distance": "步行约15分钟", "hours": "07:00-22:00", "phone": "", "tags": ["社区超市"], "enabled": true, "sort": 4}
+{"name": "农工商超市", "category": "supermarket", "address": "青浦区重固镇郏店路55弄小区底商", "distance": "步行约3分钟", "hours": "07:00-21:00", "phone": "", "tags": ["社区便利店"], "enabled": true, "sort": 5}
+{"name": "重固新菜场", "category": "market", "address": "青浦区重固镇福茂路北侧、联茂路东侧", "distance": "步行约12分钟", "hours": "05:00-19:00", "phone": "", "tags": ["自产自销", "一站式"], "enabled": true, "sort": 1}
+{"name": "重固菜市场", "category": "market", "address": "青浦区重固镇福泉山路附近", "distance": "步行约10分钟", "hours": "05:00-18:00", "phone": "", "tags": ["传统菜场"], "enabled": true, "sort": 2}
+{"name": "麦当劳", "category": "food", "address": "青浦区重固镇福茂路北侧重固新菜场一层", "distance": "步行约12分钟", "hours": "07:00-22:00", "phone": "", "tags": ["快餐", "外卖"], "enabled": true, "sort": 1}
+{"name": "李家小院", "category": "food", "address": "青浦区重固镇重固新菜场附近", "distance": "步行约12分钟", "hours": "10:00-21:00", "phone": "", "tags": ["家常菜"], "enabled": true, "sort": 2}
+{"name": "膀二爷烧烤", "category": "food", "address": "青浦区重固镇重固新菜场附近", "distance": "步行约12分钟", "hours": "17:00-02:00", "phone": "", "tags": ["烧烤", "夜宵"], "enabled": true, "sort": 3}
+{"name": "西域风味面馆", "category": "food", "address": "青浦区重固镇重固大街附近", "distance": "步行约10分钟", "hours": "08:00-21:00", "phone": "", "tags": ["面食", "清真"], "enabled": true, "sort": 4}
+{"name": "文苑茗茶", "category": "food", "address": "青浦区重固镇重固新菜场附近", "distance": "步行约12分钟", "hours": "09:00-21:00", "phone": "", "tags": ["茶饮"], "enabled": true, "sort": 5}
+{"name": "汉庭酒店", "category": "hotel", "address": "青浦区重固镇赵重公路附近", "distance": "驾车约5分钟", "hours": "24小时", "phone": "400-812-1121", "tags": ["经济型"], "enabled": true, "sort": 1}
+{"name": "如家酒店", "category": "hotel", "address": "青浦区重固镇福泉山路附近", "distance": "驾车约5分钟", "hours": "24小时", "phone": "400-820-3333", "tags": ["经济型"], "enabled": true, "sort": 2}
+{"name": "地铁17号线赵巷站", "category": "transport", "address": "青浦区赵巷镇", "distance": "约2.3公里，骑行约10分钟", "hours": "05:30-22:30", "phone": "", "tags": ["地铁", "6站直达虹桥火车站"], "enabled": true, "sort": 1}
+{"name": "示范区线赵重公路站", "category": "transport", "address": "青浦区重固镇赵重公路", "distance": "约800米，步行约10分钟", "hours": "在建中", "phone": "", "tags": ["地铁", "3站直达虹桥枢纽"], "enabled": true, "sort": 2}
+{"name": "崧泽高架赵重公路出入口", "category": "transport", "address": "青浦区重固镇赵重公路", "distance": "约1.5公里，驾车约3分钟", "hours": "24小时", "phone": "", "tags": ["自驾", "直达虹桥商务区"], "enabled": true, "sort": 3}
+{"name": "赵重公路福泉山路公交站", "category": "transport", "address": "青浦区重固镇赵重公路福泉山路路口", "distance": "步行约8分钟", "hours": "06:00-21:00", "phone": "", "tags": ["公交", "重固1路/2路"], "enabled": true, "sort": 4}
+{"name": "北青公路赵重公路公交站", "category": "transport", "address": "青浦区重固镇北青公路赵重公路路口", "distance": "步行约12分钟", "hours": "05:30-21:30", "phone": "", "tags": ["公交", "北青线/青凤徐专线"], "enabled": true, "sort": 5}
+{"name": "寿丰幼儿园", "category": "school", "address": "青浦区重固镇", "distance": "步行约10分钟", "hours": "07:30-16:30", "phone": "", "tags": ["公办幼儿园"], "enabled": true, "sort": 1}
+{"name": "青浦区重固小学", "category": "school", "address": "青浦区重固镇福中路173号附近", "distance": "步行约10分钟", "hours": "08:00-16:00", "phone": "", "tags": ["公办小学"], "enabled": true, "sort": 2}
+{"name": "青浦区重固中学", "category": "school", "address": "青浦区重固镇", "distance": "步行约12分钟", "hours": "07:30-17:00", "phone": "", "tags": ["公办中学"], "enabled": true, "sort": 3}
+{"name": "上海师范大学附属青浦实验学校", "category": "school", "address": "青浦区重固镇附近", "distance": "约3公里", "hours": "08:00-16:30", "phone": "", "tags": ["九年一贯制"], "enabled": true, "sort": 4}
+{"name": "青浦区双佳民办小学", "category": "school", "address": "青浦区重固镇", "distance": "步行约15分钟", "hours": "08:00-16:00", "phone": "", "tags": ["民办小学"], "enabled": true, "sort": 5}
+{"name": "重固公园", "category": "leisure", "address": "青浦区重固镇", "distance": "步行约15分钟", "hours": "全天开放", "phone": "", "tags": ["公园", "健身"], "enabled": true, "sort": 1}
+{"name": "福泉山遗址公园", "category": "leisure", "address": "青浦区重固镇福泉山路", "distance": "步行约15分钟", "hours": "08:00-17:00", "phone": "", "tags": ["文化遗址", "公园"], "enabled": true, "sort": 2}
+{"name": "重固镇社区市民健身中心", "category": "leisure", "address": "青浦区重固镇福泉山东路与联茂路附近", "distance": "步行约12分钟", "hours": "建议提前确认", "phone": "", "tags": ["健身", "运动"], "enabled": true, "sort": 3}
+{"name": "重固镇社区卫生服务中心", "category": "medical", "address": "青浦区重固镇联茂路68号", "distance": "步行约900米，约12分钟", "hours": "08:00-16:30", "phone": "021-59781316", "tags": ["社区医疗", "医保定点"], "enabled": true, "sort": 1}
+{"name": "德达医院", "category": "medical", "address": "青浦区徐泾镇", "distance": "驾车约15分钟", "hours": "08:00-17:00", "phone": "", "tags": ["综合医院"], "enabled": true, "sort": 2}
+{"name": "中山医院青浦分院", "category": "medical", "address": "青浦区公园东路", "distance": "驾车约15分钟", "hours": "24小时急诊", "phone": "", "tags": ["三甲", "综合医院"], "enabled": true, "sort": 3}
+{"name": "阳光新生活广场", "category": "mall", "address": "青浦区重固镇福贸路", "distance": "步行约10分钟", "hours": "10:00-21:30", "phone": "", "tags": ["社区商业"], "enabled": true, "sort": 1}
+{"name": "宝龙广场", "category": "mall", "address": "青浦区赵巷镇", "distance": "约3公里，驾车约8分钟", "hours": "10:00-22:00", "phone": "", "tags": ["大型商业综合体"], "enabled": true, "sort": 2}
+{"name": "天空万科广场", "category": "mall", "address": "青浦区徐泾镇", "distance": "驾车约15分钟", "hours": "10:00-22:00", "phone": "", "tags": ["大型商业综合体"], "enabled": true, "sort": 3}
+{"name": "万科红生活广场", "category": "mall", "address": "青浦区重固镇附近", "distance": "步行约15分钟", "hours": "10:00-21:30", "phone": "", "tags": ["社区商业"], "enabled": true, "sort": 4}
+{"name": "宝华生活广场", "category": "mall", "address": "青浦区重固镇", "distance": "步行约12分钟", "hours": "09:30-21:30", "phone": "", "tags": ["社区商业"], "enabled": true, "sort": 5}
+{"name": "重固新世纪商业广场", "category": "mall", "address": "青浦区重固镇", "distance": "步行约10分钟", "hours": "09:30-21:30", "phone": "", "tags": ["社区商业"], "enabled": true, "sort": 6}
+{"name": "中建孚泉生活广场", "category": "mall", "address": "青浦区重固镇", "distance": "步行约15分钟", "hours": "10:00-21:00", "phone": "", "tags": ["社区商业"], "enabled": true, "sort": 7}
