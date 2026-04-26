@@ -12,10 +12,15 @@ Page<INewsDetailData, WechatMiniprogram.IAnyObject>({
     news: null,
   },
 
-  onLoad(options: Record<string, string>) {
+  async onLoad(options: Record<string, string>) {
     const { id } = options;
     this.setData({ newsId: id });
-    this.loadNewsDetail(Number(id));
+    try {
+      const detail = await api.getNewsDetail(Number(id));
+      this.setData({ news: detail });
+    } catch (err) {
+      console.error('loadNewsDetail failed', err);
+    }
   },
 
   onShareAppMessage(): WechatMiniprogram.Page.ICustomShareContent {
@@ -25,8 +30,5 @@ Page<INewsDetailData, WechatMiniprogram.IAnyObject>({
     };
   },
 
-  loadNewsDetail(id: number) {
-    const news = api.getNewsDetail(id);
-    this.setData({ news });
-  },
+
 });

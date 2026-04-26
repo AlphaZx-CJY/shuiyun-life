@@ -1,7 +1,8 @@
 import * as api from '../../services/api';
+import type { PaymentItem } from '../../types/data';
 
 interface IPaymentData {
-  paymentList: ReturnType<typeof api.getPaymentList>;
+  paymentList: PaymentItem[];
 }
 
 Page<IPaymentData, WechatMiniprogram.IAnyObject>({
@@ -20,12 +21,13 @@ Page<IPaymentData, WechatMiniprogram.IAnyObject>({
     };
   },
 
-  loadPaymentData() {
-    this.setData({ paymentList: api.getPaymentList() });
+  async loadPaymentData() {
+    const paymentList = await api.getPaymentList();
+    this.setData({ paymentList });
   },
 
   onPaymentTap(e: WechatMiniprogram.TouchEvent) {
-    const { id } = e.currentTarget.dataset as { id: number };
+    const { id } = e.currentTarget.dataset as { id: number | string };
     wx.navigateTo({ url: `/pages/payment-detail/payment-detail?id=${id}` });
   },
 });

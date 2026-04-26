@@ -29,7 +29,7 @@
   left: 30%;
   right: 30%;
   height: 4rpx;
-  background: #0071e3;
+  background: var(--md-primary);
   border-radius: 2rpx;
 }
 
@@ -45,7 +45,7 @@
 
 .tab-icon {
   font-size: 28rpx;
-  color: #1D1D1F;
+  color: var(--md-on-surface);
   font-weight: 600;
   line-height: 1;
 }
@@ -57,7 +57,7 @@
 }
 
 .tab-item--active .tab-text {
-  color: #0071e3;
+  color: var(--md-primary);
 }
 
 /* 服务卡片 */
@@ -80,12 +80,12 @@
 .service-name {
   font-size: 32rpx;
   font-weight: 600;
-  color: #1D1D1F;
+  color: var(--md-on-surface);
 }
 
 .service-distance {
   font-size: 24rpx;
-  color: #0071e3;
+  color: var(--md-primary);
   font-weight: 500;
 }
 
@@ -116,9 +116,9 @@
 .service-info-value {
   flex: 1;
   font-size: 26rpx;
-  color: #86868B;
+  color: var(--md-on-surface-variant);
 }
 
 .service-phone {
-  color: #0071e3;
+  color: var(--md-primary);
 }

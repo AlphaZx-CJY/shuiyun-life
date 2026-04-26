@@ -12,7 +12,7 @@
   </view>
 
   <!-- 交易列表 -->
-  <view class="trade-list">
+  <view class="trade-list" wx:if="{{tradeList.length > 0}}">
     <view class="trade-card" wx:for="{{tradeList}}" wx:key="id" data-id="{{item.id}}" bindtap="onTradeTap">
       <image wx:if="{{item.images && item.images.length}}" class="trade-image" src="{{item.images[0]}}" mode="aspectFill" lazy-load />
       <view wx:else class="trade-image trade-image--placeholder">
@@ -32,8 +32,13 @@
     </view>
   </view>
 
+  <!-- 空状态 -->
+  <view class="empty-state" wx:if="{{tradeList.length === 0}}">
+    <text class="empty-state__text">暂无闲置物品</text>
+  </view>
+
   <!-- 发布按钮 -->
   <view class="float-btn" bindtap="onPublishTap">
-    <text class="float-btn__icon">+</text>
+    <view class="float-btn__icon">+</view>
   </view>
 </view>

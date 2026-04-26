@@ -1,9 +1,10 @@
 import * as api from '../../services/api';
+import type { Category, ServiceItem } from '../../types/data';
 
 interface ILifeInfoData {
-  categories: ReturnType<typeof api.getServiceCategories>;
+  categories: Category[];
   activeCategory: string;
-  serviceList: ReturnType<typeof api.getServiceList>;
+  serviceList: ServiceItem[];
 }
 
 Page<ILifeInfoData, WechatMiniprogram.IAnyObject>({
@@ -31,8 +32,9 @@ Page<ILifeInfoData, WechatMiniprogram.IAnyObject>({
     this.loadServiceData(id);
   },
 
-  loadServiceData(category: string) {
-    this.setData({ serviceList: api.getServiceList(category) });
+  async loadServiceData(category: string) {
+    const serviceList = await api.getServiceList(category);
+    this.setData({ serviceList });
   },
 
   onServiceTap(e: WechatMiniprogram.TouchEvent) {

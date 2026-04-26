@@ -1,5 +1,5 @@
 <view class="page-container">
-  <view class="payment-list">
+  <view class="payment-list" wx:if="{{paymentList.length > 0}}">
     <view class="payment-card ios-card" wx:for="{{paymentList}}" wx:key="id" data-id="{{item.id}}" bindtap="onPaymentTap">
       <view class="payment-header">
         <view class="payment-tag-group">
@@ -12,5 +12,10 @@
       <text class="payment-summary">{{item.summary}}</text>
       <view class="payment-arrow"></view>
     </view>
+  </view>
+
+  <!-- 空状态 -->
+  <view class="empty-state" wx:if="{{paymentList.length === 0}}">
+    <text class="empty-state__text">暂无缴费指南</text>
   </view>
 </view>

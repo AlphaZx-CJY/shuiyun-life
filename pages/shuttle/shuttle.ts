@@ -18,15 +18,20 @@ Page<IShuttleData, WechatMiniprogram.IAnyObject>({
     contactPhone: '',
   },
 
-  onLoad() {
-    this.setData({
-      routeName: api.getShuttleRouteName(),
-      runNote: api.getShuttleRunNote(),
-      schedule: api.getShuttleSchedule(),
-      stops: api.getShuttleStops(),
-      contactPhone: api.getShuttleContactPhone(),
-    });
-    this.updateScheduleStatus();
+  async onLoad() {
+    try {
+      const [routeName, runNote, schedule, stops, contactPhone] = await Promise.all([
+        api.getShuttleRouteName(),
+        api.getShuttleRunNote(),
+        api.getShuttleSchedule(),
+        api.getShuttleStops(),
+        api.getShuttleContactPhone(),
+      ]);
+      this.setData({ routeName, runNote, schedule, stops, contactPhone });
+      this.updateScheduleStatus();
+    } catch (err) {
+      console.error('onLoad failed', err);
+    }
   },
 
   onShow() {

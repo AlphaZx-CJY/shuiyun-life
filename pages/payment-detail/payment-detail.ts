@@ -12,10 +12,15 @@ Page<IPaymentDetailData, WechatMiniprogram.IAnyObject>({
     payment: null,
   },
 
-  onLoad(options: Record<string, string>) {
+  async onLoad(options: Record<string, string>) {
     const { id } = options;
     this.setData({ paymentId: id });
-    this.loadPaymentDetail(Number(id));
+    try {
+      const detail = await api.getPaymentDetail(Number(id));
+      this.setData({ payment: detail });
+    } catch (err) {
+      console.error('loadPaymentDetail failed', err);
+    }
   },
 
   onShareAppMessage(): WechatMiniprogram.Page.ICustomShareContent {
@@ -25,8 +30,5 @@ Page<IPaymentDetailData, WechatMiniprogram.IAnyObject>({
     };
   },
 
-  loadPaymentDetail(id: number) {
-    const payment = api.getPaymentDetail(id);
-    this.setData({ payment });
-  },
+
 });

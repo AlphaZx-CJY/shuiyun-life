@@ -1,40 +1,76 @@
 /* ================================
-   全局样式 - Apple Design 风格
+   全局样式 - 微信设计美学 (WeUI)
    ================================ */
 
-/* CSS Variables */
+/* CSS Variables - WeUI Tokens */
 page {
-  --ios-accent: #0071e3;
-  --ios-gray: #8E8E93;
-  --ios-light-gray: #D2D2D7;
-  --ios-bg: #FFFFFF;
-  --ios-card: #F5F5F7;
-  --ios-separator: #D2D2D7;
-  --ios-grouped-bg: #FFFFFF;
-  --ios-elevated: #FFFFFF;
-  --ios-muted: #F5F5F7;
-  
+  --wx-primary: #07C160;
+  --wx-primary-hover: #06AD56;
+  --wx-primary-light: rgba(7, 193, 96, 0.08);
+  --wx-link: #576B95;
+  --wx-bg: #F7F7F7;
+  --wx-surface: #FFFFFF;
+  --wx-text: #000000;
+  --wx-text-secondary: #999999;
+  --wx-text-tertiary: #888888;
+  --wx-border: #E5E5E5;
+  --wx-border-light: #EDEDED;
+  --wx-error: #FA5151;
+  --wx-warn: #FFC300;
+  --wx-mask: rgba(0, 0, 0, 0.4);
+  --wx-arrow: #C5C5C5;
+
+  --radius-xs: 4rpx;
   --radius-sm: 8rpx;
-  --radius-md: 16rpx;
-  --radius-lg: 24rpx;
+  --radius-md: 12rpx;
+  --radius-lg: 16rpx;
   --radius-pill: 9999rpx;
-  
+
   --space-xs: 8rpx;
   --space-sm: 16rpx;
   --space-md: 24rpx;
   --space-lg: 32rpx;
   --space-xl: 48rpx;
-  
-  --shadow-sm: 0 2rpx 8rpx rgba(0,0,0,0.04);
-  --shadow-md: 0 4rpx 16rpx rgba(0,0,0,0.08);
-  --shadow-lg: 0 8rpx 32rpx rgba(0,0,0,0.12);
+
+  --shadow-none: none;
+  --shadow-float: 0 2rpx 8rpx rgba(0, 0, 0, 0.06);
 
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  background-color: var(--ios-bg);
-  color: #1D1D1F;
+  background-color: var(--wx-bg);
+  color: var(--wx-text);
   font-size: 28rpx;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
+}
+
+/* 兼容旧变量名映射到 WeUI */
+page {
+  --ios-accent: var(--wx-primary);
+  --ios-gray: var(--wx-text-secondary);
+  --ios-light-gray: var(--wx-border-light);
+  --ios-bg: var(--wx-bg);
+  --ios-card: var(--wx-surface);
+  --ios-separator: var(--wx-border);
+  --ios-grouped-bg: var(--wx-bg);
+  --ios-elevated: var(--wx-surface);
+  --ios-muted: var(--wx-border-light);
+  --md-primary: var(--wx-primary);
+  --md-on-primary: #FFFFFF;
+  --md-primary-container: var(--wx-primary-light);
+  --md-on-primary-container: var(--wx-primary);
+  --md-secondary: var(--wx-text-secondary);
+  --md-secondary-container: var(--wx-border-light);
+  --md-tertiary: var(--wx-link);
+  --md-surface: var(--wx-surface);
+  --md-surface-variant: var(--wx-surface);
+  --md-background: var(--wx-bg);
+  --md-on-surface: var(--wx-text);
+  --md-on-surface-variant: var(--wx-text-secondary);
+  --md-outline: var(--wx-border);
+  --md-outline-variant: var(--wx-border-light);
+  --md-error: var(--wx-error);
+  --md-error-container: rgba(250, 81, 81, 0.08);
+  --md-on-error-container: var(--wx-error);
 }
 
 /* 重置 */
@@ -45,62 +81,73 @@ view, text, image, navigator, scroll-view, swiper, swiper-item {
 /* 页面容器 */
 .page-container {
   min-height: 100vh;
-  background-color: var(--ios-bg);
+  background-color: var(--wx-bg);
   padding-bottom: constant(safe-area-inset-bottom);
   padding-bottom: env(safe-area-inset-bottom);
 }
 
-/* iOS风格分组卡片 */
-.ios-section {
+/* ================================
+   WeUI 组件
+   ================================ */
+
+/* 分区 */
+.ios-section, .md-section, .wx-section {
   margin: var(--space-md) var(--space-md);
 }
 
-.ios-section-title {
+.ios-section-title, .md-section-title, .wx-section-title {
   font-size: 24rpx;
-  font-weight: 600;
-  color: var(--ios-gray);
-  text-transform: uppercase;
-  letter-spacing: 1rpx;
+  font-weight: 500;
+  color: var(--wx-text-secondary);
   margin-bottom: var(--space-sm);
   padding-left: var(--space-sm);
 }
 
-.ios-card {
-  background: var(--ios-card);
+/* 卡片 - WeUI 风格：白色、无阴影、细线或圆角 */
+.ios-card, .md-card, .wx-card {
+  background: var(--wx-surface);
   border-radius: var(--radius-md);
-  box-shadow: var(--shadow-sm);
   overflow: hidden;
 }
 
-.ios-card + .ios-card {
+.wx-card--outlined {
+  border: 1rpx solid var(--wx-border);
+}
+
+.ios-card + .ios-card,
+.md-card + .md-card,
+.wx-card + .wx-card {
   margin-top: var(--space-sm);
 }
 
-/* iOS列表项 */
-.ios-list-item {
+/* 列表项 - WeUI 风格：白色背景、底部细线 */
+.ios-list-item, .md-list-item, .wx-list-item {
   display: flex;
   align-items: center;
   padding: var(--space-md) var(--space-lg);
-  background: var(--ios-card);
+  background: var(--wx-surface);
   position: relative;
 }
 
-.ios-list-item::after {
+.ios-list-item::after,
+.md-list-item::after,
+.wx-list-item::after {
   content: '';
   position: absolute;
   left: var(--space-lg);
   right: 0;
   bottom: 0;
   height: 1rpx;
-  background: var(--ios-separator);
-  transform: scaleY(0.5);
+  background: var(--wx-border);
 }
 
-.ios-list-item:last-child::after {
+.ios-list-item:last-child::after,
+.md-list-item:last-child::after,
+.wx-list-item:last-child::after {
   display: none;
 }
 
-.ios-list-item__icon {
+.ios-list-item__icon, .md-list-item__icon, .wx-list-item__icon {
   width: 64rpx;
   height: 64rpx;
   border-radius: var(--radius-sm);
@@ -109,103 +156,125 @@ view, text, image, navigator, scroll-view, swiper, swiper-item {
   justify-content: center;
   margin-right: var(--space-md);
   font-size: 32rpx;
+  background: var(--wx-primary-light);
 }
 
-.ios-list-item__content {
+.ios-list-item__content, .md-list-item__content, .wx-list-item__content {
   flex: 1;
   min-width: 0;
 }
 
-.ios-list-item__title {
+.ios-list-item__title, .md-list-item__title, .wx-list-item__title {
   font-size: 30rpx;
   font-weight: 500;
-  color: #1D1D1F;
+  color: var(--wx-text);
 }
 
-.ios-list-item__subtitle {
+.ios-list-item__subtitle, .md-list-item__subtitle, .wx-list-item__subtitle {
   font-size: 24rpx;
-  color: var(--ios-gray);
+  color: var(--wx-text-secondary);
   margin-top: 4rpx;
 }
 
-.ios-list-item__arrow {
+.ios-list-item__arrow, .md-list-item__arrow, .wx-list-item__arrow {
   width: 16rpx;
   height: 16rpx;
-  border-top: 3rpx solid #D2D2D7;
-  border-right: 3rpx solid #D2D2D7;
+  border-top: 3rpx solid var(--wx-arrow);
+  border-right: 3rpx solid var(--wx-arrow);
   transform: rotate(45deg);
   margin-left: var(--space-sm);
 }
 
-/* iOS按钮 */
-.ios-btn {
+/* 按钮 - WeUI 风格 */
+.ios-btn, .md-btn, .wx-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   padding: 16rpx 40rpx;
-  border-radius: var(--radius-pill);
+  border-radius: var(--radius-sm);
   font-size: 28rpx;
   font-weight: 500;
-  transition: opacity 0.2s;
+  transition: opacity 0.15s ease;
 }
 
-.ios-btn:active {
-  opacity: 0.7;
-}
-
-.ios-btn--primary {
-  background: #0071e3;
+.md-btn--filled, .ios-btn--primary, .wx-btn--primary {
+  background: var(--wx-primary);
   color: #FFFFFF;
 }
 
-.ios-btn--secondary {
-  background: #F5F5F7;
-  color: #1D1D1F;
+.md-btn--filled:active, .ios-btn--primary:active, .wx-btn--primary:active {
+  background: var(--wx-primary-hover);
 }
 
-.ios-btn--small {
+.md-btn--outlined, .wx-btn--default {
+  background: var(--wx-surface);
+  color: var(--wx-text);
+  border: 1rpx solid var(--wx-border);
+}
+
+.md-btn--text, .wx-btn--text {
+  background: transparent;
+  color: var(--wx-link);
+  padding: 12rpx 24rpx;
+}
+
+.ios-btn--secondary, .md-btn--secondary, .wx-btn--secondary {
+  background: var(--wx-border-light);
+  color: var(--wx-text);
+}
+
+.md-btn--small, .ios-btn--small, .wx-btn--small {
   padding: 10rpx 28rpx;
   font-size: 24rpx;
 }
 
-/* iOS标签 */
-.ios-tag {
+.md-btn--disabled, .ios-btn--disabled, .wx-btn--disabled {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+/* 标签 - WeUI 风格：小圆角 tonal */
+.ios-tag, .md-tag, .wx-tag {
   display: inline-flex;
   align-items: center;
-  padding: 6rpx 16rpx;
-  border-radius: var(--radius-pill);
+  padding: 4rpx 12rpx;
+  border-radius: var(--radius-xs);
   font-size: 22rpx;
   font-weight: 500;
 }
 
-.ios-tag--blue {
-  background: rgba(0,113,227,0.1);
-  color: #0071e3;
+.md-tag--primary, .ios-tag--blue, .wx-tag--primary {
+  background: var(--wx-primary-light);
+  color: var(--wx-primary);
 }
 
-.ios-tag--green {
-  background: rgba(0,0,0,0.04);
-  color: #86868B;
+.md-tag--secondary, .ios-tag--green, .wx-tag--secondary {
+  background: var(--wx-border-light);
+  color: var(--wx-text-secondary);
 }
 
-.ios-tag--orange {
-  background: rgba(0,0,0,0.03);
-  color: #6E6E73;
+.md-tag--tertiary, .ios-tag--orange, .wx-tag--tertiary {
+  background: var(--wx-border-light);
+  color: var(--wx-text-tertiary);
 }
 
-.ios-tag--gray {
-  background: #F5F5F7;
-  color: #86868B;
+.md-tag--error, .wx-tag--error {
+  background: rgba(250, 81, 81, 0.08);
+  color: var(--wx-error);
+}
+
+.md-tag--surface, .ios-tag--gray, .wx-tag--surface {
+  background: var(--wx-border-light);
+  color: var(--wx-text-secondary);
 }
 
 /* 文本工具类 */
-.text-primary { color: #1D1D1F; }
-.text-secondary { color: #86868B; }
-.text-tertiary { color: #6E6E73; }
-.text-blue { color: #0071e3; }
-.text-green { color: #86868B; }
-.text-orange { color: #6E6E73; }
-.text-red { color: #86868B; }
+.text-primary, .text-on-surface { color: var(--wx-text); }
+.text-secondary, .text-on-surface-variant { color: var(--wx-text-secondary); }
+.text-tertiary { color: var(--wx-text-tertiary); }
+.text-blue, .text-primary { color: var(--wx-primary); }
+.text-link { color: var(--wx-link); }
+.text-error { color: var(--wx-error); }
 
 .text-xs { font-size: 22rpx; }
 .text-sm { font-size: 24rpx; }
@@ -266,5 +335,5 @@ view, text, image, navigator, scroll-view, swiper, swiper-item {
 
 .empty-state__text {
   font-size: 28rpx;
-  color: var(--ios-gray);
+  color: var(--wx-text-secondary);
 }

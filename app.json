@@ -11,21 +11,24 @@
     "pages/payment-detail/payment-detail",
     "pages/schedule/schedule",
     "pages/shuttle/shuttle",
-    "pages/profile/profile"
+    "pages/profile/profile",
+    "pages/feedback/feedback",
+    "pages/guide/guide",
+    "pages/guide-detail/guide-detail"
   ],
   "window": {
     "backgroundTextStyle": "dark",
-    "navigationBarBackgroundColor": "#FFFFFF",
+    "navigationBarBackgroundColor": "#F7F7F7",
     "navigationBarTitleText": "水韵名邸",
     "navigationBarTextStyle": "black",
-    "backgroundColor": "#FFFFFF",
+    "backgroundColor": "#F7F7F7",
     "navigationStyle": "default"
   },
   "tabBar": {
-    "color": "#86868B",
-    "selectedColor": "#0071e3",
-    "backgroundColor": "#FFFFFF",
-    "borderStyle": "white",
+    "color": "#999999",
+    "selectedColor": "#07C160",
+    "backgroundColor": "#F7F7F7",
+    "borderStyle": "black",
     "list": [
       {
         "pagePath": "pages/index/index",

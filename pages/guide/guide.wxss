@@ -1,60 +1,37 @@
-/* 缴费知识页样式 */
+/* 使用指南列表页样式 */
 
-.payment-list {
+.guide-list {
   padding: 24rpx 24rpx 32rpx;
 }
 
-.payment-card {
+.guide-card {
   padding: 28rpx;
   margin-bottom: 16rpx;
   position: relative;
 }
 
-.payment-header {
+.guide-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 16rpx;
 }
 
-.payment-tag-group {
-  display: flex;
-  align-items: center;
-  gap: 12rpx;
-}
-
-.hot-badge {
-  padding: 4rpx 12rpx;
-  border-radius: var(--radius-pill);
-  background: var(--md-primary);
-  color: #FFFFFF;
-  font-size: 20rpx;
-  font-weight: 700;
-}
-
-.payment-date {
+.guide-date {
   font-size: 22rpx;
   color: var(--ios-light-gray);
 }
 
-.payment-title {
+.guide-title {
   font-size: 32rpx;
   font-weight: 600;
   color: var(--md-on-surface);
   line-height: 1.4;
   display: block;
-  margin-bottom: 12rpx;
-}
-
-.payment-summary {
-  font-size: 26rpx;
-  color: var(--ios-gray);
-  line-height: 1.5;
-  display: block;
   padding-right: 40rpx;
 }
 
-.payment-arrow {
+.guide-arrow {
   position: absolute;
   right: 28rpx;
   top: 50%;

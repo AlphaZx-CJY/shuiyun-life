@@ -5,8 +5,8 @@ import type { NewsCategory } from '../../types/data';
 interface INewsData {
   categories: { id: NewsCategory; name: string }[];
   activeCategory: NewsCategory;
-  newsList: ReturnType<typeof api.getNewsList>;
-  allNews: ReturnType<typeof api.getNewsList>;
+  newsList: NewsItem[];
+  allNews: NewsItem[];
 }
 
 Page<INewsData, WechatMiniprogram.IAnyObject>({
@@ -44,8 +44,8 @@ Page<INewsData, WechatMiniprogram.IAnyObject>({
     };
   },
 
-  loadNewsData() {
-    const allNews = api.getNewsList();
+  async loadNewsData() {
+    const allNews = await api.getNewsList();
     this.setData({ allNews, newsList: allNews });
   },
 
@@ -65,7 +65,7 @@ Page<INewsData, WechatMiniprogram.IAnyObject>({
   },
 
   onNewsTap(e: WechatMiniprogram.TouchEvent) {
-    const { id } = e.currentTarget.dataset as { id: number };
+    const { id } = e.currentTarget.dataset as { id: number | string };
     wx.navigateTo({ url: `/pages/news-detail/news-detail?id=${id}` });
   },
 });

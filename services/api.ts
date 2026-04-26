@@ -1,3 +1,4 @@
+import * as cloud from './cloud';
 import type {
   Banner,
   QuickEntry,
@@ -12,63 +13,142 @@ import type {
   ShuttleTime,
   ProfileItem,
   Category,
+  ContactItem,
+  FeedbackConfig,
+  GuideItem,
+  GuideDetail,
 } from '../types/data';
+
+/** 通用安全查询：自动映射 _id → id，出错返回空数组 */
+async function safeQuery<T extends { id?: number | string; _id?: string }>(
+  collection: string,
+  where?: Record<string, any>,
+  options?: cloud.QueryOptions,
+): Promise<T[]> {
+  try {
+    const data = await cloud.query<T>(collection, where, options);
+    return data.map((item) => ({ ...item, id: (item as any).id ?? item._id }));
+  } catch (e) {
+    console.error(`[cloud] ${collection} query failed:`, e);
+    return [];
+  }
+}
 
 /** ========== 首页 ========== */
 
-export function getBanners(): Banner[] {
-  return [];
+export async function getBanners(): Promise<Banner[]> {
+  return safeQuery<Banner>('banners', { enabled: true }, { orderBy: [{ field: 'sort', desc: false }] });
 }
 
 export function getQuickEntries(): QuickEntry[] {
   return [];
 }
 
-export function getLatestNews(): NewsItem[] {
-  return [];
+export async function getNoticeNews(count = 3): Promise<NewsItem[]> {
+  return safeQuery<NewsItem>('news', { enabled: true, category: 'notice' }, { orderBy: [{ field: 'date', desc: true }], limit: count });
 }
 
-export function getTodaySchedules(): Pick<ScheduleItem, 'id' | 'title' | 'time' | 'location' | 'status'>[] {
-  return [];
+export async function getLatestNews(count = 3): Promise<NewsItem[]> {
+  const data = await safeQuery<NewsItem>('news', { enabled: true }, { orderBy: [{ field: 'date', desc: true }], limit: count + 5 });
+  return data.filter((n) => n.category !== 'notice').slice(0, count);
+}
+
+export async function getTodaySchedules(): Promise<Pick<ScheduleItem, 'id' | 'title' | 'time' | 'location' | 'status'>[]> {
+  const today = new Date().toISOString().slice(0, 10);
+  const data = await safeQuery<ScheduleItem>('schedules', { enabled: true, date: today }, { orderBy: [{ field: 'time', desc: false }] });
+  return data.map((s) => ({ id: s.id, title: s.title, time: s.time, location: s.location, status: s.status }));
+}
+
+export async function getLatestTrades(count = 4): Promise<TradeItem[]> {
+  const published = getPublishedTrades();
+  const cloudData = await safeQuery<TradeItem>('trades', { enabled: true }, { orderBy: [{ field: 'time', desc: true }], limit: count });
+  return [...published, ...cloudData].slice(0, count);
+}
+
+export async function getShuttlePreview(count = 5): Promise<ShuttleTime[]> {
+  const data = await safeQuery<{ time: string; sort: number }>('shuttle_times', { enabled: true }, { orderBy: [{ field: 'sort', desc: false }], limit: count });
+  const now = new Date();
+  const currentTime = now.getHours() * 60 + now.getMinutes();
+
+  return data.map((item) => {
+    const [h, m] = item.time.split(':').map(Number);
+    const itemTime = h * 60 + m;
+    return {
+      time: item.time,
+      status: itemTime < currentTime ? 'passed' : (itemTime - currentTime <= 30 ? 'soon' : 'upcoming'),
+    } as ShuttleTime;
+  });
 }
 
 /** ========== 新闻资讯 ========== */
 
-export function getNewsList(): NewsItem[] {
-  return [];
+export async function getNewsList(): Promise<NewsItem[]> {
+  return safeQuery<NewsItem>('news', { enabled: true }, { orderBy: [{ field: 'date', desc: true }] });
 }
 
-export function getNewsDetail(_id: number): NewsDetail | null {
-  return null;
+export async function getNewsDetail(_id: number | string): Promise<NewsDetail | null> {
+  try {
+    const data = await cloud.query<NewsDetail>('news', { _id: String(_id) }, { limit: 1 });
+    if (data.length === 0) return null;
+    const item = data[0];
+    return { ...item, id: (item as any).id ?? item._id };
+  } catch (e) {
+    console.error('[cloud] news detail query failed:', e);
+    return null;
+  }
 }
 
 /** ========== 闲置交易 ========== */
 
 export function getTradeCategories(): Category[] {
-  return [];
+  return [
+    { id: 'all', name: '全部', icon: '' },
+    { id: 'furniture', name: '家具', icon: '🪑' },
+    { id: 'appliance', name: '电器', icon: '🔌' },
+    { id: 'baby', name: '母婴', icon: '🍼' },
+    { id: 'books', name: '书籍', icon: '📚' },
+    { id: 'others', name: '其他', icon: '📦' },
+  ] as Category[];
 }
 
-export function getTradeList(): TradeItem[] {
-  return [];
+export async function getTradeList(): Promise<TradeItem[]> {
+  const published = getPublishedTrades();
+  const cloudData = await safeQuery<TradeItem>('trades', { enabled: true }, { orderBy: [{ field: 'time', desc: true }] });
+  return [...published, ...cloudData];
 }
 
-export function getTradeDetail(id: number): TradeDetail | null {
-  const published = wx.getStorageSync('publishedTrades') as TradeItem[] || [];
-  const found = published.find(item => String(item.id) === String(id));
-  if (!found) {
+export async function getTradeDetail(id: number | string): Promise<TradeDetail | null> {
+  const published = getPublishedTrades();
+  const found = published.find((item) => String(item.id) === String(id));
+  if (found) {
+    const detail: TradeDetail = { ...found };
+    detail.discount = Math.round((detail.originalPrice - detail.price) / detail.originalPrice * 100);
+    if ((detail as TradeItem & { image?: string }).image && !detail.images) {
+      detail.images = [(detail as TradeItem & { image?: string }).image!];
+    }
+    if (!detail.images) {
+      detail.images = [];
+    }
+    return detail;
+  }
+
+  try {
+    const data = await cloud.query<TradeDetail>('trades', { _id: String(id) }, { limit: 1 });
+    if (data.length === 0) return null;
+    const item = data[0];
+    const detail: TradeDetail = { ...item, id: (item as any).id ?? item._id };
+    detail.discount = Math.round((detail.originalPrice - detail.price) / detail.originalPrice * 100);
+    if ((detail as TradeItem & { image?: string }).image && !detail.images) {
+      detail.images = [(detail as TradeItem & { image?: string }).image!];
+    }
+    if (!detail.images) {
+      detail.images = [];
+    }
+    return detail;
+  } catch (e) {
+    console.error('[cloud] trade detail query failed:', e);
     return null;
   }
-
-  const detail: TradeDetail = { ...found };
-  detail.discount = Math.round((detail.originalPrice - detail.price) / detail.originalPrice * 100);
-  if ((detail as TradeItem & { image?: string }).image && !detail.images) {
-    detail.images = [(detail as TradeItem & { image?: string }).image!];
-  }
-  if (!detail.images) {
-    detail.images = [];
-  }
-
-  return detail;
 }
 
 export function getPublishedTrades(): TradeItem[] {
@@ -87,57 +167,150 @@ export function savePublishedTrade(trade: TradeItem): void {
 /** ========== 周边生活 ========== */
 
 export function getServiceCategories(): Category[] {
-  return [];
+  return [
+    { id: 'supermarket', name: '超市', icon: '🏪', color: '#576B95' },
+    { id: 'market', name: '菜场', icon: '🥬', color: '#07C160' },
+    { id: 'food', name: '美食', icon: '🍜', color: '#FA9D3B' },
+    { id: 'hotel', name: '酒店', icon: '🏨', color: '#576B95' },
+    { id: 'transport', name: '交通', icon: '🚇', color: '#576B95' },
+    { id: 'school', name: '学校', icon: '🏫', color: '#FA5151' },
+    { id: 'leisure', name: '休闲', icon: '☕', color: '#999999' },
+    { id: 'medical', name: '医疗', icon: '🏥', color: '#07C160' },
+    { id: 'mall', name: '商场', icon: '🛍️', color: '#FA9D3B' },
+  ] as Category[];
 }
 
-export function getServiceList(_category: string): ServiceItem[] {
-  return [];
+export async function getServiceList(_category: string): Promise<ServiceItem[]> {
+  return safeQuery<ServiceItem>('services', { enabled: true, category: _category }, { orderBy: [{ field: 'sort', desc: false }] });
 }
 
 /** ========== 便民安排 ========== */
 
-export function getSchedules(): ScheduleItem[] {
-  return [];
+export async function getSchedules(): Promise<ScheduleItem[]> {
+  return safeQuery<ScheduleItem>('schedules', { enabled: true }, { orderBy: [{ field: 'date', desc: false }, { field: 'time', desc: false }] });
 }
 
 /** ========== 缴费知识 ========== */
 
-export function getPaymentList(): PaymentItem[] {
-  return [];
+export async function getPaymentList(): Promise<PaymentItem[]> {
+  return safeQuery<PaymentItem>('payments', { enabled: true }, { orderBy: [{ field: 'date', desc: true }] });
 }
 
-export function getPaymentDetail(_id: number): PaymentDetail | null {
-  return null;
+export async function getPaymentDetail(_id: number | string): Promise<PaymentDetail | null> {
+  try {
+    const data = await cloud.query<PaymentDetail>('payments', { _id: String(_id) }, { limit: 1 });
+    if (data.length === 0) return null;
+    const item = data[0];
+    return { ...item, id: (item as any).id ?? item._id };
+  } catch (e) {
+    console.error('[cloud] payment detail query failed:', e);
+    return null;
+  }
 }
 
 /** ========== 班车信息 ========== */
 
-export function getShuttleSchedule(): ShuttleTime[] {
-  return [];
+export async function getShuttleSchedule(): Promise<ShuttleTime[]> {
+  const data = await safeQuery<{ time: string; sort: number }>('shuttle_times', { enabled: true }, { orderBy: [{ field: 'sort', desc: false }] });
+  const now = new Date();
+  const currentTime = now.getHours() * 60 + now.getMinutes();
+
+  return data.map((item) => {
+    const [h, m] = item.time.split(':').map(Number);
+    const itemTime = h * 60 + m;
+    return {
+      time: item.time,
+      status: itemTime < currentTime ? 'passed' : (itemTime - currentTime <= 30 ? 'soon' : 'upcoming'),
+    } as ShuttleTime;
+  });
 }
 
-export function getShuttleStops(): string[] {
-  return [];
+export async function getShuttleStops(): Promise<string[]> {
+  try {
+    const data = await cloud.query<{ stops: string[] }>('shuttle_config', { enabled: true }, { limit: 1 });
+    return data.length > 0 ? data[0].stops : [];
+  } catch (e) {
+    console.error('[cloud] shuttle config query failed:', e);
+    return [];
+  }
 }
 
-export function getShuttleContactPhone(): string {
-  return '';
+export async function getShuttleContactPhone(): Promise<string> {
+  try {
+    const data = await cloud.query<{ contactPhone: string }>('shuttle_config', { enabled: true }, { limit: 1 });
+    return data.length > 0 ? data[0].contactPhone : '';
+  } catch (e) {
+    return '';
+  }
 }
 
-export function getShuttleRouteName(): string {
-  return '';
+export async function getShuttleRouteName(): Promise<string> {
+  try {
+    const data = await cloud.query<{ routeName: string }>('shuttle_config', { enabled: true }, { limit: 1 });
+    return data.length > 0 ? data[0].routeName : '';
+  } catch (e) {
+    return '';
+  }
 }
 
-export function getShuttleRunNote(): string {
-  return '';
+export async function getShuttleRunNote(): Promise<string> {
+  try {
+    const data = await cloud.query<{ runNote: string }>('shuttle_config', { enabled: true }, { limit: 1 });
+    return data.length > 0 ? data[0].runNote : '';
+  } catch (e) {
+    return '';
+  }
 }
 
 /** ========== 个人中心 ========== */
 
 export function getProfileItems(): ProfileItem[] {
-  return [];
+  return [
+    { id: 1, title: '关于我们', icon: 'ℹ️', path: '' },
+    { id: 2, title: '意见反馈', icon: '💬', path: '/pages/feedback/feedback' },
+    { id: 3, title: '联系物业', icon: '📞', path: '' },
+    { id: 4, title: '使用指南', icon: '📖', path: '/pages/guide/guide' },
+  ];
 }
 
-export function getContactPhones(): { label: string; number: string }[] {
-  return [];
+export async function getContacts(): Promise<ContactItem[]> {
+  return safeQuery<ContactItem>('contacts', { enabled: true }, { orderBy: [{ field: 'sort', desc: false }] });
+}
+
+export async function getFeedbackConfig(): Promise<FeedbackConfig | null> {
+  try {
+    const data = await cloud.query<any>('feedback_config', { enabled: true }, { limit: 1 });
+    if (data.length === 0) return null;
+    const item = data[0];
+    return { ...item, id: item.id ?? item._id };
+  } catch (e) {
+    console.error('[cloud] feedback_config query failed:', e);
+    return null;
+  }
+}
+
+export async function submitFeedback(type: string, content: string, contact: string): Promise<void> {
+  await cloud.add('feedback', {
+    type,
+    content,
+    contact,
+    status: 'pending',
+    createTime: new Date().toISOString(),
+  });
+}
+
+export async function getGuides(): Promise<GuideItem[]> {
+  return safeQuery<GuideItem>('guides', { enabled: true }, { orderBy: [{ field: 'sort', desc: false }] });
+}
+
+export async function getGuideDetail(_id: number | string): Promise<GuideDetail | null> {
+  try {
+    const data = await cloud.query<any>('guides', { _id: String(_id) }, { limit: 1 });
+    if (data.length === 0) return null;
+    const item = data[0];
+    return { ...item, id: item.id ?? item._id };
+  } catch (e) {
+    console.error('[cloud] guide detail query failed:', e);
+    return null;
+  }
 }

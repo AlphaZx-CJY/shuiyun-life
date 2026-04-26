@@ -1,36 +1,33 @@
-/* 缴费详情页样式 */
+/* 使用指南详情页样式 */
 
 .detail-header {
-  padding: 32rpx 24rpx;
-  background: var(--ios-bg);
+  padding: 32rpx 32rpx 24rpx;
 }
 
 .detail-tag {
   margin-bottom: 16rpx;
-  display: inline-flex;
 }
 
 .detail-title {
+  display: block;
   font-size: 40rpx;
   font-weight: 700;
   color: var(--md-on-surface);
-  line-height: 1.4;
-  display: block;
+  line-height: 1.3;
+  letter-spacing: -0.4rpx;
   margin-bottom: 16rpx;
 }
 
 .detail-date {
+  display: block;
   font-size: 24rpx;
   color: var(--ios-gray);
 }
 
 .detail-content {
-  margin: 0 24rpx 48rpx;
+  margin: 0 24rpx 32rpx;
   padding: 32rpx;
-}
-
-.detail-content rich-text {
   font-size: 30rpx;
   line-height: 1.8;
-  color: var(--md-on-surface-variant);
+  color: var(--md-on-surface);
 }

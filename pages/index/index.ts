@@ -1,18 +1,46 @@
 import * as api from '../../services/api';
+import type { NewsItem, ShuttleTime, Banner, ScheduleItem } from '../../types/data';
+
+interface IQuickEntry {
+  id: number;
+  label: string;
+  path: string;
+  icon: string;
+}
 
 interface IIndexData {
-  banners: ReturnType<typeof api.getBanners>;
-  quickEntries: ReturnType<typeof api.getQuickEntries>;
-  latestNews: ReturnType<typeof api.getLatestNews>;
-  todaySchedules: ReturnType<typeof api.getTodaySchedules>;
+  banners: Banner[];
+  quickEntries: IQuickEntry[];
+  noticeNews: NewsItem[];
+  todaySchedules: Pick<ScheduleItem, 'id' | 'title' | 'time' | 'location' | 'status'>[];
+  routeName: string;
+  shuttlePreview: ShuttleTime[];
+  nextShuttle: ShuttleTime | null;
 }
+
+const ICON_LIFE = '🏪';
+const ICON_NOTICE = '📢';
+const ICON_SCHEDULE = '📅';
+const ICON_SERVICE = '💡';
+const ICON_TRADE = '🛍️';
+const ICON_BUS = '🚌';
 
 Page<IIndexData, WechatMiniprogram.IAnyObject>({
   data: {
     banners: [],
-    quickEntries: [],
-    latestNews: [],
+    quickEntries: [
+      { id: 1, label: '周边生活', path: '/pages/life-info/life-info', icon: ICON_LIFE },
+      { id: 2, label: '社区通知', path: '/pages/news/news', icon: ICON_NOTICE },
+      { id: 3, label: '便民安排', path: '/pages/schedule/schedule', icon: ICON_SCHEDULE },
+      { id: 4, label: '缴费知识', path: '/pages/payment/payment', icon: ICON_SERVICE },
+      { id: 5, label: '闲置交易', path: '/pages/trade/trade', icon: ICON_TRADE },
+      { id: 6, label: '班车服务', path: '/pages/shuttle/shuttle', icon: ICON_BUS },
+    ],
+    noticeNews: [],
     todaySchedules: [],
+    routeName: '',
+    shuttlePreview: [],
+    nextShuttle: null,
   },
 
   onLoad() {
@@ -37,18 +65,29 @@ Page<IIndexData, WechatMiniprogram.IAnyObject>({
     };
   },
 
-  loadData() {
-    this.setData({
-      banners: api.getBanners(),
-      quickEntries: api.getQuickEntries(),
-      latestNews: api.getLatestNews(),
-      todaySchedules: api.getTodaySchedules(),
-    });
+  async loadData() {
+    try {
+      const [banners, noticeNews, todaySchedules, routeName, shuttleSchedule] = await Promise.all([
+        api.getBanners(),
+        api.getNoticeNews(2),
+        api.getTodaySchedules(),
+        api.getShuttleRouteName(),
+        api.getShuttleSchedule(),
+      ]);
+      const nextShuttle = shuttleSchedule.find((s: ShuttleTime) => s.status !== 'passed') || shuttleSchedule[shuttleSchedule.length - 1] || null;
+      this.setData({ banners, noticeNews, todaySchedules, routeName, shuttleSchedule, nextShuttle });
+    } catch (err) {
+      console.error('loadData failed', err);
+    }
   },
 
   onBannerTap(e: WechatMiniprogram.TouchEvent) {
-    const { id } = e.currentTarget.dataset as { id: number };
+    const { id } = e.currentTarget.dataset as { id: number | string };
     wx.showToast({ title: `Banner ${id}`, icon: 'none' });
+  },
+
+  onShuttleBannerTap() {
+    wx.navigateTo({ url: '/pages/shuttle/shuttle' });
   },
 
   onEntryTap(e: WechatMiniprogram.TouchEvent) {
@@ -61,17 +100,17 @@ Page<IIndexData, WechatMiniprogram.IAnyObject>({
     }
   },
 
-  onNewsTap(e: WechatMiniprogram.TouchEvent) {
-    const { id } = e.currentTarget.dataset as { id: number };
+  onNoticeTap(e: WechatMiniprogram.TouchEvent) {
+    const { id } = e.currentTarget.dataset as { id: number | string };
     wx.navigateTo({ url: `/pages/news-detail/news-detail?id=${id}` });
+  },
+
+  onMoreNoticeTap() {
+    wx.switchTab({ url: '/pages/news/news' });
   },
 
   onScheduleTap(e: WechatMiniprogram.TouchEvent) {
     wx.switchTab({ url: '/pages/schedule/schedule' });
-  },
-
-  onMoreNewsTap() {
-    wx.switchTab({ url: '/pages/news/news' });
   },
 
   onMoreScheduleTap() {

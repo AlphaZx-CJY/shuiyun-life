@@ -12,12 +12,12 @@
   width: 160rpx;
   height: 160rpx;
   border-radius: 50%;
-  background: #F5F5F7;
+  background: var(--md-surface-variant);
   display: flex;
   align-items: center;
   justify-content: center;
   margin-bottom: 24rpx;
-  box-shadow: 0 8rpx 24rpx rgba(0,0,0,0.12);
+  box-shadow: none;
   overflow: hidden;
 }
 
@@ -28,7 +28,7 @@
 .profile-name {
   font-size: 36rpx;
   font-weight: 600;
-  color: #1D1D1F;
+  color: var(--md-on-surface);
   margin-bottom: 8rpx;
 }
 

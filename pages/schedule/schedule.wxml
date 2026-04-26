@@ -31,5 +31,10 @@
         </view>
       </view>
     </view>
+
+    <!-- 空状态 -->
+    <view class="empty-state" wx:if="{{upcomingList.length === 0 && endedList.length === 0}}">
+      <text class="empty-state__text">暂无便民安排</text>
+    </view>
   </view>
 </view>

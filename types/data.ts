@@ -9,7 +9,7 @@ export type ShuttleStatus = 'passed' | 'soon' | 'upcoming';
 /** ========== 首页 ========== */
 
 export interface Banner {
-  id: number;
+  id: number | string;
   image: string;
   title: string;
 }
@@ -25,7 +25,7 @@ export interface QuickEntry {
 /** ========== 新闻资讯 ========== */
 
 export interface NewsItem {
-  id: number;
+  id: number | string;
   title: string;
   summary: string;
   source: string;
@@ -43,7 +43,7 @@ export interface NewsDetail extends NewsItem {
 /** ========== 闲置交易 ========== */
 
 export interface TradeItem {
-  id: number;
+  id: number | string;
   title: string;
   price: number;
   originalPrice: number;
@@ -81,7 +81,7 @@ export interface Category {
 export type JumpType = 'miniprogram' | 'officialAccount';
 
 export interface ServiceItem {
-  id: number;
+  id: number | string;
   name: string;
   address: string;
   distance: string;
@@ -99,7 +99,7 @@ export interface ServiceItem {
 /** ========== 便民安排 ========== */
 
 export interface ScheduleItem {
-  id: number;
+  id: number | string;
   title: string;
   date: string;
   time: string;
@@ -112,7 +112,7 @@ export interface ScheduleItem {
 /** ========== 缴费知识 ========== */
 
 export interface PaymentItem {
-  id: number;
+  id: number | string;
   title: string;
   summary: string;
   tag: string;
@@ -122,7 +122,7 @@ export interface PaymentItem {
 }
 
 export interface PaymentDetail {
-  id: number;
+  id: number | string;
   title: string;
   tag: string;
   content: string;
@@ -139,8 +139,38 @@ export interface ShuttleTime {
 /** ========== 个人中心 ========== */
 
 export interface ProfileItem {
-  id: number;
+  id: number | string;
   title: string;
   icon: string;
   path: string;
+}
+
+/** ========== 物业联系方式 ========== */
+
+export interface ContactItem {
+  id: number | string;
+  label: string;
+  number: string;
+}
+
+/** ========== 反馈配置 ========== */
+
+export interface FeedbackConfig {
+  id: number | string;
+  title: string;
+  content: string;
+  contactInfo: string;
+}
+
+/** ========== 使用指南 ========== */
+
+export interface GuideItem {
+  id: number | string;
+  title: string;
+  tag: string;
+  date: string;
+}
+
+export interface GuideDetail extends GuideItem {
+  content: string;
 }

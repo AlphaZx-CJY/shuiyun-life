@@ -5,8 +5,8 @@ import type { TradeCategory } from '../../types/data';
 interface ITradeData {
   categories: { id: TradeCategory; name: string }[];
   activeCategory: TradeCategory;
-  tradeList: ReturnType<typeof api.getTradeList>;
-  allTrades: ReturnType<typeof api.getTradeList>;
+  tradeList: TradeItem[];
+  allTrades: TradeItem[];
 }
 
 Page<ITradeData, WechatMiniprogram.IAnyObject>({
@@ -47,8 +47,8 @@ Page<ITradeData, WechatMiniprogram.IAnyObject>({
     };
   },
 
-  loadTradeData() {
-    const trades = api.getTradeList();
+  async loadTradeData() {
+    const trades = await api.getTradeList();
     this.setData({ allTrades: trades, tradeList: trades });
   },
 
@@ -68,7 +68,7 @@ Page<ITradeData, WechatMiniprogram.IAnyObject>({
   },
 
   onTradeTap(e: WechatMiniprogram.TouchEvent) {
-    const { id } = e.currentTarget.dataset as { id: number };
+    const { id } = e.currentTarget.dataset as { id: number | string };
     wx.navigateTo({ url: `/pages/trade-detail/trade-detail?id=${id}` });
   },
 
@@ -76,11 +76,11 @@ Page<ITradeData, WechatMiniprogram.IAnyObject>({
     wx.navigateTo({ url: '/pages/trade-publish/trade-publish' });
   },
 
-  mergePublishedTrades() {
+  async mergePublishedTrades() {
     const published = api.getPublishedTrades();
     if (published.length === 0) return;
 
-    const baseTrades = api.getTradeList();
+    const baseTrades = await api.getTradeList();
     const merged = [...published, ...baseTrades];
     this.setData({ allTrades: merged, tradeList: merged });
     this.filterTrades(this.data.activeCategory);

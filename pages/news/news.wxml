@@ -12,7 +12,7 @@
   </view>
 
   <!-- 新闻列表 -->
-  <view class="news-list">
+  <view class="news-list" wx:if="{{newsList.length > 0}}">
     <view class="news-card" wx:for="{{newsList}}" wx:key="id" data-id="{{item.id}}" bindtap="onNewsTap">
       <view class="news-card__content">
         <view class="news-card__header">
@@ -27,5 +27,10 @@
       </view>
       <image wx:if="{{item.cover}}" class="news-card__cover" src="{{item.cover}}" mode="aspectFill" lazy-load />
     </view>
+  </view>
+
+  <!-- 空状态 -->
+  <view class="empty-state" wx:if="{{newsList.length === 0}}">
+    <text class="empty-state__text">暂无资讯内容</text>
   </view>
 </view>

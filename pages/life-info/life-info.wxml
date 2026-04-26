@@ -14,7 +14,7 @@
   </scroll-view>
 
   <!-- 服务列表 -->
-  <view class="service-list">
+  <view class="service-list" wx:if="{{serviceList.length > 0}}">
     <view class="service-card ios-card" wx:for="{{serviceList}}" wx:key="id" data-item="{{item}}" bindtap="onServiceTap">
       <view class="service-header">
         <text class="service-name">{{item.name}}</text>
@@ -38,5 +38,10 @@
         </view>
       </view>
     </view>
+  </view>
+
+  <!-- 空状态 -->
+  <view class="empty-state" wx:if="{{serviceList.length === 0}}">
+    <text class="empty-state__text">该分类下暂无服务</text>
   </view>
 </view>

@@ -34,8 +34,8 @@ Page<IScheduleData, WechatMiniprogram.IAnyObject>({
     };
   },
 
-  loadScheduleData() {
-    const schedules = api.getSchedules();
+  async loadScheduleData() {
+    const schedules = await api.getSchedules();
     const upcoming = schedules.filter(s => s.status === 'upcoming');
     const ended = schedules.filter(s => s.status === 'ended');
     this.setData({ upcomingList: upcoming, endedList: ended });

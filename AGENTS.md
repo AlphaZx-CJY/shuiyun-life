@@ -1,0 +1,260 @@
+# AGENTS.md — 新长宁水韵名邸生活号
+
+> 本文件面向 AI 编码助手。若你即将修改本项目代码，请先阅读本文件。
+
+---
+
+## 项目概览
+
+`shuiyun-life` 是为「新长宁水韵名邸」小区打造的**微信小程序生活号**，面向小区居民提供周边生活信息、闲置交易、新闻资讯、缴费知识、便民安排、班车信息、意见反馈和使用指南等功能。
+
+- **版本**：v2.0.0
+- **仓库**：https://github.com/AlphaZx-CJY/shuiyun-life
+- **小程序名称**：水韵名邸
+- **设计风格**：WeUI（微信设计美学）
+
+---
+
+## 技术栈
+
+| 层级 | 技术 |
+|------|------|
+| 框架 | 原生微信小程序（WXML + WXSS + TypeScript） |
+| UI 风格 | **WeUI**（微信绿 `#07C160` + 浅灰背景 `#F7F7F7` + 纯黑文字 `#000000`） |
+| 后端 | 微信云开发（云数据库 12 个集合 + 云函数） |
+| 语言 | TypeScript 6.x，严格模式，目标 ES2015 / CommonJS |
+| 类型 | `@types/wechat-miniprogram` |
+
+---
+
+## 目录结构
+
+```
+shuiyun-life/
+├── app.ts                      # 全局逻辑：云开发初始化、获取系统信息
+├── app.json                    # 全局配置：页面路由、TabBar、窗口样式
+├── app.wxss                    # 全局样式：WeUI CSS 变量与工具类
+├── env.example.ts              # 敏感配置模板（APPID / 云环境ID）
+├── tsconfig.json               # TypeScript 编译配置
+├── project.config.json         # 微信开发者工具项目配置
+├── project.private.config.json # 本地私有配置（不提交 Git）
+├── sitemap.json                # 搜索索引规则
+├── package.json                # NPM 清单（仅开发依赖）
+├── GUIDE.md                    # 开发使用指南（面向技术人员）
+├── guides-seed.json            # 使用指南种子数据（JSON Lines，导入 guides 集合）
+│
+├── pages/                      # 页面目录（15 个页面）
+│   ├── index/                  # 首页：Banner、快捷入口、社区通知、今日便民
+│   ├── news/                   # 新闻资讯列表
+│   ├── news-detail/            # 新闻详情
+│   ├── trade/                  # 闲置交易列表
+│   ├── trade-detail/           # 交易详情
+│   ├── trade-publish/          # 发布闲置
+│   ├── life-info/              # 周边生活信息
+│   ├── payment/                # 缴费知识列表
+│   ├── payment-detail/         # 缴费详情
+│   ├── schedule/               # 便民安排
+│   ├── shuttle/                # 班车信息
+│   ├── profile/                # 我的（个人中心）
+│   ├── feedback/               # 意见反馈表单
+│   ├── guide/                  # 使用指南列表
+│   └── guide-detail/           # 使用指南详情
+│
+├── components/                 # 公共组件
+│   ├── nav-bar/                # 自定义导航栏
+│   ├── news-card/              # 新闻卡片
+│   ├── schedule-item/          # 便民条目
+│   └── service-item/           # 生活服务条目
+│
+├── services/                   # 服务层
+│   ├── api.ts                  # 业务 API（对接 12 个云数据库集合）
+│   └── cloud.ts                # 云开发基础封装（query / add / callFunction / db）
+│
+├── types/
+│   └── data.ts                 # 全局 TypeScript 类型定义
+│
+├── utils/
+│   └── util.ts                 # 工具函数
+│
+├── cloud/                      # 云函数目录
+│   └── hello/                  # 示例云函数
+│
+└── images/                     # 图片资源
+    ├── icons/                  # TabBar 图标（含选中/未选中态）
+    ├── banners/                # Banner 图
+    ├── logo-dark.png
+    └── logo-white.png
+```
+
+每个页面和组件均包含 4 个标准文件：`.ts`、`.wxml`、`.wxss`、`.json`。
+
+---
+
+## 关键配置文件说明
+
+### `app.json`
+- 注册 15 个页面路由
+- 配置 5 项 TabBar（首页、资讯、交易、便民、我的）
+- TabBar 选中色：`#07C160`（微信绿），背景：`#F7F7F7`
+- 开启云开发：`"cloud": true`
+- 启用样式版本 v2 与懒加载组件
+
+### `app.wxss`
+- WeUI 设计系统核心变量：
+  - `--wx-primary: #07C160`（微信绿）
+  - `--wx-bg: #F7F7F7`（页面背景）
+  - `--wx-surface: #FFFFFF`（卡片表面）
+  - `--wx-text: #000000`（主文字）
+  - `--wx-text-secondary: #999999`（次要文字）
+  - `--wx-border: #E5E5E5`（分割线）
+  - `--radius-md: 12rpx`（卡片圆角）、`--radius-sm: 8rpx`（按钮圆角）
+- 兼容别名：`.ios-*` 和 `.md-*` 类名均映射到 WeUI Token
+- 组件类：`.ios-card` / `.md-card`（白底无阴影）、`.ios-btn--primary` / `.md-btn--filled`（微信绿填充）
+
+### `project.config.json`
+- `compileType`: `miniprogram`
+- `cloudfunctionRoot`: `cloud/`
+- `libVersion`: `3.4.0`
+- `useCompilerPlugins`: `["typescript"]`
+- `editorSetting`: 缩进为空格，tabSize 为 2
+- **AppID 字段使用占位符** `touristappid`，真实 AppID 不在版本控制中
+
+### `tsconfig.json`
+- `strict`: `true`
+- `noEmit`: `true`（开发者工具负责编译输出）
+- `types`: `["wechat-miniprogram"]`
+
+---
+
+## 代码风格指南
+
+### TypeScript 规范
+1. **页面数据接口**使用 `I` 前缀命名，如 `IIndexData`、`ITradeData`。
+2. 优先使用 `WechatMiniprogram` 命名空间提供的类型。
+3. 页面通过 `Page<IData, WechatMiniprogram.IAnyObject>({ ... })` 注册。
+4. 严格模式已开启，避免隐式 `any`。
+
+### WXML / WXSS 规范
+1. 全局样式基于 **WeUI**，核心变量定义在 `app.wxss` 的 `page` 选择器中。
+2. 通用类名兼容 `.ios-*` 和 `.md-*` 前缀，均映射到 WeUI Token。
+3. 页面根容器统一使用 `page-container`。
+4. **无阴影设计**：WeUI 靠白底卡片 + 灰背景区分层级，不使用 `box-shadow`。
+5. **细线分割**：列表项用 `1rpx solid #E5E5E5` 分隔。
+6. **克制圆角**：卡片 12rpx，按钮 8rpx，标签 4rpx。
+
+### 页面生命周期与交互惯例
+1. 每个页面均实现 `onShareAppMessage`。
+2. 下拉刷新统一在 `onPullDownRefresh` 中调用数据加载方法。
+3. 事件处理函数命名遵循 `onXxxTap`、`onXxxChange` 风格。
+4. 数据传参通过 `data-xxx` 绑定，在 `e.currentTarget.dataset` 中读取。
+
+### 服务层规范
+- `services/api.ts`：业务 API，对接 12 个云数据库集合，所有函数已改为 `async`。
+- `services/cloud.ts`：云开发底层封装，提供 `query`、`add`、`callFunction` 和 `db` 导出。
+- `safeQuery<T>()`：通用安全查询，自动 `_id → id` 映射，出错返回空数组。
+- 类型定义集中在 `types/data.ts`，按功能模块分区导出。
+
+---
+
+## 云数据库集合（12 个）
+
+| 集合 | 前端模块 | 核心字段 |
+|------|----------|----------|
+| `banners` | 首页 Banner | `image`, `title`, `enabled`, `sort` |
+| `news` | 新闻资讯 | `title`, `summary`, `category`, `date`, `content`, `enabled` |
+| `trades` | 闲置交易 | `title`, `price`, `originalPrice`, `category`, `images`, `enabled` |
+| `services` | 周边生活 | `name`, `category`, `address`, `phone`, `tags`, `enabled` |
+| `schedules` | 便民安排 | `title`, `date`, `time`, `location`, `enabled` |
+| `payments` | 缴费知识 | `title`, `summary`, `content`, `date`, `enabled` |
+| `shuttle_config` | 班车配置 | `routeName`, `stops`, `contactPhone`, `runNote`, `enabled` |
+| `shuttle_times` | 班车时刻 | `time`, `sort`, `enabled` |
+| `contacts` | 物业电话 | `label`, `number`, `enabled`, `sort` |
+| `feedback_config` | 反馈配置 | `title`, `content`, `contactInfo`, `enabled` |
+| `guides` | 使用指南 | `title`, `content`(HTML), `tag`, `date`, `sort`, `enabled` |
+| `feedback` | 用户反馈 | `type`, `content`, `contact`, `status`, `createTime` |
+
+---
+
+## 构建与开发流程
+
+### 环境准备
+1. 安装 [微信开发者工具](https://developers.weixin.qq.com/miniprogram/dev/devtools/download.html)。
+2. 导入本项目目录。
+3. 复制 `env.example.ts` 为 `env.ts`，填入真实 **AppID** 和 **云环境 ID**。
+4. 在开发者工具中点击「云开发」按钮开通云服务。
+5. 在云控制台数据库中创建上述 12 个集合。
+
+### 开发运行
+- 项目**没有**独立的构建脚本，所有编译由微信开发者工具处理。
+- TypeScript 通过 `useCompilerPlugins: ["typescript"]` 由工具自动转译。
+- `tsconfig.json` 中 `noEmit: true`，不生成中间 JS 文件。
+
+### 云函数部署
+- 云函数位于 `cloud/` 目录下。
+- 开发完成后，**右键云函数目录** → 选择「上传并部署：云端安装依赖」。
+
+---
+
+## 测试说明
+
+- **当前没有测试套件**。`package.json` 中的 `test` 脚本为占位符。
+- 如需引入测试，请评估微信小程序测试框架（如 `miniprogram-automator`）。
+
+---
+
+## 安全与隐私注意事项
+
+1. **敏感文件已加入 `.gitignore`**：
+   - `env.ts` —— 包含 `APPID` 和 `CLOUD_ENV`
+   - `project.private.config.json` —— 开发者工具本地私有配置
+   - `node_modules/`、`*.log`、`.DS_Store`
+2. **真实 AppID 不在版本控制中**：`project.config.json` 中的 `appid` 字段使用占位符 `touristappid`。
+3. 云开发在 `app.ts` 中初始化，开启 `traceUser: true`。
+4. 交易发布模块数据写入**本地缓存**（`wx.setStorageSync`）+ **云数据库**（`trades` 集合）双通道。
+5. 用户反馈（`feedback` 集合）涉及隐私，请妥善保管，不要对外泄露。
+
+---
+
+## 功能模块速查
+
+| 模块 | 页面 | 数据来源 | 说明 |
+|------|------|----------|------|
+| 首页 | `pages/index/index` | `banners` + `news` + `schedules` + `shuttle_times` | Banner 轮播、快捷入口、社区通知、今日便民、班车卡片 |
+| 新闻资讯 | `pages/news/news` | `news` 集合 | 文章列表、分类筛选、详情 |
+| 闲置交易 | `pages/trade/trade` | `trades` 集合 + 本地缓存 | 商品列表、分类筛选、详情、发布 |
+| 周边生活 | `pages/life-info/life-info` | `services` 集合 | 9 个分类，支持拨打电话 |
+| 缴费知识 | `pages/payment/payment` | `payments` 集合 | 物业费、水费、电费、燃气费指南 |
+| 便民安排 | `pages/schedule/schedule` | `schedules` 集合 | 社区活动日历 |
+| 班车信息 | `pages/shuttle/shuttle` | `shuttle_config` + `shuttle_times` | 时刻表、站点、动态状态计算 |
+| 个人中心 | `pages/profile/profile` | `contacts` + `guides` + 硬编码 | 关于、联系物业、意见反馈、使用指南 |
+| 意见反馈 | `pages/feedback/feedback` | 写入 `feedback` 集合 | 表单提交，picker + textarea |
+| 使用指南 | `pages/guide/guide` | `guides` 集合 | CMS 驱动的运营手册，rich-text 渲染 HTML |
+
+---
+
+## 设计风格速查
+
+| 元素 | WeUI 规范 |
+|------|-----------|
+| 主色 | `#07C160`（微信绿） |
+| 背景 | `#F7F7F7`（浅灰） |
+| 卡片 | `#FFFFFF`（纯白）、圆角 12rpx、无阴影 |
+| 文字 | `#000000`（主）、`#999999`（次） |
+| 链接 | `#576B95`（微信蓝） |
+| 分割线 | `1rpx solid #E5E5E5` |
+| 按钮 | 微信绿填充、圆角 8rpx |
+| 标签 | 微信绿 8% 底色、圆角 4rpx |
+
+---
+
+## 给 AI 助手的特别提醒
+
+- 修改页面或组件时，请同时检查对应的 `.json` 文件是否需要调整 `usingComponents`。
+- 新增页面后，必须先在 `app.json` 的 `pages` 数组中注册路由。
+- 新增云函数后，需在开发者工具中手动「上传并部署」。
+- 修改 `services/api.ts` 时请注意保持返回类型与 `types/data.ts` 一致。
+- 全局样式变更请在 `app.wxss` 中修改 CSS 变量，避免在局部硬编码。
+- 所有用户可见文本使用中文。
+- 快捷入口（首页 6 个 Emoji 图标）在 `pages/index/index.ts` 中硬编码。
+- 周边生活 9 个分类在 `services/api.ts` 的 `getServiceCategories()` 中硬编码。
+- `guides` 集合的 `content` 字段使用 HTML 格式，由 `guide-detail.wxml` 的 `<rich-text>` 组件渲染。

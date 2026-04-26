@@ -9,7 +9,7 @@
 .route-name {
   font-size: 36rpx;
   font-weight: 700;
-  color: #1D1D1F;
+  color: var(--md-on-surface);
   display: block;
   margin-bottom: 12rpx;
 }
@@ -18,7 +18,7 @@
   display: inline-block;
   padding: 6rpx 20rpx;
   border-radius: var(--radius-pill);
-  background: rgba(0, 0, 0, 0.08);
+  background: var(--md-outline-variant);
   margin-bottom: 8rpx;
 }
 
@@ -28,12 +28,12 @@
 
 .route-note-text {
   font-size: 24rpx;
-  color: #1D1D1F;
+  color: var(--md-on-surface);
   font-weight: 500;
 }
 
 .route-note--secondary .route-note-text {
-  color: #86868B;
+  color: var(--md-on-surface-variant);
 }
 
 /* 时刻表 */
@@ -70,16 +70,16 @@
 }
 
 .schedule-dot--upcoming {
-  background: #0071e3;
+  background: var(--md-primary);
 }
 
 .schedule-dot--soon {
-  background: #8E8E93;
-  box-shadow: 0 0 0 4rpx rgba(255, 255, 255, 0.1);
+  background: var(--md-tertiary);
+  box-shadow: 0 0 0 4rpx rgba(7, 193, 96, 0.2);
 }
 
 .schedule-dot--passed {
-  background: #F5F5F7;
+  background: var(--md-surface-variant);
 }
 
 .schedule-time-content {
@@ -90,7 +90,7 @@
 .schedule-time-text {
   font-size: 30rpx;
   font-weight: 600;
-  color: #0071e3;
+  color: var(--md-primary);
 }
 
 .schedule-time-status {
@@ -100,7 +100,7 @@
 }
 
 .schedule-item.passed .schedule-time-text {
-  color: #86868B;
+  color: var(--md-on-surface-variant);
   text-decoration: line-through;
 }
 
@@ -133,11 +133,11 @@
 }
 
 .stop-dot--start {
-  background: #0071e3;
+  background: var(--md-primary);
 }
 
 .stop-dot--end {
-  background: #8E8E93;
+  background: var(--md-outline);
 }
 
 .stop-line {
@@ -148,7 +148,7 @@
 
 .stop-name {
   font-size: 30rpx;
-  color: #86868B;
+  color: var(--md-on-surface-variant);
   font-weight: 500;
 }
 
@@ -168,20 +168,20 @@
 
 .contact-label {
   font-size: 24rpx;
-  color: #86868B;
+  color: var(--md-on-surface-variant);
   margin-bottom: 4rpx;
 }
 
 .contact-phone {
   font-size: 32rpx;
   font-weight: 600;
-  color: #0071e3;
+  color: var(--md-primary);
 }
 
 .contact-action {
   padding: 12rpx 28rpx;
-  border-radius: var(--radius-pill);
-  background: #0071e3;
+  border-radius: var(--radius-sm);
+  background: var(--md-primary);
 }
 
 .contact-action-text {

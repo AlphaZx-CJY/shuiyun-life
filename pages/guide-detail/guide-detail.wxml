@@ -1,0 +1,15 @@
+<view class="page-container" wx:if="{{guide}}">
+  <view class="detail-header">
+    <text class="detail-tag ios-tag ios-tag--blue">{{guide.tag}}</text>
+    <text class="detail-title">{{guide.title}}</text>
+    <text class="detail-date">更新于 {{guide.date}}</text>
+  </view>
+
+  <view class="detail-content ios-card">
+    <rich-text nodes="{{guide.content}}"></rich-text>
+  </view>
+</view>
+
+<view class="empty-state" wx:else>
+  <text class="empty-state__text">内容加载失败</text>
+</view>

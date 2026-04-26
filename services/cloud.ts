@@ -14,15 +14,36 @@ export function getCollection(name: string) {
   return db.collection(name);
 }
 
+export interface QueryOptions {
+  orderBy?: { field: string; desc?: boolean }[];
+  limit?: number;
+}
+
 /**
  * 条件查询
  * @param collection 集合名称
  * @param where 查询条件对象，如 { category: 'notice' }
+ * @param options 排序与分页选项
  * @returns Promise<查询结果数组>
  */
-export function query<T = any>(collection: string, where?: Record<string, any>): Promise<T[]> {
+export function query<T = any>(
+  collection: string,
+  where?: Record<string, any>,
+  options?: QueryOptions,
+): Promise<T[]> {
   return new Promise((resolve, reject) => {
-    const queryRef = where ? db.collection(collection).where(where) : db.collection(collection);
+    let queryRef: any = db.collection(collection);
+    if (where) {
+      queryRef = queryRef.where(where);
+    }
+    if (options?.orderBy) {
+      options.orderBy.forEach((o) => {
+        queryRef = queryRef.orderBy(o.field, o.desc ? 'desc' : 'asc');
+      });
+    }
+    if (options?.limit) {
+      queryRef = queryRef.limit(options.limit);
+    }
     queryRef.get({
       success: (res) => resolve(res.data as T[]),
       fail: (err) => reject(err),

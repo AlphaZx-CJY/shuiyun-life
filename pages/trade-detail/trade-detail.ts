@@ -12,10 +12,15 @@ Page<ITradeDetailData, WechatMiniprogram.IAnyObject>({
     trade: null,
   },
 
-  onLoad(options: Record<string, string>) {
+  async onLoad(options: Record<string, string>) {
     const { id } = options;
     this.setData({ tradeId: id });
-    this.loadTradeDetail(Number(id));
+    try {
+      const detail = await api.getTradeDetail(Number(id));
+      this.setData({ trade: detail });
+    } catch (err) {
+      console.error('loadTradeDetail failed', err);
+    }
   },
 
   onShareAppMessage(): WechatMiniprogram.Page.ICustomShareContent {
@@ -25,10 +30,7 @@ Page<ITradeDetailData, WechatMiniprogram.IAnyObject>({
     };
   },
 
-  loadTradeDetail(id: number) {
-    const trade = api.getTradeDetail(id);
-    this.setData({ trade });
-  },
+
 
   onCallTap() {
     const phone = this.data.trade?.phone;

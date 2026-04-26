@@ -42,7 +42,7 @@
 
 .schedule-badge--upcoming {
   background: rgba(0,0,0,0.05);
-  color: #0071e3;
+  color: var(--md-primary);
 }
 
 .schedule-badge--ended {
@@ -58,7 +58,7 @@
 .schedule-title {
   font-size: 30rpx;
   font-weight: 600;
-  color: #1D1D1F;
+  color: var(--md-on-surface);
   display: block;
   margin-bottom: 8rpx;
 }
@@ -87,7 +87,7 @@
 
 .schedule-status--upcoming {
   background: rgba(0,0,0,0.04);
-  color: #0071e3;
+  color: var(--md-primary);
 }
 
 .schedule-status--ended {
