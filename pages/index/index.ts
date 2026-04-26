@@ -21,7 +21,7 @@ const ICON_NOTICE = '📢';
 const ICON_SCHEDULE = '📅';
 const ICON_SERVICE = '💡';
 const ICON_TRADE = '🛍️';
-const ICON_VOICE = '📢';
+const ICON_VOICE = '🤝';
 
 Page<IIndexData, WechatMiniprogram.IAnyObject>({
   data: {
@@ -64,12 +64,15 @@ Page<IIndexData, WechatMiniprogram.IAnyObject>({
 
   async loadData() {
     try {
-      const [noticeNews, todaySchedules, routeName, shuttleSchedule] = await Promise.all([
-        api.getNoticeNews(1),
+      const [noticeNewsArr, policyNewsArr, aroundNewsArr, todaySchedules, routeName, shuttleSchedule] = await Promise.all([
+        api.getLatestNewsByCategory('notice', 1),
+        api.getLatestNewsByCategory('policy', 1),
+        api.getLatestNewsByCategory('around', 1),
         api.getTodaySchedules(),
         api.getShuttleRouteName(),
         api.getShuttleSchedule(),
       ]);
+      const noticeNews = [...noticeNewsArr, ...policyNewsArr, ...aroundNewsArr];
       const nextShuttle = shuttleSchedule.find((s: ShuttleTime) => s.status !== 'passed') || shuttleSchedule[shuttleSchedule.length - 1] || null;
       this.setData({ noticeNews, todaySchedules, routeName, shuttleSchedule, nextShuttle });
     } catch (err) {

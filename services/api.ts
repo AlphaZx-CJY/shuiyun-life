@@ -87,6 +87,10 @@ export async function getNewsList(): Promise<NewsItem[]> {
   return safeQuery<NewsItem>('news', { enabled: true }, { orderBy: [{ field: 'date', desc: true }] });
 }
 
+export async function getLatestNewsByCategory(category: string, count = 1): Promise<NewsItem[]> {
+  return safeQuery<NewsItem>('news', { enabled: true, category }, { orderBy: [{ field: 'date', desc: true }], limit: count });
+}
+
 export async function getNewsDetail(_id: number | string): Promise<NewsDetail | null> {
   try {
     const data = await cloud.query<NewsDetail>('news', { _id: String(_id) }, { limit: 1 });
