@@ -21,7 +21,7 @@
 |------|------|
 | 框架 | 原生微信小程序（WXML + WXSS + TypeScript） |
 | UI 风格 | **WeUI**（微信绿 `#07C160` + 浅灰背景 `#F7F7F7` + 纯黑文字 `#000000`） |
-| 后端 | 微信云开发（云数据库 12 个集合 + 云函数） |
+| 后端 | 微信云开发（云数据库 12 个集合） |
 | 语言 | TypeScript 6.x，严格模式，目标 ES2015 / CommonJS |
 | 类型 | `@types/wechat-miniprogram` |
 
@@ -68,7 +68,7 @@ shuiyun-life/
 │
 ├── services/                   # 服务层
 │   ├── api.ts                  # 业务 API（对接 12 个云数据库集合）
-│   └── cloud.ts                # 云开发基础封装（query / add / callFunction / db）
+│   └── cloud.ts                # 云开发基础封装（query / add / db）
 │
 ├── types/
 │   └── data.ts                 # 全局 TypeScript 类型定义
@@ -76,8 +76,6 @@ shuiyun-life/
 ├── utils/
 │   └── util.ts                 # 工具函数
 │
-├── cloud/                      # 云函数目录
-│   └── hello/                  # 示例云函数
 │
 └── images/                     # 图片资源
     ├── icons/                  # TabBar 图标（含选中/未选中态）
@@ -113,7 +111,6 @@ shuiyun-life/
 
 ### `project.config.json`
 - `compileType`: `miniprogram`
-- `cloudfunctionRoot`: `cloud/`
 - `libVersion`: `3.4.0`
 - `useCompilerPlugins`: `["typescript"]`
 - `editorSetting`: 缩进为空格，tabSize 为 2
@@ -150,7 +147,7 @@ shuiyun-life/
 
 ### 服务层规范
 - `services/api.ts`：业务 API，对接 12 个云数据库集合，所有函数已改为 `async`。
-- `services/cloud.ts`：云开发底层封装，提供 `query`、`add`、`callFunction` 和 `db` 导出。
+- `services/cloud.ts`：云开发底层封装，提供 `query`、`add` 和 `db` 导出。
 - `safeQuery<T>()`：通用安全查询，自动 `_id → id` 映射，出错返回空数组。
 - 类型定义集中在 `types/data.ts`，按功能模块分区导出。
 
@@ -251,7 +248,6 @@ shuiyun-life/
 
 - 修改页面或组件时，请同时检查对应的 `.json` 文件是否需要调整 `usingComponents`。
 - 新增页面后，必须先在 `app.json` 的 `pages` 数组中注册路由。
-- 新增云函数后，需在开发者工具中手动「上传并部署」。
 - 修改 `services/api.ts` 时请注意保持返回类型与 `types/data.ts` 一致。
 - 全局样式变更请在 `app.wxss` 中修改 CSS 变量，避免在局部硬编码。
 - 所有用户可见文本使用中文。

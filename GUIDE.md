@@ -333,7 +333,7 @@ shuiyun-life/
 │
 ├── services/               # 业务 API 层
 │   ├── api.ts              # 封装所有数据获取逻辑
-│   └── cloud.ts            # 云开发基础封装（query / add / callFunction）
+│   └── cloud.ts            # 云开发基础封装（query / add）
 │
 ├── types/                  # TypeScript 类型定义
 │   └── data.ts             # 全局数据模型
@@ -341,8 +341,6 @@ shuiyun-life/
 ├── utils/                  # 工具函数
 │   └── util.ts
 │
-├── cloud/                  # 云函数根目录
-│   └── hello/              # 示例云函数
 │
 └── images/                 # 静态资源
     ├── icons/              # TabBar 图标
@@ -350,7 +348,7 @@ shuiyun-life/
     └── logo-*.png          # Logo
 ```
 
-**技术栈**：原生微信小程序（WXML + WXSS + TypeScript）+ 微信云开发（云数据库 + 云函数）。
+**技术栈**：原生微信小程序（WXML + WXSS + TypeScript）+ 微信云开发（云数据库）。
 
 **编译插件**：`useCompilerPlugins: ["typescript"]`，由微信开发者工具内置 TypeScript 插件处理编译。
 
@@ -532,12 +530,6 @@ await cloud.add('feedback', {
 });
 ```
 
-#### 调用云函数
-
-```typescript
-const result = await cloud.callFunction('hello', { name: 'world' });
-```
-
 #### 直接使用数据库实例
 
 ```typescript
@@ -598,12 +590,6 @@ TabBar 图标为 PNG 文件，存放于 `images/icons/`。替换时：
 ```
 
 修改 `name`、`icon`（Emoji）或 `color`（分类标签色）即可。
-
-#### Q6：云函数如何部署
-
-1. 在 `cloud/` 目录下创建云函数目录（如 `cloud/myfunc/`）。
-2. 编写 `index.js` 和 `package.json`。
-3. 在微信开发者工具中右键云函数目录 →「创建并部署：云端安装依赖」。
 
 ---
 

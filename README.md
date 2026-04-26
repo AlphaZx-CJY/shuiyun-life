@@ -6,7 +6,7 @@
 ## 技术栈
 - 原生微信小程序框架（WXML + WXSS + TypeScript）
 - **WeUI（微信设计美学）**风格 UI（微信绿 `#07C160` + 浅灰背景 `#F7F7F7` + 纯黑文字）
-- 微信云开发（云数据库 + 云函数）
+- 微信云开发（云数据库）
 - TypeScript 6.x 严格模式
 
 ## 项目结构
@@ -42,11 +42,9 @@ shuiyun-life/
 │   └── service-item/        # 生活服务条目
 ├── services/                # 服务层
 │   ├── api.ts               # 业务 API（对接云数据库）
-│   └── cloud.ts             # 云开发封装（数据库/云函数）
+│   └── cloud.ts             # 云开发数据库封装
 ├── types/                   # TypeScript 类型定义
 │   └── data.ts
-├── cloud/                   # 云函数目录
-│   └── hello/               # 示例云函数
 ├── images/                  # 图片资源
 │   ├── icons/              # TabBar 图标
 │   ├── banners/            # Banner 图
@@ -106,7 +104,7 @@ shuiyun-life/
 3. 在微信开发者工具中点击「云开发」按钮开通云服务
 4. 在云控制台数据库中创建 12 个集合（见上表）
 5. `project.private.config.json` 为本地私有配置，由开发者工具自动生成，**请勿提交到 Git**
-6. 云函数开发完成后，右键云函数目录选择「上传并部署：云端安装依赖」
+6. 所有数据通过客户端直连云数据库操作，无需云函数
 7. 运行 `cp env.example.ts env.ts` 并填入真实值后方可正常编译
 
 ## 版本

@@ -49,9 +49,8 @@
     }
   },
   "compileType": "miniprogram",
-  "cloudfunctionRoot": "cloud/",
   "libVersion": "3.4.0",
-  "appid": "touristappid",
+  "appid": "wx21dbbba1fbf0f280",
   "projectname": "shuiyun-life",
   "condition": {},
   "editorSetting": {

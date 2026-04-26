@@ -67,22 +67,5 @@ export function add<T = any>(collection: string, data: Record<string, any>): Pro
   });
 }
 
-/**
- * 调用云函数
- * @param name 云函数名称
- * @param data 传入参数
- * @returns Promise<云函数返回结果>
- */
-export function callFunction<T = any>(name: string, data?: Record<string, any>): Promise<T> {
-  return new Promise((resolve, reject) => {
-    wx.cloud.callFunction({
-      name,
-      data,
-      success: (res) => resolve(res.result as T),
-      fail: (err) => reject(err),
-    });
-  });
-}
-
 /** 导出原始数据库实例，供高级查询使用 */
 export { db };
