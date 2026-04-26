@@ -27,7 +27,7 @@
 .detail-content {
   margin: 0 24rpx 64rpx;
   padding: 48rpx 32rpx;
-  font-size: 32rpx;
+  font-size: 30rpx;
   line-height: 2.0;
   color: var(--wx-text);
   word-break: break-all;

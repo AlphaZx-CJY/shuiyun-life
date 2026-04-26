@@ -35,7 +35,7 @@
 }
 
 .detail-content rich-text {
-  font-size: 32rpx;
+  font-size: 30rpx;
   line-height: 2.0;
   color: var(--wx-text);
   word-break: break-all;
