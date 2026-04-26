@@ -16,7 +16,7 @@ Page<INewsDetailData, WechatMiniprogram.IAnyObject>({
     const { id } = options;
     this.setData({ newsId: id });
     try {
-      const detail = await api.getNewsDetail(Number(id));
+      const detail = await api.getNewsDetail(id);
       this.setData({ news: detail });
     } catch (err) {
       console.error('loadNewsDetail failed', err);

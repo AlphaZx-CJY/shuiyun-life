@@ -16,7 +16,7 @@ Page<ITradeDetailData, WechatMiniprogram.IAnyObject>({
     const { id } = options;
     this.setData({ tradeId: id });
     try {
-      const detail = await api.getTradeDetail(Number(id));
+      const detail = await api.getTradeDetail(id);
       this.setData({ trade: detail });
     } catch (err) {
       console.error('loadTradeDetail failed', err);

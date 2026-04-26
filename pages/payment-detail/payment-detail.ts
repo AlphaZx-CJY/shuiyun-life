@@ -16,7 +16,7 @@ Page<IPaymentDetailData, WechatMiniprogram.IAnyObject>({
     const { id } = options;
     this.setData({ paymentId: id });
     try {
-      const detail = await api.getPaymentDetail(Number(id));
+      const detail = await api.getPaymentDetail(id);
       this.setData({ payment: detail });
     } catch (err) {
       console.error('loadPaymentDetail failed', err);
