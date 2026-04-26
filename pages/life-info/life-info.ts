@@ -52,12 +52,16 @@ Page<ILifeInfoData, WechatMiniprogram.IAnyObject>({
       success: (res: WechatMiniprogram.ShowActionSheetSuccessCallbackResult) => {
         const action = itemList[res.tapIndex];
         if (action === '查看地图') {
-          wx.openLocation({
-            latitude: 31.220,
-            longitude: 121.200,
-            name: item.name,
-            address: item.address,
-          });
+          if (item.latitude && item.longitude) {
+            wx.openLocation({
+              latitude: item.latitude,
+              longitude: item.longitude,
+              name: item.name,
+              address: item.address,
+            });
+          } else {
+            wx.showToast({ title: '该商家暂无地图位置', icon: 'none' });
+          }
         } else if (action === '拨打电话') {
           wx.makePhoneCall({ phoneNumber: item.phone });
         } else if (action === '打开小程序') {

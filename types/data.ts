@@ -88,6 +88,8 @@ export interface ServiceItem {
   hours: string;
   phone: string;
   tags: string[];
+  latitude?: number;
+  longitude?: number;
   jump?: {
     type: JumpType;
     appId?: string;
