@@ -52,10 +52,10 @@ Page<ILifeInfoData, WechatMiniprogram.IAnyObject>({
       success: (res: WechatMiniprogram.ShowActionSheetSuccessCallbackResult) => {
         const action = itemList[res.tapIndex];
         if (action === '查看地图') {
-          if (item.latitude && item.longitude) {
+          if (item.location) {
             wx.openLocation({
-              latitude: item.latitude,
-              longitude: item.longitude,
+              latitude: item.location.latitude,
+              longitude: item.location.longitude,
               name: item.name,
               address: item.address,
             });

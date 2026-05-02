@@ -7,6 +7,7 @@
       <view class="voice-header">
         <text class="voice-tag">{{item.type}}</text>
         <text class="voice-status" wx:if="{{item.expired}}">已过期</text>
+        <text class="voice-deadline" wx:else>截止 {{item.deadline}}</text>
       </view>
       <text class="voice-content">{{item.content}}</text>
       <view class="voice-meta">

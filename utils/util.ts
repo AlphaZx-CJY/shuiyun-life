@@ -14,9 +14,9 @@ export const formatTime = (date: Date): string => {
   return `${[year, month, day].map(formatNumber).join('/')} ${[hour, minute, second].map(formatNumber).join(':')}`;
 };
 
-export const formatDate = (dateStr: string): string => {
-  if (!dateStr) return '';
-  const date = new Date(dateStr);
+export const formatDate = (dateInput: Date | string): string => {
+  if (!dateInput) return '';
+  const date = typeof dateInput === 'string' ? new Date(dateInput) : dateInput;
   const now = new Date();
   const diff = now.getTime() - date.getTime();
   const dayDiff = Math.floor(diff / (1000 * 60 * 60 * 24));
@@ -24,7 +24,7 @@ export const formatDate = (dateStr: string): string => {
   if (dayDiff === 0) return '今天';
   if (dayDiff === 1) return '昨天';
   if (dayDiff < 7) return `${dayDiff}天前`;
-  return dateStr;
+  return `${date.getFullYear()}-${formatNumber(date.getMonth() + 1)}-${formatNumber(date.getDate())}`;
 };
 
 /**

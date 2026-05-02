@@ -109,13 +109,14 @@ export async function incrementNewsViewCount(_id: string): Promise<void> {
   }
 }
 
-export async function submitVoice(type: string, content: string, contact: string): Promise<void> {
+export async function submitVoice(type: string, content: string, contact: string, deadline: string): Promise<void> {
   await cloud.add('voices', {
     type,
     content,
     contact,
     expired: false,
-    createTime: new Date().toISOString(),
+    deadline,
+    createTime: cloud.db.serverDate(),
   });
 }
 
@@ -320,7 +321,7 @@ export async function submitFeedback(type: string, content: string, contact: str
     content,
     contact,
     status: 'pending',
-    createTime: new Date().toISOString(),
+    createTime: cloud.db.serverDate(),
   });
 }
 

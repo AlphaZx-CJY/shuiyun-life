@@ -1,8 +1,13 @@
 import * as api from '../../services/api';
+import { formatDate } from '../../utils/util';
 import type { VoiceItem } from '../../types/data';
 
+interface IVoiceDisplayItem extends Omit<VoiceItem, 'createTime'> {
+  createTime: string;
+}
+
 interface IVoiceData {
-  voiceList: VoiceItem[];
+  voiceList: IVoiceDisplayItem[];
 }
 
 Page<IVoiceData, WechatMiniprogram.IAnyObject>({
@@ -21,7 +26,11 @@ Page<IVoiceData, WechatMiniprogram.IAnyObject>({
 
   async loadVoiceData() {
     try {
-      const voiceList = await api.getVoiceList();
+      const list = await api.getVoiceList();
+      const voiceList = list.map((item) => ({
+        ...item,
+        createTime: formatDate(item.createTime),
+      }));
       this.setData({ voiceList });
     } catch (err) {
       console.error('loadVoiceData failed', err);

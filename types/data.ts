@@ -6,6 +6,11 @@ export type ServiceCategory = 'supermarket' | 'market' | 'food' | 'hotel' | 'tra
 export type ScheduleStatus = 'upcoming' | 'ended';
 export type ShuttleStatus = 'passed' | 'soon' | 'upcoming';
 
+export interface GeoPoint {
+  longitude: number;
+  latitude: number;
+}
+
 /** ========== 首页 ========== */
 
 export interface QuickEntry {
@@ -82,8 +87,7 @@ export interface ServiceItem {
   hours: string;
   phone: string;
   tags: string[];
-  latitude?: number;
-  longitude?: number;
+  location?: GeoPoint;
   jump?: {
     type: JumpType;
     appId?: string;
@@ -157,7 +161,17 @@ export interface VoiceItem {
   content: string;
   contact: string;
   expired: boolean;
-  createTime: string;
+  deadline: string;
+  createTime: Date;
+}
+
+export interface FeedbackItem {
+  id: number | string;
+  type: string;
+  content: string;
+  contact: string;
+  status: string;
+  createTime: Date;
 }
 
 /** ========== 反馈配置 ========== */

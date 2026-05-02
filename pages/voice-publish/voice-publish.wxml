@@ -4,14 +4,24 @@
   <!-- 诉求表单 -->
   <view class="feedback-form ios-card">
     <view class="form-group">
-      <text class="form-label">诉求类型</text>
+      <text class="form-label">诉求类型 <text class="form-required">*</text></text>
       <input class="form-input" placeholder="如：求购、顺风车、求代购..." bindinput="onTypeInput" value="{{type}}" />
     </view>
 
     <view class="form-group">
-      <text class="form-label">诉求内容</text>
-      <textarea class="form-textarea" placeholder="请详细描述您的诉求，如物品规格、出发时间、目的地等..." maxlength="500" bindinput="onContentInput" value="{{content}}"></textarea>
+      <text class="form-label">诉求内容 <text class="form-required">*</text></text>
+      <textarea class="form-textarea" placeholder="请详细描述您的诉求，如物品规格、出发时间、目的地等..." maxlength="500" bindinput="onContentInput" value="{{content}}" />
       <text class="form-counter">{{content.length}}/500</text>
+    </view>
+
+    <view class="form-group">
+      <text class="form-label">截止日期 <text class="form-required">*</text></text>
+      <picker mode="date" value="{{deadline}}" bindchange="onDeadlineChange">
+        <view class="form-picker">
+          <text class="form-picker-text {{deadline ? '' : 'form-picker-placeholder'}}">{{deadline || '请选择截止日期'}}</text>
+          <view class="ios-list-item__arrow"></view>
+        </view>
+      </picker>
     </view>
 
     <view class="form-group">

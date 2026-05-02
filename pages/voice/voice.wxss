@@ -26,7 +26,7 @@
   align-items: center;
   padding: 6rpx 18rpx;
   background: var(--md-primary-container);
-  color: var(--wx-primary);
+  color: var(--md-on-primary-container);
   border-radius: var(--radius-pill);
   font-size: 24rpx;
   font-weight: 500;
@@ -34,16 +34,20 @@
 
 .voice-status {
   font-size: 24rpx;
-  color: var(--ios-gray);
+  color: var(--md-error);
+}
+
+.voice-deadline {
+  font-size: 24rpx;
+  color: var(--md-on-surface-variant);
 }
 
 .voice-content {
   font-size: 30rpx;
-  color: var(--wx-text);
+  color: var(--md-on-surface);
   line-height: 1.6;
   display: block;
   margin-bottom: 16rpx;
-  word-break: break-all;
 }
 
 .voice-meta {
@@ -54,12 +58,12 @@
 
 .voice-date {
   font-size: 24rpx;
-  color: var(--ios-gray);
+  color: var(--md-on-surface-variant);
 }
 
 .voice-contact {
   font-size: 24rpx;
-  color: var(--wx-primary);
+  color: var(--md-primary);
 }
 
 /* 空状态 */
@@ -73,7 +77,7 @@
 
 .empty-state__text {
   font-size: 30rpx;
-  color: var(--ios-gray);
+  color: var(--md-on-surface-variant);
   margin-bottom: 12rpx;
 }
 
