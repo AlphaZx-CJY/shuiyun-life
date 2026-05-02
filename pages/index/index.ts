@@ -28,7 +28,7 @@ Page<IIndexData, WechatMiniprogram.IAnyObject>({
     quickEntries: [
       { id: 1, label: '周边生活', path: '/pages/life-info/life-info', icon: ICON_LIFE },
       { id: 2, label: '社区通知', path: '/pages/news/news', icon: ICON_NOTICE },
-      { id: 3, label: '便民安排', path: '/pages/schedule/schedule', icon: ICON_SCHEDULE },
+      { id: 3, label: '活动安排', path: '/pages/schedule/schedule', icon: ICON_SCHEDULE },
       { id: 4, label: '缴费知识', path: '/pages/payment/payment', icon: ICON_SERVICE },
       { id: 5, label: '闲置交易', path: '/pages/trade/trade', icon: ICON_TRADE },
       { id: 6, label: '邻里互助', path: '/pages/voice/voice', icon: ICON_VOICE },

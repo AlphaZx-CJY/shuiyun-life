@@ -96,7 +96,7 @@ export interface ServiceItem {
   };
 }
 
-/** ========== 便民安排 ========== */
+/** ========== 活动安排 ========== */
 
 export interface ScheduleItem {
   id: number | string;

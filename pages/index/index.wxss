@@ -268,7 +268,7 @@
   letter-spacing: -0.2rpx;
 }
 
-/* 便民项 */
+/* 活动项 */
 .schedule-item {
   display: flex;
   align-items: center;

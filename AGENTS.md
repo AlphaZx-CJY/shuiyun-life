@@ -6,7 +6,7 @@
 
 ## 项目概览
 
-`shuiyun-life` 是为「新长宁水韵名邸」小区打造的**微信小程序生活号**，面向小区居民提供周边生活信息、闲置交易、新闻资讯、缴费知识、便民安排、班车信息、小程序反馈和使用指南等功能。
+`shuiyun-life` 是为「新长宁水韵名邸」小区打造的**微信小程序生活号**，面向小区居民提供周边生活信息、闲置交易、新闻资讯、缴费知识、活动安排、班车信息、小程序反馈和使用指南等功能。
 
 - **版本**：v2.0.0
 - **仓库**：https://github.com/AlphaZx-CJY/shuiyun-life
@@ -44,7 +44,7 @@ shuiyun-life/
 ├── guides-seed.json            # 使用指南种子数据（JSON Lines，导入 guides 集合）
 │
 ├── pages/                      # 页面目录（15 个页面）
-│   ├── index/                  # 首页：快捷入口、社区通知、今日便民
+│   ├── index/                  # 首页：快捷入口、社区通知、今日活动
 │   ├── news/                   # 新闻资讯列表
 │   ├── news-detail/            # 新闻详情
 │   ├── trade/                  # 闲置交易列表
@@ -53,7 +53,7 @@ shuiyun-life/
 │   ├── life-info/              # 周边生活信息
 │   ├── payment/                # 缴费知识列表
 │   ├── payment-detail/         # 缴费详情
-│   ├── schedule/               # 便民安排
+│   ├── schedule/               # 活动安排
 │   ├── shuttle/                # 班车信息
 │   ├── profile/                # 我的（个人中心）
 │   ├── feedback/               # 意见反馈表单
@@ -63,7 +63,7 @@ shuiyun-life/
 ├── components/                 # 公共组件
 │   ├── nav-bar/                # 自定义导航栏
 │   ├── news-card/              # 新闻卡片
-│   ├── schedule-item/          # 便民条目
+│   ├── schedule-item/          # 活动条目
 │   └── service-item/           # 生活服务条目
 │
 ├── services/                   # 服务层
@@ -90,7 +90,7 @@ shuiyun-life/
 
 ### `app.json`
 - 注册 15 个页面路由
-- 配置 5 项 TabBar（首页、资讯、交易、便民、我的）
+- 配置 5 项 TabBar（首页、资讯、交易、活动、我的）
 - TabBar 选中色：`#4C662B`（Primary），背景：`#EEEFE3`（Surface Container）
 - 使用 **自定义 TabBar**（`custom-tab-bar/` 组件，`app.json` 配置 `"custom": true`，Material Symbols SVG 图标）
 - 开启云开发：`"cloud": true`
@@ -161,7 +161,7 @@ shuiyun-life/
 | `news` | 新闻资讯 | `title`, `summary`, `category`, `date`, `content`, `enabled` |
 | `trades` | 闲置交易 | `title`, `price`, `originalPrice`, `category`, `images`, `enabled` |
 | `services` | 周边生活 | `name`, `category`, `address`, `phone`, `tags`, `enabled` |
-| `schedules` | 便民安排 | `title`, `date`, `time`, `location`, `enabled` |
+| `schedules` | 活动安排 | `title`, `date`, `time`, `location`, `enabled` |
 | `payments` | 缴费知识 | `title`, `summary`, `content`, `date`, `enabled` |
 | `shuttle_config` | 班车配置 | `routeName`, `stops`, `contactPhone`, `runNote`, `enabled` |
 | `shuttle_times` | 班车时刻 | `time`, `sort`, `enabled` |
@@ -216,12 +216,12 @@ shuiyun-life/
 
 | 模块 | 页面 | 数据来源 | 说明 |
 |------|------|----------|------|
-| 首页 | `pages/index/index` | `news` + `schedules` + `shuttle_times` | 快捷入口、社区通知、今日便民、班车卡片 |
+| 首页 | `pages/index/index` | `news` + `schedules` + `shuttle_times` | 快捷入口、社区通知、今日活动、班车卡片 |
 | 新闻资讯 | `pages/news/news` | `news` 集合 | 文章列表、分类筛选、详情 |
 | 闲置交易 | `pages/trade/trade` | `trades` 集合 + 本地缓存 | 商品列表、分类筛选、详情、发布 |
 | 周边生活 | `pages/life-info/life-info` | `services` 集合 | 9 个分类，支持拨打电话 |
 | 缴费知识 | `pages/payment/payment` | `payments` 集合 | 物业费、水费、电费、燃气费指南 |
-| 便民安排 | `pages/schedule/schedule` | `schedules` 集合 | 社区活动日历 |
+| 活动安排 | `pages/schedule/schedule` | `schedules` 集合 | 社区活动日历 |
 | 班车信息 | `pages/shuttle/shuttle` | `shuttle_config` + `shuttle_times` | 时刻表、站点、动态状态计算 |
 | 个人中心 | `pages/profile/profile` | `contacts` + `guides` + 硬编码 | 关于、联系物业、小程序反馈、使用指南 |
 | 小程序反馈 | `pages/feedback/feedback` | 写入 `feedback` 集合 | 针对小程序的建议与问题，picker + textarea |

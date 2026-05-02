@@ -29,7 +29,7 @@ Page<IScheduleData, WechatMiniprogram.IAnyObject>({
 
   onShareAppMessage(): WechatMiniprogram.Page.ICustomShareContent {
     return {
-      title: '水韵名邸便民安排',
+      title: '水韵名邸活动安排',
       path: '/pages/schedule/schedule',
     };
   },

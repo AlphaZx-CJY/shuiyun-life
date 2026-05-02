@@ -1,7 +1,7 @@
 {
   "name": "shuiyun-life",
   "version": "1.0.0",
-  "description": "为「新长宁水韵名邸」小区打造的微信小程序生活号，展示小区周边生活信息、闲置交易、新闻资讯、缴费知识和便民安排。",
+  "description": "为「新长宁水韵名邸」小区打造的微信小程序生活号，展示小区周边生活信息、闲置交易、新闻资讯、缴费知识和活动安排。",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

@@ -210,7 +210,7 @@ export async function getServiceList(_category: string): Promise<ServiceItem[]> 
   return safeQuery<ServiceItem>('services', { enabled: true, category: _category }, { orderBy: [{ field: 'sort', desc: false }] });
 }
 
-/** ========== 便民安排 ========== */
+/** ========== 活动安排 ========== */
 
 export async function getSchedules(): Promise<ScheduleItem[]> {
   return safeQuery<ScheduleItem>('schedules', { enabled: true }, { orderBy: [{ field: 'date', desc: false }, { field: 'time', desc: false }] });

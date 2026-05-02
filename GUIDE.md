@@ -140,7 +140,7 @@ contacts, feedback_config, guides, feedback
 > - `medical` → 医疗 🏥
 > - `mall` → 商场 🛍️
 
-#### `schedules` — 便民安排
+#### `schedules` — 活动安排
 
 | 字段 | 类型 | 必填 | 说明 | 示例 |
 |------|------|------|------|------|
@@ -153,7 +153,7 @@ contacts, feedback_config, guides, feedback
 | `type` | string | 否 | 类型标记 | `medical` |
 | `enabled` | boolean | 是 | 是否展示 | `true` |
 
-> 当天日期的安排会自动出现在首页「今日便民」区域。
+> 当天日期的安排会自动出现在首页「今日活动」区域。
 
 #### `payments` — 缴费知识
 
@@ -249,7 +249,7 @@ contacts, feedback_config, guides, feedback
 | 首屏班车卡片 | `shuttle_times` + `shuttle_config` | 更新时刻表和路线配置 |
 | 快捷入口 | 前端硬编码（6 个 Emoji 图标） | 修改 `pages/index/index.ts` |
 | 社区通知 | `news` 集合（`category: 'notice'`） | 更新新闻记录 |
-| 今日便民 | `schedules` 集合（当天日期） | 更新日程记录 |
+| 今日活动 | `schedules` 集合（当天日期） | 更新日程记录 |
 
 #### 新闻资讯页
 
@@ -269,7 +269,7 @@ contacts, feedback_config, guides, feedback
 - 每个分类下的条目：`services` 集合按 `category` 筛选
 - 点击条目可拨打电话或跳转小程序
 
-#### 便民安排页
+#### 活动安排页
 
 - 全部日程：`schedules` 集合按日期 + 时间排序
 - 状态由前端根据当前时间自动计算
@@ -318,7 +318,7 @@ shuiyun-life/
 │   ├── life-info/          # 周边生活
 │   ├── payment/            # 缴费知识列表
 │   ├── payment-detail/     # 缴费详情
-│   ├── schedule/           # 便民安排
+│   ├── schedule/           # 活动安排
 │   ├── shuttle/            # 班车服务
 │   ├── profile/            # 个人中心
 │   ├── feedback/           # 意见反馈表单

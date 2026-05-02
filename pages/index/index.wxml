@@ -57,10 +57,10 @@
     </view>
   </view>
 
-  <!-- 今日便民 -->
+  <!-- 今日活动 -->
   <view class="ios-section">
     <view class="section-header">
-      <text class="section-title">今日便民</text>
+      <text class="section-title">今日活动</text>
       <text class="section-more" bindtap="onMoreScheduleTap">查看全部</text>
     </view>
     <view class="ios-card">
