@@ -31,12 +31,7 @@
         <view class="service-info-item">
           <text class="service-info-label">营业时间</text>
           <view class="service-info-value">
-            <block wx:if="{{typeof item.hours === 'string'}}">
-              <text>{{item.hours}}</text>
-            </block>
-            <block wx:else>
-              <view wx:for="{{item.hours}}" wx:for-item="h" wx:key="*this" style="margin-bottom: 4rpx;">{{h}}</view>
-            </block>
+            <view wx:for="{{item.hours}}" wx:for-item="h" wx:key="*this" style="margin-bottom: 4rpx;">{{h}}</view>
           </view>
         </view>
         <view class="service-info-item" wx:if="{{item.phone}}">

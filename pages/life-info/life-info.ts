@@ -34,7 +34,11 @@ Page<ILifeInfoData, WechatMiniprogram.IAnyObject>({
 
   async loadServiceData(category: string) {
     const serviceList = await api.getServiceList(category);
-    this.setData({ serviceList });
+    const normalizedList = serviceList.map((item) => ({
+      ...item,
+      hours: typeof item.hours === 'string' ? [item.hours] : item.hours,
+    }));
+    this.setData({ serviceList: normalizedList });
   },
 
   onServiceTap(e: WechatMiniprogram.TouchEvent) {
