@@ -10,7 +10,7 @@ interface ILifeInfoData {
 Page<ILifeInfoData, WechatMiniprogram.IAnyObject>({
   data: {
     categories: [],
-    activeCategory: 1,
+    activeCategory: '1',
     serviceList: [],
   },
 
@@ -32,7 +32,7 @@ Page<ILifeInfoData, WechatMiniprogram.IAnyObject>({
     this.loadServiceData(id);
   },
 
-  async loadServiceData(category: number | string) {
+  async loadServiceData(category: string) {
     const serviceList = await api.getServiceList(category);
     this.setData({ serviceList });
   },
