@@ -2,6 +2,7 @@
 
 .detail-header {
   padding: 40rpx 32rpx;
+  border-bottom: 1rpx solid var(--md-outline-variant);
 }
 
 .detail-tag {
@@ -45,10 +46,8 @@
 }
 
 .detail-content {
-  margin: 0 16rpx 64rpx;
-  padding: 32rpx 24rpx;
-  background: var(--md-surface-container-low);
-  border-radius: var(--radius-md);
+  padding: 32rpx;
+  padding-bottom: 64rpx;
 }
 
 .detail-content rich-text {

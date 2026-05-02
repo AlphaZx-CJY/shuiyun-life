@@ -35,6 +35,87 @@ async function safeQuery<T extends { id?: number | string; _id?: string }>(
   }
 }
 
+/** 从对象中收集所有 cloud:// 开头的 fileID */
+function collectCloudIds(obj: any): string[] {
+  const ids: string[] = [];
+  const seen = new Set<string>();
+
+  function walk(val: any) {
+    if (typeof val === 'string') {
+      if (val.startsWith('cloud://') && !seen.has(val)) {
+        ids.push(val);
+        seen.add(val);
+      }
+      const imgRegex = /<img[^>]+src=["'](cloud:\/\/[^"']+)["']/g;
+      let match;
+      while ((match = imgRegex.exec(val)) !== null) {
+        if (!seen.has(match[1])) {
+          ids.push(match[1]);
+          seen.add(match[1]);
+        }
+      }
+    } else if (Array.isArray(val)) {
+      val.forEach(walk);
+    } else if (val && typeof val === 'object') {
+      Object.keys(val).forEach((key) => walk(val[key]));
+    }
+  }
+
+  walk(obj);
+  return ids;
+}
+
+/** 根据映射表替换对象中的 cloudId */
+function replaceCloudIds<T>(obj: T, urlMap: Map<string, string>): T {
+  function walk(val: any): any {
+    if (typeof val === 'string') {
+      let result = val;
+      if (val.startsWith('cloud://') && urlMap.has(val)) {
+        result = urlMap.get(val)!;
+      }
+      result = result.replace(
+        /<img([^>]+)src=["'](cloud:\/\/[^"']+)["']/g,
+        (match: string, attrs: string, fileId: string) => {
+          const url = urlMap.get(fileId);
+          return url ? `<img${attrs}src="${url}"` : match;
+        },
+      );
+      return result;
+    } else if (Array.isArray(val)) {
+      return val.map(walk);
+    } else if (val && typeof val === 'object') {
+      const result: any = {};
+      for (const k of Object.keys(val)) {
+        result[k] = walk(val[k]);
+      }
+      return result;
+    }
+    return val;
+  }
+
+  return walk(obj);
+}
+
+/** 将对象中所有 cloud:// fileID 转换为临时 HTTPS URL */
+async function resolveCloudUrls<T>(data: T): Promise<T> {
+  const ids = collectCloudIds(data);
+  if (ids.length === 0) return data;
+
+  try {
+    const res = await wx.cloud.getTempFileURL({ fileList: ids });
+    const urlMap = new Map<string, string>();
+    res.fileList.forEach((item, index) => {
+      if (item.tempFileURL) {
+        urlMap.set(ids[index], item.tempFileURL);
+      }
+    });
+    return replaceCloudIds(data, urlMap);
+  } catch (e) {
+    console.error('[cloud] getTempFileURL failed:', e);
+    return data;
+  }
+}
+
 /** ========== 首页 ========== */
 
 export function getQuickEntries(): QuickEntry[] {
@@ -80,7 +161,8 @@ export async function getShuttlePreview(count = 5): Promise<ShuttleTime[]> {
 /** ========== 新闻资讯 ========== */
 
 export async function getNewsList(): Promise<NewsItem[]> {
-  return safeQuery<NewsItem>('news', { enabled: true }, { orderBy: [{ field: 'date', desc: true }] });
+  const data = await safeQuery<NewsItem>('news', { enabled: true }, { orderBy: [{ field: 'date', desc: true }] });
+  return resolveCloudUrls(data);
 }
 
 export async function getLatestNewsByCategory(category: string, count = 1): Promise<NewsItem[]> {
@@ -92,7 +174,8 @@ export async function getNewsDetail(_id: number | string): Promise<NewsDetail | 
     const data = await cloud.query<NewsDetail>('news', { _id: String(_id) }, { limit: 1 });
     if (data.length === 0) return null;
     const item = data[0];
-    return { ...item, id: (item as any).id ?? item._id, content: markdownToHtml(item.content) };
+    const detail = { ...item, id: (item as any).id ?? item._id, content: markdownToHtml(item.content) };
+    return resolveCloudUrls(detail);
   } catch (e) {
     console.error('[cloud] news detail query failed:', e);
     return null;
@@ -227,7 +310,8 @@ export async function getPaymentDetail(_id: number | string): Promise<PaymentDet
     const data = await cloud.query<PaymentDetail>('payments', { _id: String(_id) }, { limit: 1 });
     if (data.length === 0) return null;
     const item = data[0];
-    return { ...item, id: (item as any).id ?? item._id, content: markdownToHtml(item.content) };
+    const detail = { ...item, id: (item as any).id ?? item._id, content: markdownToHtml(item.content) };
+    return resolveCloudUrls(detail);
   } catch (e) {
     console.error('[cloud] payment detail query failed:', e);
     return null;
@@ -334,7 +418,8 @@ export async function getGuideDetail(_id: number | string): Promise<GuideDetail 
     const data = await cloud.query<any>('guides', { _id: String(_id) }, { limit: 1 });
     if (data.length === 0) return null;
     const item = data[0];
-    return { ...item, id: item.id ?? item._id, content: markdownToHtml(item.content) };
+    const detail = { ...item, id: item.id ?? item._id, content: markdownToHtml(item.content) };
+    return resolveCloudUrls(detail);
   } catch (e) {
     console.error('[cloud] guide detail query failed:', e);
     return null;

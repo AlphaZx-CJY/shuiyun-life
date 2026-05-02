@@ -259,6 +259,13 @@ shuiyun-life/
    - **全局一致性**：检查 `app.json`、`app.wxss` 中的全局配置变更是否导致个别页面布局异常。
    - 如发现遮挡，必须调整对应页面的 WXSS 布局参数。
 
+4. **前端修改必须遵循 Material Design 3 设计系统**：
+   - 新增页面或调整样式时，颜色、字号、间距、圆角必须使用 `app.wxss` 中定义的 CSS 变量（`--md-*` 系列），禁止在局部 WXSS 中硬编码色值。
+   - 禁止使用 `box-shadow`，MD3 靠背景色差异（Surface / Surface Container）区分层级。
+   - 分割线统一使用 `1rpx solid var(--md-outline-variant)`（`#C5C8BA`）。
+   - 按钮使用 `app.wxss` 中定义的 `.md-btn--*` 类，或遵循 Primary 填充 + 8rpx 圆角的规范。
+   - 新增组件/页面时，优先复用 `app.wxss` 中已有的 `.md-card`、`.md-tag`、`.ios-list-item` 等通用类，避免重复造样式。
+
 ---
 
 ## 给 AI 助手的特别提醒
