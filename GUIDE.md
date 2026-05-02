@@ -153,7 +153,7 @@ contacts, feedback_config, guides, feedback
 | `type` | string | 否 | 类型标记 | `medical` |
 | `enabled` | boolean | 是 | 是否展示 | `true` |
 
-> 当天日期的安排会自动出现在首页「今日活动」区域。
+> 最近日期的安排会自动出现在首页「最近活动」区域。
 
 #### `payments` — 缴费知识
 
@@ -249,7 +249,7 @@ contacts, feedback_config, guides, feedback
 | 首屏班车卡片 | `shuttle_times` + `shuttle_config` | 更新时刻表和路线配置 |
 | 快捷入口 | 前端硬编码（6 个 Emoji 图标） | 修改 `pages/index/index.ts` |
 | 社区通知 | `news` 集合（`category: 'notice'`） | 更新新闻记录 |
-| 今日活动 | `schedules` 集合（当天日期） | 更新日程记录 |
+| 最近活动 | `schedules` 集合（最近日期） | 更新日程记录 |
 
 #### 新闻资讯页
 

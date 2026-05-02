@@ -44,7 +44,7 @@ shuiyun-life/
 ├── guides-seed.json            # 使用指南种子数据（JSON Lines，导入 guides 集合）
 │
 ├── pages/                      # 页面目录（15 个页面）
-│   ├── index/                  # 首页：快捷入口、社区通知、今日活动
+│   ├── index/                  # 首页：快捷入口、社区通知、最近活动
 │   ├── news/                   # 新闻资讯列表
 │   ├── news-detail/            # 新闻详情
 │   ├── trade/                  # 闲置交易列表
@@ -216,7 +216,7 @@ shuiyun-life/
 
 | 模块 | 页面 | 数据来源 | 说明 |
 |------|------|----------|------|
-| 首页 | `pages/index/index` | `news` + `schedules` + `shuttle_times` | 快捷入口、社区通知、今日活动、班车卡片 |
+| 首页 | `pages/index/index` | `news` + `schedules` + `shuttle_times` | 快捷入口、社区通知、最近活动、班车卡片 |
 | 新闻资讯 | `pages/news/news` | `news` 集合 | 文章列表、分类筛选、详情 |
 | 闲置交易 | `pages/trade/trade` | `trades` 集合 + 本地缓存 | 商品列表、分类筛选、详情、发布 |
 | 周边生活 | `pages/life-info/life-info` | `services` 集合 | 9 个分类，支持拨打电话 |

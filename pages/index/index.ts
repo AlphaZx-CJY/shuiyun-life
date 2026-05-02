@@ -8,10 +8,14 @@ interface IQuickEntry {
   icon: string;
 }
 
+interface IRecentSchedule extends Pick<ScheduleItem, 'id' | 'title' | 'time' | 'location' | 'status' | 'date'> {
+  dateLabel: string;
+}
+
 interface IIndexData {
   quickEntries: IQuickEntry[];
   noticeNews: NewsItem[];
-  todaySchedules: Pick<ScheduleItem, 'id' | 'title' | 'time' | 'location' | 'status'>[];
+  recentSchedules: IRecentSchedule[];
   routeName: string;
   nextShuttle: ShuttleTime | null;
 }
@@ -34,9 +38,8 @@ Page<IIndexData, WechatMiniprogram.IAnyObject>({
       { id: 6, label: '邻里互助', path: '/pages/voice/voice', icon: ICON_VOICE },
     ],
     noticeNews: [],
-    todaySchedules: [],
+    recentSchedules: [],
     routeName: '',
-    shuttlePreview: [],
     nextShuttle: null,
   },
 
@@ -64,17 +67,25 @@ Page<IIndexData, WechatMiniprogram.IAnyObject>({
 
   async loadData() {
     try {
-      const [noticeNewsArr, policyNewsArr, aroundNewsArr, todaySchedules, routeName, shuttleSchedule] = await Promise.all([
+      const [noticeNewsArr, policyNewsArr, aroundNewsArr, recentSchedulesRaw, routeName, shuttleSchedule] = await Promise.all([
         api.getLatestNewsByCategory('notice', 1),
         api.getLatestNewsByCategory('policy', 1),
         api.getLatestNewsByCategory('around', 1),
-        api.getTodaySchedules(),
+        api.getRecentSchedules(),
         api.getShuttleRouteName(),
         api.getShuttleSchedule(),
       ]);
       const noticeNews = [...noticeNewsArr, ...policyNewsArr, ...aroundNewsArr];
       const nextShuttle = shuttleSchedule.find((s: ShuttleTime) => s.status !== 'passed') || shuttleSchedule[shuttleSchedule.length - 1] || null;
-      this.setData({ noticeNews, todaySchedules, routeName, shuttleSchedule, nextShuttle });
+      const today = new Date().toISOString().slice(0, 10);
+      const tomorrow = new Date(Date.now() + 86400000).toISOString().slice(0, 10);
+      const recentSchedules = recentSchedulesRaw.map((s) => {
+        let dateLabel = s.date.slice(5).replace('-', '/');
+        if (s.date === today) dateLabel = '今天';
+        if (s.date === tomorrow) dateLabel = '明天';
+        return { ...s, dateLabel };
+      });
+      this.setData({ noticeNews, recentSchedules, routeName, shuttleSchedule, nextShuttle });
     } catch (err) {
       console.error('loadData failed', err);
     }

@@ -50,10 +50,10 @@ export async function getLatestNews(count = 3): Promise<NewsItem[]> {
   return data.filter((n) => n.category !== 'notice').slice(0, count);
 }
 
-export async function getTodaySchedules(): Promise<Pick<ScheduleItem, 'id' | 'title' | 'time' | 'location' | 'status'>[]> {
+export async function getRecentSchedules(limit = 5): Promise<Pick<ScheduleItem, 'id' | 'title' | 'time' | 'location' | 'status' | 'date'>[]> {
   const today = new Date().toISOString().slice(0, 10);
-  const data = await safeQuery<ScheduleItem>('schedules', { enabled: true, date: today }, { orderBy: [{ field: 'time', desc: false }] });
-  return data.map((s) => ({ id: s.id, title: s.title, time: s.time, location: s.location, status: s.status }));
+  const data = await safeQuery<ScheduleItem>('schedules', { enabled: true, date: cloud.db.command.gte(today) }, { orderBy: [{ field: 'date', desc: false }, { field: 'time', desc: false }], limit });
+  return data.map((s) => ({ id: s.id, title: s.title, time: s.time, location: s.location, status: s.status, date: s.date }));
 }
 
 export async function getLatestTrades(count = 4): Promise<TradeItem[]> {

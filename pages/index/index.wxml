@@ -57,22 +57,22 @@
     </view>
   </view>
 
-  <!-- 今日活动 -->
+  <!-- 最近活动 -->
   <view class="ios-section">
     <view class="section-header">
-      <text class="section-title">今日活动</text>
+      <text class="section-title">最近活动</text>
       <text class="section-more" bindtap="onMoreScheduleTap">查看全部</text>
     </view>
     <view class="ios-card">
-      <view class="schedule-item" wx:for="{{todaySchedules}}" wx:key="id" data-id="{{item.id}}" bindtap="onScheduleTap">
+      <view class="schedule-item" wx:for="{{recentSchedules}}" wx:key="id" data-id="{{item.id}}" bindtap="onScheduleTap">
         <view class="schedule-dot schedule-dot--{{item.status}}"></view>
         <view class="schedule-content">
           <text class="schedule-title">{{item.title}}</text>
-          <text class="schedule-info">{{item.time}} · {{item.location}}</text>
+          <text class="schedule-info"><text class="schedule-date">{{item.dateLabel}}</text> · {{item.time}} · {{item.location}}</text>
         </view>
       </view>
-      <view class="empty-state" wx:if="{{todaySchedules.length === 0}}">
-        <text class="empty-state__text">今日暂无安排</text>
+      <view class="empty-state" wx:if="{{recentSchedules.length === 0}}">
+        <text class="empty-state__text">暂无近期活动</text>
       </view>
     </view>
   </view>

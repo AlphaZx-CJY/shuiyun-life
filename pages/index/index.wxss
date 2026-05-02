@@ -332,6 +332,11 @@
   font-weight: 400;
 }
 
+.schedule-date {
+  color: var(--md-primary);
+  font-weight: 600;
+}
+
 /* Custom tab-bar padding */
 .page-container {
   padding-bottom: calc(120rpx + env(safe-area-inset-bottom));
