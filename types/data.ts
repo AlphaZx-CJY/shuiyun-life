@@ -84,7 +84,7 @@ export interface ServiceItem {
   name: string;
   address: string;
   distance: string;
-  hours: string;
+  hours: string | string[];
   phone: string;
   tags: string[];
   location?: GeoPoint;
