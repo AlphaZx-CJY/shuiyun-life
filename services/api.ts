@@ -194,19 +194,19 @@ export function savePublishedTrade(trade: TradeItem): void {
 
 export function getServiceCategories(): Category[] {
   return [
-    { id: 'supermarket', name: '超市', icon: '🏪', color: '#576B95' },
-    { id: 'market', name: '菜场', icon: '🥬', color: '#07C160' },
-    { id: 'food', name: '美食', icon: '🍜', color: '#FA9D3B' },
-    { id: 'hotel', name: '酒店', icon: '🏨', color: '#576B95' },
-    { id: 'transport', name: '交通', icon: '🚇', color: '#576B95' },
-    { id: 'school', name: '学校', icon: '🏫', color: '#FA5151' },
-    { id: 'leisure', name: '休闲', icon: '☕', color: '#999999' },
-    { id: 'medical', name: '医疗', icon: '🏥', color: '#07C160' },
-    { id: 'mall', name: '商场', icon: '🛍️', color: '#FA9D3B' },
+    { id: 1, name: '超市', icon: '🏪', color: '#576B95' },
+    { id: 2, name: '菜场', icon: '🥬', color: '#07C160' },
+    { id: 3, name: '美食', icon: '🍜', color: '#FA9D3B' },
+    { id: 4, name: '酒店', icon: '🏨', color: '#576B95' },
+    { id: 5, name: '交通', icon: '🚇', color: '#576B95' },
+    { id: 6, name: '学校', icon: '🏫', color: '#FA5151' },
+    { id: 7, name: '休闲', icon: '☕', color: '#999999' },
+    { id: 8, name: '医疗', icon: '🏥', color: '#07C160' },
+    { id: 9, name: '商场', icon: '🛍️', color: '#FA9D3B' },
   ] as Category[];
 }
 
-export async function getServiceList(_category: string): Promise<ServiceItem[]> {
+export async function getServiceList(_category: number | string): Promise<ServiceItem[]> {
   return safeQuery<ServiceItem>('services', { enabled: true, category: _category }, { orderBy: [{ field: 'sort', desc: false }] });
 }
 

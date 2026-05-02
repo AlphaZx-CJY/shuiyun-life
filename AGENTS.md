@@ -269,5 +269,5 @@ shuiyun-life/
 - 全局样式变更请在 `app.wxss` 中修改 CSS 变量，避免在局部硬编码。
 - 所有用户可见文本使用中文。
 - 快捷入口（首页 6 个 Emoji 图标）在 `pages/index/index.ts` 中硬编码。
-- 周边生活 9 个分类在 `services/api.ts` 的 `getServiceCategories()` 中硬编码。
+- 周边生活 9 个分类在 `services/api.ts` 的 `getServiceCategories()` 中硬编码（ID 为数字 1-9，对应云数据库枚举索引）。
 - `guides` 集合的 `content` 字段使用 HTML 格式，由 `guide-detail.wxml` 的 `<rich-text>` 组件渲染。

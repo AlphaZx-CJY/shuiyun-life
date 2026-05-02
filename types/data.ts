@@ -2,7 +2,7 @@
 
 export type NewsCategory = 'all' | 'notice' | 'policy' | 'around';
 export type TradeCategory = 'all' | 'furniture' | 'appliance' | 'baby' | 'books' | 'others';
-export type ServiceCategory = 'supermarket' | 'market' | 'food' | 'hotel' | 'transport' | 'school' | 'leisure' | 'medical' | 'mall';
+export type ServiceCategory = 'all' | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
 export type ScheduleStatus = 'upcoming' | 'ended';
 export type ShuttleStatus = 'passed' | 'soon' | 'upcoming';
 
@@ -72,7 +72,7 @@ export interface TradeForm {
 /** ========== 周边生活 ========== */
 
 export interface Category {
-  id: string;
+  id: number | string;
   name: string;
   icon: string;
 }
