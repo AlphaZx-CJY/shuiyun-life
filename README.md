@@ -5,7 +5,7 @@
 
 ## 技术栈
 - 原生微信小程序框架（WXML + WXSS + TypeScript）
-- **WeUI（微信设计美学）**风格 UI（微信绿 `#07C160` + 浅灰背景 `#F7F7F7` + 纯黑文字）
+- **Material Design 3（绿色主题）**风格 UI（Primary `#4C662B` + 背景 `#F9FAEF` + 纯黑文字 `#1A1C16`）
 - 微信云开发（云数据库）
 - TypeScript 6.x 严格模式
 
@@ -14,7 +14,7 @@
 shuiyun-life/
 ├── app.ts                    # 全局逻辑（云开发初始化）
 ├── app.json                  # 全局配置
-├── app.wxss                  # 全局样式（WeUI 设计系统）
+├── app.wxss                  # 全局样式（MD3 设计系统）
 ├── env.example.ts            # 敏感配置模板（appid / 云环境ID）
 ├── tsconfig.json             # TypeScript 配置
 ├── project.config.json       # 项目配置
@@ -109,4 +109,4 @@ shuiyun-life/
 
 ## 版本
 
-v2.0.0 — WeUI 风格迁移 + CMS 全面接入 + 使用指南模块
+v2.0.0 — MD3 风格迁移 + CMS 全面接入 + 使用指南模块

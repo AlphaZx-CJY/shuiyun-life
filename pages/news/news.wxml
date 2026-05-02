@@ -13,10 +13,10 @@
 
   <!-- 新闻列表 -->
   <view class="news-list" wx:if="{{newsList.length > 0}}">
-    <view class="news-card" wx:for="{{newsList}}" wx:key="id" data-id="{{item.id}}" bindtap="onNewsTap">
+    <view class="news-card ios-card" wx:for="{{newsList}}" wx:key="id" data-id="{{item.id}}" bindtap="onNewsTap">
       <view class="news-card__content">
         <view class="news-card__header">
-          <text class="ios-tag ios-tag--blue">{{item.tag}}</text>
+          <text class="md-tag md-tag--primary">{{item.tag}}</text>
           <text class="news-card__date">{{item.date}}</text>
         </view>
         <text class="news-card__title">{{item.title}}</text>

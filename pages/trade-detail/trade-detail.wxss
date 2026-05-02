@@ -15,7 +15,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, var(--md-surface-variant) 0%, #FFFFFF 100%);
+  background: linear-gradient(135deg, var(--md-surface-variant) 0%, var(--md-surface) 100%);
 }
 
 .detail-placeholder-text {

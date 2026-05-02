@@ -24,6 +24,6 @@
 
   <!-- 发布按钮 -->
   <view class="voice-float-btn" bindtap="onPublishTap">
-    <text class="voice-float-icon">+</text>
+    <view class="voice-float-icon">+</view>
   </view>
 </view>

@@ -1,6 +1,6 @@
 import * as cloud from './cloud';
+import { markdownToHtml } from '../utils/util';
 import type {
-  Banner,
   QuickEntry,
   NewsItem,
   NewsDetail,
@@ -36,10 +36,6 @@ async function safeQuery<T extends { id?: number | string; _id?: string }>(
 }
 
 /** ========== 首页 ========== */
-
-export async function getBanners(): Promise<Banner[]> {
-  return safeQuery<Banner>('banners', { enabled: true }, { orderBy: [{ field: 'sort', desc: false }] });
-}
 
 export function getQuickEntries(): QuickEntry[] {
   return [];
@@ -96,7 +92,7 @@ export async function getNewsDetail(_id: number | string): Promise<NewsDetail | 
     const data = await cloud.query<NewsDetail>('news', { _id: String(_id) }, { limit: 1 });
     if (data.length === 0) return null;
     const item = data[0];
-    return { ...item, id: (item as any).id ?? item._id };
+    return { ...item, id: (item as any).id ?? item._id, content: markdownToHtml(item.content) };
   } catch (e) {
     console.error('[cloud] news detail query failed:', e);
     return null;
@@ -230,7 +226,7 @@ export async function getPaymentDetail(_id: number | string): Promise<PaymentDet
     const data = await cloud.query<PaymentDetail>('payments', { _id: String(_id) }, { limit: 1 });
     if (data.length === 0) return null;
     const item = data[0];
-    return { ...item, id: (item as any).id ?? item._id };
+    return { ...item, id: (item as any).id ?? item._id, content: markdownToHtml(item.content) };
   } catch (e) {
     console.error('[cloud] payment detail query failed:', e);
     return null;
@@ -295,10 +291,10 @@ export async function getShuttleRunNote(): Promise<string> {
 
 export function getProfileItems(): ProfileItem[] {
   return [
-    { id: 1, title: '关于我们', icon: 'ℹ️', path: '' },
-    { id: 2, title: '意见反馈', icon: '💬', path: '/pages/feedback/feedback' },
-    { id: 3, title: '联系物业', icon: '📞', path: '' },
-    { id: 4, title: '使用指南', icon: '📖', path: '/pages/guide/guide' },
+    { id: 1, title: '关于我们', icon: '/images/icons/profile/info.svg', path: '' },
+    { id: 2, title: '意见反馈', icon: '/images/icons/profile/feedback.svg', path: '/pages/feedback/feedback' },
+    { id: 3, title: '联系物业', icon: '/images/icons/profile/call.svg', path: '' },
+    { id: 4, title: '使用指南', icon: '/images/icons/profile/help.svg', path: '/pages/guide/guide' },
   ];
 }
 
@@ -337,7 +333,7 @@ export async function getGuideDetail(_id: number | string): Promise<GuideDetail 
     const data = await cloud.query<any>('guides', { _id: String(_id) }, { limit: 1 });
     if (data.length === 0) return null;
     const item = data[0];
-    return { ...item, id: item.id ?? item._id };
+    return { ...item, id: item.id ?? item._id, content: markdownToHtml(item.content) };
   } catch (e) {
     console.error('[cloud] guide detail query failed:', e);
     return null;

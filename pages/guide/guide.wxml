@@ -4,7 +4,7 @@
   <view class="guide-list" wx:if="{{guideList.length > 0}}">
     <view class="guide-card ios-card" wx:for="{{guideList}}" wx:key="id" data-id="{{item.id}}" bindtap="onGuideTap">
       <view class="guide-header">
-        <text class="ios-tag ios-tag--blue">{{item.tag}}</text>
+        <text class="md-tag md-tag--primary">{{item.tag}}</text>
         <text class="guide-date">{{item.date}}</text>
       </view>
       <text class="guide-title">{{item.title}}</text>

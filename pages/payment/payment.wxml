@@ -3,7 +3,7 @@
     <view class="payment-card ios-card" wx:for="{{paymentList}}" wx:key="id" data-id="{{item.id}}" bindtap="onPaymentTap">
       <view class="payment-header">
         <view class="payment-tag-group">
-          <text class="ios-tag ios-tag--{{item.tagType}}">{{item.tag}}</text>
+          <text class="md-tag md-tag--primary">{{item.tag}}</text>
           <text wx:if="{{item.hot}}" class="hot-badge">HOT</text>
         </view>
         <text class="payment-date">{{item.date}}</text>

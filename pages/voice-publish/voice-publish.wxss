@@ -6,7 +6,7 @@
 
 .form-group {
   padding: 24rpx 28rpx;
-  border-bottom: 1rpx solid var(--ios-separator);
+  border-bottom: 1rpx solid var(--md-outline-variant);
 }
 
 .form-group:last-child {
@@ -40,8 +40,8 @@
   color: var(--md-on-surface);
   line-height: 1.6;
   padding: 16rpx;
-  background: var(--ios-card);
-  border-radius: var(--radius-sm);
+  background: var(--md-surface-container-highest);
+  border-radius: 8rpx 8rpx 0 0;
   box-sizing: border-box;
 }
 
@@ -49,7 +49,7 @@
   display: block;
   text-align: right;
   font-size: 22rpx;
-  color: var(--ios-gray);
+  color: var(--md-on-surface-variant);
   margin-top: 8rpx;
 }
 
@@ -59,8 +59,8 @@
   font-size: 28rpx;
   color: var(--md-on-surface);
   padding: 0 16rpx;
-  background: var(--ios-card);
-  border-radius: var(--radius-sm);
+  background: var(--md-surface-container-highest);
+  border-radius: 8rpx 8rpx 0 0;
   box-sizing: border-box;
 }
 

@@ -55,7 +55,7 @@
 
 .nav-title {
   font-size: 34rpx;
-  font-weight: 600;
+  font-weight: 500;
   color: var(--md-on-surface);
   overflow: hidden;
   text-overflow: ellipsis;

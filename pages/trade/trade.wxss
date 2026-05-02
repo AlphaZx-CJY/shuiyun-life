@@ -26,7 +26,7 @@
 }
 
 .category-item--active {
-  background: var(--md-primary);
+  background: linear-gradient(rgba(76, 102, 43, 0.08), rgba(76, 102, 43, 0.08)), var(--md-primary-container);
 }
 
 .category-text {
@@ -36,7 +36,7 @@
 }
 
 .category-item--active .category-text {
-  color: #FFFFFF;
+  color: var(--md-on-primary-container);
 }
 
 /* 交易列表 */
@@ -122,7 +122,7 @@
 .float-btn {
   position: fixed;
   right: 32rpx;
-  bottom: 160rpx;
+  bottom: calc(160rpx + env(safe-area-inset-bottom));
   width: 96rpx;
   height: 96rpx;
   border-radius: 50%;
@@ -140,10 +140,15 @@
 
 .float-btn__icon {
   font-size: 48rpx;
-  color: #FFFFFF;
+  color: var(--md-on-primary);
   font-weight: 300;
   display: flex;
   align-items: center;
   justify-content: center;
   line-height: 1;
+}
+
+/* Custom tab-bar padding */
+.page-container {
+  padding-bottom: calc(120rpx + env(safe-area-inset-bottom));
 }

@@ -8,12 +8,6 @@ export type ShuttleStatus = 'passed' | 'soon' | 'upcoming';
 
 /** ========== 首页 ========== */
 
-export interface Banner {
-  id: number | string;
-  image: string;
-  title: string;
-}
-
 export interface QuickEntry {
   id: number;
   icon: string;

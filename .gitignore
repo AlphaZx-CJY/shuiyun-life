@@ -5,3 +5,4 @@ env.ts
 project.private.config.json
 services-seed.json
 news-notice-seed.json
+property-cert-seed.json

@@ -23,7 +23,7 @@
 }
 
 .route-note--secondary {
-  background: rgba(255, 255, 255, 0.06);
+  background: var(--md-surface-variant);
 }
 
 .route-note-text {
@@ -75,7 +75,7 @@
 
 .schedule-dot--soon {
   background: var(--md-tertiary);
-  box-shadow: 0 0 0 4rpx rgba(7, 193, 96, 0.2);
+  border: 4rpx solid var(--md-primary-container);
 }
 
 .schedule-dot--passed {
@@ -186,7 +186,7 @@
 
 .contact-action-text {
   font-size: 26rpx;
-  color: #FFFFFF;
+  color: var(--md-on-primary);
   font-weight: 500;
 }
 

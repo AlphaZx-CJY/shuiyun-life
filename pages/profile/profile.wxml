@@ -12,8 +12,8 @@
   <view class="ios-section">
     <view class="ios-card">
       <view class="ios-list-item" wx:for="{{aboutItems}}" wx:key="id" data-item="{{item}}" bindtap="onItemTap">
-        <view class="ios-list-item__icon" style="background: #F5F5F7;">
-          <text style="font-size: 32rpx;">{{item.icon}}</text>
+        <view class="ios-list-item__icon" style="background: var(--md-surface-variant);">
+          <image class="profile-item-icon" src="{{item.icon}}" mode="aspectFit" />
         </view>
         <view class="ios-list-item__content">
           <text class="ios-list-item__title">{{item.title}}</text>

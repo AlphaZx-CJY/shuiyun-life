@@ -1,132 +1,230 @@
 /* ================================
-   全局样式 - 微信设计美学 (WeUI)
+   全局样式 - Material Design 3 (Green Theme)
+   Seed: #63A002 | Primary: #4C662B
    ================================ */
 
-/* CSS Variables - WeUI Tokens */
+/* CSS Variables - MD3 Tokens (Light Scheme) */
 page {
-  --wx-primary: #07C160;
-  --wx-primary-hover: #06AD56;
-  --wx-primary-light: rgba(7, 193, 96, 0.08);
-  --wx-link: #576B95;
-  --wx-bg: #F7F7F7;
-  --wx-surface: #FFFFFF;
-  --wx-text: #000000;
-  --wx-text-secondary: #999999;
-  --wx-text-tertiary: #888888;
-  --wx-border: #E5E5E5;
-  --wx-border-light: #EDEDED;
-  --wx-error: #FA5151;
-  --wx-warn: #FFC300;
-  --wx-mask: rgba(0, 0, 0, 0.4);
-  --wx-arrow: #C5C5C5;
+  /* Primary */
+  --md-primary: #4C662B;
+  --md-on-primary: #FFFFFF;
+  --md-primary-container: #CDEDA3;
+  --md-on-primary-container: #354E16;
+  --md-inverse-primary: #B1D18A;
 
-  --radius-xs: 4rpx;
-  --radius-sm: 8rpx;
-  --radius-md: 12rpx;
-  --radius-lg: 16rpx;
-  --radius-pill: 9999rpx;
+  /* Secondary */
+  --md-secondary: #586249;
+  --md-on-secondary: #FFFFFF;
+  --md-secondary-container: #DCE7C8;
+  --md-on-secondary-container: #404A33;
 
-  --space-xs: 8rpx;
-  --space-sm: 16rpx;
-  --space-md: 24rpx;
-  --space-lg: 32rpx;
-  --space-xl: 48rpx;
+  /* Tertiary */
+  --md-tertiary: #386663;
+  --md-on-tertiary: #FFFFFF;
+  --md-tertiary-container: #BCECE7;
+  --md-on-tertiary-container: #1F4E4B;
 
-  --shadow-none: none;
-  --shadow-float: 0 2rpx 8rpx rgba(0, 0, 0, 0.06);
+  /* Error */
+  --md-error: #BA1A1A;
+  --md-on-error: #FFFFFF;
+  --md-error-container: #FFDAD6;
+  --md-on-error-container: #93000A;
 
+  /* Surface & Background */
+  --md-background: #F9FAEF;
+  --md-on-background: #1A1C16;
+  --md-surface: #F9FAEF;
+  --md-on-surface: #1A1C16;
+  --md-surface-variant: #E1E4D5;
+  --md-on-surface-variant: #44483D;
+
+  /* Surface Container (elevation levels) */
+  --md-surface-dim: #DADBD0;
+  --md-surface-bright: #F9FAEF;
+  --md-surface-container-lowest: #FFFFFF;
+  --md-surface-container-low: #F3F4E9;
+  --md-surface-container: #EEEFE3;
+  --md-surface-container-high: #E8E9DE;
+  --md-surface-container-highest: #E2E3D8;
+
+  /* Outline */
+  --md-outline: #75796C;
+  --md-outline-variant: #C5C8BA;
+
+  /* Inverse */
+  --md-inverse-surface: #2F312A;
+  --md-inverse-on-surface: #F1F2E6;
+
+  /* Shadow */
+  --md-shadow: #000000;
+  --md-scrim: #000000;
+
+  /* Fixed colors */
+  --md-primary-fixed: #CDEDA3;
+  --md-on-primary-fixed: #102000;
+  --md-primary-fixed-dim: #B1D18A;
+  --md-on-primary-fixed-variant: #354E16;
+  --md-secondary-fixed: #DCE7C8;
+  --md-on-secondary-fixed: #121F04;
+  --md-secondary-fixed-dim: #C0CFAB;
+  --md-on-secondary-fixed-variant: #404A33;
+  --md-tertiary-fixed: #BCECE7;
+  --md-on-tertiary-fixed: #00201E;
+  --md-tertiary-fixed-dim: #A0D0CB;
+  --md-on-tertiary-fixed-variant: #1F4E4B;
+
+  /* Legacy compatible aliases */
+  --wx-primary: var(--md-primary);
+  --wx-bg: var(--md-background);
+  --wx-surface: var(--md-surface);
+  --wx-text: var(--md-on-surface);
+  --wx-text-secondary: var(--md-on-surface-variant);
+  --wx-border: var(--md-outline-variant);
+  --wx-border-light: var(--md-surface-variant);
+  --wx-error: var(--md-error);
+
+  --ios-accent: var(--md-primary);
+  --ios-gray: var(--md-on-surface-variant);
+  --ios-light-gray: var(--md-outline-variant);
+  --ios-bg: var(--md-background);
+  --ios-card: var(--md-surface);
+  --ios-separator: var(--md-outline-variant);
+  --ios-grouped-bg: var(--md-background);
+  --ios-elevated: var(--md-surface);
+  --ios-muted: var(--md-surface-variant);
+
+  /* Shape - Corner Radius Scale */
+  --radius-none: 0rpx;
+  --radius-xs: 8rpx;
+  --radius-sm: 12rpx;
+  --radius-md: 16rpx;
+  --radius-lg: 24rpx;
+  --radius-xl: 32rpx;
+  --radius-pill: 40rpx;
+  --radius-full: 9999rpx;
+
+  /* Spacing - 8dp baseline grid */
+  --space-1: 8rpx;
+  --space-2: 16rpx;
+  --space-3: 24rpx;
+  --space-4: 32rpx;
+  --space-5: 40rpx;
+  --space-6: 48rpx;
+  --space-7: 56rpx;
+  --space-8: 64rpx;
+  --space-9: 72rpx;
+  --space-10: 80rpx;
+
+  /* Typography baseline */
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  background-color: var(--wx-bg);
-  color: var(--wx-text);
+  background-color: var(--md-background);
+  color: var(--md-on-surface);
   font-size: 28rpx;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
 }
 
-/* 兼容旧变量名映射到 WeUI */
-page {
-  --ios-accent: var(--wx-primary);
-  --ios-gray: var(--wx-text-secondary);
-  --ios-light-gray: var(--wx-border-light);
-  --ios-bg: var(--wx-bg);
-  --ios-card: var(--wx-surface);
-  --ios-separator: var(--wx-border);
-  --ios-grouped-bg: var(--wx-bg);
-  --ios-elevated: var(--wx-surface);
-  --ios-muted: var(--wx-border-light);
-  --md-primary: var(--wx-primary);
-  --md-on-primary: #FFFFFF;
-  --md-primary-container: var(--wx-primary-light);
-  --md-on-primary-container: var(--wx-primary);
-  --md-secondary: var(--wx-text-secondary);
-  --md-secondary-container: var(--wx-border-light);
-  --md-tertiary: var(--wx-link);
-  --md-surface: var(--wx-surface);
-  --md-surface-variant: var(--wx-surface);
-  --md-background: var(--wx-bg);
-  --md-on-surface: var(--wx-text);
-  --md-on-surface-variant: var(--wx-text-secondary);
-  --md-outline: var(--wx-border);
-  --md-outline-variant: var(--wx-border-light);
-  --md-error: var(--wx-error);
-  --md-error-container: rgba(250, 81, 81, 0.08);
-  --md-on-error-container: var(--wx-error);
-}
-
-/* 重置 */
+/* Reset */
 view, text, image, navigator, scroll-view, swiper, swiper-item {
   box-sizing: border-box;
 }
 
-/* 页面容器 */
+/* Page container */
 .page-container {
   min-height: 100vh;
-  background-color: var(--wx-bg);
+  background-color: var(--md-background);
   padding-bottom: constant(safe-area-inset-bottom);
   padding-bottom: env(safe-area-inset-bottom);
 }
 
 /* ================================
-   WeUI 组件
+   MD3 Elevation (Surface Container levels)
    ================================ */
 
-/* 分区 */
+.md-elevation-0 {
+  background-color: var(--md-surface);
+}
+
+.md-elevation-1 {
+  background-color: var(--md-surface-container-low);
+}
+
+.md-elevation-2 {
+  background-color: var(--md-surface-container);
+}
+
+.md-elevation-3 {
+  background-color: var(--md-surface-container-high);
+}
+
+.md-elevation-4 {
+  background-color: var(--md-surface-container-highest);
+}
+
+.md-elevation-5 {
+  background-color: var(--md-surface-container-highest);
+}
+
+/* ================================
+   MD3 Sections
+   ================================ */
+
 .ios-section, .md-section, .wx-section {
-  margin: var(--space-md) var(--space-md);
+  margin: var(--space-4) var(--space-4);
 }
 
 .ios-section-title, .md-section-title, .wx-section-title {
   font-size: 24rpx;
   font-weight: 500;
-  color: var(--wx-text-secondary);
-  margin-bottom: var(--space-sm);
-  padding-left: var(--space-sm);
+  color: var(--md-on-surface-variant);
+  margin-bottom: var(--space-2);
+  padding-left: var(--space-2);
+  line-height: 1.33;
 }
 
-/* 卡片 - WeUI 风格：白色、无阴影、细线或圆角 */
+/* ================================
+   MD3 Cards
+   ================================ */
+
+/* Elevated Card: surface + primary 5% overlay (MD3 elevation) */
 .ios-card, .md-card, .wx-card {
-  background: var(--wx-surface);
-  border-radius: var(--radius-md);
+  background: linear-gradient(rgba(76, 102, 43, 0.05), rgba(76, 102, 43, 0.05)), var(--md-surface);
+  border-radius: var(--radius-sm);
   overflow: hidden;
 }
 
+/* Filled Card: surface-variant background */
+.md-card--filled, .wx-card--filled {
+  background: var(--md-surface-variant);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+
+/* Outlined Card: surface + outline border */
 .wx-card--outlined {
-  border: 1rpx solid var(--wx-border);
+  background: var(--md-surface);
+  border: 1rpx solid var(--md-outline-variant);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
 }
 
 .ios-card + .ios-card,
 .md-card + .md-card,
 .wx-card + .wx-card {
-  margin-top: var(--space-sm);
+  margin-top: var(--space-2);
 }
 
-/* 列表项 - WeUI 风格：白色背景、底部细线 */
+/* ================================
+   MD3 List Items
+   ================================ */
+
 .ios-list-item, .md-list-item, .wx-list-item {
   display: flex;
   align-items: center;
-  padding: var(--space-md) var(--space-lg);
-  background: var(--wx-surface);
+  padding: var(--space-3) var(--space-4);
+  background: transparent;
   position: relative;
+  min-height: 96rpx;
 }
 
 .ios-list-item::after,
@@ -134,11 +232,11 @@ view, text, image, navigator, scroll-view, swiper, swiper-item {
 .wx-list-item::after {
   content: '';
   position: absolute;
-  left: var(--space-lg);
+  left: var(--space-4);
   right: 0;
   bottom: 0;
   height: 1rpx;
-  background: var(--wx-border);
+  background: var(--md-outline-variant);
 }
 
 .ios-list-item:last-child::after,
@@ -148,15 +246,16 @@ view, text, image, navigator, scroll-view, swiper, swiper-item {
 }
 
 .ios-list-item__icon, .md-list-item__icon, .wx-list-item__icon {
-  width: 64rpx;
-  height: 64rpx;
-  border-radius: var(--radius-sm);
+  width: 48rpx;
+  height: 48rpx;
+  border-radius: var(--radius-xs);
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-right: var(--space-md);
+  margin-right: var(--space-3);
   font-size: 32rpx;
-  background: var(--wx-primary-light);
+  background: var(--md-primary-container);
+  color: var(--md-on-primary-container);
 }
 
 .ios-list-item__content, .md-list-item__content, .wx-list-item__content {
@@ -166,137 +265,339 @@ view, text, image, navigator, scroll-view, swiper, swiper-item {
 
 .ios-list-item__title, .md-list-item__title, .wx-list-item__title {
   font-size: 30rpx;
-  font-weight: 500;
-  color: var(--wx-text);
+  font-weight: 400;
+  color: var(--md-on-surface);
+  line-height: 1.33;
 }
 
 .ios-list-item__subtitle, .md-list-item__subtitle, .wx-list-item__subtitle {
   font-size: 24rpx;
-  color: var(--wx-text-secondary);
+  color: var(--md-on-surface-variant);
   margin-top: 4rpx;
+  line-height: 1.33;
 }
 
 .ios-list-item__arrow, .md-list-item__arrow, .wx-list-item__arrow {
   width: 16rpx;
   height: 16rpx;
-  border-top: 3rpx solid var(--wx-arrow);
-  border-right: 3rpx solid var(--wx-arrow);
+  border-top: 3rpx solid var(--md-outline);
+  border-right: 3rpx solid var(--md-outline);
   transform: rotate(45deg);
-  margin-left: var(--space-sm);
+  margin-left: var(--space-2);
 }
 
-/* 按钮 - WeUI 风格 */
+/* ================================
+   MD3 Buttons (Common Buttons)
+   ================================ */
+
 .ios-btn, .md-btn, .wx-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 16rpx 40rpx;
-  border-radius: var(--radius-sm);
+  height: 80rpx;
+  padding: 0 48rpx;
+  border-radius: var(--radius-pill);
   font-size: 28rpx;
   font-weight: 500;
-  transition: opacity 0.15s ease;
+  letter-spacing: 0.5rpx;
 }
 
+/* Filled Button */
 .md-btn--filled, .ios-btn--primary, .wx-btn--primary {
-  background: var(--wx-primary);
-  color: #FFFFFF;
+  background: var(--md-primary);
+  color: var(--md-on-primary);
 }
 
 .md-btn--filled:active, .ios-btn--primary:active, .wx-btn--primary:active {
-  background: var(--wx-primary-hover);
+  background: linear-gradient(rgba(255,255,255,0.12), rgba(255,255,255,0.12)), var(--md-primary);
 }
 
+/* Elevated Button */
+.md-btn--elevated {
+  background: linear-gradient(rgba(76, 102, 43, 0.05), rgba(76, 102, 43, 0.05)), var(--md-surface-container-low);
+  color: var(--md-primary);
+}
+
+.md-btn--elevated:active {
+  background: linear-gradient(rgba(76, 102, 43, 0.08), rgba(76, 102, 43, 0.08)), var(--md-surface-container-low);
+}
+
+/* Tonal Button */
+.md-btn--tonal, .ios-btn--secondary, .wx-btn--secondary {
+  background: var(--md-secondary-container);
+  color: var(--md-on-secondary-container);
+}
+
+.md-btn--tonal:active, .ios-btn--secondary:active, .wx-btn--secondary:active {
+  background: linear-gradient(rgba(64, 74, 51, 0.08), rgba(64, 74, 51, 0.08)), var(--md-secondary-container);
+}
+
+/* Outlined Button */
 .md-btn--outlined, .wx-btn--default {
-  background: var(--wx-surface);
-  color: var(--wx-text);
-  border: 1rpx solid var(--wx-border);
+  background: transparent;
+  color: var(--md-primary);
+  border: 2rpx solid var(--md-outline);
 }
 
+.md-btn--outlined:active, .wx-btn--default:active {
+  background: linear-gradient(rgba(76, 102, 43, 0.05), rgba(76, 102, 43, 0.05)), transparent;
+}
+
+/* Text Button */
 .md-btn--text, .wx-btn--text {
   background: transparent;
-  color: var(--wx-link);
-  padding: 12rpx 24rpx;
+  color: var(--md-primary);
+  padding: 0 24rpx;
+  height: 64rpx;
 }
 
-.ios-btn--secondary, .md-btn--secondary, .wx-btn--secondary {
-  background: var(--wx-border-light);
-  color: var(--wx-text);
+.md-btn--text:active, .wx-btn--text:active {
+  background: linear-gradient(rgba(76, 102, 43, 0.05), rgba(76, 102, 43, 0.05)), transparent;
 }
 
+/* Small Button */
 .md-btn--small, .ios-btn--small, .wx-btn--small {
-  padding: 10rpx 28rpx;
+  height: 64rpx;
+  padding: 0 32rpx;
   font-size: 24rpx;
 }
 
+/* Disabled */
 .md-btn--disabled, .ios-btn--disabled, .wx-btn--disabled {
-  opacity: 0.4;
+  opacity: 0.38;
   pointer-events: none;
 }
 
-/* 标签 - WeUI 风格：小圆角 tonal */
+/* ================================
+   MD3 FAB (Floating Action Button)
+   ================================ */
+
+.md-fab {
+  width: 112rpx;
+  height: 112rpx;
+  border-radius: 50%;
+  background: linear-gradient(rgba(76, 102, 43, 0.12), rgba(76, 102, 43, 0.12)), var(--md-primary-container);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--md-on-primary-container);
+}
+
+.md-fab--small {
+  width: 80rpx;
+  height: 80rpx;
+}
+
+.md-fab--large {
+  width: 144rpx;
+  height: 144rpx;
+}
+
+/* ================================
+   MD3 Chips / Tags
+   ================================ */
+
 .ios-tag, .md-tag, .wx-tag {
   display: inline-flex;
   align-items: center;
-  padding: 4rpx 12rpx;
+  padding: 6rpx 16rpx;
   border-radius: var(--radius-xs);
   font-size: 22rpx;
   font-weight: 500;
+  height: 48rpx;
 }
 
 .md-tag--primary, .ios-tag--blue, .wx-tag--primary {
-  background: var(--wx-primary-light);
-  color: var(--wx-primary);
+  background: var(--md-primary-container);
+  color: var(--md-on-primary-container);
 }
 
 .md-tag--secondary, .ios-tag--green, .wx-tag--secondary {
-  background: var(--wx-border-light);
-  color: var(--wx-text-secondary);
+  background: var(--md-secondary-container);
+  color: var(--md-on-secondary-container);
 }
 
 .md-tag--tertiary, .ios-tag--orange, .wx-tag--tertiary {
-  background: var(--wx-border-light);
-  color: var(--wx-text-tertiary);
+  background: var(--md-tertiary-container);
+  color: var(--md-on-tertiary-container);
 }
 
 .md-tag--error, .wx-tag--error {
-  background: rgba(250, 81, 81, 0.08);
-  color: var(--wx-error);
+  background: var(--md-error-container);
+  color: var(--md-on-error-container);
 }
 
 .md-tag--surface, .ios-tag--gray, .wx-tag--surface {
-  background: var(--wx-border-light);
-  color: var(--wx-text-secondary);
+  background: var(--md-surface-variant);
+  color: var(--md-on-surface-variant);
 }
 
-/* 文本工具类 */
-.text-primary, .text-on-surface { color: var(--wx-text); }
-.text-secondary, .text-on-surface-variant { color: var(--wx-text-secondary); }
-.text-tertiary { color: var(--wx-text-tertiary); }
-.text-blue, .text-primary { color: var(--wx-primary); }
-.text-link { color: var(--wx-link); }
-.text-error { color: var(--wx-error); }
+/* ================================
+   MD3 Text Fields (Filled)
+   ================================ */
 
-.text-xs { font-size: 22rpx; }
-.text-sm { font-size: 24rpx; }
-.text-base { font-size: 28rpx; }
-.text-lg { font-size: 32rpx; }
-.text-xl { font-size: 36rpx; }
-.text-2xl { font-size: 48rpx; }
+.md-text-field {
+  background: var(--md-surface-container-highest);
+  border-radius: var(--radius-xs) var(--radius-xs) 0 0;
+  padding: var(--space-2) var(--space-3);
+  position: relative;
+  min-height: 96rpx;
+}
 
+.md-text-field::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1rpx;
+  background: var(--md-on-surface-variant);
+}
+
+.md-text-field--focused::after {
+  height: 2rpx;
+  background: var(--md-primary);
+}
+
+.md-text-field__label {
+  font-size: 24rpx;
+  color: var(--md-on-surface-variant);
+  line-height: 1.33;
+  margin-bottom: var(--space-1);
+}
+
+.md-text-field__input {
+  font-size: 30rpx;
+  color: var(--md-on-surface);
+  line-height: 1.5;
+}
+
+.md-text-field__input::placeholder {
+  color: var(--md-on-surface-variant);
+}
+
+/* ================================
+   MD3 App Bar (Top)
+   ================================ */
+
+.md-app-bar {
+  background: var(--md-surface);
+  height: 128rpx;
+  display: flex;
+  align-items: center;
+  padding: 0 var(--space-3);
+}
+
+.md-app-bar__title {
+  font-size: 34rpx;
+  font-weight: 500;
+  color: var(--md-on-surface);
+  line-height: 1.29;
+}
+
+.md-app-bar--center .md-app-bar__title {
+  text-align: center;
+  flex: 1;
+}
+
+/* ================================
+   MD3 Navigation Bar (Bottom)
+   ================================ */
+
+.md-nav-bar {
+  background: var(--md-surface-container);
+  height: 140rpx;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-around;
+  padding-top: var(--space-2);
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+.md-nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-width: 128rpx;
+  padding-top: var(--space-1);
+}
+
+.md-nav-indicator {
+  width: 128rpx;
+  height: 64rpx;
+  border-radius: var(--radius-pill);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s ease;
+}
+
+.md-nav-item--active .md-nav-indicator {
+  background: var(--md-secondary-container);
+}
+
+.md-nav-icon {
+  width: 48rpx;
+  height: 48rpx;
+}
+
+.md-nav-label {
+  font-size: 22rpx;
+  font-weight: 500;
+  margin-top: var(--space-1);
+  line-height: 1.27;
+}
+
+.md-nav-item--active .md-nav-label {
+  color: var(--md-on-secondary-container);
+}
+
+.md-nav-item:not(.md-nav-item--active) .md-nav-label {
+  color: var(--md-on-surface-variant);
+}
+
+/* ================================
+   Text Utilities
+   ================================ */
+
+.text-primary, .text-on-surface { color: var(--md-on-surface); }
+.text-secondary, .text-on-surface-variant { color: var(--md-on-surface-variant); }
+.text-tertiary { color: var(--md-on-surface-variant); }
+.text-primary-color { color: var(--md-primary); }
+.text-link { color: var(--md-primary); }
+.text-error { color: var(--md-error); }
+.text-on-primary { color: var(--md-on-primary); }
+.text-on-secondary-container { color: var(--md-on-secondary-container); }
+
+.text-xs { font-size: 22rpx; line-height: 1.27; }
+.text-sm { font-size: 24rpx; line-height: 1.33; }
+.text-base { font-size: 28rpx; line-height: 1.5; }
+.text-lg { font-size: 32rpx; line-height: 1.25; }
+.text-xl { font-size: 36rpx; line-height: 1.22; }
+.text-2xl { font-size: 48rpx; line-height: 1.17; }
+
+.font-normal { font-weight: 400; }
 .font-medium { font-weight: 500; }
 .font-semibold { font-weight: 600; }
 .font-bold { font-weight: 700; }
 
-/* 图片圆角 */
+/* ================================
+   Image Utilities
+   ================================ */
+
 .img-rounded {
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-xs);
 }
 
 .img-rounded-lg {
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-sm);
 }
 
-/* 淡入动画 */
+/* ================================
+   Animation
+   ================================ */
+
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -312,28 +613,176 @@ view, text, image, navigator, scroll-view, swiper, swiper-item {
   animation: fadeInUp 0.4s ease-out forwards;
 }
 
-/* 安全区适配 */
+/* ================================
+   Safe Area
+   ================================ */
+
 .safe-bottom {
   padding-bottom: constant(safe-area-inset-bottom);
   padding-bottom: env(safe-area-inset-bottom);
 }
 
-/* 空状态 */
+/* ================================
+   Native Component Reset
+   ================================ */
+
+button {
+  margin: 0;
+  padding: 0;
+  background: none;
+  border: none;
+  border-radius: 0;
+  font-size: inherit;
+  line-height: inherit;
+  color: inherit;
+}
+
+button::after {
+  border: none;
+}
+
+image {
+  display: block;
+}
+
+input, textarea {
+  background: transparent;
+  color: var(--md-on-surface);
+  font-size: 28rpx;
+  line-height: 1.5;
+  caret-color: var(--md-primary);
+}
+
+input::placeholder, textarea::placeholder {
+  color: var(--md-on-surface-variant);
+}
+
+picker {
+  background: transparent;
+  color: var(--md-on-surface);
+}
+
+/* ================================
+   Empty State
+   ================================ */
+
 .empty-state {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: var(--space-xl) var(--space-lg);
+  padding: var(--space-8) var(--space-4);
 }
 
 .empty-state__icon {
   font-size: 96rpx;
-  margin-bottom: var(--space-md);
+  margin-bottom: var(--space-3);
   opacity: 0.3;
 }
 
 .empty-state__text {
   font-size: 28rpx;
-  color: var(--wx-text-secondary);
+  color: var(--md-on-surface-variant);
+  line-height: 1.5;
+}
+
+/* ================================
+   Article / Rich-text Typography
+   ================================ */
+
+.detail-content rich-text {
+  font-size: 32rpx;
+  line-height: 1.75;
+  color: var(--md-on-surface);
+}
+
+/* Table styling within rich-text */
+.detail-content rich-text table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 28rpx;
+  margin: 24rpx 0;
+}
+
+.detail-content rich-text th,
+.detail-content rich-text td {
+  padding: 16rpx;
+  border: 1rpx solid var(--md-outline-variant);
+  text-align: left;
+}
+
+.detail-content rich-text th {
+  background: var(--md-surface-variant);
+  font-weight: 600;
+  color: var(--md-on-surface);
+}
+
+.detail-content rich-text td {
+  background: var(--md-surface);
+  color: var(--md-on-surface-variant);
+}
+
+/* List styling within rich-text */
+.detail-content rich-text ul,
+.detail-content rich-text ol {
+  padding-left: 48rpx;
+  margin: 16rpx 0;
+}
+
+.detail-content rich-text li {
+  margin-bottom: 8rpx;
+}
+
+/* Heading styling within rich-text */
+.detail-content rich-text h1,
+.detail-content rich-text h2,
+.detail-content rich-text h3,
+.detail-content rich-text h4 {
+  font-weight: 600;
+  color: var(--md-on-surface);
+  margin-top: 32rpx;
+  margin-bottom: 16rpx;
+}
+
+.detail-content rich-text h1 {
+  font-size: 40rpx;
+}
+
+.detail-content rich-text h2 {
+  font-size: 36rpx;
+}
+
+.detail-content rich-text h3 {
+  font-size: 32rpx;
+}
+
+.detail-content rich-text h4 {
+  font-size: 30rpx;
+}
+
+/* Paragraph and emphasis */
+.detail-content rich-text p {
+  margin-bottom: 16rpx;
+}
+
+.detail-content rich-text b,
+.detail-content rich-text strong {
+  font-weight: 600;
+  color: var(--md-on-surface);
+}
+
+/* Blockquote styling */
+.detail-content rich-text blockquote {
+  margin: 24rpx 0;
+  padding: 16rpx 24rpx;
+  border-left: 4rpx solid var(--md-primary);
+  background: var(--md-primary-container);
+  border-radius: 0 var(--radius-xs) var(--radius-xs) 0;
+}
+
+/* Image styling */
+.detail-content rich-text img {
+  max-width: 100%;
+  border-radius: var(--radius-sm);
+  margin: 16rpx 0;
 }

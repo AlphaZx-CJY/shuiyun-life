@@ -1,5 +1,10 @@
 /* 我的页面样式 */
 
+.profile-item-icon {
+  width: 32rpx;
+  height: 32rpx;
+}
+
 .profile-header {
   display: flex;
   flex-direction: column;
@@ -48,4 +53,9 @@
 .version-info text {
   font-size: 22rpx;
   color: var(--ios-light-gray);
+}
+
+/* Custom tab-bar padding */
+.page-container {
+  padding-bottom: calc(120rpx + env(safe-area-inset-bottom));
 }

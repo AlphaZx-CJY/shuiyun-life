@@ -35,7 +35,7 @@
 }
 
 .schedule-badge--upcoming {
-  background: rgba(0,0,0,0.05);
+  background: var(--md-surface-variant);
   color: var(--md-primary);
 }
 
@@ -80,7 +80,7 @@
 }
 
 .schedule-status--upcoming {
-  background: rgba(0,0,0,0.04);
+  background: var(--md-surface-variant);
   color: var(--md-primary);
 }
 

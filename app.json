@@ -20,52 +20,42 @@
   ],
   "window": {
     "backgroundTextStyle": "dark",
-    "navigationBarBackgroundColor": "#F7F7F7",
-    "navigationBarTitleText": "水韵生活",
+    "navigationBarBackgroundColor": "#F9FAEF",
+    "navigationBarTitleText": "水韵好生活",
     "navigationBarTextStyle": "black",
-    "backgroundColor": "#F7F7F7",
+    "backgroundColor": "#F9FAEF",
     "navigationStyle": "default"
   },
   "tabBar": {
-    "color": "#999999",
-    "selectedColor": "#07C160",
-    "backgroundColor": "#F7F7F7",
-    "borderStyle": "black",
+    "custom": true,
+    "color": "#44483D",
+    "selectedColor": "#4C662B",
+    "backgroundColor": "#EEEFE3",
+    "borderStyle": "white",
     "list": [
       {
         "pagePath": "pages/index/index",
-        "text": "首页",
-        "iconPath": "images/icons/home.png",
-        "selectedIconPath": "images/icons/home-active.png"
+        "text": "首页"
       },
       {
         "pagePath": "pages/news/news",
-        "text": "资讯",
-        "iconPath": "images/icons/news.png",
-        "selectedIconPath": "images/icons/news-active.png"
+        "text": "资讯"
       },
       {
         "pagePath": "pages/trade/trade",
-        "text": "交易",
-        "iconPath": "images/icons/trade.png",
-        "selectedIconPath": "images/icons/trade-active.png"
+        "text": "交易"
       },
       {
         "pagePath": "pages/schedule/schedule",
-        "text": "便民",
-        "iconPath": "images/icons/schedule.png",
-        "selectedIconPath": "images/icons/schedule-active.png"
+        "text": "便民"
       },
       {
         "pagePath": "pages/profile/profile",
-        "text": "我的",
-        "iconPath": "images/icons/profile.png",
-        "selectedIconPath": "images/icons/profile-active.png"
+        "text": "我的"
       }
     ]
   },
   "cloud": true,
-  "style": "v2",
   "sitemapLocation": "sitemap.json",
   "lazyCodeLoading": "requiredComponents"
 }

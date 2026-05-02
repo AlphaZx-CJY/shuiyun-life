@@ -8,7 +8,7 @@ interface IFeedbackData {
   submitting: boolean;
 }
 
-const FEEDBACK_TYPES = ['建议', '投诉', '报修', '其他'];
+const FEEDBACK_TYPES = ['建议', '投诉', '报修', '邻里求助', '其他'];
 
 Page<IFeedbackData, WechatMiniprogram.IAnyObject>({
   data: {
