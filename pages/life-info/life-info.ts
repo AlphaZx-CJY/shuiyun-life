@@ -16,7 +16,7 @@ Page<ILifeInfoData, WechatMiniprogram.IAnyObject>({
 
   onLoad() {
     this.setData({ categories: api.getServiceCategories() });
-    this.loadServiceData('supermarket');
+    this.loadServiceData('1');
   },
 
   onShareAppMessage(): WechatMiniprogram.Page.ICustomShareContent {
