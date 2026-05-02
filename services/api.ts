@@ -197,7 +197,7 @@ export function getServiceCategories(): Category[] {
     { id: '1', name: '超市', icon: '🏪', color: '#576B95' },
     { id: '2', name: '菜场', icon: '🥬', color: '#07C160' },
     { id: '3', name: '美食', icon: '🍜', color: '#FA9D3B' },
-    { id: '4', name: '酒店', icon: '🏨', color: '#576B95' },
+    { id: '4', name: '银行', icon: '🏦', color: '#576B95' },
     { id: '5', name: '交通', icon: '🚇', color: '#576B95' },
     { id: '6', name: '学校', icon: '🏫', color: '#FA5151' },
     { id: '7', name: '休闲', icon: '☕', color: '#999999' },
