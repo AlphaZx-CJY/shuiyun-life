@@ -23,12 +23,14 @@
 }
 
 .tab-bar-indicator {
+  position: relative;
   width: 128rpx;
   height: 56rpx;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 40rpx;
+  transition: background-color 0.15s ease;
 }
 
 .tab-bar-item.active .tab-bar-indicator {
@@ -36,8 +38,26 @@
 }
 
 .tab-bar-icon {
+  position: absolute;
   width: 48rpx;
   height: 48rpx;
+  transition: opacity 0.15s ease;
+}
+
+.tab-bar-icon--off {
+  opacity: 1;
+}
+
+.tab-bar-icon--on {
+  opacity: 0;
+}
+
+.tab-bar-item.active .tab-bar-icon--off {
+  opacity: 0;
+}
+
+.tab-bar-item.active .tab-bar-icon--on {
+  opacity: 1;
 }
 
 .tab-bar-text {
