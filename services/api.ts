@@ -293,7 +293,7 @@ export async function getShuttleRunNote(): Promise<string> {
 export function getProfileItems(): ProfileItem[] {
   return [
     { id: 1, title: '关于我们', icon: '/images/icons/profile/info.svg', path: '' },
-    { id: 2, title: '意见反馈', icon: '/images/icons/profile/feedback.svg', path: '/pages/feedback/feedback' },
+    { id: 2, title: '小程序反馈', icon: '/images/icons/profile/feedback.svg', path: '/pages/feedback/feedback' },
     { id: 3, title: '联系物业', icon: '/images/icons/profile/call.svg', path: '' },
     { id: 4, title: '使用指南', icon: '/images/icons/profile/help.svg', path: '/pages/guide/guide' },
   ];

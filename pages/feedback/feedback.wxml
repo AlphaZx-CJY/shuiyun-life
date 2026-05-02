@@ -1,4 +1,4 @@
-<nav-bar title="意见反馈" showBack="{{true}}" />
+<nav-bar title="小程序反馈" showBack="{{true}}" />
 
 <view class="page-container">
   <!-- 反馈表单 -->
@@ -15,7 +15,7 @@
 
     <view class="form-group">
       <text class="form-label">反馈内容</text>
-      <textarea class="form-textarea" placeholder="请详细描述您的问题或建议..." maxlength="500" bindinput="onContentInput" value="{{content}}"></textarea>
+      <textarea class="form-textarea" placeholder="请描述您在使用小程序时遇到的问题或建议..." maxlength="500" bindinput="onContentInput" value="{{content}}"></textarea>
       <text class="form-counter">{{content.length}}/500</text>
     </view>
 

@@ -6,7 +6,7 @@
 
 ## 项目概览
 
-`shuiyun-life` 是为「新长宁水韵名邸」小区打造的**微信小程序生活号**，面向小区居民提供周边生活信息、闲置交易、新闻资讯、缴费知识、便民安排、班车信息、意见反馈和使用指南等功能。
+`shuiyun-life` 是为「新长宁水韵名邸」小区打造的**微信小程序生活号**，面向小区居民提供周边生活信息、闲置交易、新闻资讯、缴费知识、便民安排、班车信息、小程序反馈和使用指南等功能。
 
 - **版本**：v2.0.0
 - **仓库**：https://github.com/AlphaZx-CJY/shuiyun-life
@@ -223,8 +223,8 @@ shuiyun-life/
 | 缴费知识 | `pages/payment/payment` | `payments` 集合 | 物业费、水费、电费、燃气费指南 |
 | 便民安排 | `pages/schedule/schedule` | `schedules` 集合 | 社区活动日历 |
 | 班车信息 | `pages/shuttle/shuttle` | `shuttle_config` + `shuttle_times` | 时刻表、站点、动态状态计算 |
-| 个人中心 | `pages/profile/profile` | `contacts` + `guides` + 硬编码 | 关于、联系物业、意见反馈、使用指南 |
-| 意见反馈 | `pages/feedback/feedback` | 写入 `feedback` 集合 | 表单提交，picker + textarea |
+| 个人中心 | `pages/profile/profile` | `contacts` + `guides` + 硬编码 | 关于、联系物业、小程序反馈、使用指南 |
+| 小程序反馈 | `pages/feedback/feedback` | 写入 `feedback` 集合 | 针对小程序的建议与问题，picker + textarea |
 | 使用指南 | `pages/guide/guide` | `guides` 集合 | CMS 驱动的运营手册，rich-text 渲染 HTML |
 
 ---
