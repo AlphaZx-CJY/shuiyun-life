@@ -2,18 +2,21 @@
 
 <view class="page-container">
   <!-- 分类标签 -->
-  <scroll-view class="category-scroll" scroll-x enhanced show-scrollbar="{{false}}">
-    <view class="category-bar">
-      <md-chip wx:for="{{categories}}" wx:key="id"
-        variant="filled"
-        active="{{activeCategory === item.id}}"
-        data-id="{{item.id}}"
-        bindtap="onCategoryTap"
-        class="category-chip">
-        {{item.name}}
-      </md-chip>
-    </view>
-  </scroll-view>
+  <view class="category-pill-bar">
+    <scroll-view class="category-scroll" scroll-x enhanced show-scrollbar="{{false}}">
+      <view class="category-pill-list">
+        <view
+          class="category-pill-item {{activeCategory === item.id ? 'category-pill-item--active' : ''}}"
+          wx:for="{{categories}}"
+          wx:key="id"
+          data-id="{{item.id}}"
+          bindtap="onCategoryTap"
+        >
+          {{item.name}}
+        </view>
+      </view>
+    </scroll-view>
+  </view>
 
   <!-- 服务列表 -->
   <view class="service-list" wx:if="{{serviceList.length > 0}}">

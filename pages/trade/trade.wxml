@@ -1,18 +1,17 @@
 <view class="page-container page-container--with-tabbar">
   <!-- 分类筛选 -->
-  <view class="category-bar">
+  <view class="category-pill-bar">
     <scroll-view class="category-scroll" scroll-x enhanced show-scrollbar="{{false}}">
-      <view class="category-list">
-        <md-chip
+      <view class="category-pill-list">
+        <view
+          class="category-pill-item {{activeCategory === item.id ? 'category-pill-item--active' : ''}}"
           wx:for="{{categories}}"
           wx:key="id"
           data-id="{{item.id}}"
-          variant="filled"
-          active="{{activeCategory === item.id}}"
-          bind:tap="onCategoryTap"
+          bindtap="onCategoryTap"
         >
           {{item.name}}
-        </md-chip>
+        </view>
       </view>
     </scroll-view>
   </view>

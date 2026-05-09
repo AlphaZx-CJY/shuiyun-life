@@ -7,11 +7,11 @@
 }
 
 .header-title {
-  font-size: 48rpx;
+  font-size: 56rpx;
   font-weight: 700;
   color: var(--md-on-surface);
   letter-spacing: -0.8rpx;
-  line-height: 1.2;
+  line-height: 1.15;
 }
 
 .header-subtitle {
@@ -138,45 +138,40 @@
 }
 
 /* 快捷入口 */
-.quick-card-wrap {
-  margin: 48rpx 32rpx;
-}
-
 .quick-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 8rpx;
-  padding: 24rpx 16rpx;
+  gap: 24rpx;
+  margin: 48rpx 32rpx;
 }
 
 .quick-item {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 24rpx 0;
+}
+
+.quick-icon-btn {
+  width: 120rpx;
+  height: 120rpx;
   border-radius: 16rpx;
-  transition: background-color 100ms ease-out;
-}
-
-.quick-item:active {
-  background-color: var(--md-surface-container-high);
-}
-
-.quick-icon-wrap {
-  width: 68rpx;
-  height: 68rpx;
-  border-radius: 50%;
-  background: var(--md-primary-container);
+  background: var(--md-surface-container-high);
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 14rpx;
+  transition: background-color 100ms ease-out, transform 100ms ease-out;
+}
+
+.quick-icon-btn:active {
+  background-color: var(--md-surface-container-highest);
+  transform: scale(0.96);
 }
 
 .quick-label {
   font-size: 24rpx;
   color: var(--md-on-surface);
   font-weight: 500;
+  margin-top: 12rpx;
 }
 
 /* 分区 */

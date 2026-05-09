@@ -69,7 +69,7 @@
 }
 
 .feedback-actions {
-  margin: var(--space-6) var(--space-4);
+  margin: var(--space-6) var(--space-4) 48rpx;
 }
 
 .btn-pill {

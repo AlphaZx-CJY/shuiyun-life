@@ -1,20 +1,38 @@
 /* 闲置交易页样式 */
 
-.category-bar {
-  background: var(--md-surface);
-  padding: 24rpx 32rpx;
+.category-pill-bar {
+  padding: 16rpx 32rpx;
   position: sticky;
   top: 0;
   z-index: 10;
+  background: var(--md-background);
 }
 
 .category-scroll {
   white-space: nowrap;
 }
 
-.category-list {
+.category-pill-list {
   display: inline-flex;
-  gap: 16rpx;
+  gap: 8rpx;
+  padding: 8rpx;
+  background: var(--md-surface-container);
+  border-radius: 9999rpx;
+}
+
+.category-pill-item {
+  padding: 12rpx 28rpx;
+  border-radius: 9999rpx;
+  font-size: 26rpx;
+  font-weight: 500;
+  color: var(--md-on-surface-variant);
+  white-space: nowrap;
+  transition: background-color 100ms ease-out, color 100ms ease-out;
+}
+
+.category-pill-item--active {
+  background: var(--md-primary);
+  color: #FFFFFF;
 }
 
 .trade-list {

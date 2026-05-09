@@ -1,6 +1,6 @@
 <md-app-bar title="商品详情" showBack="{{true}}" />
 
-<view class="page-container page-container--with-action" wx:if="{{trade}}">
+<view class="page-container" wx:if="{{trade}}">
   <!-- 图片区域 -->
   <view class="detail-gallery">
     <image
@@ -37,6 +37,13 @@
     <text class="detail-section-title">商品描述</text>
     <text class="detail-desc-text">{{trade.description}}</text>
   </view>
+
+  <!-- 联系按钮 -->
+  <view class="detail-action-bar">
+    <view class="detail-call-btn" bindtap="onCallTap">
+      <text>联系卖家</text>
+    </view>
+  </view>
 </view>
 
 <view class="page-container empty-fallback" wx:else>
@@ -44,11 +51,4 @@
     icon="/images/icons/material/storefront-on.svg"
     headline="商品信息加载失败"
   />
-</view>
-
-<!-- 联系按钮 -->
-<view class="detail-action-bar">
-  <view class="detail-call-btn" bindtap="onCallTap">
-    <text>联系卖家</text>
-  </view>
 </view>

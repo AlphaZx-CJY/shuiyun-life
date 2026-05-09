@@ -28,21 +28,19 @@
   </md-card>
 
   <!-- 快捷入口 -->
-  <md-card class="quick-card-wrap" shape="large">
-    <view class="quick-grid">
-      <view class="quick-item" wx:for="{{quickEntries}}" wx:key="id" data-path="{{item.path}}" bindtap="onEntryTap">
-        <view class="quick-icon-wrap">
-          <md-icon wx:if="{{item.id === 1}}" name="/images/icons/material/storefront-on.svg" size="40" color="currentColor" />
-          <md-icon wx:elif="{{item.id === 2}}" name="/images/icons/material/article-on.svg" size="40" color="currentColor" />
-          <md-icon wx:elif="{{item.id === 3}}" name="/images/icons/material/event-on.svg" size="40" color="currentColor" />
-          <md-icon wx:elif="{{item.id === 4}}" name="/images/icons/material/article-on.svg" size="40" color="currentColor" />
-          <md-icon wx:elif="{{item.id === 5}}" name="/images/icons/material/storefront-on.svg" size="40" color="currentColor" />
-          <md-icon wx:elif="{{item.id === 6}}" name="/images/icons/material/person-on.svg" size="40" color="currentColor" />
-        </view>
-        <text class="quick-label">{{item.label}}</text>
+  <view class="quick-grid">
+    <view class="quick-item" wx:for="{{quickEntries}}" wx:key="id" data-path="{{item.path}}" bindtap="onEntryTap">
+      <view class="quick-icon-btn">
+        <md-icon wx:if="{{item.id === 1}}" name="/images/icons/material/storefront-on.svg" size="40" color="currentColor" />
+        <md-icon wx:elif="{{item.id === 2}}" name="/images/icons/material/article-on.svg" size="40" color="currentColor" />
+        <md-icon wx:elif="{{item.id === 3}}" name="/images/icons/material/event-on.svg" size="40" color="currentColor" />
+        <md-icon wx:elif="{{item.id === 4}}" name="/images/icons/material/article-on.svg" size="40" color="currentColor" />
+        <md-icon wx:elif="{{item.id === 5}}" name="/images/icons/material/storefront-on.svg" size="40" color="currentColor" />
+        <md-icon wx:elif="{{item.id === 6}}" name="/images/icons/material/person-on.svg" size="40" color="currentColor" />
       </view>
+      <text class="quick-label">{{item.label}}</text>
     </view>
-  </md-card>
+  </view>
 
   <!-- 社区通知 -->
   <view class="section">
