@@ -40,11 +40,10 @@
               <view wx:for="{{item.hours}}" wx:for-item="h" wx:key="*this">{{h}}</view>
             </view>
           </view>
-        </view>
-      </view>
-      <view class="service-footer" wx:if="{{item.phone}}">
-        <view class="btn-pill btn-pill--primary btn-pill--small" catchtap="onPhoneTap" data-phone="{{item.phone}}">
-          拨打电话
+          <view class="service-info-row service-phone-row" wx:if="{{item.phone}}" catchtap="onPhoneTap" data-phone="{{item.phone}}">
+            <text class="service-info-label">电话</text>
+            <text class="service-info-value service-phone">{{item.phone}}</text>
+          </view>
         </view>
       </view>
       <md-divider wx:if="{{index < serviceList.length - 1}}" />

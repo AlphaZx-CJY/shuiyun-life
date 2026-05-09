@@ -97,36 +97,11 @@
   color: var(--md-on-surface-variant);
 }
 
-.service-footer {
-  display: flex;
-  justify-content: flex-end;
-  margin-top: var(--space-3);
+.service-phone-row {
+  margin-top: 4rpx;
 }
 
-/* Pill 按钮 */
-.btn-pill {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  height: 80rpx;
-  padding: 0 48rpx;
-  border-radius: var(--radius-pill);
-  font-size: 28rpx;
+.service-phone {
+  color: var(--md-primary);
   font-weight: 500;
-  letter-spacing: 0.5rpx;
-}
-
-.btn-pill--primary {
-  background: var(--md-primary);
-  color: var(--md-on-primary);
-}
-
-.btn-pill--primary:active {
-  background: linear-gradient(rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.12)), var(--md-primary);
-}
-
-.btn-pill--small {
-  height: 64rpx;
-  padding: 0 32rpx;
-  font-size: 24rpx;
 }

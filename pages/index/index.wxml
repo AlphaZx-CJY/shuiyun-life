@@ -6,26 +6,28 @@
   </view>
 
   <!-- 班车信息卡片 -->
-  <md-card class="shuttle-card-wrap" shape="xlarge" clickable wx:if="{{nextShuttle}}" bindtap="onShuttleBannerTap">
-    <view class="shuttle-card-inner">
-      <view class="shuttle-content">
-        <view class="shuttle-tag">社区班车</view>
-        <text class="shuttle-route">{{routeName}}</text>
-        <view class="shuttle-time-wrap">
-          <block wx:if="{{nextShuttle.status === 'passed'}}">
-            <text class="shuttle-status passed">今日已结束</text>
-          </block>
-          <block wx:else>
-            <text class="shuttle-time">{{nextShuttle.time}}</text>
-            <text class="shuttle-status {{nextShuttle.status}}">{{nextShuttle.status === 'soon' ? '即将发车' : '下一班'}}</text>
-          </block>
+  <view class="shuttle-card-wrap" wx:if="{{nextShuttle}}" bindtap="onShuttleBannerTap">
+    <md-card shape="xlarge" clickable>
+      <view class="shuttle-card-inner">
+        <view class="shuttle-content">
+          <view class="shuttle-tag">社区班车</view>
+          <text class="shuttle-route">{{routeName}}</text>
+          <view class="shuttle-time-wrap">
+            <block wx:if="{{nextShuttle.status === 'passed'}}">
+              <text class="shuttle-status passed">今日已结束</text>
+            </block>
+            <block wx:else>
+              <text class="shuttle-time">{{nextShuttle.time}}</text>
+              <text class="shuttle-status {{nextShuttle.status}}">{{nextShuttle.status === 'soon' ? '即将发车' : '下一班'}}</text>
+            </block>
+          </view>
+        </view>
+        <view class="shuttle-arrow">
+          <view class="shuttle-arrow-icon"></view>
         </view>
       </view>
-      <view class="shuttle-arrow">
-        <view class="shuttle-arrow-icon"></view>
-      </view>
-    </view>
-  </md-card>
+    </md-card>
+  </view>
 
   <!-- 快捷入口 -->
   <view class="quick-grid">

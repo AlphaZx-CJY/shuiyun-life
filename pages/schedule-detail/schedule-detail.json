@@ -1,5 +1,6 @@
 {
   "navigationBarTitleText": "活动详情",
+  "navigationStyle": "custom",
   "usingComponents": {
     "md-app-bar": "/components/md3/md-app-bar/md-app-bar",
     "md-card": "/components/md3/md-card/md-card",

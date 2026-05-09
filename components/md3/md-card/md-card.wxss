@@ -1,5 +1,5 @@
 .md-card {
-  background: var(--md-surface);
+  background: var(--md-surface-container);
   overflow: hidden;
 }
 
