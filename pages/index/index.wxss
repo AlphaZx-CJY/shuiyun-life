@@ -22,7 +22,7 @@
 
 /* 班车卡片 */
 .shuttle-card-wrap {
-  margin: 0 32rpx;
+  margin: 0 48rpx;
 }
 
 .shuttle-card-inner {
