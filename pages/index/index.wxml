@@ -6,50 +6,55 @@
   </view>
 
   <!-- 班车信息卡片 -->
-  <view class="banner-section" wx:if="{{nextShuttle}}" bindtap="onShuttleBannerTap">
-    <view class="banner-shuttle-card">
-      <view class="banner-shuttle-content">
-        <view class="banner-shuttle-tag">社区班车</view>
-        <text class="banner-shuttle-route">{{routeName}}</text>
-        <view class="banner-shuttle-time-wrap">
+  <md-card class="shuttle-card-wrap" shape="xlarge" clickable wx:if="{{nextShuttle}}" bindtap="onShuttleBannerTap">
+    <view class="shuttle-card-inner">
+      <view class="shuttle-content">
+        <view class="shuttle-tag">社区班车</view>
+        <text class="shuttle-route">{{routeName}}</text>
+        <view class="shuttle-time-wrap">
           <block wx:if="{{nextShuttle.status === 'passed'}}">
-            <text class="banner-shuttle-status passed">今日已结束</text>
+            <text class="shuttle-status passed">今日已结束</text>
           </block>
           <block wx:else>
-            <text class="banner-shuttle-time">{{nextShuttle.time}}</text>
-            <text class="banner-shuttle-status {{nextShuttle.status}}">{{nextShuttle.status === 'soon' ? '即将发车' : '下一班'}}</text>
+            <text class="shuttle-time">{{nextShuttle.time}}</text>
+            <text class="shuttle-status {{nextShuttle.status}}">{{nextShuttle.status === 'soon' ? '即将发车' : '下一班'}}</text>
           </block>
         </view>
       </view>
-      <view class="banner-shuttle-arrow">
+      <view class="shuttle-arrow">
         <view class="shuttle-arrow-icon"></view>
       </view>
     </view>
-  </view>
+  </md-card>
 
   <!-- 快捷入口 -->
-  <view class="ios-section section-quick">
+  <md-card class="quick-card-wrap" shape="large">
     <view class="quick-grid">
       <view class="quick-item" wx:for="{{quickEntries}}" wx:key="id" data-path="{{item.path}}" bindtap="onEntryTap">
         <view class="quick-icon-wrap">
-          <text class="quick-icon-emoji">{{item.icon}}</text>
+          <md-icon wx:if="{{item.id === 1}}" name="/images/icons/material/storefront-on.svg" size="40" color="currentColor" />
+          <md-icon wx:elif="{{item.id === 2}}" name="/images/icons/material/article-on.svg" size="40" color="currentColor" />
+          <md-icon wx:elif="{{item.id === 3}}" name="/images/icons/material/event-on.svg" size="40" color="currentColor" />
+          <md-icon wx:elif="{{item.id === 4}}" name="/images/icons/material/article-on.svg" size="40" color="currentColor" />
+          <md-icon wx:elif="{{item.id === 5}}" name="/images/icons/material/storefront-on.svg" size="40" color="currentColor" />
+          <md-icon wx:elif="{{item.id === 6}}" name="/images/icons/material/person-on.svg" size="40" color="currentColor" />
         </view>
         <text class="quick-label">{{item.label}}</text>
       </view>
     </view>
-  </view>
+  </md-card>
 
   <!-- 社区通知 -->
-  <view class="ios-section">
+  <view class="section">
     <view class="section-header">
       <text class="section-title">社区通知</text>
       <text class="section-more" bindtap="onMoreNoticeTap">查看更多</text>
     </view>
-    <view class="ios-card">
-      <view class="notice-item" wx:for="{{noticeNews}}" wx:key="id" data-id="{{item.id}}" bindtap="onNoticeTap">
-        <text class="notice-tag">{{item.tag}}</text>
+    <view class="list-container">
+      <view class="list-item notice-item" wx:for="{{noticeNews}}" wx:key="id" data-id="{{item.id}}" bindtap="onNoticeTap">
+        <view class="notice-tag">{{item.tag}}</view>
         <text class="notice-title">{{item.title}}</text>
-        <view class="ios-list-item__arrow"></view>
+        <view class="list-arrow"></view>
       </view>
       <view class="empty-state" wx:if="{{noticeNews.length === 0}}">
         <text class="empty-state__text">暂无社区通知</text>
@@ -58,13 +63,13 @@
   </view>
 
   <!-- 最近活动 -->
-  <view class="ios-section">
+  <view class="section">
     <view class="section-header">
       <text class="section-title">最近活动</text>
       <text class="section-more" bindtap="onMoreScheduleTap">查看全部</text>
     </view>
-    <view class="ios-card">
-      <view class="schedule-item" wx:for="{{recentSchedules}}" wx:key="id" data-id="{{item.id}}" bindtap="onScheduleTap">
+    <view class="list-container">
+      <view class="list-item schedule-item" wx:for="{{recentSchedules}}" wx:key="id" data-id="{{item.id}}" bindtap="onScheduleTap">
         <view class="schedule-dot schedule-dot--{{item.status}}"></view>
         <view class="schedule-content">
           <text class="schedule-title">{{item.title}}</text>

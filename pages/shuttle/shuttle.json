@@ -3,6 +3,8 @@
   "navigationStyle": "custom",
   "enablePullDownRefresh": false,
   "usingComponents": {
-    "nav-bar": "/components/nav-bar/nav-bar"
+    "md-app-bar": "/components/md3/md-app-bar/md-app-bar",
+    "md-card": "/components/md3/md-card/md-card",
+    "md-chip": "/components/md3/md-chip/md-chip"
   }
 }

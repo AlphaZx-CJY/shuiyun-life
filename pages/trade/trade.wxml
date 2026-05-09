@@ -3,26 +3,44 @@
   <view class="category-bar">
     <scroll-view class="category-scroll" scroll-x enhanced show-scrollbar="{{false}}">
       <view class="category-list">
-        <view class="category-item {{activeCategory === item.id ? 'category-item--active' : ''}}" 
-              wx:for="{{categories}}" wx:key="id" data-id="{{item.id}}" bindtap="onCategoryTap">
-          <text class="category-text">{{item.name}}</text>
-        </view>
+        <md-chip
+          wx:for="{{categories}}"
+          wx:key="id"
+          data-id="{{item.id}}"
+          variant="filled"
+          active="{{activeCategory === item.id}}"
+          bind:tap="onCategoryTap"
+        >
+          {{item.name}}
+        </md-chip>
       </view>
     </scroll-view>
   </view>
 
   <!-- 交易列表 -->
   <view class="trade-list" wx:if="{{tradeList.length > 0}}">
-    <view class="trade-card" wx:for="{{tradeList}}" wx:key="id" data-id="{{item.id}}" bindtap="onTradeTap">
-      <image wx:if="{{item.images && item.images.length}}" class="trade-image" src="{{item.images[0]}}" mode="aspectFill" lazy-load />
+    <view
+      class="trade-item"
+      wx:for="{{tradeList}}"
+      wx:key="id"
+      data-id="{{item.id}}"
+      bindtap="onTradeTap"
+    >
+      <image
+        wx:if="{{item.images && item.images.length}}"
+        class="trade-image"
+        src="{{item.images[0]}}"
+        mode="aspectFill"
+        lazy-load
+      />
       <view wx:else class="trade-image trade-image--placeholder">
-        <text class="trade-placeholder-text">🔄</text>
+        <image class="trade-placeholder-icon" src="/images/icons/material/storefront-on.svg" mode="aspectFit" />
       </view>
       <view class="trade-info">
         <text class="trade-title">{{item.title}}</text>
         <view class="trade-price-row">
           <text class="trade-price">¥{{item.price}}</text>
-          <text class="trade-original">¥{{item.originalPrice}}</text>
+          <text class="trade-original" wx:if="{{item.originalPrice}}">¥{{item.originalPrice}}</text>
         </view>
         <view class="trade-meta">
           <text class="trade-seller">{{item.seller}}</text>
@@ -33,12 +51,15 @@
   </view>
 
   <!-- 空状态 -->
-  <view class="empty-state" wx:if="{{tradeList.length === 0}}">
-    <text class="empty-state__text">暂无闲置物品</text>
-  </view>
+  <md-empty-state
+    wx:if="{{tradeList.length === 0}}"
+    icon="/images/icons/material/storefront-on.svg"
+    headline="暂无闲置物品"
+    supportingText="快去发布第一件闲置吧"
+  />
 
-  <!-- 发布按钮 -->
-  <view class="float-btn" bindtap="onPublishTap">
-    <view class="float-btn__icon">+</view>
+  <!-- 发布 FAB -->
+  <view class="fab-wrap">
+    <md-fab icon="/images/icons/material/storefront-on.svg" bind:tap="onPublishTap" />
   </view>
 </view>

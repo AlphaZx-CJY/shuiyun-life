@@ -1,21 +1,41 @@
 /* 活动安排页样式 */
 
+.schedule-sections {
+  padding: var(--space-2) var(--space-4) var(--space-6);
+}
+
+.schedule-section {
+  margin-bottom: var(--space-6);
+}
+
+.schedule-section-title {
+  font-size: 24rpx;
+  font-weight: 500;
+  color: var(--md-on-surface-variant);
+  margin-bottom: var(--space-2);
+  padding-left: var(--space-2);
+  line-height: 1.33;
+  display: block;
+}
+
 .schedule-list {
-  padding-top: 8rpx;
+  background: var(--md-surface);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
 }
 
 .schedule-item {
   display: flex;
   align-items: flex-start;
-  padding: 24rpx;
+  padding: var(--space-3);
   position: relative;
 }
 
 .schedule-item::after {
   content: '';
   position: absolute;
-  left: 24rpx;
-  right: 24rpx;
+  left: var(--space-3);
+  right: var(--space-3);
   bottom: 0;
   height: 1rpx;
   background: var(--md-outline-variant);
@@ -35,14 +55,14 @@
   border-radius: var(--radius-pill);
   font-size: 22rpx;
   font-weight: 500;
-  margin-right: 16rpx;
+  margin-right: var(--space-2);
   margin-top: 4rpx;
   flex-shrink: 0;
 }
 
 .schedule-badge--upcoming {
-  background: var(--md-surface-variant);
-  color: var(--md-primary);
+  background: var(--md-primary-container);
+  color: var(--md-on-primary-container);
 }
 
 .schedule-badge--ended {
@@ -82,17 +102,21 @@
   padding: 6rpx 14rpx;
   border-radius: var(--radius-pill);
   flex-shrink: 0;
-  margin-left: 12rpx;
+  margin-left: var(--space-2);
 }
 
 .schedule-status--upcoming {
-  background: var(--md-surface-variant);
-  color: var(--md-primary);
+  background: var(--md-primary-container);
+  color: var(--md-on-primary-container);
 }
 
 .schedule-status--ended {
   background: var(--md-surface-variant);
   color: var(--md-on-surface-variant);
+}
+
+.schedule-empty {
+  margin-top: var(--space-8);
 }
 
 /* Custom tab-bar padding */

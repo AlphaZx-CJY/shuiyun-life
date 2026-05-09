@@ -41,6 +41,13 @@ Page<ILifeInfoData, WechatMiniprogram.IAnyObject>({
     this.setData({ serviceList: normalizedList });
   },
 
+  onPhoneTap(e: WechatMiniprogram.TouchEvent) {
+    const { phone } = e.currentTarget.dataset as { phone: string };
+    if (phone) {
+      wx.makePhoneCall({ phoneNumber: phone });
+    }
+  },
+
   onServiceTap(e: WechatMiniprogram.TouchEvent) {
     const { item } = e.currentTarget.dataset as { item: ReturnType<typeof api.getServiceList>[number] };
     const itemList = ['查看地图'];

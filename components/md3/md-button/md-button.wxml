@@ -1,0 +1,8 @@
+<button
+  class="md-btn md-btn--{{variant}} md-btn--{{size}} {{disabled ? 'md-btn--disabled' : ''}}"
+  bindtap="onTap"
+  disabled="{{disabled}}"
+>
+  <image wx:if="{{icon}}" class="md-btn__icon" src="{{icon}}" mode="aspectFit" />
+  <slot />
+</button>

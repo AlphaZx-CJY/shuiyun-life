@@ -1,17 +1,18 @@
-<nav-bar title="小程序反馈" showBack="{{true}}" />
+<md-app-bar title="意见反馈" showBack="{{true}}" />
 
 <view class="page-container">
-  <!-- 反馈表单 -->
-  <view class="feedback-form ios-card">
+  <md-card shape="large" class="feedback-card">
     <view class="form-group">
       <text class="form-label">反馈类型</text>
       <picker mode="selector" range="{{types}}" value="{{typeIndex}}" bindchange="onTypeChange">
         <view class="form-picker">
           <text class="form-picker-text">{{types[typeIndex]}}</text>
-          <view class="ios-list-item__arrow"></view>
+          <view class="picker-arrow"></view>
         </view>
       </picker>
     </view>
+
+    <md-divider inset />
 
     <view class="form-group">
       <text class="form-label">反馈内容</text>
@@ -19,15 +20,16 @@
       <text class="form-counter">{{content.length}}/500</text>
     </view>
 
+    <md-divider inset />
+
     <view class="form-group">
       <text class="form-label">联系方式（选填）</text>
       <input class="form-input" placeholder="手机号或微信号，方便我们回复您" bindinput="onContactInput" value="{{contact}}" />
     </view>
-  </view>
+  </md-card>
 
-  <!-- 提交按钮 -->
   <view class="feedback-actions">
-    <view class="ios-btn ios-btn--primary {{submitting ? 'ios-btn--disabled' : ''}}" bindtap="onSubmit">
+    <view class="btn-pill btn-pill--primary {{submitting ? 'btn-pill--disabled' : ''}}" bindtap="onSubmit">
       {{submitting ? '提交中...' : '提交反馈'}}
     </view>
   </view>

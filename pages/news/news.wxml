@@ -3,34 +3,57 @@
   <view class="category-bar">
     <scroll-view class="category-scroll" scroll-x enhanced show-scrollbar="{{false}}">
       <view class="category-list">
-        <view class="category-item {{activeCategory === item.id ? 'category-item--active' : ''}}" 
-              wx:for="{{categories}}" wx:key="id" data-id="{{item.id}}" bindtap="onCategoryTap">
-          <text class="category-text">{{item.name}}</text>
-        </view>
+        <md-chip
+          wx:for="{{categories}}"
+          wx:key="id"
+          variant="{{activeCategory === item.id ? 'filled' : 'outlined'}}"
+          active="{{activeCategory === item.id}}"
+          data-id="{{item.id}}"
+          bindtap="onCategoryTap"
+        >
+          {{item.name}}
+        </md-chip>
       </view>
     </scroll-view>
   </view>
 
   <!-- 新闻列表 -->
   <view class="news-list" wx:if="{{newsList.length > 0}}">
-    <view class="news-card ios-card" wx:for="{{newsList}}" wx:key="id" data-id="{{item.id}}" bindtap="onNewsTap">
-      <view class="news-card__content">
-        <view class="news-card__header">
-          <text class="md-tag md-tag--primary">{{item.tag}}</text>
-          <text class="news-card__date">{{item.date}}</text>
+    <block wx:for="{{newsList}}" wx:key="id">
+      <md-divider wx:if="{{index > 0}}" />
+      <view
+        class="news-item"
+        data-id="{{item.id}}"
+        bindtap="onNewsTap"
+      >
+        <view class="news-item__main">
+          <view class="news-item__header">
+            <text class="news-item__tag">{{item.tag}}</text>
+            <text class="news-item__date">{{item.date}}</text>
+          </view>
+          <text class="news-item__title">{{item.title}}</text>
+          <text class="news-item__summary">{{item.summary}}</text>
+          <view class="news-item__footer">
+            <text class="news-item__source">{{item.source}}</text>
+          </view>
         </view>
-        <text class="news-card__title">{{item.title}}</text>
-        <text class="news-card__summary">{{item.summary}}</text>
-        <view class="news-card__footer">
-          <text class="news-card__source">{{item.source}}</text>
-        </view>
+        <image
+          wx:if="{{item.cover}}"
+          class="news-item__cover"
+          src="{{item.cover}}"
+          mode="aspectFill"
+          lazy-load
+        />
       </view>
-      <image wx:if="{{item.cover}}" class="news-card__cover" src="{{item.cover}}" mode="aspectFill" lazy-load />
-    </view>
+    </block>
   </view>
 
   <!-- 空状态 -->
   <view class="empty-state" wx:if="{{newsList.length === 0}}">
-    <text class="empty-state__text">暂无资讯内容</text>
+    <md-empty-state
+      icon="/images/icons/material/article-off.svg"
+      headline="暂无资讯内容"
+      supportingText="该分类下暂时没有相关文章"
+    />
   </view>
 </view>

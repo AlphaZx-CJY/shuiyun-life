@@ -1,5 +1,7 @@
 {
   "navigationBarTitleText": "活动安排",
   "enablePullDownRefresh": true,
-  "usingComponents": {}
+  "usingComponents": {
+    "md-empty-state": "/components/md3/md-empty-state/md-empty-state"
+  }
 }

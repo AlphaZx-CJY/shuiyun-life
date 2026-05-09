@@ -1,62 +1,65 @@
-<nav-bar title="班车信息" showBack="{{true}}" />
+<md-app-bar title="班车信息" showBack="{{true}}" />
 
 <view class="page-container">
   <!-- 路线信息 -->
-  <view class="route-header ios-card">
-    <text class="route-name">{{routeName}}</text>
-    <view class="route-note">
-      <text class="route-note-text">{{runNote}}</text>
-    </view>
-    <view class="route-note route-note--secondary">
-      <text class="route-note-text">中途不停靠</text>
-    </view>
+  <view class="shuttle-section">
+    <md-card shape="large">
+      <view class="route-header">
+        <text class="route-name">{{routeName}}</text>
+        <view class="route-chips">
+          <md-chip variant="filled">{{runNote}}</md-chip>
+          <md-chip variant="outlined">中途不停靠</md-chip>
+        </view>
+      </view>
+    </md-card>
   </view>
 
   <!-- 时刻表 -->
-  <view class="ios-section">
-    <text class="ios-section-title">发车时刻</text>
-    <view class="ios-card schedule-card">
-      <view class="schedule-list">
-        <view class="schedule-item {{item.status}}" wx:for="{{schedule}}" wx:key="time">
-          <view class="schedule-time-marker">
-            <view class="schedule-dot schedule-dot--{{item.status}}"></view>
-            <view wx:if="{{index !== schedule.length - 1}}" class="schedule-line"></view>
-          </view>
-          <view class="schedule-time-content">
-            <text class="schedule-time-text">{{item.time}}</text>
-            <text class="schedule-time-status" wx:if="{{item.status === 'soon'}}">即将发车</text>
-            <text class="schedule-time-status" wx:if="{{item.status === 'passed'}}">已发车</text>
-          </view>
+  <view class="shuttle-section" wx:if="{{schedule.length > 0}}">
+    <text class="md-section-title">发车时刻</text>
+    <view class="schedule-list">
+      <view class="schedule-item {{item.status}}" wx:for="{{schedule}}" wx:key="time">
+        <view class="schedule-time-marker">
+          <view class="schedule-dot schedule-dot--{{item.status}}"></view>
+        </view>
+        <view class="schedule-time-content">
+          <text class="schedule-time-text">{{item.time}}</text>
+          <text class="schedule-time-status" wx:if="{{item.status === 'soon'}}">即将发车</text>
+          <text class="schedule-time-status" wx:if="{{item.status === 'passed'}}">已发车</text>
         </view>
       </view>
     </view>
   </view>
 
   <!-- 站点信息 -->
-  <view class="ios-section">
-    <text class="ios-section-title">途经站点</text>
-    <view class="ios-card stops-card">
-      <view class="stop-item" wx:for="{{stops}}" wx:key="*this">
-        <view class="stop-marker">
-          <view class="stop-dot {{index === 0 ? 'stop-dot--start' : (index === stops.length - 1 ? 'stop-dot--end' : '')}}"></view>
-          <view wx:if="{{index !== stops.length - 1}}" class="stop-line"></view>
+  <view class="shuttle-section">
+    <text class="md-section-title">途经站点</text>
+    <md-card shape="medium">
+      <view class="stops-list">
+        <view class="stop-item" wx:for="{{stops}}" wx:key="*this">
+          <view class="stop-marker">
+            <view class="stop-dot {{index === 0 ? 'stop-dot--start' : (index === stops.length - 1 ? 'stop-dot--end' : '')}}"></view>
+            <view wx:if="{{index !== stops.length - 1}}" class="stop-line"></view>
+          </view>
+          <text class="stop-name">{{item}}</text>
         </view>
-        <text class="stop-name">{{item}}</text>
       </view>
-    </view>
+    </md-card>
   </view>
 
   <!-- 联系信息 -->
-  <view class="ios-section">
-    <text class="ios-section-title">联系方式</text>
-    <view class="ios-card contact-card" bindtap="onCallTap">
-      <view class="contact-content">
-        <text class="contact-label">班车调度</text>
-        <text class="contact-phone">{{contactPhone}}</text>
+  <view class="shuttle-section">
+    <text class="md-section-title">联系方式</text>
+    <md-card shape="medium" clickable bindtap="onCallTap">
+      <view class="contact-row">
+        <view class="contact-info">
+          <text class="contact-label">班车调度</text>
+          <text class="contact-phone">{{contactPhone}}</text>
+        </view>
+        <view class="contact-action">
+          <text class="contact-action-text">拨打</text>
+        </view>
       </view>
-      <view class="contact-action">
-        <text class="contact-action-text">拨打</text>
-      </view>
-    </view>
+    </md-card>
   </view>
 </view>

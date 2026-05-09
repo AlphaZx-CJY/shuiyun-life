@@ -1,0 +1,23 @@
+<view class="md-field {{error ? 'md-field--error' : ''}}">
+  <text wx:if="{{label}}" class="md-field__label">{{label}}</text>
+  <view class="md-field__input-wrap">
+    <input
+      wx:if="{{!multiline}}"
+      class="md-field__input"
+      type="{{type}}"
+      placeholder="{{placeholder}}"
+      value="{{value}}"
+      maxlength="{{maxlength}}"
+      bindinput="onInput"
+    />
+    <textarea
+      wx:else
+      class="md-field__input md-field__input--multiline"
+      placeholder="{{placeholder}}"
+      value="{{value}}"
+      maxlength="{{maxlength}}"
+      bindinput="onInput"
+    />
+  </view>
+  <text wx:if="{{error && errorText}}" class="md-field__error">{{errorText}}</text>
+</view>

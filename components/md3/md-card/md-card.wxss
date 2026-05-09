@@ -1,0 +1,26 @@
+.md-card {
+  background: var(--md-surface);
+  overflow: hidden;
+}
+
+.md-card--xlarge {
+  border-radius: 28rpx;
+}
+
+.md-card--large {
+  border-radius: 20rpx;
+}
+
+.md-card--medium {
+  border-radius: 16rpx;
+}
+
+.md-card--small {
+  border-radius: 12rpx;
+}
+
+.md-card--clickable:active {
+  opacity: 0.85;
+  transform: scale(0.99);
+  transition: opacity 100ms ease-out, transform 100ms ease-out;
+}

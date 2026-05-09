@@ -662,6 +662,19 @@ picker {
   color: var(--md-on-surface);
 }
 
+navigator {
+  color: inherit;
+  text-decoration: none;
+}
+
+scroll-view::-webkit-scrollbar {
+  display: none;
+}
+
+slider {
+  margin: 0;
+}
+
 /* ================================
    Empty State
    ================================ */

@@ -3,6 +3,7 @@
   "navigationStyle": "custom",
   "enablePullDownRefresh": true,
   "usingComponents": {
-    "nav-bar": "/components/nav-bar/nav-bar"
+    "md-app-bar": "/components/md3/md-app-bar/md-app-bar",
+    "md-empty-state": "/components/md3/md-empty-state/md-empty-state"
   }
 }

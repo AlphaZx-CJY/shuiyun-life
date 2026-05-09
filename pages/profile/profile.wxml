@@ -9,17 +9,17 @@
   </view>
 
   <!-- 功能列表 -->
-  <view class="ios-section">
-    <view class="ios-card">
-      <view class="ios-list-item" wx:for="{{aboutItems}}" wx:key="id" data-item="{{item}}" bindtap="onItemTap">
-        <view class="ios-list-item__icon" style="background: var(--md-surface-variant);">
-          <image class="profile-item-icon" src="{{item.icon}}" mode="aspectFit" />
-        </view>
-        <view class="ios-list-item__content">
-          <text class="ios-list-item__title">{{item.title}}</text>
-        </view>
-        <view class="ios-list-item__arrow"></view>
-      </view>
+  <view class="profile-section">
+    <view class="profile-list">
+      <md-list-item
+        wx:for="{{aboutItems}}"
+        wx:key="id"
+        data-item="{{item}}"
+        headline="{{item.title}}"
+        leadingIcon="{{item.icon}}"
+        divider="{{index !== aboutItems.length - 1}}"
+        bindtap="onItemTap"
+      />
     </view>
   </view>
 

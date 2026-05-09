@@ -1,5 +1,11 @@
 {
   "navigationBarTitleText": "水韵好生活",
   "enablePullDownRefresh": true,
-  "usingComponents": {}
+  "usingComponents": {
+    "md-app-bar": "/components/md3/md-app-bar/md-app-bar",
+    "md-card": "/components/md3/md-card/md-card",
+    "md-chip": "/components/md3/md-chip/md-chip",
+    "md-divider": "/components/md3/md-divider/md-divider",
+    "md-icon": "/components/md3/md-icon/md-icon"
+  }
 }

@@ -1,0 +1,7 @@
+<view class="md-chip md-chip--{{variant}} {{active ? 'md-chip--active' : ''}}" bindtap="onTap">
+  <image wx:if="{{icon}}" class="md-chip__icon" src="{{icon}}" mode="aspectFit" />
+  <text class="md-chip__text"><slot /></text>
+  <view wx:if="{{closable}}" class="md-chip__close" bindtap="onClose">
+    <image class="md-chip__close-icon" src="/images/icons/material/close.svg" mode="aspectFit" />
+  </view>
+</view>

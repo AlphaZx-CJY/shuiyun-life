@@ -1,0 +1,8 @@
+<view class="md-list-item {{divider ? 'md-list-item--divider' : ''}}" bindtap="onTap">
+  <image wx:if="{{leadingIcon}}" class="md-list-item__leading" src="{{leadingIcon}}" mode="aspectFit" />
+  <view class="md-list-item__content">
+    <text class="md-list-item__headline">{{headline}}</text>
+    <text wx:if="{{supportingText}}" class="md-list-item__supporting">{{supportingText}}</text>
+  </view>
+  <image wx:if="{{trailingIcon}}" class="md-list-item__trailing" src="{{trailingIcon}}" mode="aspectFit" />
+</view>

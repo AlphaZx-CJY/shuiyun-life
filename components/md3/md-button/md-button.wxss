@@ -1,0 +1,66 @@
+.md-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8rpx;
+  border: none;
+  font-size: 32rpx;
+  font-weight: 500;
+  line-height: 1;
+  transition: transform 100ms ease-out, opacity 100ms ease-out;
+}
+
+.md-btn:active {
+  transform: scale(0.96);
+}
+
+.md-btn--disabled {
+  opacity: 0.38;
+  pointer-events: none;
+}
+
+/* Default size */
+.md-btn--default {
+  height: 96rpx;
+  padding: 0 48rpx;
+  border-radius: 9999rpx;
+}
+
+/* Compact size */
+.md-btn--compact {
+  height: 72rpx;
+  padding: 0 32rpx;
+  border-radius: 9999rpx;
+  font-size: 28rpx;
+}
+
+/* Filled */
+.md-btn--filled {
+  background: var(--md-primary);
+  color: var(--md-on-primary);
+}
+
+/* Tonal */
+.md-btn--tonal {
+  background: var(--md-primary-container);
+  color: var(--md-on-primary-container);
+}
+
+/* Outlined */
+.md-btn--outlined {
+  background: transparent;
+  color: var(--md-primary);
+  border: 1rpx solid var(--md-outline);
+}
+
+/* Text */
+.md-btn--text {
+  background: transparent;
+  color: var(--md-primary);
+  padding: 0 24rpx;
+}
+
+.md-btn__icon {
+  width: 36rpx;
+  height: 36rpx;
+}

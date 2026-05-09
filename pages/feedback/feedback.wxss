@@ -1,17 +1,12 @@
 /* 意见反馈页样式 */
 
-.feedback-form {
-  margin: 24rpx;
-  padding: 8rpx 24rpx;
+.feedback-card {
+  margin: var(--space-6) var(--space-4);
+  padding: var(--space-2) var(--space-4);
 }
 
 .form-group {
-  padding: 24rpx 0;
-  border-bottom: 1rpx solid var(--md-outline-variant);
-}
-
-.form-group:last-child {
-  border-bottom: none;
+  padding: var(--space-3) 0;
 }
 
 .form-label {
@@ -19,19 +14,27 @@
   font-size: 28rpx;
   font-weight: 500;
   color: var(--md-on-surface);
-  margin-bottom: 16rpx;
+  margin-bottom: var(--space-2);
 }
 
 .form-picker {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 12rpx 0;
+  padding: var(--space-1) 0;
 }
 
 .form-picker-text {
   font-size: 30rpx;
   color: var(--md-on-surface);
+}
+
+.picker-arrow {
+  width: 16rpx;
+  height: 16rpx;
+  border-top: 3rpx solid var(--md-outline);
+  border-right: 3rpx solid var(--md-outline);
+  transform: rotate(45deg);
 }
 
 .form-textarea {
@@ -40,9 +43,9 @@
   font-size: 28rpx;
   color: var(--md-on-surface);
   line-height: 1.6;
-  padding: 16rpx;
+  padding: var(--space-2);
   background: var(--md-surface-container-highest);
-  border-radius: 8rpx 8rpx 0 0;
+  border-radius: 16rpx;
   box-sizing: border-box;
 }
 
@@ -51,7 +54,7 @@
   text-align: right;
   font-size: 22rpx;
   color: var(--md-on-surface-variant);
-  margin-top: 8rpx;
+  margin-top: var(--space-1);
 }
 
 .form-input {
@@ -59,17 +62,38 @@
   height: 80rpx;
   font-size: 28rpx;
   color: var(--md-on-surface);
-  padding: 0 16rpx;
+  padding: 0 var(--space-2);
   background: var(--md-surface-container-highest);
-  border-radius: 8rpx 8rpx 0 0;
+  border-radius: 16rpx;
   box-sizing: border-box;
 }
 
 .feedback-actions {
-  margin: 48rpx 24rpx;
+  margin: var(--space-6) var(--space-4);
 }
 
-.ios-btn--disabled {
-  opacity: 0.6;
+.btn-pill {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 80rpx;
+  padding: 0 48rpx;
+  border-radius: var(--radius-pill);
+  font-size: 28rpx;
+  font-weight: 500;
+  letter-spacing: 0.5rpx;
+}
+
+.btn-pill--primary {
+  background: var(--md-primary);
+  color: var(--md-on-primary);
+}
+
+.btn-pill--primary:active {
+  background: linear-gradient(rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.12)), var(--md-primary);
+}
+
+.btn-pill--disabled {
+  opacity: 0.38;
   pointer-events: none;
 }

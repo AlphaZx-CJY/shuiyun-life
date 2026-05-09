@@ -1,0 +1,9 @@
+.md-divider {
+  height: 1rpx;
+  background: var(--md-outline-variant);
+}
+
+.md-divider--inset {
+  margin-left: 32rpx;
+  margin-right: 32rpx;
+}

@@ -1,16 +1,15 @@
 /* 邻里互助列表页 */
 
 .voice-list {
-  padding: 0 24rpx;
+  padding: var(--space-2) var(--space-4);
 }
 
-.voice-card {
-  margin-bottom: 24rpx;
-  padding: 32rpx;
+.voice-item {
+  padding: var(--space-4) 0;
   position: relative;
 }
 
-.voice-card--expired {
+.voice-item--expired {
   opacity: 0.6;
 }
 
@@ -18,18 +17,11 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 16rpx;
+  margin-bottom: var(--space-2);
 }
 
-.voice-tag {
-  display: inline-flex;
-  align-items: center;
-  padding: 6rpx 18rpx;
-  background: var(--md-primary-container);
-  color: var(--md-on-primary-container);
-  border-radius: var(--radius-pill);
+.voice-type-chip {
   font-size: 24rpx;
-  font-weight: 500;
 }
 
 .voice-status {
@@ -47,7 +39,7 @@
   color: var(--md-on-surface);
   line-height: 1.6;
   display: block;
-  margin-bottom: 16rpx;
+  margin-bottom: var(--space-2);
 }
 
 .voice-meta {
@@ -66,51 +58,36 @@
   color: var(--md-primary);
 }
 
-/* 空状态 */
-.empty-state {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 120rpx 48rpx;
-}
-
-.empty-state__text {
-  font-size: 30rpx;
-  color: var(--md-on-surface-variant);
-  margin-bottom: 12rpx;
-}
-
-.empty-state__hint {
-  font-size: 26rpx;
-  color: var(--md-on-surface-variant);
-}
-
-/* 浮动发布按钮 */
-.voice-float-btn {
+/* Pill FAB */
+.voice-fab {
   position: fixed;
   right: 32rpx;
   bottom: calc(32rpx + env(safe-area-inset-bottom));
-  width: 96rpx;
   height: 96rpx;
-  border-radius: 50%;
+  padding: 0 32rpx;
+  border-radius: var(--radius-pill);
   background: var(--md-primary);
+  color: var(--md-on-primary);
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 12rpx;
   z-index: 100;
 }
 
-.voice-float-btn:active {
-  transform: scale(0.92);
+.voice-fab:active {
+  transform: scale(0.96);
+  background: linear-gradient(rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.12)), var(--md-primary);
 }
 
-.voice-float-icon {
-  font-size: 48rpx;
-  color: var(--md-on-primary);
+.voice-fab-icon {
+  font-size: 40rpx;
   font-weight: 300;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  line-height: 1;
+}
+
+.voice-fab-text {
+  font-size: 28rpx;
+  font-weight: 500;
   line-height: 1;
 }

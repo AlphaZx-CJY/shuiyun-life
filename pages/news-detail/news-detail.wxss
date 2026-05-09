@@ -1,8 +1,12 @@
 /* 资讯详情页样式 */
 
+.page-container {
+  background: var(--md-background);
+  min-height: 100vh;
+}
+
 .detail-header {
-  padding: 40rpx 32rpx;
-  border-bottom: 1rpx solid var(--md-outline-variant);
+  padding: 48rpx 32rpx 32rpx;
 }
 
 .detail-tag {
@@ -11,7 +15,7 @@
   padding: 8rpx 16rpx;
   background: var(--md-primary-container);
   color: var(--md-on-primary-container);
-  border-radius: var(--radius-xs);
+  border-radius: 4rpx;
   font-size: 22rpx;
   font-weight: 500;
 }
@@ -54,4 +58,14 @@
   font-size: 32rpx;
   line-height: 1.75;
   color: var(--md-on-surface);
+}
+
+.empty-state {
+  padding: 96rpx 32rpx;
+  text-align: center;
+}
+
+.empty-state__text {
+  font-size: 28rpx;
+  color: var(--md-on-surface-variant);
 }

@@ -1,0 +1,1 @@
+<view class="md-divider {{inset ? 'md-divider--inset' : ''}}"></view>

@@ -1,5 +1,40 @@
 /* 发布闲置页样式 */
 
+.page-container {
+  padding-bottom: calc(160rpx + env(safe-area-inset-bottom));
+}
+
+.form-body {
+  padding: 32rpx;
+}
+
+.form-item {
+  margin-bottom: 48rpx;
+}
+
+.form-item:last-child {
+  margin-bottom: 0;
+}
+
+.form-label {
+  font-size: 28rpx;
+  font-weight: 500;
+  color: var(--md-on-surface);
+  display: block;
+  margin-bottom: 16rpx;
+}
+
+.form-optional {
+  font-size: 24rpx;
+  color: var(--md-on-surface-variant);
+  font-weight: 400;
+}
+
+.form-required {
+  color: var(--md-on-surface-variant);
+}
+
+/* 图片上传 */
 .image-upload-row {
   display: flex;
   flex-wrap: wrap;
@@ -16,8 +51,8 @@
 .image-thumb {
   width: 160rpx;
   height: 160rpx;
-  border-radius: var(--radius-sm);
-  background: var(--md-surface-container-highest);
+  border-radius: 16rpx;
+  background: var(--md-surface-container);
 }
 
 .image-remove {
@@ -44,12 +79,12 @@
 .image-upload-btn {
   width: 160rpx;
   height: 160rpx;
-  border-radius: var(--radius-sm);
+  border-radius: 16rpx;
   border: 2rpx dashed var(--md-outline);
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--md-surface-container-highest);
+  background: var(--md-surface-container-low);
 }
 
 .image-upload-plus {
@@ -59,75 +94,34 @@
   line-height: 1;
 }
 
-.form-optional {
-  font-size: 24rpx;
-  color: var(--md-outline-variant);
-  font-weight: 400;
-}
-
-.form-card {
-  margin: 24rpx;
-  padding: 8rpx 24rpx;
-}
-
-.form-item {
-  padding: 24rpx 0;
-  border-bottom: 1rpx solid var(--md-outline-variant);
-}
-
-.form-item--last {
-  border-bottom: none;
-}
-
-.form-label {
-  font-size: 28rpx;
-  font-weight: 500;
-  color: var(--md-on-surface);
-  display: block;
-  margin-bottom: 16rpx;
-}
-
-.form-required {
-  color: var(--md-on-surface-variant);
-}
-
-.form-input {
-  font-size: 30rpx;
-  color: var(--md-on-surface);
-  height: 56rpx;
-  line-height: 56rpx;
-  background: var(--md-surface-container-highest);
-  border-radius: 8rpx 8rpx 0 0;
-  padding: 16rpx;
-}
-
-.form-price-input {
+/* 价格输入 */
+.form-price-row {
   display: flex;
   align-items: center;
+  gap: 12rpx;
 }
 
 .form-price-symbol {
   font-size: 30rpx;
   color: var(--md-primary);
   font-weight: 600;
-  margin-right: 12rpx;
+  flex-shrink: 0;
 }
 
-.form-textarea {
-  font-size: 30rpx;
-  color: var(--md-on-surface);
-  width: 100%;
-  height: 160rpx;
-  line-height: 1.6;
-  background: var(--md-surface-container-highest);
-  border-radius: 8rpx 8rpx 0 0;
-  padding: 16rpx;
+.form-price-field {
+  flex: 1;
 }
 
+/* picker */
 .form-picker {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  height: 96rpx;
+  padding: 0 24rpx;
+  background: var(--md-surface-container-low);
+  border: 1rpx solid var(--md-outline-variant);
+  border-radius: 16rpx;
 }
 
 .form-picker-text {
@@ -135,15 +129,54 @@
   color: var(--md-on-surface);
 }
 
+.form-picker-arrow {
+  width: 16rpx;
+  height: 16rpx;
+  border-right: 3rpx solid var(--md-on-surface-variant);
+  border-bottom: 3rpx solid var(--md-on-surface-variant);
+  transform: rotate(-45deg);
+  margin-right: 8rpx;
+}
+
+/* 按钮 */
 .form-actions {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
   display: flex;
   gap: 24rpx;
-  margin: 24rpx;
-  padding-bottom: calc(24rpx + env(safe-area-inset-bottom));
+  padding: 24rpx 32rpx calc(24rpx + env(safe-area-inset-bottom));
+  background: var(--md-surface);
+  border-top: 1rpx solid var(--md-outline-variant);
 }
 
 .form-btn {
   flex: 1;
-  height: 88rpx;
+  height: 96rpx;
+  border-radius: 9999rpx;
   font-size: 32rpx;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.form-btn--primary {
+  background: var(--md-primary);
+  color: var(--md-on-primary);
+}
+
+.form-btn--primary:active {
+  opacity: 0.85;
+}
+
+.form-btn--secondary {
+  background: transparent;
+  color: var(--md-on-surface);
+  border: 1rpx solid var(--md-outline);
+}
+
+.form-btn--secondary:active {
+  background: var(--md-surface-container-low);
 }

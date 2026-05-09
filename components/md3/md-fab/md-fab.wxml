@@ -1,0 +1,4 @@
+<view class="md-fab md-fab--{{variant}}" bindtap="onTap">
+  <image wx:if="{{icon}}" class="md-fab__icon" src="{{icon}}" mode="aspectFit" />
+  <text wx:if="{{label}}" class="md-fab__label">{{label}}</text>
+</view>

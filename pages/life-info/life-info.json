@@ -3,6 +3,9 @@
   "navigationStyle": "custom",
   "enablePullDownRefresh": false,
   "usingComponents": {
-    "nav-bar": "/components/nav-bar/nav-bar"
+    "md-app-bar": "/components/md3/md-app-bar/md-app-bar",
+    "md-chip": "/components/md3/md-chip/md-chip",
+    "md-divider": "/components/md3/md-divider/md-divider",
+    "md-empty-state": "/components/md3/md-empty-state/md-empty-state"
   }
 }

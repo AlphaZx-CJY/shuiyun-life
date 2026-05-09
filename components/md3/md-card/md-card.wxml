@@ -1,0 +1,3 @@
+<view class="md-card md-card--{{shape}} {{clickable ? 'md-card--clickable' : ''}}" bindtap="onTap">
+  <slot />
+</view>

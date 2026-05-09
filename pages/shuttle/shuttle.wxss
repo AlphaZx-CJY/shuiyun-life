@@ -1,8 +1,11 @@
 /* 班车信息页样式 */
 
+.shuttle-section {
+  margin: var(--space-4) var(--space-4) var(--space-6);
+}
+
 .route-header {
-  margin: 24rpx;
-  padding: 32rpx;
+  padding: var(--space-5) var(--space-4);
   text-align: center;
 }
 
@@ -11,55 +14,50 @@
   font-weight: 700;
   color: var(--md-on-surface);
   display: block;
-  margin-bottom: 12rpx;
+  margin-bottom: var(--space-3);
 }
 
-.route-note {
-  display: inline-block;
-  padding: 6rpx 20rpx;
-  border-radius: var(--radius-pill);
-  background: var(--md-outline-variant);
-  margin-bottom: 8rpx;
-}
-
-.route-note--secondary {
-  background: var(--md-surface-variant);
-}
-
-.route-note-text {
-  font-size: 24rpx;
-  color: var(--md-on-surface);
-  font-weight: 500;
-}
-
-.route-note--secondary .route-note-text {
-  color: var(--md-on-surface-variant);
+.route-chips {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-2);
 }
 
 /* 时刻表 */
-.schedule-card {
-  margin: 0 24rpx;
-  padding: 24rpx 32rpx;
-}
-
 .schedule-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 16rpx;
+  background: var(--md-surface);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
 }
 
 .schedule-item {
   display: flex;
   align-items: center;
-  width: calc(33.333% - 11rpx);
-  padding: 16rpx 0;
+  padding: var(--space-3) var(--space-4);
+  position: relative;
+}
+
+.schedule-item::after {
+  content: '';
+  position: absolute;
+  left: var(--space-4);
+  right: var(--space-4);
+  bottom: 0;
+  height: 1rpx;
+  background: var(--md-outline-variant);
+  transform: scaleY(0.5);
+}
+
+.schedule-item:last-child::after {
+  display: none;
 }
 
 .schedule-time-marker {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  margin-right: 12rpx;
+  justify-content: center;
+  margin-right: var(--space-3);
 }
 
 .schedule-dot {
@@ -95,7 +93,7 @@
 
 .schedule-time-status {
   font-size: 20rpx;
-  color: var(--ios-gray);
+  color: var(--md-on-surface-variant);
   margin-top: 4rpx;
 }
 
@@ -105,9 +103,8 @@
 }
 
 /* 站点 */
-.stops-card {
-  margin: 0 24rpx;
-  padding: 24rpx 32rpx;
+.stops-list {
+  padding: var(--space-3) var(--space-4);
 }
 
 .stop-item {
@@ -121,14 +118,14 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-right: 20rpx;
+  margin-right: var(--space-3);
 }
 
 .stop-dot {
   width: 20rpx;
   height: 20rpx;
   border-radius: 50%;
-  background: var(--ios-light-gray);
+  background: var(--md-outline-variant);
   flex-shrink: 0;
 }
 
@@ -143,7 +140,7 @@
 .stop-line {
   width: 2rpx;
   height: 40rpx;
-  background: var(--ios-separator);
+  background: var(--md-outline-variant);
 }
 
 .stop-name {
@@ -153,15 +150,14 @@
 }
 
 /* 联系 */
-.contact-card {
-  margin: 0 24rpx 48rpx;
-  padding: 28rpx 32rpx;
+.contact-row {
+  padding: var(--space-3) var(--space-4);
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.contact-content {
+.contact-info {
   display: flex;
   flex-direction: column;
 }
@@ -180,7 +176,7 @@
 
 .contact-action {
   padding: 12rpx 28rpx;
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-xs);
   background: var(--md-primary);
 }
 
@@ -188,8 +184,4 @@
   font-size: 26rpx;
   color: var(--md-on-primary);
   font-weight: 500;
-}
-
-.contact-card:active {
-  opacity: 0.8;
 }

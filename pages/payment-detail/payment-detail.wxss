@@ -2,7 +2,6 @@
 
 .detail-header {
   padding: 40rpx 32rpx;
-  border-bottom: 1rpx solid var(--md-outline-variant);
 }
 
 .detail-tag {
@@ -32,13 +31,6 @@
   gap: 16rpx;
 }
 
-.detail-meta-dot {
-  width: 4rpx;
-  height: 4rpx;
-  border-radius: 50%;
-  background: var(--md-outline);
-}
-
 .detail-date {
   font-size: 24rpx;
   color: var(--md-on-surface-variant);
@@ -47,10 +39,4 @@
 .detail-content {
   padding: 32rpx;
   padding-bottom: 64rpx;
-}
-
-.detail-content rich-text {
-  font-size: 32rpx;
-  line-height: 1.75;
-  color: var(--md-on-surface);
 }

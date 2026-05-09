@@ -1,0 +1,6 @@
+<view class="md-empty-state">
+  <image wx:if="{{icon}}" class="md-empty-state__icon" src="{{icon}}" mode="aspectFit" />
+  <text wx:if="{{headline}}" class="md-empty-state__headline">{{headline}}</text>
+  <text wx:if="{{supportingText}}" class="md-empty-state__supporting">{{supportingText}}</text>
+  <slot name="action" />
+</view>

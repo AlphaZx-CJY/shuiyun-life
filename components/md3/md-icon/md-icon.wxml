@@ -1,0 +1,6 @@
+<image
+  class="md-icon"
+  style="width: {{size}}rpx; height: {{size}}rpx; {{color !== 'currentColor' ? 'filter: invert(1);' : ''}}"
+  src="{{name}}"
+  mode="aspectFit"
+/>
