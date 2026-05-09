@@ -5,6 +5,21 @@
     <view class="header-subtitle">让生活更便捷</view>
   </view>
 
+  <!-- 快捷入口 -->
+  <view class="quick-grid">
+    <view class="quick-item" wx:for="{{quickEntries}}" wx:key="id" data-path="{{item.path}}" bindtap="onEntryTap">
+      <view class="quick-icon-btn">
+        <md-icon wx:if="{{item.id === 1}}" name="/images/icons/material/storefront-on.svg" size="40" color="currentColor" />
+        <md-icon wx:elif="{{item.id === 2}}" name="/images/icons/material/article-on.svg" size="40" color="currentColor" />
+        <md-icon wx:elif="{{item.id === 3}}" name="/images/icons/material/event-on.svg" size="40" color="currentColor" />
+        <md-icon wx:elif="{{item.id === 4}}" name="/images/icons/material/article-on.svg" size="40" color="currentColor" />
+        <md-icon wx:elif="{{item.id === 5}}" name="/images/icons/material/storefront-on.svg" size="40" color="currentColor" />
+        <md-icon wx:elif="{{item.id === 6}}" name="/images/icons/material/person-on.svg" size="40" color="currentColor" />
+      </view>
+      <text class="quick-label">{{item.label}}</text>
+    </view>
+  </view>
+
   <!-- 班车信息卡片 -->
   <md-card class="shuttle-card-wrap" shape="xlarge" clickable wx:if="{{nextShuttle}}" bindtap="onShuttleBannerTap">
     <view class="shuttle-card-inner">
@@ -27,21 +42,6 @@
     </view>
   </md-card>
 
-  <!-- 快捷入口 -->
-  <view class="quick-grid">
-    <view class="quick-item" wx:for="{{quickEntries}}" wx:key="id" data-path="{{item.path}}" bindtap="onEntryTap">
-      <view class="quick-icon-btn">
-        <md-icon wx:if="{{item.id === 1}}" name="/images/icons/material/storefront-on.svg" size="40" color="currentColor" />
-        <md-icon wx:elif="{{item.id === 2}}" name="/images/icons/material/article-on.svg" size="40" color="currentColor" />
-        <md-icon wx:elif="{{item.id === 3}}" name="/images/icons/material/event-on.svg" size="40" color="currentColor" />
-        <md-icon wx:elif="{{item.id === 4}}" name="/images/icons/material/article-on.svg" size="40" color="currentColor" />
-        <md-icon wx:elif="{{item.id === 5}}" name="/images/icons/material/storefront-on.svg" size="40" color="currentColor" />
-        <md-icon wx:elif="{{item.id === 6}}" name="/images/icons/material/person-on.svg" size="40" color="currentColor" />
-      </view>
-      <text class="quick-label">{{item.label}}</text>
-    </view>
-  </view>
-
   <!-- 社区通知 -->
   <view class="section">
     <view class="section-header">
@@ -54,27 +54,30 @@
         <text class="notice-title">{{item.title}}</text>
         <view class="list-arrow"></view>
       </view>
-      <view class="empty-state" wx:if="{{noticeNews.length === 0}}">
+      <view class="empty-state empty-state--small" wx:if="{{noticeNews.length === 0}}">
         <text class="empty-state__text">暂无社区通知</text>
       </view>
     </view>
   </view>
 
   <!-- 最近活动 -->
-  <view class="section">
+  <view class="section section--last">
     <view class="section-header">
       <text class="section-title">最近活动</text>
       <text class="section-more" bindtap="onMoreScheduleTap">查看全部</text>
     </view>
     <view class="list-container">
       <view class="list-item schedule-item" wx:for="{{recentSchedules}}" wx:key="id" data-id="{{item.id}}" bindtap="onScheduleTap">
-        <view class="schedule-dot schedule-dot--{{item.status}}"></view>
+        <view class="schedule-left">
+          <text class="schedule-time-label">{{item.time}}</text>
+          <text class="schedule-date-label">{{item.dateLabel}}</text>
+        </view>
         <view class="schedule-content">
           <text class="schedule-title">{{item.title}}</text>
-          <text class="schedule-info"><text class="schedule-date">{{item.dateLabel}}</text> · {{item.time}} · {{item.location}}</text>
+          <text class="schedule-info">{{item.location}}</text>
         </view>
       </view>
-      <view class="empty-state" wx:if="{{recentSchedules.length === 0}}">
+      <view class="empty-state empty-state--small" wx:if="{{recentSchedules.length === 0}}">
         <text class="empty-state__text">暂无近期活动</text>
       </view>
     </view>

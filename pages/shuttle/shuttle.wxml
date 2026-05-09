@@ -3,7 +3,7 @@
 <view class="page-container">
   <!-- 路线信息 -->
   <view class="shuttle-section">
-    <md-card shape="large">
+    <md-card shape="xlarge">
       <view class="route-header">
         <text class="route-name">{{routeName}}</text>
         <view class="route-chips">
@@ -17,24 +17,26 @@
   <!-- 时刻表 -->
   <view class="shuttle-section" wx:if="{{schedule.length > 0}}">
     <text class="md-section-title">发车时刻</text>
-    <view class="schedule-list">
-      <view class="schedule-item {{item.status}}" wx:for="{{schedule}}" wx:key="time">
-        <view class="schedule-time-marker">
-          <view class="schedule-dot schedule-dot--{{item.status}}"></view>
-        </view>
-        <view class="schedule-time-content">
-          <text class="schedule-time-text">{{item.time}}</text>
-          <text class="schedule-time-status" wx:if="{{item.status === 'soon'}}">即将发车</text>
-          <text class="schedule-time-status" wx:if="{{item.status === 'passed'}}">已发车</text>
+    <md-card shape="large">
+      <view class="time-list">
+        <view class="time-item {{item.status}}" wx:for="{{schedule}}" wx:key="time">
+          <view class="time-marker">
+            <view class="time-dot time-dot--{{item.status}}"></view>
+          </view>
+          <view class="time-info">
+            <text class="time-text">{{item.time}}</text>
+            <text class="time-status" wx:if="{{item.status === 'soon'}}">即将发车</text>
+            <text class="time-status" wx:if="{{item.status === 'passed'}}">已发车</text>
+          </view>
         </view>
       </view>
-    </view>
+    </md-card>
   </view>
 
   <!-- 站点信息 -->
   <view class="shuttle-section">
     <text class="md-section-title">途经站点</text>
-    <md-card shape="medium">
+    <md-card shape="large">
       <view class="stops-list">
         <view class="stop-item" wx:for="{{stops}}" wx:key="*this">
           <view class="stop-marker">
@@ -50,7 +52,7 @@
   <!-- 联系信息 -->
   <view class="shuttle-section">
     <text class="md-section-title">联系方式</text>
-    <md-card shape="medium" clickable bindtap="onCallTap">
+    <md-card shape="large" clickable bindtap="onCallTap">
       <view class="contact-row">
         <view class="contact-info">
           <text class="contact-label">班车调度</text>

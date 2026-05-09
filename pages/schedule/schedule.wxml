@@ -1,39 +1,35 @@
 <view class="page-container page-container--with-tabbar">
   <view class="schedule-sections">
-    <!-- 即将开始 -->
-    <view class="schedule-section" wx:if="{{upcomingList.length > 0}}">
-      <text class="schedule-section-title">即将开始</text>
-      <view class="schedule-list">
-        <view class="schedule-item" wx:for="{{upcomingList}}" wx:key="id" data-item="{{item}}" bindtap="onScheduleTap">
-          <view class="schedule-badge schedule-badge--upcoming">{{item.type}}</view>
-          <view class="schedule-content">
-            <text class="schedule-title">{{item.title}}</text>
-            <text class="schedule-info">{{item.date}} {{item.time}}</text>
-            <text class="schedule-location">{{item.location}}</text>
+    <!-- 按类型分组的活动列表 -->
+    <block wx:for="{{groups}}" wx:for-item="group" wx:key="type">
+      <view class="schedule-section">
+        <text class="schedule-section-title">{{group.type}}</text>
+        <view class="schedule-list">
+          <view
+            class="schedule-item {{item.status === 'ended' ? 'schedule-item--ended' : ''}}"
+            wx:for="{{group.list}}"
+            wx:key="id"
+            data-id="{{item.id}}"
+            bindtap="onScheduleTap"
+          >
+            <view class="schedule-left">
+              <text class="schedule-date-label">{{item.date}}</text>
+              <text class="schedule-time-label">{{item.time}}</text>
+            </view>
+            <view class="schedule-content">
+              <text class="schedule-title">{{item.title}}</text>
+              <text class="schedule-location">{{item.location}}</text>
+            </view>
+            <view class="schedule-status {{item.status === 'upcoming' ? 'schedule-status--upcoming' : 'schedule-status--ended'}}">
+              {{item.status === 'upcoming' ? '即将开始' : '已结束'}}
+            </view>
           </view>
-          <view class="schedule-status schedule-status--upcoming">即将开始</view>
         </view>
       </view>
-    </view>
-
-    <!-- 已结束 -->
-    <view class="schedule-section" wx:if="{{endedList.length > 0}}">
-      <text class="schedule-section-title">已结束</text>
-      <view class="schedule-list">
-        <view class="schedule-item schedule-item--ended" wx:for="{{endedList}}" wx:key="id" data-item="{{item}}" bindtap="onScheduleTap">
-          <view class="schedule-badge schedule-badge--ended">{{item.type}}</view>
-          <view class="schedule-content">
-            <text class="schedule-title">{{item.title}}</text>
-            <text class="schedule-info">{{item.date}} {{item.time}}</text>
-            <text class="schedule-location">{{item.location}}</text>
-          </view>
-          <view class="schedule-status schedule-status--ended">已结束</view>
-        </view>
-      </view>
-    </view>
+    </block>
 
     <!-- 空状态 -->
-    <view class="schedule-empty" wx:if="{{upcomingList.length === 0 && endedList.length === 0}}">
+    <view class="schedule-empty" wx:if="{{groups.length === 0}}">
       <md-empty-state icon="/images/icons/material/event-off.svg" headline="暂无活动安排" />
     </view>
   </view>

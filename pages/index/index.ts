@@ -115,7 +115,12 @@ Page<IIndexData, WechatMiniprogram.IAnyObject>({
   },
 
   onScheduleTap(e: WechatMiniprogram.TouchEvent) {
-    wx.switchTab({ url: '/pages/schedule/schedule' });
+    const { id } = e.currentTarget.dataset as { id: number | string };
+    if (id) {
+      wx.navigateTo({ url: `/pages/schedule-detail/schedule-detail?id=${id}` });
+    } else {
+      wx.switchTab({ url: '/pages/schedule/schedule' });
+    }
   },
 
   onMoreScheduleTap() {

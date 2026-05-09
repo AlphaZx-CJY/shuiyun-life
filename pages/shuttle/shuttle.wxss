@@ -1,11 +1,11 @@
 /* 班车信息页样式 */
 
 .shuttle-section {
-  margin: var(--space-4) var(--space-4) var(--space-6);
+  margin: 0 32rpx 48rpx;
 }
 
 .route-header {
-  padding: var(--space-5) var(--space-4);
+  padding: 48rpx 32rpx;
   text-align: center;
 }
 
@@ -14,97 +14,98 @@
   font-weight: 700;
   color: var(--md-on-surface);
   display: block;
-  margin-bottom: var(--space-3);
+  margin-bottom: 24rpx;
+  letter-spacing: -0.4rpx;
 }
 
 .route-chips {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: var(--space-2);
+  gap: 16rpx;
 }
 
 /* 时刻表 */
-.schedule-list {
-  background: var(--md-surface);
-  border-radius: var(--radius-sm);
-  overflow: hidden;
+.time-list {
+  padding: 16rpx 0;
 }
 
-.schedule-item {
+.time-item {
   display: flex;
   align-items: center;
-  padding: var(--space-3) var(--space-4);
+  padding: 20rpx 32rpx;
   position: relative;
 }
 
-.schedule-item::after {
+.time-item::after {
   content: '';
   position: absolute;
-  left: var(--space-4);
-  right: var(--space-4);
+  left: 32rpx;
+  right: 32rpx;
   bottom: 0;
   height: 1rpx;
   background: var(--md-outline-variant);
   transform: scaleY(0.5);
 }
 
-.schedule-item:last-child::after {
+.time-item:last-child::after {
   display: none;
 }
 
-.schedule-time-marker {
+.time-marker {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-right: var(--space-3);
+  margin-right: 24rpx;
 }
 
-.schedule-dot {
-  width: 16rpx;
-  height: 16rpx;
+.time-dot {
+  width: 20rpx;
+  height: 20rpx;
   border-radius: 50%;
   flex-shrink: 0;
 }
 
-.schedule-dot--upcoming {
+.time-dot--upcoming {
   background: var(--md-primary);
 }
 
-.schedule-dot--soon {
+.time-dot--soon {
   background: var(--md-tertiary);
   border: 4rpx solid var(--md-primary-container);
+  box-sizing: border-box;
 }
 
-.schedule-dot--passed {
+.time-dot--passed {
   background: var(--md-surface-variant);
 }
 
-.schedule-time-content {
+.time-info {
   display: flex;
   flex-direction: column;
+  flex: 1;
 }
 
-.schedule-time-text {
+.time-text {
   font-size: 30rpx;
   font-weight: 600;
   color: var(--md-primary);
 }
 
-.schedule-time-status {
-  font-size: 20rpx;
-  color: var(--md-on-surface-variant);
-  margin-top: 4rpx;
-}
-
-.schedule-item.passed .schedule-time-text {
+.time-item.passed .time-text {
   color: var(--md-on-surface-variant);
   text-decoration: line-through;
 }
 
+.time-status {
+  font-size: 22rpx;
+  color: var(--md-on-surface-variant);
+  margin-top: 4rpx;
+}
+
 /* 站点 */
 .stops-list {
-  padding: var(--space-3) var(--space-4);
+  padding: 24rpx 32rpx;
 }
 
 .stop-item {
@@ -118,7 +119,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-right: var(--space-3);
+  margin-right: 24rpx;
+  min-height: 48rpx;
 }
 
 .stop-dot {
@@ -139,7 +141,8 @@
 
 .stop-line {
   width: 2rpx;
-  height: 40rpx;
+  flex: 1;
+  min-height: 32rpx;
   background: var(--md-outline-variant);
 }
 
@@ -151,7 +154,7 @@
 
 /* 联系 */
 .contact-row {
-  padding: var(--space-3) var(--space-4);
+  padding: 24rpx 32rpx;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -175,8 +178,8 @@
 }
 
 .contact-action {
-  padding: 12rpx 28rpx;
-  border-radius: var(--radius-xs);
+  padding: 16rpx 36rpx;
+  border-radius: 9999rpx;
   background: var(--md-primary);
 }
 

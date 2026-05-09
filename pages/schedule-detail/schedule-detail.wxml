@@ -1,0 +1,40 @@
+<md-app-bar title="活动详情" showBack="{{true}}" />
+
+<view class="page-container" wx:if="{{schedule}}">
+  <!-- 标题区 -->
+  <view class="detail-header">
+    <md-chip variant="filled">{{schedule.type}}</md-chip>
+    <text class="detail-title">{{schedule.title}}</text>
+    <view class="detail-status-wrap">
+      <view class="detail-status detail-status--{{statusClass}}">{{statusLabel}}</view>
+    </view>
+  </view>
+
+  <md-divider />
+
+  <!-- 信息卡片 -->
+  <md-card shape="large" class="detail-info-card">
+    <view class="info-row">
+      <text class="info-label">日期</text>
+      <text class="info-value">{{schedule.date}}</text>
+    </view>
+    <view class="info-row">
+      <text class="info-label">时间</text>
+      <text class="info-value">{{schedule.time}}</text>
+    </view>
+    <view class="info-row">
+      <text class="info-label">地点</text>
+      <text class="info-value">{{schedule.location}}</text>
+    </view>
+  </md-card>
+
+  <!-- 活动描述 -->
+  <view class="detail-desc-section" wx:if="{{schedule.description}}">
+    <text class="detail-section-title">活动介绍</text>
+    <text class="detail-desc-text">{{schedule.description}}</text>
+  </view>
+</view>
+
+<view class="page-container empty-fallback" wx:else>
+  <md-empty-state icon="/images/icons/material/event-off.svg" headline="活动不存在" />
+</view>

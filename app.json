@@ -10,6 +10,7 @@
     "pages/payment/payment",
     "pages/payment-detail/payment-detail",
     "pages/schedule/schedule",
+    "pages/schedule-detail/schedule-detail",
     "pages/shuttle/shuttle",
     "pages/profile/profile",
     "pages/feedback/feedback",

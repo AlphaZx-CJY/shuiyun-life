@@ -36,6 +36,12 @@
   color: var(--md-primary);
 }
 
+.md-chip__text {
+  font-size: inherit;
+  color: inherit;
+  line-height: inherit;
+}
+
 .md-chip__icon {
   width: 32rpx;
   height: 32rpx;

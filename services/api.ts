@@ -134,7 +134,12 @@ export async function getLatestNews(count = 3): Promise<NewsItem[]> {
 export async function getRecentSchedules(limit = 5): Promise<Pick<ScheduleItem, 'id' | 'title' | 'time' | 'location' | 'status' | 'date'>[]> {
   const today = new Date().toISOString().slice(0, 10);
   const data = await safeQuery<ScheduleItem>('schedules', { enabled: true, date: cloud.db.command.gte(today) }, { orderBy: [{ field: 'date', desc: false }, { field: 'time', desc: false }], limit });
-  return data.map((s) => ({ id: s.id, title: s.title, time: s.time, location: s.location, status: s.status, date: s.date }));
+  const now = new Date();
+  return data.map((s) => {
+    const itemDateTime = new Date(`${s.date}T${s.time}`);
+    const status = itemDateTime < now ? 'ended' : 'upcoming';
+    return { id: s.id, title: s.title, time: s.time, location: s.location, status, date: s.date };
+  });
 }
 
 export async function getLatestTrades(count = 4): Promise<TradeItem[]> {

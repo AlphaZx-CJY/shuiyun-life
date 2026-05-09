@@ -1,6 +1,5 @@
 /* 首页样式 — Material 3 Expressive */
 
-
 /* 头部 */
 .header {
   padding: 64rpx 32rpx 32rpx;
@@ -15,7 +14,7 @@
 }
 
 .header-subtitle {
-  font-size: 28rpx;
+  font-size: 24rpx;
   color: var(--md-on-surface-variant);
   margin-top: 12rpx;
   font-weight: 400;
@@ -27,8 +26,9 @@
 }
 
 .shuttle-card-inner {
-  height: 340rpx;
+  height: 280rpx;
   background: linear-gradient(135deg, var(--md-primary) 0%, var(--md-on-primary-container) 100%);
+  border-radius: 28rpx;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -75,11 +75,10 @@
   font-weight: 500;
   color: var(--md-on-primary);
   margin-bottom: 16rpx;
-  backdrop-filter: blur(8rpx);
 }
 
 .shuttle-route {
-  font-size: 32rpx;
+  font-size: 28rpx;
   font-weight: 600;
   color: var(--md-on-primary);
   letter-spacing: 0.2rpx;
@@ -93,7 +92,7 @@
 }
 
 .shuttle-time {
-  font-size: 56rpx;
+  font-size: 48rpx;
   font-weight: 300;
   color: var(--md-on-primary);
   letter-spacing: -1rpx;
@@ -142,7 +141,7 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 24rpx;
-  margin: 48rpx 32rpx;
+  margin: 48rpx 32rpx 56rpx;
 }
 
 .quick-item {
@@ -176,7 +175,11 @@
 
 /* 分区 */
 .section {
-  margin: 48rpx 32rpx;
+  margin: 0 32rpx 48rpx;
+}
+
+.section--last {
+  margin-bottom: 32rpx;
 }
 
 .section-header {
@@ -257,51 +260,50 @@
   letter-spacing: -0.2rpx;
 }
 
-/* 活动项 */
-.schedule-dot {
-  width: 18rpx;
-  height: 18rpx;
-  border-radius: 50%;
+/* 活动项（首页） */
+.schedule-item .schedule-left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 120rpx;
   margin-right: 24rpx;
   flex-shrink: 0;
 }
 
-.schedule-dot--upcoming {
-  background: var(--md-primary);
+.schedule-item .schedule-time-label {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: var(--md-primary);
+  line-height: 1.2;
 }
 
-.schedule-dot--ongoing {
-  background: var(--md-outline);
+.schedule-item .schedule-date-label {
+  font-size: 22rpx;
+  color: var(--md-on-surface-variant);
+  margin-top: 4rpx;
+  line-height: 1.2;
 }
 
-.schedule-dot--ended {
-  background: var(--md-outline-variant);
-}
-
-.schedule-content {
+.schedule-item .schedule-content {
   flex: 1;
   min-width: 0;
 }
 
-.schedule-title {
+.schedule-item .schedule-title {
   font-size: 28rpx;
   font-weight: 500;
   color: var(--md-on-surface);
   display: block;
   letter-spacing: -0.2rpx;
+  line-height: 1.4;
 }
 
-.schedule-info {
+.schedule-item .schedule-info {
   font-size: 24rpx;
   color: var(--md-on-surface-variant);
   margin-top: 6rpx;
   display: block;
   font-weight: 400;
-}
-
-.schedule-date {
-  color: var(--md-primary);
-  font-weight: 600;
 }
 
 /* 空状态 */
@@ -310,7 +312,11 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 64rpx 32rpx;
+  padding: 64rpx 32rpx 96rpx;
+}
+
+.empty-state--small {
+  padding: 48rpx 32rpx 80rpx;
 }
 
 .empty-state__text {
