@@ -104,6 +104,3 @@
   z-index: 100;
 }
 
-.page-container {
-  padding-bottom: calc(120rpx + env(safe-area-inset-bottom));
-}

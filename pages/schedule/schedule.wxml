@@ -1,4 +1,4 @@
-<view class="page-container">
+<view class="page-container page-container--with-tabbar">
   <view class="schedule-sections">
     <!-- 即将开始 -->
     <view class="schedule-section" wx:if="{{upcomingList.length > 0}}">

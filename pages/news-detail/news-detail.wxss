@@ -1,9 +1,5 @@
 /* 资讯详情页样式 */
 
-.page-container {
-  background: var(--md-background);
-  min-height: 100vh;
-}
 
 .detail-header {
   padding: 48rpx 32rpx 32rpx;

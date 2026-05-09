@@ -133,8 +133,26 @@ view, text, image, navigator, scroll-view, swiper, swiper-item {
 .page-container {
   min-height: 100vh;
   background-color: var(--md-background);
-  padding-bottom: constant(safe-area-inset-bottom);
-  padding-bottom: env(safe-area-inset-bottom);
+}
+
+/* TabBar 页面：底部预留 TabBar + 安全区域 */
+.page-container--with-tabbar {
+  padding-bottom: calc(120rpx + env(safe-area-inset-bottom));
+}
+
+/* 底部有固定操作栏的页面 */
+.page-container--with-action {
+  padding-bottom: calc(128rpx + env(safe-area-inset-bottom));
+}
+
+/* 内容区统一边距 */
+.content-area {
+  padding: 0 32rpx;
+}
+
+/* 模块间距 */
+.section-gap {
+  margin-top: 48rpx;
 }
 
 /* ================================

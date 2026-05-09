@@ -1,8 +1,5 @@
 /* 发布闲置页样式 */
 
-.page-container {
-  padding-bottom: calc(160rpx + env(safe-area-inset-bottom));
-}
 
 .form-body {
   padding: 32rpx;

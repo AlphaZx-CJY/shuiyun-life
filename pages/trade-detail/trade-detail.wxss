@@ -123,9 +123,6 @@
   opacity: 0.85;
 }
 
-.page-container {
-  padding-bottom: calc(144rpx + env(safe-area-inset-bottom));
-}
 
 .empty-fallback {
   display: flex;

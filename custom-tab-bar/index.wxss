@@ -10,7 +10,7 @@
   justify-content: space-around;
   align-items: center;
   border-top: 1rpx solid var(--md-outline-variant);
-  box-sizing: content-box;
+  box-sizing: border-box;
 }
 
 .tab-bar-item {

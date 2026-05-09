@@ -1,4 +1,4 @@
-<view class="page-container">
+<view class="page-container page-container--with-tabbar">
   <!-- 分类筛选 -->
   <view class="category-bar">
     <scroll-view class="category-scroll" scroll-x enhanced show-scrollbar="{{false}}">

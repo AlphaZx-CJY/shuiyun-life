@@ -61,6 +61,3 @@
 }
 
 /* Custom tab-bar padding */
-.page-container {
-  padding-bottom: calc(120rpx + env(safe-area-inset-bottom));
-}

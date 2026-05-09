@@ -1,9 +1,5 @@
 /* 资讯页样式 */
 
-.page-container {
-  background: var(--md-background);
-  padding-bottom: calc(120rpx + env(safe-area-inset-bottom));
-}
 
 /* 分类标签栏 */
 .category-bar {

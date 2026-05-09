@@ -1,4 +1,4 @@
-<view class="page-container">
+<view class="page-container page-container--with-tabbar">
   <!-- 用户头部 -->
   <view class="profile-header">
     <view class="profile-avatar">
