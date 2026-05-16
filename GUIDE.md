@@ -1,6 +1,7 @@
 # 水韵名邸生活号 — 使用指南与二次开发文档
 
 > 本文档面向两类读者：
+>
 > - **运营人员**：通过微信云控制台 CMS 更新小程序内容，无需写代码。
 > - **开发人员**：基于本项目进行二次开发，扩展功能或修改样式。
 
@@ -74,62 +75,63 @@ contacts, feedback_config, guides, feedback
 
 #### `banners` — 首页轮播 Banner
 
-| 字段 | 类型 | 必填 | 说明 | 示例 |
-|------|------|------|------|------|
-| `image` | string | 是 | 图片 URL（支持云存储 fileID 或 HTTPS） | `cloud://xxx.jpg` |
-| `title` | string | 是 | Banner 标题 | 「社区健身活动」 |
-| `enabled` | boolean | 是 | 是否展示 | `true` |
-| `sort` | number | 否 | 排序，越小越靠前 | `1` |
+| 字段      | 类型    | 必填 | 说明                                   | 示例              |
+| --------- | ------- | ---- | -------------------------------------- | ----------------- |
+| `image`   | string  | 是   | 图片 URL（支持云存储 fileID 或 HTTPS） | `cloud://xxx.jpg` |
+| `title`   | string  | 是   | Banner 标题                            | 「社区健身活动」  |
+| `enabled` | boolean | 是   | 是否展示                               | `true`            |
+| `sort`    | number  | 否   | 排序，越小越靠前                       | `1`               |
 
 #### `news` — 新闻资讯
 
-| 字段 | 类型 | 必填 | 说明 | 示例 |
-|------|------|------|------|------|
-| `title` | string | 是 | 标题 | 「关于停车收费调整的通知」 |
-| `summary` | string | 是 | 摘要 | 「自2024年5月起...」 |
-| `source` | string | 否 | 来源 | 「物业办公室」 |
-| `date` | string | 是 | 发布日期（`YYYY-MM-DD`） | `2024-05-01` |
-| `tag` | string | 否 | 标签文字 | 「重要」 |
-| `category` | string | 是 | 分类：`notice`（通知）/ `policy`（政策）/ `around`（周边） | `notice` |
-| `cover` | string | 否 | 封面图 URL | `cloud://xxx.jpg` |
-| `content` | string | 是 | 正文（支持换行） | 「各位业主：...」 |
-| `viewCount` | number | 否 | 浏览量 | `128` |
-| `enabled` | boolean | 是 | 是否展示 | `true` |
+| 字段        | 类型    | 必填 | 说明                                                       | 示例                       |
+| ----------- | ------- | ---- | ---------------------------------------------------------- | -------------------------- |
+| `title`     | string  | 是   | 标题                                                       | 「关于停车收费调整的通知」 |
+| `summary`   | string  | 是   | 摘要                                                       | 「自2024年5月起...」       |
+| `source`    | string  | 否   | 来源                                                       | 「物业办公室」             |
+| `date`      | string  | 是   | 发布日期（`YYYY-MM-DD`）                                   | `2024-05-01`               |
+| `tag`       | string  | 否   | 标签文字                                                   | 「重要」                   |
+| `category`  | string  | 是   | 分类：`notice`（通知）/ `policy`（政策）/ `around`（周边） | `notice`                   |
+| `cover`     | string  | 否   | 封面图 URL                                                 | `cloud://xxx.jpg`          |
+| `content`   | string  | 是   | 正文（支持换行）                                           | 「各位业主：...」          |
+| `viewCount` | number  | 否   | 浏览量                                                     | `128`                      |
+| `enabled`   | boolean | 是   | 是否展示                                                   | `true`                     |
 
 > `category: 'notice'` 的新闻会出现在首页「社区通知」区域。
 
 #### `trades` — 闲置交易
 
-| 字段 | 类型 | 必填 | 说明 | 示例 |
-|------|------|------|------|------|
-| `title` | string | 是 | 物品名称 | 「九成新宜家沙发」 |
-| `price` | number | 是 | 现价 | `500` |
-| `originalPrice` | number | 是 | 原价 | `1200` |
-| `category` | string | 是 | 分类：`furniture` / `appliance` / `baby` / `books` / `others` | `furniture` |
-| `images` | string[] | 否 | 图片 URL 数组 | `["cloud://xxx.jpg"]` |
-| `seller` | string | 是 | 卖家昵称 | 「张先生」 |
-| `time` | string | 是 | 发布时间 | `2024-04-20` |
-| `location` | string | 否 | 所在楼栋 | 「12号楼」 |
-| `description` | string | 否 | 详细描述 | 「买了两年，保养很好...」 |
-| `enabled` | boolean | 是 | 是否展示 | `true` |
+| 字段            | 类型     | 必填 | 说明                                                          | 示例                      |
+| --------------- | -------- | ---- | ------------------------------------------------------------- | ------------------------- |
+| `title`         | string   | 是   | 物品名称                                                      | 「九成新宜家沙发」        |
+| `price`         | number   | 是   | 现价                                                          | `500`                     |
+| `originalPrice` | number   | 是   | 原价                                                          | `1200`                    |
+| `category`      | string   | 是   | 分类：`furniture` / `appliance` / `baby` / `books` / `others` | `furniture`               |
+| `images`        | string[] | 否   | 图片 URL 数组                                                 | `["cloud://xxx.jpg"]`     |
+| `seller`        | string   | 是   | 卖家昵称                                                      | 「张先生」                |
+| `time`          | string   | 是   | 发布时间                                                      | `2024-04-20`              |
+| `location`      | string   | 否   | 所在楼栋                                                      | 「12号楼」                |
+| `description`   | string   | 否   | 详细描述                                                      | 「买了两年，保养很好...」 |
+| `enabled`       | boolean  | 是   | 是否展示                                                      | `true`                    |
 
 > 闲置交易也支持用户在前端「发布」后存入本地缓存，云数据库中的数据优先展示。
 
 #### `services` — 周边生活服务
 
-| 字段 | 类型 | 必填 | 说明 | 示例 |
-|------|------|------|------|------|
-| `name` | string | 是 | 商家名称 | 「全家便利店」 |
-| `address` | string | 是 | 地址 | 「天山西路123号」 |
-| `distance` | string | 否 | 距离 | 「步行5分钟」 |
-| `hours` | string | 否 | 营业时间 | 「07:00-23:00」 |
-| `phone` | string | 否 | 联系电话 | `021-12345678` |
-| `tags` | string[] | 否 | 标签数组 | `["24小时", "可配送"]` |
-| `category` | string | 是 | 分类，与前端硬编码分类对应 | `supermarket` |
-| `enabled` | boolean | 是 | 是否展示 | `true` |
-| `sort` | number | 否 | 排序 | `1` |
+| 字段       | 类型     | 必填 | 说明                       | 示例                   |
+| ---------- | -------- | ---- | -------------------------- | ---------------------- |
+| `name`     | string   | 是   | 商家名称                   | 「全家便利店」         |
+| `address`  | string   | 是   | 地址                       | 「天山西路123号」      |
+| `distance` | string   | 否   | 距离                       | 「步行5分钟」          |
+| `hours`    | string   | 否   | 营业时间                   | 「07:00-23:00」        |
+| `phone`    | string   | 否   | 联系电话                   | `021-12345678`         |
+| `tags`     | string[] | 否   | 标签数组                   | `["24小时", "可配送"]` |
+| `category` | string   | 是   | 分类，与前端硬编码分类对应 | `supermarket`          |
+| `enabled`  | boolean  | 是   | 是否展示                   | `true`                 |
+| `sort`     | number   | 否   | 排序                       | `1`                    |
 
 > 前端分类映射（`services/api.ts` 硬编码）：
+>
 > - `supermarket` → 超市 🏪
 > - `market` → 菜场 🥬
 > - `food` → 美食 🍜
@@ -142,96 +144,96 @@ contacts, feedback_config, guides, feedback
 
 #### `schedules` — 活动安排
 
-| 字段 | 类型 | 必填 | 说明 | 示例 |
-|------|------|------|------|------|
-| `title` | string | 是 | 活动名称 | 「社区义诊」 |
-| `date` | string | 是 | 日期（`YYYY-MM-DD`） | `2024-04-28` |
-| `time` | string | 是 | 时间 | `09:00-11:00` |
-| `location` | string | 是 | 地点 | 「社区活动中心」 |
-| `description` | string | 否 | 详细说明 | 「免费提供血压测量...」 |
-| `status` | string | 否 | 状态：`upcoming` / `ended` | `upcoming` |
-| `type` | string | 否 | 类型标记 | `medical` |
-| `enabled` | boolean | 是 | 是否展示 | `true` |
+| 字段          | 类型    | 必填 | 说明                       | 示例                    |
+| ------------- | ------- | ---- | -------------------------- | ----------------------- |
+| `title`       | string  | 是   | 活动名称                   | 「社区义诊」            |
+| `date`        | string  | 是   | 日期（`YYYY-MM-DD`）       | `2024-04-28`            |
+| `time`        | string  | 是   | 时间                       | `09:00-11:00`           |
+| `location`    | string  | 是   | 地点                       | 「社区活动中心」        |
+| `description` | string  | 否   | 详细说明                   | 「免费提供血压测量...」 |
+| `status`      | string  | 否   | 状态：`upcoming` / `ended` | `upcoming`              |
+| `type`        | string  | 否   | 类型标记                   | `medical`               |
+| `enabled`     | boolean | 是   | 是否展示                   | `true`                  |
 
 > 最近日期的安排会自动出现在首页「最近活动」区域。
 
 #### `payments` — 缴费知识
 
-| 字段 | 类型 | 必填 | 说明 | 示例 |
-|------|------|------|------|------|
-| `title` | string | 是 | 标题 | 「物业费缴纳指南」 |
-| `summary` | string | 是 | 摘要 | 「支持线上/线下多种方式...」 |
-| `tag` | string | 否 | 标签 | 「缴费」 |
-| `tagType` | string | 否 | 标签类型（预留） | `` |
-| `date` | string | 是 | 发布日期 | `2024-04-15` |
-| `content` | string | 是 | 正文 | 「缴费方式一：...」 |
-| `hot` | boolean | 否 | 是否热门 | `true` |
-| `enabled` | boolean | 是 | 是否展示 | `true` |
+| 字段      | 类型    | 必填 | 说明             | 示例                         |
+| --------- | ------- | ---- | ---------------- | ---------------------------- |
+| `title`   | string  | 是   | 标题             | 「物业费缴纳指南」           |
+| `summary` | string  | 是   | 摘要             | 「支持线上/线下多种方式...」 |
+| `tag`     | string  | 否   | 标签             | 「缴费」                     |
+| `tagType` | string  | 否   | 标签类型（预留） | ``                           |
+| `date`    | string  | 是   | 发布日期         | `2024-04-15`                 |
+| `content` | string  | 是   | 正文             | 「缴费方式一：...」          |
+| `hot`     | boolean | 否   | 是否热门         | `true`                       |
+| `enabled` | boolean | 是   | 是否展示         | `true`                       |
 
 #### `shuttle_config` — 班车配置（单条记录）
 
-| 字段 | 类型 | 必填 | 说明 | 示例 |
-|------|------|------|------|------|
-| `routeName` | string | 是 | 路线名称 | 「社区→地铁站」 |
-| `stops` | string[] | 是 | 站点列表 | `["南门", "地铁站", "购物中心"]` |
-| `contactPhone` | string | 否 | 咨询电话 | `021-88888888` |
-| `runNote` | string | 否 | 运行说明 | 「周末班次有所调整...」 |
-| `enabled` | boolean | 是 | 是否启用 | `true` |
+| 字段           | 类型     | 必填 | 说明     | 示例                             |
+| -------------- | -------- | ---- | -------- | -------------------------------- |
+| `routeName`    | string   | 是   | 路线名称 | 「社区→地铁站」                  |
+| `stops`        | string[] | 是   | 站点列表 | `["南门", "地铁站", "购物中心"]` |
+| `contactPhone` | string   | 否   | 咨询电话 | `021-88888888`                   |
+| `runNote`      | string   | 否   | 运行说明 | 「周末班次有所调整...」          |
+| `enabled`      | boolean  | 是   | 是否启用 | `true`                           |
 
 > 此集合通常只需 **1 条记录**。`stops` 作为数组字段录入。
 
 #### `shuttle_times` — 班车时刻表
 
-| 字段 | 类型 | 必填 | 说明 | 示例 |
-|------|------|------|------|------|
-| `time` | string | 是 | 发车时间（`HH:MM`） | `07:30` |
-| `sort` | number | 是 | 排序，决定显示顺序 | `1` |
-| `enabled` | boolean | 是 | 是否展示 | `true` |
+| 字段      | 类型    | 必填 | 说明                | 示例    |
+| --------- | ------- | ---- | ------------------- | ------- |
+| `time`    | string  | 是   | 发车时间（`HH:MM`） | `07:30` |
+| `sort`    | number  | 是   | 排序，决定显示顺序  | `1`     |
+| `enabled` | boolean | 是   | 是否展示            | `true`  |
 
 > 录入 8 条即可覆盖早高峰 4 班 + 晚高峰 4 班。不区分方向，统一按时间排序。
 
 #### `contacts` — 物业联系方式
 
-| 字段 | 类型 | 必填 | 说明 | 示例 |
-|------|------|------|------|------|
-| `label` | string | 是 | 显示名称 | 「物业前台」 |
-| `number` | string | 是 | 电话号码 | `021-66668888` |
-| `enabled` | boolean | 是 | 是否展示 | `true` |
-| `sort` | number | 否 | 排序 | `1` |
+| 字段      | 类型    | 必填 | 说明     | 示例           |
+| --------- | ------- | ---- | -------- | -------------- |
+| `label`   | string  | 是   | 显示名称 | 「物业前台」   |
+| `number`  | string  | 是   | 电话号码 | `021-66668888` |
+| `enabled` | boolean | 是   | 是否展示 | `true`         |
+| `sort`    | number  | 否   | 排序     | `1`            |
 
 > 个人中心「联系物业」点击后会弹出 ActionSheet，展示此列表中的电话。
 
 #### `feedback_config` — 意见反馈页说明（单条记录）
 
-| 字段 | 类型 | 必填 | 说明 | 示例 |
-|------|------|------|------|------|
-| `title` | string | 是 | 页面标题 | 「您的意见对我们很重要」 |
-| `content` | string | 是 | 说明文字 | 「请详细描述您遇到的问题...」 |
-| `contactInfo` | string | 否 | 联系方式提示 | 「如需回访，请留下手机号」 |
-| `enabled` | boolean | 是 | 是否启用 | `true` |
+| 字段          | 类型    | 必填 | 说明         | 示例                          |
+| ------------- | ------- | ---- | ------------ | ----------------------------- |
+| `title`       | string  | 是   | 页面标题     | 「您的意见对我们很重要」      |
+| `content`     | string  | 是   | 说明文字     | 「请详细描述您遇到的问题...」 |
+| `contactInfo` | string  | 否   | 联系方式提示 | 「如需回访，请留下手机号」    |
+| `enabled`     | boolean | 是   | 是否启用     | `true`                        |
 
 > 当前版本反馈页为纯表单，此配置暂作预留，未来可在页头展示。
 
 #### `guides` — 使用指南
 
-| 字段 | 类型 | 必填 | 说明 | 示例 |
-|------|------|------|------|------|
-| `title` | string | 是 | 标题 | 「如何缴纳物业费」 |
-| `content` | string | 是 | 正文（支持换行） | 「第一步：打开小程序...」 |
-| `tag` | string | 否 | 标签 | 「缴费」 |
-| `date` | string | 是 | 发布日期 | `2024-04-20` |
-| `sort` | number | 否 | 排序 | `1` |
-| `enabled` | boolean | 是 | 是否展示 | `true` |
+| 字段      | 类型    | 必填 | 说明             | 示例                      |
+| --------- | ------- | ---- | ---------------- | ------------------------- |
+| `title`   | string  | 是   | 标题             | 「如何缴纳物业费」        |
+| `content` | string  | 是   | 正文（支持换行） | 「第一步：打开小程序...」 |
+| `tag`     | string  | 否   | 标签             | 「缴费」                  |
+| `date`    | string  | 是   | 发布日期         | `2024-04-20`              |
+| `sort`    | number  | 否   | 排序             | `1`                       |
+| `enabled` | boolean | 是   | 是否展示         | `true`                    |
 
 #### `feedback` — 用户反馈记录（自动生成）
 
-| 字段 | 类型 | 说明 |
-|------|------|------|
-| `type` | string | 反馈类型（如「功能建议」「Bug反馈」） |
-| `content` | string | 反馈内容 |
-| `contact` | string | 用户联系方式（选填） |
-| `status` | string | 处理状态：`pending` / `resolved` |
-| `createTime` | Date | 提交时间 |
+| 字段         | 类型   | 说明                                  |
+| ------------ | ------ | ------------------------------------- |
+| `type`       | string | 反馈类型（如「功能建议」「Bug反馈」） |
+| `content`    | string | 反馈内容                              |
+| `contact`    | string | 用户联系方式（选填）                  |
+| `status`     | string | 处理状态：`pending` / `resolved`      |
+| `createTime` | Date   | 提交时间                              |
 
 > 此集合由前端表单自动写入，无需手动录入。
 
@@ -243,13 +245,13 @@ contacts, feedback_config, guides, feedback
 
 首页数据来自 **并行查询** 多个集合：
 
-| 区域 | 数据来源 | 更新方式 |
-|------|----------|----------|
-| Banner 轮播（除首屏） | `banners` 集合 | 在云控制台增删记录 |
-| 首屏班车卡片 | `shuttle_times` + `shuttle_config` | 更新时刻表和路线配置 |
-| 快捷入口 | 前端硬编码（6 个 Emoji 图标） | 修改 `pages/index/index.ts` |
-| 社区通知 | `news` 集合（`category: 'notice'`） | 更新新闻记录 |
-| 最近活动 | `schedules` 集合（最近日期） | 更新日程记录 |
+| 区域                  | 数据来源                            | 更新方式                    |
+| --------------------- | ----------------------------------- | --------------------------- |
+| Banner 轮播（除首屏） | `banners` 集合                      | 在云控制台增删记录          |
+| 首屏班车卡片          | `shuttle_times` + `shuttle_config`  | 更新时刻表和路线配置        |
+| 快捷入口              | 前端硬编码（6 个 Emoji 图标）       | 修改 `pages/index/index.ts` |
+| 社区通知              | `news` 集合（`category: 'notice'`） | 更新新闻记录                |
+| 最近活动              | `schedules` 集合（最近日期）        | 更新日程记录                |
 
 #### 新闻资讯页
 
@@ -377,6 +379,7 @@ touch pages/activity/activity.ts
 ```
 
 `activity.json`：
+
 ```json
 {
   "navigationBarTitleText": "社区活动",
@@ -455,38 +458,38 @@ Page<IActivityData>({
 
 ```css
 /* 主色 */
---wx-primary: #07C160;        /* 微信绿 */
---wx-primary-hover: #06AD56;  /* 悬停态 */
---wx-link: #576B95;           /* 链接蓝 */
+--wx-primary: #07c160; /* 微信绿 */
+--wx-primary-hover: #06ad56; /* 悬停态 */
+--wx-link: #576b95; /* 链接蓝 */
 
 /* 背景与表面 */
---wx-bg: #F7F7F7;             /* 页面背景 */
---wx-surface: #FFFFFF;        /* 卡片表面 */
+--wx-bg: #f7f7f7; /* 页面背景 */
+--wx-surface: #ffffff; /* 卡片表面 */
 
 /* 文字 */
---wx-text: #000000;           /* 主文字 */
+--wx-text: #000000; /* 主文字 */
 --wx-text-secondary: #999999; /* 次要文字 */
---wx-text-tertiary: #888888;  /* 第三级文字 */
+--wx-text-tertiary: #888888; /* 第三级文字 */
 
 /* 边框 */
---wx-border: #E5E5E5;         /* 分割线 */
---wx-border-light: #EDEDED;   /* 浅边框 */
+--wx-border: #e5e5e5; /* 分割线 */
+--wx-border-light: #ededed; /* 浅边框 */
 
 /* 圆角 */
---radius-xs: 4rpx;            /* 标签 */
---radius-sm: 8rpx;            /* 按钮 */
---radius-md: 12rpx;           /* 卡片 */
---radius-lg: 16rpx;           /* Banner */
+--radius-xs: 4rpx; /* 标签 */
+--radius-sm: 8rpx; /* 按钮 */
+--radius-md: 12rpx; /* 卡片 */
+--radius-lg: 16rpx; /* Banner */
 ```
 
 #### 推荐复用的组件类
 
-| 类名 | 效果 | 适用场景 |
-|------|------|----------|
-| `.ios-card` / `.md-card` | 白底、12rpx 圆角、无阴影 | 内容卡片 |
-| `.ios-btn--primary` / `.md-btn--filled` | 微信绿填充、白字、8rpx 圆角 | 主按钮 |
-| `.ios-tag` / `.md-tag` | 微信绿 8% 底色、小圆角 | 状态标签 |
-| `.ios-list-item` | 白底、底部 1rpx 分割线 | 列表项 |
+| 类名                                    | 效果                        | 适用场景 |
+| --------------------------------------- | --------------------------- | -------- |
+| `.ios-card` / `.md-card`                | 白底、12rpx 圆角、无阴影    | 内容卡片 |
+| `.ios-btn--primary` / `.md-btn--filled` | 微信绿填充、白字、8rpx 圆角 | 主按钮   |
+| `.ios-tag` / `.md-tag`                  | 微信绿 8% 底色、小圆角      | 状态标签 |
+| `.ios-list-item`                        | 白底、底部 1rpx 分割线      | 列表项   |
 
 > 兼容说明：`.ios-*` 和 `.md-*` 类名均映射到 WeUI Token，wxml 无需修改即可复用。
 
@@ -512,10 +515,14 @@ import * as cloud from './cloud';
 const list = await cloud.query('news', { enabled: true });
 
 // 带排序和分页
-const list = await cloud.query('news', { category: 'notice' }, {
-  orderBy: [{ field: 'date', desc: true }],
-  limit: 10,
-});
+const list = await cloud.query(
+  'news',
+  { category: 'notice' },
+  {
+    orderBy: [{ field: 'date', desc: true }],
+    limit: 10,
+  }
+);
 ```
 
 #### 新增数据
@@ -536,7 +543,8 @@ await cloud.add('feedback', {
 import { db } from './cloud';
 
 // 聚合查询
-db.collection('news').aggregate()
+db.collection('news')
+  .aggregate()
   .match({ enabled: true })
   .group({ _id: '$category', count: { $sum: 1 } })
   .end({ success: console.log });
@@ -563,6 +571,7 @@ db.collection('news').aggregate()
 #### Q3：如何替换 TabBar 图标
 
 TabBar 图标为 PNG 文件，存放于 `images/icons/`。替换时：
+
 - 未选中图标：`home.png`, `news.png`, `trade.png`, `schedule.png`, `profile.png`
 - 选中图标：`home-active.png`, `news-active.png`, `trade-active.png`, `schedule-active.png`, `profile-active.png`
 - 图标尺寸建议 **81×81 像素**

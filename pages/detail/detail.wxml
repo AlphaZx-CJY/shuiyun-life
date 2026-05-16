@@ -1,0 +1,52 @@
+<view class="page-container">
+  <!-- 彩色 Hero -->
+  <view class="detail-hero detail-hero--{{config.color}}">
+    <view class="detail-hero-decor detail-hero-decor--1"></view>
+    <view class="detail-hero-decor detail-hero-decor--2"></view>
+    <md-icon
+      wx:if="{{type === 'news'}}"
+      name="/images/icons/material/article-on.svg"
+      size="64"
+      color="rgba(255,255,255,0.35)"
+    />
+    <md-icon
+      wx:elif="{{type === 'schedule'}}"
+      name="/images/icons/material/event-on.svg"
+      size="64"
+      color="rgba(255,255,255,0.35)"
+    />
+    <md-icon
+      wx:elif="{{type === 'payment'}}"
+      name="/images/icons/material/receipt_long-on.svg"
+      size="64"
+      color="rgba(255,255,255,0.35)"
+    />
+    <md-icon
+      wx:elif="{{type === 'guide'}}"
+      name="/images/icons/material/menu_book-on.svg"
+      size="64"
+      color="rgba(255,255,255,0.35)"
+    />
+    <md-icon
+      wx:elif="{{type === 'service'}}"
+      name="/images/icons/material/storefront-on.svg"
+      size="64"
+      color="rgba(255,255,255,0.35)"
+    />
+  </view>
+
+  <!-- 标题区 -->
+  <view class="detail-header">
+    <text class="detail-tag">{{tag}}</text>
+    <text class="detail-title">{{title}}</text>
+    <text class="detail-meta">{{meta}}</text>
+  </view>
+
+  <!-- 正文 -->
+  <view class="detail-content">
+    <rich-text wx:if="{{content}}" nodes="{{content}}" />
+    <view wx:else class="detail-empty">
+      <text>暂无内容</text>
+    </view>
+  </view>
+</view>

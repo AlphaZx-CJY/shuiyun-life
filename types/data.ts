@@ -2,23 +2,12 @@
 
 export type NewsCategory = 'all' | 'notice' | 'policy' | 'around';
 export type TradeCategory = 'all' | 'furniture' | 'appliance' | 'baby' | 'books' | 'others';
-export type ServiceCategory = 'all' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9';
 export type ScheduleStatus = 'upcoming' | 'ended';
 export type ShuttleStatus = 'passed' | 'soon' | 'upcoming';
 
 export interface GeoPoint {
   longitude: number;
   latitude: number;
-}
-
-/** ========== 首页 ========== */
-
-export interface QuickEntry {
-  id: number;
-  icon: string;
-  label: string;
-  color: string;
-  path: string;
 }
 
 /** ========== 新闻资讯 ========== */
@@ -165,24 +154,6 @@ export interface VoiceItem {
   createTime: Date;
 }
 
-export interface FeedbackItem {
-  id: number | string;
-  type: string;
-  content: string;
-  contact: string;
-  status: string;
-  createTime: Date;
-}
-
-/** ========== 反馈配置 ========== */
-
-export interface FeedbackConfig {
-  id: number | string;
-  title: string;
-  content: string;
-  contactInfo: string;
-}
-
 /** ========== 使用指南 ========== */
 
 export interface GuideItem {
@@ -194,4 +165,18 @@ export interface GuideItem {
 
 export interface GuideDetail extends GuideItem {
   content: string;
+}
+
+/** ========== 发现页 Feed ========== */
+
+export interface DiscoverItem {
+  id: number | string;
+  type: 'news' | 'service' | 'payment' | 'schedule' | 'voice';
+  title: string;
+  summary: string;
+  date: string;
+  tag: string;
+  icon: string;
+  containerClass: string;
+  url: string;
 }

@@ -1,9 +1,1 @@
-{
-  "desc": "关于本小程序的索引",
-  "rules": [
-    {
-      "action": "allow",
-      "page": "*"
-    }
-  ]
-}
+{ "desc": "关于本小程序的索引", "rules": [ { "action": "allow", "page": "*" } ] }

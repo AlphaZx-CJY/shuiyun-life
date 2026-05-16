@@ -1,6 +1,1 @@
-{
-  "component": true,
-  "usingComponents": {
-    "md-icon": "../md-icon/md-icon"
-  }
-}
+{ "component": true, "usingComponents": { "md-icon": "../md-icon/md-icon" } }

@@ -5,82 +5,131 @@
     <view class="header-subtitle">让生活更便捷</view>
   </view>
 
-  <!-- 班车信息卡片 -->
-  <view class="shuttle-card-wrap" wx:if="{{nextShuttle}}" bindtap="onShuttleBannerTap">
-    <md-card shape="xlarge" clickable>
-      <view class="shuttle-card-inner">
-        <view class="shuttle-content">
-          <view class="shuttle-tag">社区班车</view>
-          <text class="shuttle-route">{{routeName}}</text>
-          <view class="shuttle-time-wrap">
-            <block wx:if="{{nextShuttle.status === 'passed'}}">
-              <text class="shuttle-status passed">今日已结束</text>
-            </block>
-            <block wx:else>
-              <text class="shuttle-time">{{nextShuttle.time}}</text>
-              <text class="shuttle-status {{nextShuttle.status}}">{{nextShuttle.status === 'soon' ? '即将发车' : '下一班'}}</text>
-            </block>
+  <!-- 班车 Hero Card -->
+  <view class="hero-card-wrap" wx:if="{{nextShuttle}}" bindtap="onShuttleBannerTap">
+    <view class="hero-card">
+      <view class="hero-content">
+        <view class="hero-label">
+          <md-icon name="/images/icons/material/directions_bus-on.svg" size="14" color="rgba(255,255,255,0.8)" />
+          {{routeName}}
+        </view>
+        <view class="hero-countdown">{{nextShuttle.time}}</view>
+        <view class="hero-sub">{{nextShuttle.status === 'soon' ? '即将发车' : '下一班车'}}</view>
+        <view class="hero-times">
+          <view class="hero-time-pill {{nextShuttle.status === 'soon' ? 'hero-time-pill--highlight' : ''}}">
+            <text class="hero-time-value">{{nextShuttle.time}}</text>
+            <text wx:if="{{nextShuttle.status === 'soon'}}" class="hero-time-label">即将发车</text>
           </view>
         </view>
-        <view class="shuttle-arrow">
-          <view class="shuttle-arrow-icon"></view>
-        </view>
       </view>
-    </md-card>
+    </view>
+  </view>
+
+  <!-- 社区通知 -->
+  <view class="section-header">
+    <text class="section-title">社区通知</text>
+    <text class="section-more" bindtap="onMoreNoticeTap">查看全部</text>
+  </view>
+  <view class="notification-list">
+    <view class="notification-card" wx:for="{{noticeNews}}" wx:key="id" data-id="{{item.id}}" bindtap="onNoticeTap">
+      <view class="notification-content">
+        <text class="notification-title">{{item.title}}</text>
+        <text class="notification-date">{{item.date}}</text>
+      </view>
+    </view>
+    <view class="empty-state empty-state--small" wx:if="{{noticeNews.length === 0}}">
+      <text class="empty-state__text">暂无社区通知</text>
+    </view>
   </view>
 
   <!-- 快捷入口 -->
-  <view class="quick-grid">
-    <view class="quick-item" wx:for="{{quickEntries}}" wx:key="id" data-path="{{item.path}}" bindtap="onEntryTap">
-      <view class="quick-icon-btn">
-        <md-icon wx:if="{{item.id === 1}}" name="/images/icons/material/storefront-on.svg" size="40" color="currentColor" />
-        <md-icon wx:elif="{{item.id === 2}}" name="/images/icons/material/article-on.svg" size="40" color="currentColor" />
-        <md-icon wx:elif="{{item.id === 3}}" name="/images/icons/material/event-on.svg" size="40" color="currentColor" />
-        <md-icon wx:elif="{{item.id === 4}}" name="/images/icons/material/article-on.svg" size="40" color="currentColor" />
-        <md-icon wx:elif="{{item.id === 5}}" name="/images/icons/material/storefront-on.svg" size="40" color="currentColor" />
-        <md-icon wx:elif="{{item.id === 6}}" name="/images/icons/material/person-on.svg" size="40" color="currentColor" />
+  <view class="section-header">
+    <text class="section-title">快捷入口</text>
+  </view>
+  <view class="quick-row">
+    <view
+      class="quick-item"
+      wx:for="{{quickEntries}}"
+      wx:key="id"
+      data-path="{{item.path}}"
+      data-tab="{{item.tab}}"
+      bindtap="onEntryTap"
+    >
+      <view class="quick-icon-wrap" wx:if="{{item.id === 1}}">
+        <md-icon name="/images/icons/material/storefront-on.svg" size="56" color="currentColor" />
+      </view>
+      <view class="quick-icon-wrap" wx:elif="{{item.id === 2}}">
+        <md-icon name="/images/icons/material/receipt_long-on.svg" size="56" color="currentColor" />
+      </view>
+      <view class="quick-icon-wrap" wx:elif="{{item.id === 3}}">
+        <md-icon name="/images/icons/material/event-on.svg" size="56" color="currentColor" />
+      </view>
+      <view class="quick-icon-wrap" wx:elif="{{item.id === 4}}">
+        <md-icon name="/images/icons/material/sync_alt-on.svg" size="56" color="currentColor" />
       </view>
       <text class="quick-label">{{item.label}}</text>
     </view>
   </view>
 
-  <!-- 社区通知 -->
-  <view class="section">
-    <view class="section-header">
-      <text class="section-title">社区通知</text>
-      <text class="section-more" bindtap="onMoreNoticeTap">查看更多</text>
-    </view>
-    <view class="list-container">
-      <view class="list-item notice-item" wx:for="{{noticeNews}}" wx:key="id" data-id="{{item.id}}" bindtap="onNoticeTap">
-        <view class="notice-tag">{{item.tag}}</view>
-        <text class="notice-title">{{item.title}}</text>
-        <view class="list-arrow"></view>
+  <!-- 最近活动 -->
+  <view class="section-header">
+    <text class="section-title">最近活动</text>
+    <text class="section-more" bindtap="onMoreScheduleTap">查看全部</text>
+  </view>
+  <scroll-view class="event-scroll" scroll-x enhanced show-scrollbar="{{false}}" wx:if="{{recentSchedules.length > 0}}">
+    <view class="event-list">
+      <view class="event-card" wx:for="{{recentSchedules}}" wx:key="id" data-id="{{item.id}}" bindtap="onScheduleTap">
+        <view
+          class="event-color-area {{index % 3 === 0 ? 'event-color--primary' : index % 3 === 1 ? 'event-color--secondary' : 'event-color--tertiary'}}"
+        >
+          <md-icon name="/images/icons/material/event-on.svg" size="48" color="currentColor" />
+        </view>
+        <view class="event-info">
+          <text class="event-tag">{{item.type || '活动'}}</text>
+          <text class="event-title">{{item.title}}</text>
+        </view>
       </view>
-      <view class="empty-state empty-state--small" wx:if="{{noticeNews.length === 0}}">
-        <text class="empty-state__text">暂无社区通知</text>
-      </view>
     </view>
+  </scroll-view>
+  <view class="empty-state empty-state--small" wx:if="{{recentSchedules.length === 0}}">
+    <text class="empty-state__text">当前没有活动信息</text>
   </view>
 
-  <!-- 最近活动 -->
-  <view class="section section--last">
-    <view class="section-header">
-      <text class="section-title">最近活动</text>
-      <text class="section-more" bindtap="onMoreScheduleTap">查看全部</text>
-    </view>
-    <view class="list-container">
-      <view class="list-item schedule-item" wx:for="{{recentSchedules}}" wx:key="id" data-id="{{item.id}}" bindtap="onScheduleTap">
-        <view class="schedule-left">
-          <text class="schedule-time-label">{{item.time}}</text>
-          <text class="schedule-date-label">{{item.dateLabel}}</text>
-        </view>
-        <view class="schedule-content">
-          <text class="schedule-title">{{item.title}}</text>
-          <text class="schedule-info">{{item.location}}</text>
+  <!-- 班车弹窗 -->
+  <view class="modal-overlay" wx:if="{{shuttleModalVisible}}" bindtap="onShuttleModalClose">
+    <view class="modal-sheet" catchtap="onShuttleSheetTap">
+      <view class="modal-sheet__header">
+        <md-icon name="/images/icons/material/directions_bus-on.svg" size="40" color="var(--md-on-surface)" />
+        <text class="modal-sheet__title">{{routeName}}</text>
+      </view>
+
+      <!-- 站点 -->
+      <view class="modal-section" wx:if="{{shuttleStops.length > 0}}">
+        <text class="modal-section__label">站点</text>
+        <view class="modal-pills">
+          <view class="modal-pill" wx:for="{{shuttleStops}}" wx:key="*this">{{item}}</view>
         </view>
       </view>
-      <view class="empty-state empty-state--small" wx:if="{{recentSchedules.length === 0}}">
-        <text class="empty-state__text">暂无近期活动</text>
+
+      <!-- 时刻表 -->
+      <view class="modal-section" wx:if="{{shuttleSchedule.length > 0}}">
+        <text class="modal-section__label">时刻表</text>
+        <view class="time-grid">
+          <view
+            class="time-grid__item {{item.status === 'soon' ? 'time-grid__item--highlight' : ''}}"
+            wx:for="{{shuttleSchedule}}"
+            wx:key="time"
+          >
+            <text class="time-grid__value">{{item.time}}</text>
+            <text wx:if="{{item.status === 'soon'}}" class="time-grid__label">即将发车</text>
+          </view>
+        </view>
+      </view>
+
+      <!-- 咨询电话 -->
+      <view class="modal-contact" wx:if="{{shuttleContactPhone}}" bindtap="onShuttleCallTap">
+        <md-icon name="/images/icons/material/call-on.svg" size="32" color="var(--md-on-surface-variant)" />
+        <text class="modal-contact__text">咨询电话：{{shuttleContactPhone}}</text>
       </view>
     </view>
   </view>

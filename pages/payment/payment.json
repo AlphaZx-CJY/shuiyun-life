@@ -1,7 +1,0 @@
-{
-  "navigationBarTitleText": "缴费知识",
-  "enablePullDownRefresh": false,
-  "usingComponents": {
-    "md-empty-state": "/components/md3/md-empty-state/md-empty-state"
-  }
-}

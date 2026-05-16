@@ -2,7 +2,7 @@
   <!-- 用户头部 -->
   <view class="profile-header">
     <view class="profile-avatar">
-      <image class="profile-logo" src="/images/logo-dark.png" mode="aspectFit" style="width: 120rpx; height: 120rpx;" />
+      <text class="profile-avatar-text">居</text>
     </view>
     <text class="profile-name">水韵名邸业主</text>
     <text class="profile-address">新长宁水韵名邸</text>
@@ -11,15 +11,15 @@
   <!-- 功能列表 -->
   <view class="profile-section">
     <view class="profile-list">
-      <md-list-item
-        wx:for="{{aboutItems}}"
-        wx:key="id"
-        data-item="{{item}}"
-        headline="{{item.title}}"
-        leadingIcon="{{item.icon}}"
-        divider="{{index !== aboutItems.length - 1}}"
-        bindtap="onItemTap"
-      />
+      <view class="profile-list-item" wx:for="{{aboutItems}}" wx:key="id" data-item="{{item}}" bindtap="onItemTap">
+        <view class="profile-list-left">
+          <view class="profile-list-icon">
+            <md-icon name="{{item.icon}}" size="40" color="currentColor" />
+          </view>
+          <text class="profile-list-title">{{item.title}}</text>
+        </view>
+        <text class="profile-list-arrow">›</text>
+      </view>
     </view>
   </view>
 

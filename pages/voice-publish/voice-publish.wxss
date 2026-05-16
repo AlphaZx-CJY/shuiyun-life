@@ -1,107 +1,18 @@
-/* 发布诉求页样式 */
-
-.publish-card {
-  margin: var(--space-6) var(--space-4);
-  padding: var(--space-2) var(--space-4);
-}
-
-.form-group {
-  padding: var(--space-3) 0;
-}
-
-.form-label {
-  display: block;
-  font-size: 28rpx;
-  font-weight: 500;
-  color: var(--md-on-surface);
-  margin-bottom: var(--space-2);
-}
-
-.form-required {
-  color: var(--md-error);
-}
-
-.form-input {
-  width: 100%;
-  height: 80rpx;
-  font-size: 28rpx;
-  color: var(--md-on-surface);
-  padding: 0 var(--space-2);
-  background: var(--md-surface-container-highest);
-  border-radius: 16rpx;
-  box-sizing: border-box;
-}
-
-.form-textarea {
-  width: 100%;
-  height: 240rpx;
-  font-size: 28rpx;
-  color: var(--md-on-surface);
-  line-height: 1.6;
-  padding: var(--space-2);
-  background: var(--md-surface-container-highest);
-  border-radius: 16rpx;
-  box-sizing: border-box;
-}
-
-.form-counter {
-  display: block;
-  text-align: right;
-  font-size: 22rpx;
-  color: var(--md-on-surface-variant);
-  margin-top: var(--space-1);
-}
-
-.form-picker {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: var(--space-1) 0;
-}
-
-.form-picker-text {
-  font-size: 30rpx;
-  color: var(--md-on-surface);
-}
-
-.form-picker-placeholder {
-  color: var(--md-on-surface-variant);
-}
-
-.picker-arrow {
-  width: 16rpx;
-  height: 16rpx;
-  border-top: 3rpx solid var(--md-outline);
-  border-right: 3rpx solid var(--md-outline);
-  transform: rotate(45deg);
-}
-
-.publish-actions {
-  margin: var(--space-6) var(--space-4);
-}
-
-.btn-pill {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 80rpx;
-  padding: 0 48rpx;
-  border-radius: var(--radius-pill);
-  font-size: 28rpx;
-  font-weight: 500;
-  letter-spacing: 0.5rpx;
-}
-
-.btn-pill--primary {
-  background: var(--md-primary);
-  color: var(--md-on-primary);
-}
-
-.btn-pill--primary:active {
-  background: linear-gradient(rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.12)), var(--md-primary);
-}
-
-.btn-pill--disabled {
-  opacity: 0.38;
-  pointer-events: none;
-}
+/* 发布心声 — 简洁表单风格 */ .publish-card { margin: 32rpx 40rpx; padding: 32rpx; background: var(--md-surface);
+border-radius: 28rpx; } .form-group { margin-bottom: 32rpx; } .form-group:last-child { margin-bottom: 0; } .form-label {
+font-size: 28rpx; font-weight: 500; color: var(--md-on-surface); margin-bottom: 16rpx; display: block; } .form-required
+{ font-size: 24rpx; color: var(--md-error); font-weight: 400; } /* input */ .form-input { width: 100%; height: 96rpx;
+padding: 0 32rpx; background: var(--md-surface-container-low); border-radius: 20rpx; border: 1rpx solid
+var(--md-outline-variant); font-size: 30rpx; color: var(--md-on-surface); box-sizing: border-box; } /* textarea */
+.form-textarea { width: 100%; min-height: 240rpx; padding: 24rpx; background: var(--md-surface-container-low);
+border-radius: 20rpx; border: 1rpx solid var(--md-outline-variant); font-size: 30rpx; color: var(--md-on-surface);
+box-sizing: border-box; } .form-counter { text-align: right; font-size: 22rpx; color: var(--md-on-surface-variant);
+margin-top: 8rpx; display: block; } /* picker */ .form-picker { display: flex; align-items: center; justify-content:
+space-between; height: 96rpx; padding: 0 32rpx; background: var(--md-surface-container-low); border-radius: 20rpx;
+border: 1rpx solid var(--md-outline-variant); } .form-picker-text { font-size: 30rpx; color: var(--md-on-surface); }
+.form-picker-placeholder { color: var(--md-on-surface-variant); } .picker-arrow { width: 16rpx; height: 16rpx;
+border-top: 3rpx solid var(--md-outline); border-right: 3rpx solid var(--md-outline); transform: rotate(45deg); } /*
+发布按钮 */ .publish-actions { margin: 0 40rpx 48rpx; } .btn-pill { width: 100%; height: 96rpx; border-radius: 9999rpx;
+display: flex; align-items: center; justify-content: center; font-size: 32rpx; font-weight: 600; transition: opacity
+100ms ease; } .btn-pill:active { opacity: 0.85; } .btn-pill--primary { background: var(--md-primary); color:
+var(--md-on-primary); } .btn-pill--disabled { opacity: 0.5; pointer-events: none; }

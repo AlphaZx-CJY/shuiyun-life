@@ -1,25 +1,10 @@
-{
-  "name": "shuiyun-life",
-  "version": "1.0.0",
-  "description": "为「新长宁水韵名邸」小区打造的微信小程序生活号，展示小区周边生活信息、闲置交易、新闻资讯、缴费知识和活动安排。",
-  "main": "app.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/AlphaZx-CJY/shuiyun-life.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "commonjs",
-  "bugs": {
-    "url": "https://github.com/AlphaZx-CJY/shuiyun-life/issues"
-  },
-  "homepage": "https://github.com/AlphaZx-CJY/shuiyun-life#readme",
-  "devDependencies": {
-    "@types/wechat-miniprogram": "^3.4.10",
-    "typescript": "^6.0.3"
-  }
-}
+{ "name": "shuiyun-life", "version": "1.0.0", "description":
+"为「新长宁水韵名邸」小区打造的微信小程序生活号，展示小区周边生活信息、闲置交易、新闻资讯、缴费知识和活动安排。",
+"main": "app.js", "scripts": { "check": "tsc --noEmit && eslint . --ext .ts", "check:fix": "eslint . --ext .ts --fix",
+"format": "prettier --write \"**/*.{json,wxml,wxss,md}\"", "test": "node scripts/structural-test.js", "prepare": "husky"
+}, "lint-staged": { "*.{ts}": [ "eslint --fix" ], "*.{json,wxml,wxss,md}": [ "prettier --write" ] }, "repository": {
+"type": "git", "url": "git+https://github.com/AlphaZx-CJY/shuiyun-life.git" }, "keywords": [], "author": "", "license":
+"ISC", "type": "commonjs", "bugs": { "url": "https://github.com/AlphaZx-CJY/shuiyun-life/issues" }, "homepage":
+"https://github.com/AlphaZx-CJY/shuiyun-life#readme", "devDependencies": { "@types/wechat-miniprogram": "^3.4.10",
+"@typescript-eslint/eslint-plugin": "^8.59.3", "@typescript-eslint/parser": "^8.59.3", "eslint": "^10.4.0", "husky":
+"^9.1.7", "lint-staged": "^17.0.4", "prettier": "^3.8.3", "typescript": "^6.0.3" } }

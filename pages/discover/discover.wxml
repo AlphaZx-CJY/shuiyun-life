@@ -1,0 +1,55 @@
+<view class="page-container page-container--with-tabbar">
+  <!-- Pill Tabs -->
+  <view class="pill-tabs-wrap">
+    <scroll-view class="pill-scroll" scroll-x enhanced show-scrollbar="{{false}}">
+      <view class="pill-list">
+        <view
+          class="pill-item {{activeCategory === item.id ? 'pill-item--active' : ''}}"
+          wx:for="{{categories}}"
+          wx:key="id"
+          data-id="{{item.id}}"
+          bindtap="onCategoryTap"
+        >
+          {{item.name}}
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+
+  <!-- Feed List -->
+  <view class="feed-list" wx:if="{{filteredList.length > 0}}">
+    <view class="feed-card" wx:for="{{filteredList}}" wx:key="id" data-url="{{item.url}}" bindtap="onFeedTap">
+      <view class="feed-icon-box feed-icon--primary" wx:if="{{item.type === 'news'}}">
+        <md-icon name="/images/icons/material/article-on.svg" size="32" color="currentColor" />
+      </view>
+      <view class="feed-icon-box feed-icon--secondary" wx:elif="{{item.type === 'service'}}">
+        <md-icon name="/images/icons/material/storefront-on.svg" size="32" color="currentColor" />
+      </view>
+      <view class="feed-icon-box feed-icon--payment" wx:elif="{{item.type === 'payment'}}">
+        <md-icon name="/images/icons/material/article-on.svg" size="32" color="currentColor" />
+      </view>
+      <view class="feed-icon-box feed-icon--tertiary" wx:elif="{{item.type === 'schedule'}}">
+        <md-icon name="/images/icons/material/event-on.svg" size="32" color="currentColor" />
+      </view>
+      <view class="feed-icon-box feed-icon--voice" wx:elif="{{item.type === 'voice'}}">
+        <md-icon name="/images/icons/material/article-on.svg" size="32" color="currentColor" />
+      </view>
+      <view class="feed-content">
+        <view class="feed-header">
+          <text class="feed-tag">{{item.tag}}</text>
+          <text class="feed-date">{{item.date}}</text>
+        </view>
+        <text class="feed-title">{{item.title}}</text>
+        <text class="feed-summary">{{item.summary}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- Empty State -->
+  <md-empty-state
+    wx:if="{{filteredList.length === 0 && !loading}}"
+    icon="/images/icons/material/article-off.svg"
+    headline="暂无内容"
+    supportingText="该分类下暂时没有内容"
+  />
+</view>

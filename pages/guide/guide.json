@@ -1,9 +1,0 @@
-{
-  "navigationBarTitleText": "使用指南",
-  "navigationStyle": "custom",
-  "enablePullDownRefresh": true,
-  "usingComponents": {
-    "md-app-bar": "/components/md3/md-app-bar/md-app-bar",
-    "md-empty-state": "/components/md3/md-empty-state/md-empty-state"
-  }
-}

@@ -1,0 +1,3 @@
+{ "usingComponents": { "md-empty-state": "../../components/md3/md-empty-state/md-empty-state", "md-icon":
+"../../components/md3/md-icon/md-icon" }, "navigationBarTitleText": "发现", "enablePullDownRefresh": true,
+"backgroundColor": "#F9FAEF" }

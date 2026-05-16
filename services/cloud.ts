@@ -45,8 +45,8 @@ export function query<T = any>(
       queryRef = queryRef.limit(options.limit);
     }
     queryRef.get({
-      success: (res) => resolve(res.data as T[]),
-      fail: (err) => reject(err),
+      success: (res: { data: T[] }) => resolve(res.data as T[]),
+      fail: (err: any) => reject(err),
     });
   });
 }

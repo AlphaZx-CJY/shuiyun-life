@@ -1,63 +1,9 @@
-.md-chip {
-  display: inline-flex;
-  align-items: center;
-  gap: 8rpx;
-  padding: 8rpx 20rpx;
-  font-size: 24rpx;
-  font-weight: 500;
-  line-height: 1;
-  transition: opacity 100ms ease-out;
-}
-
-.md-chip:active {
-  opacity: 0.8;
-}
-
-.md-chip--filled {
-  background: var(--md-surface-container-high);
-  color: var(--md-on-surface-variant);
-  border-radius: 9999rpx;
-}
-
-.md-chip--active.md-chip--filled {
-  background: var(--md-primary-container);
-  color: var(--md-on-primary-container);
-}
-
-.md-chip--outlined {
-  background: transparent;
-  color: var(--md-on-surface-variant);
-  border: 1rpx solid var(--md-outline);
-  border-radius: 9999rpx;
-}
-
-.md-chip--active.md-chip--outlined {
-  border-color: var(--md-primary);
-  color: var(--md-primary);
-}
-
-.md-chip__text {
-  font-size: inherit;
-  color: inherit;
-  line-height: inherit;
-}
-
-.md-chip__icon {
-  width: 32rpx;
-  height: 32rpx;
-}
-
-.md-chip__close {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 32rpx;
-  height: 32rpx;
-  margin-left: 4rpx;
-}
-
-.md-chip__close-icon {
-  width: 28rpx;
-  height: 28rpx;
-  opacity: 0.6;
-}
+.md-chip { display: inline-flex; align-items: center; gap: 8rpx; padding: 8rpx 20rpx; font-size: 24rpx; font-weight:
+500; line-height: 1; transition: opacity 100ms ease-out; } .md-chip:active { opacity: 0.8; } .md-chip--filled {
+background: var(--md-surface-container-high); color: var(--md-on-surface-variant); border-radius: 9999rpx; }
+.md-chip--active.md-chip--filled { background: var(--md-primary-container); color: var(--md-on-primary-container); }
+.md-chip--outlined { background: transparent; color: var(--md-on-surface-variant); border: 1rpx solid var(--md-outline);
+border-radius: 9999rpx; } .md-chip--active.md-chip--outlined { border-color: var(--md-primary); color:
+var(--md-primary); } .md-chip__text { font-size: inherit; color: inherit; line-height: inherit; } .md-chip__icon {
+width: 32rpx; height: 32rpx; } .md-chip__close { display: flex; align-items: center; justify-content: center; width:
+32rpx; height: 32rpx; margin-left: 4rpx; } .md-chip__close-icon { width: 28rpx; height: 28rpx; opacity: 0.6; }

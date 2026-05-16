@@ -1,124 +1,26 @@
-/* 闲置交易页样式 */
-
-.category-pill-bar {
-  padding: 16rpx 32rpx;
-  position: sticky;
-  top: 0;
-  z-index: 10;
-  background: var(--md-background);
-}
-
-.category-scroll {
-  white-space: nowrap;
-}
-
-.category-pill-list {
-  display: inline-flex;
-  gap: 8rpx;
-  padding: 8rpx;
-  background: var(--md-surface-container);
-  border-radius: 9999rpx;
-}
-
-.category-pill-item {
-  padding: 12rpx 28rpx;
-  border-radius: 9999rpx;
-  font-size: 26rpx;
-  font-weight: 500;
-  color: var(--md-on-surface-variant);
-  white-space: nowrap;
-  transition: background-color 100ms ease-out, color 100ms ease-out;
-}
-
-.category-pill-item--active {
-  background: var(--md-primary);
-  color: #FFFFFF;
-}
-
-.trade-list {
-  padding: 0 32rpx;
-}
-
-.trade-item {
-  display: flex;
-  padding: 32rpx 0;
-  border-bottom: 1rpx solid var(--md-outline-variant);
-}
-
-.trade-item:last-child {
-  border-bottom: none;
-}
-
-.trade-image {
-  width: 200rpx;
-  height: 200rpx;
-  border-radius: 12rpx;
-  flex-shrink: 0;
-  background: var(--md-surface-container);
-}
-
-.trade-image--placeholder {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.trade-placeholder-icon {
-  width: 64rpx;
-  height: 64rpx;
-  opacity: 0.4;
-}
-
-.trade-info {
-  flex: 1;
-  min-width: 0;
-  margin-left: 24rpx;
-  display: flex;
-  flex-direction: column;
-}
-
-.trade-title {
-  font-size: 30rpx;
-  font-weight: 600;
-  color: var(--md-on-surface);
-  line-height: 1.4;
-}
-
-.trade-price-row {
-  display: flex;
-  align-items: baseline;
-  gap: 16rpx;
-  margin-top: auto;
-  margin-bottom: 12rpx;
-}
-
-.trade-price {
-  font-size: 36rpx;
-  font-weight: 700;
-  color: var(--md-primary);
-}
-
-.trade-original {
-  font-size: 24rpx;
-  color: var(--md-on-surface-variant);
-  text-decoration: line-through;
-}
-
-.trade-meta {
-  display: flex;
-  justify-content: space-between;
-}
-
-.trade-seller,
-.trade-time {
-  font-size: 22rpx;
-  color: var(--md-on-surface-variant);
-}
-
-.fab-wrap {
-  position: fixed;
-  right: 32rpx;
-  bottom: calc(160rpx + env(safe-area-inset-bottom));
-  z-index: 100;
-}
-
+/* 闲置交易页 — 彩色容器卡片 */ .category-pill-bar { padding: 16rpx 40rpx 24rpx; position: sticky; top: 0; z-index: 10;
+background: var(--md-background); } .category-scroll { white-space: nowrap; } .category-pill-list { display:
+inline-flex; gap: 8rpx; padding: 8rpx; background: var(--md-surface-container); border-radius: 9999rpx; }
+.category-pill-item { padding: 12rpx 28rpx; border-radius: 9999rpx; font-size: 26rpx; font-weight: 500; color:
+var(--md-on-surface-variant); white-space: nowrap; transition: background-color 100ms ease-out, color 100ms ease-out; }
+.category-pill-item--active { background: var(--md-primary); color: var(--md-on-primary); } /* 交易卡片列表 */
+.trade-list { padding: 0 40rpx; } .trade-card { background: var(--md-surface); border-radius: 28rpx; overflow: hidden;
+margin-bottom: 32rpx; transition: transform 100ms ease-out; } .trade-card:active { transform: scale(0.98); } /* 彩色区域
+*/ .trade-color-area { width: 100%; height: 360rpx; display: flex; align-items: center; justify-content: center;
+position: relative; overflow: hidden; } /* 装饰圆 */ .trade-color-area::after { content: ''; position: absolute; right:
+-60rpx; bottom: -60rpx; width: 200rpx; height: 200rpx; border-radius: 50%; background: rgba(255, 255, 255, 0.2); }
+.trade-color-area md-icon { position: relative; z-index: 1; } /* 分类彩色映射 */ .trade-color--primary { background:
+var(--md-primary-container); } .trade-color--primary md-icon { color: var(--md-on-primary-container); }
+.trade-color--secondary { background: var(--md-secondary-container); } .trade-color--secondary md-icon { color:
+var(--md-on-secondary-container); } .trade-color--tertiary { background: var(--md-tertiary-container); }
+.trade-color--tertiary md-icon { color: var(--md-on-tertiary-container); } .trade-color--baby { background:
+var(--md-voice-container); } .trade-color--baby md-icon { color: var(--md-voice-on-container); } .trade-color--other {
+background: var(--md-payment-container); } .trade-color--other md-icon { color: var(--md-payment-on-container); } /*
+信息区域 */ .trade-info { padding: 28rpx 32rpx; } .trade-title { font-size: 30rpx; font-weight: 600; color:
+var(--md-on-surface); margin-bottom: 16rpx; line-height: 1.4; } .trade-price-row { display: flex; align-items: baseline;
+gap: 20rpx; margin-bottom: 12rpx; } .trade-price { font-size: 40rpx; font-weight: 800; color: var(--md-primary); }
+.trade-original { font-size: 26rpx; color: var(--md-on-surface-variant); text-decoration: line-through; }
+.trade-meta-row { display: flex; justify-content: space-between; align-items: center; } .trade-seller { font-size:
+24rpx; color: var(--md-on-surface-variant); } .trade-discount { font-size: 22rpx; font-weight: 500; padding: 4rpx 16rpx;
+border-radius: 8rpx; background: var(--md-tag-bg); color: var(--md-tag-text); } .fab-wrap { position: fixed; right:
+40rpx; bottom: calc(160rpx + env(safe-area-inset-bottom)); z-index: 100; }

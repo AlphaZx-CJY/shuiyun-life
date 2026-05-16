@@ -6,6 +6,7 @@ interface IQuickEntry {
   label: string;
   path: string;
   icon: string;
+  tab?: string;
 }
 
 interface IRecentSchedule extends Pick<ScheduleItem, 'id' | 'title' | 'time' | 'location' | 'status' | 'date'> {
@@ -17,30 +18,31 @@ interface IIndexData {
   noticeNews: NewsItem[];
   recentSchedules: IRecentSchedule[];
   routeName: string;
+  runNote: string;
   nextShuttle: ShuttleTime | null;
+  shuttleModalVisible: boolean;
+  shuttleStops: string[];
+  shuttleSchedule: ShuttleTime[];
+  shuttleContactPhone: string;
 }
-
-const ICON_LIFE = '🏪';
-const ICON_NOTICE = '📢';
-const ICON_SCHEDULE = '📅';
-const ICON_SERVICE = '💡';
-const ICON_TRADE = '🛍️';
-const ICON_VOICE = '🤝';
 
 Page<IIndexData, WechatMiniprogram.IAnyObject>({
   data: {
     quickEntries: [
-      { id: 1, label: '周边生活', path: '/pages/life-info/life-info', icon: ICON_LIFE },
-      { id: 2, label: '社区通知', path: '/pages/news/news', icon: ICON_NOTICE },
-      { id: 3, label: '活动安排', path: '/pages/schedule/schedule', icon: ICON_SCHEDULE },
-      { id: 4, label: '缴费知识', path: '/pages/payment/payment', icon: ICON_SERVICE },
-      { id: 5, label: '闲置交易', path: '/pages/trade/trade', icon: ICON_TRADE },
-      { id: 6, label: '邻里互助', path: '/pages/voice/voice', icon: ICON_VOICE },
+      { id: 1, label: '周边生活', path: '/pages/discover/discover', tab: 'service', icon: 'storefront' },
+      { id: 2, label: '缴费知识', path: '/pages/discover/discover', tab: 'payment', icon: 'receipt_long' },
+      { id: 3, label: '社区活动', path: '/pages/discover/discover', tab: 'schedule', icon: 'event' },
+      { id: 4, label: '闲置交易', path: '/pages/trade/trade', icon: 'sync_alt' },
     ],
     noticeNews: [],
     recentSchedules: [],
     routeName: '',
+    runNote: '',
     nextShuttle: null,
+    shuttleModalVisible: false,
+    shuttleStops: [],
+    shuttleSchedule: [],
+    shuttleContactPhone: '',
   },
 
   onLoad() {
@@ -67,13 +69,16 @@ Page<IIndexData, WechatMiniprogram.IAnyObject>({
 
   async loadData() {
     try {
-      const [noticeNewsArr, policyNewsArr, aroundNewsArr, recentSchedulesRaw, routeName, shuttleSchedule] = await Promise.all([
+      const [noticeNewsArr, policyNewsArr, aroundNewsArr, recentSchedulesRaw, routeName, runNote, shuttleSchedule, shuttleStops, shuttleContactPhone] = await Promise.all([
         api.getLatestNewsByCategory('notice', 1),
         api.getLatestNewsByCategory('policy', 1),
         api.getLatestNewsByCategory('around', 1),
         api.getRecentSchedules(),
         api.getShuttleRouteName(),
+        api.getShuttleRunNote(),
         api.getShuttleSchedule(),
+        api.getShuttleStops(),
+        api.getShuttleContactPhone(),
       ]);
       const noticeNews = [...noticeNewsArr, ...policyNewsArr, ...aroundNewsArr];
       const nextShuttle = shuttleSchedule.find((s: ShuttleTime) => s.status !== 'passed') || shuttleSchedule[shuttleSchedule.length - 1] || null;
@@ -85,19 +90,42 @@ Page<IIndexData, WechatMiniprogram.IAnyObject>({
         if (s.date === tomorrow) dateLabel = '明天';
         return { ...s, dateLabel };
       });
-      this.setData({ noticeNews, recentSchedules, routeName, shuttleSchedule, nextShuttle });
+      this.setData({ noticeNews, recentSchedules, routeName, runNote, shuttleSchedule, shuttleStops, shuttleContactPhone, nextShuttle });
     } catch (err) {
       console.error('loadData failed', err);
     }
   },
 
   onShuttleBannerTap() {
-    wx.navigateTo({ url: '/pages/shuttle/shuttle' });
+    this.setData({ shuttleModalVisible: true });
+  },
+
+  onShuttleModalClose() {
+    this.setData({ shuttleModalVisible: false });
+  },
+
+  onShuttleCallTap() {
+    const { shuttleContactPhone } = this.data;
+    if (shuttleContactPhone) {
+      wx.makePhoneCall({
+        phoneNumber: shuttleContactPhone,
+        fail: () => {
+          wx.showToast({ title: '拨打电话失败', icon: 'none' });
+        },
+      });
+    }
+  },
+
+  onShuttleSheetTap() {
+    // 阻止事件冒泡，防止点击弹窗内容时关闭弹窗
   },
 
   onEntryTap(e: WechatMiniprogram.TouchEvent) {
-    const { path } = e.currentTarget.dataset as { path: string };
-    const tabBarPages = ['/pages/index/index', '/pages/news/news', '/pages/trade/trade', '/pages/schedule/schedule', '/pages/profile/profile'];
+    const { path, tab } = e.currentTarget.dataset as { path: string; tab?: string };
+    if (tab) {
+      wx.setStorageSync('discover_tab', tab);
+    }
+    const tabBarPages = ['/pages/index/index', '/pages/discover/discover', '/pages/trade/trade', '/pages/profile/profile'];
     if (tabBarPages.includes(path)) {
       wx.switchTab({ url: path });
     } else {
@@ -107,23 +135,24 @@ Page<IIndexData, WechatMiniprogram.IAnyObject>({
 
   onNoticeTap(e: WechatMiniprogram.TouchEvent) {
     const { id } = e.currentTarget.dataset as { id: number | string };
-    wx.navigateTo({ url: `/pages/news-detail/news-detail?id=${id}` });
+    wx.navigateTo({ url: `/pages/detail/detail?type=news&id=${id}` });
   },
 
   onMoreNoticeTap() {
-    wx.switchTab({ url: '/pages/news/news' });
+    wx.switchTab({ url: '/pages/discover/discover' });
   },
 
   onScheduleTap(e: WechatMiniprogram.TouchEvent) {
     const { id } = e.currentTarget.dataset as { id: number | string };
     if (id) {
-      wx.navigateTo({ url: `/pages/schedule-detail/schedule-detail?id=${id}` });
+      wx.navigateTo({ url: `/pages/detail/detail?type=schedule&id=${id}` });
     } else {
-      wx.switchTab({ url: '/pages/schedule/schedule' });
+      wx.switchTab({ url: '/pages/discover/discover' });
     }
   },
 
   onMoreScheduleTap() {
-    wx.switchTab({ url: '/pages/schedule/schedule' });
+    wx.setStorageSync('discover_tab', 'schedule');
+    wx.switchTab({ url: '/pages/discover/discover' });
   },
 });

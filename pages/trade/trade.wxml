@@ -18,22 +18,11 @@
 
   <!-- 交易列表 -->
   <view class="trade-list" wx:if="{{tradeList.length > 0}}">
-    <view
-      class="trade-item"
-      wx:for="{{tradeList}}"
-      wx:key="id"
-      data-id="{{item.id}}"
-      bindtap="onTradeTap"
-    >
-      <image
-        wx:if="{{item.images && item.images.length}}"
-        class="trade-image"
-        src="{{item.images[0]}}"
-        mode="aspectFill"
-        lazy-load
-      />
-      <view wx:else class="trade-image trade-image--placeholder">
-        <image class="trade-placeholder-icon" src="/images/icons/material/storefront-on.svg" mode="aspectFit" />
+    <view class="trade-card" wx:for="{{tradeList}}" wx:key="id" data-id="{{item.id}}" bindtap="onTradeTap">
+      <view
+        class="trade-color-area {{item.category === 'furniture' ? 'trade-color--primary' : item.category === 'appliance' ? 'trade-color--tertiary' : item.category === 'baby' ? 'trade-color--baby' : item.category === 'books' ? 'trade-color--secondary' : 'trade-color--other'}}"
+      >
+        <md-icon name="/images/icons/material/storefront-on.svg" size="56" color="currentColor" />
       </view>
       <view class="trade-info">
         <text class="trade-title">{{item.title}}</text>
@@ -41,9 +30,11 @@
           <text class="trade-price">¥{{item.price}}</text>
           <text class="trade-original" wx:if="{{item.originalPrice}}">¥{{item.originalPrice}}</text>
         </view>
-        <view class="trade-meta">
+        <view class="trade-meta-row">
           <text class="trade-seller">{{item.seller}}</text>
-          <text class="trade-time">{{item.time}}</text>
+          <text class="trade-discount" wx:if="{{item.originalPrice}}"
+            >省{{Math.round((1 - item.price / item.originalPrice) * 100)}}%</text
+          >
         </view>
       </view>
     </view>
@@ -52,7 +43,7 @@
   <!-- 空状态 -->
   <md-empty-state
     wx:if="{{tradeList.length === 0}}"
-    icon="/images/icons/material/storefront-on.svg"
+    icon="/images/icons/material/storefront-off.svg"
     headline="暂无闲置物品"
     supportingText="快去发布第一件闲置吧"
   />

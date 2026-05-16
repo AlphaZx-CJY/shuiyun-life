@@ -1,126 +1,21 @@
-/* 交易详情页样式 */
-
-.detail-gallery {
-  padding: 24rpx 32rpx 0;
-}
-
-.detail-main-image {
-  width: 100%;
-  height: 500rpx;
-  border-radius: 20rpx;
-  background: var(--md-surface-container);
-}
-
-.detail-main-image--placeholder {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.detail-placeholder-icon {
-  width: 120rpx;
-  height: 120rpx;
-  opacity: 0.4;
-}
-
-.detail-info-card {
-  margin: 32rpx;
-  padding: 32rpx;
-}
-
-.detail-trade-title {
-  font-size: 36rpx;
-  font-weight: 700;
-  color: var(--md-on-surface);
-  line-height: 1.4;
-  display: block;
-}
-
-.detail-price-row {
-  display: flex;
-  align-items: baseline;
-  gap: 20rpx;
-  margin-top: 20rpx;
-}
-
-.detail-price {
-  font-size: 48rpx;
-  font-weight: 700;
-  color: var(--md-primary);
-}
-
-.detail-original {
-  font-size: 26rpx;
-  color: var(--md-on-surface-variant);
-  text-decoration: line-through;
-}
-
-.discount-badge {
-  padding: 6rpx 16rpx;
-  border-radius: 9999rpx;
-  background: var(--md-primary-container);
-  color: var(--md-on-primary-container);
-  font-size: 22rpx;
-  font-weight: 600;
-}
-
-.detail-meta-row {
-  display: flex;
-  gap: 24rpx;
-  flex-wrap: wrap;
-  margin-top: 24rpx;
-}
-
-.detail-meta-text {
-  font-size: 24rpx;
-  color: var(--md-on-surface-variant);
-}
-
-.detail-desc-section {
-  margin: 0 32rpx 32rpx;
-  padding: 32rpx;
-}
-
-.detail-section-title {
-  font-size: 30rpx;
-  font-weight: 600;
-  color: var(--md-on-surface);
-  display: block;
-  margin-bottom: 16rpx;
-}
-
-.detail-desc-text {
-  font-size: 28rpx;
-  color: var(--md-on-surface-variant);
-  line-height: 1.7;
-  display: block;
-}
-
-.detail-action-bar {
-  margin: 0 32rpx 48rpx;
-}
-
-.detail-call-btn {
-  width: 100%;
-  height: 96rpx;
-  border-radius: 9999rpx;
-  background: var(--md-primary);
-  color: var(--md-on-primary);
-  font-size: 32rpx;
-  font-weight: 500;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.detail-call-btn:active {
-  opacity: 0.85;
-}
-
-
-.empty-fallback {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 60vh;
-}
+/* 交易详情 — 彩色容器风格 */ /* 图片/彩色区域 */ .detail-gallery { padding: 32rpx 40rpx 0; } .detail-main-image {
+width: 100%; height: 500rpx; border-radius: 28rpx; background: var(--md-surface-container); display: block; }
+.detail-main-image--placeholder { background: var(--md-primary-container); display: flex; align-items: center;
+justify-content: center; position: relative; overflow: hidden; } /* 装饰圆 */ .detail-main-image--placeholder::after {
+content: ''; position: absolute; right: -60rpx; bottom: -60rpx; width: 200rpx; height: 200rpx; border-radius: 50%;
+background: rgba(255, 255, 255, 0.2); } .detail-placeholder-icon { width: 120rpx; height: 120rpx; opacity: 0.5;
+position: relative; z-index: 1; } /* 信息卡片 */ .detail-info-card { margin: 32rpx 40rpx; padding: 32rpx; background:
+var(--md-surface); border-radius: 28rpx; } .detail-trade-title { font-size: 36rpx; font-weight: 700; color:
+var(--md-on-surface); line-height: 1.4; display: block; } .detail-price-row { display: flex; align-items: baseline; gap:
+20rpx; margin-top: 20rpx; } .detail-price { font-size: 48rpx; font-weight: 800; color: var(--md-primary); }
+.detail-original { font-size: 26rpx; color: var(--md-on-surface-variant); text-decoration: line-through; }
+.discount-badge { padding: 6rpx 16rpx; border-radius: 9999rpx; background: var(--md-tag-bg); color: var(--md-tag-text);
+font-size: 22rpx; font-weight: 600; } .detail-meta-row { display: flex; gap: 24rpx; flex-wrap: wrap; margin-top: 24rpx;
+} .detail-meta-text { font-size: 24rpx; color: var(--md-on-surface-variant); } /* 商品描述 */ .detail-desc-section {
+margin: 0 40rpx 32rpx; padding: 32rpx; background: var(--md-surface); border-radius: 28rpx; } .detail-section-title {
+font-size: 30rpx; font-weight: 600; color: var(--md-on-surface); display: block; margin-bottom: 16rpx; }
+.detail-desc-text { font-size: 28rpx; color: var(--md-on-surface-variant); line-height: 1.7; display: block; } /*
+联系按钮 */ .detail-action-bar { margin: 0 40rpx 48rpx; } .detail-call-btn { width: 100%; height: 96rpx; border-radius:
+9999rpx; background: var(--md-primary); color: var(--md-on-primary); font-size: 32rpx; font-weight: 600; display: flex;
+align-items: center; justify-content: center; transition: opacity 100ms ease; } .detail-call-btn:active { opacity: 0.85;
+} .empty-fallback { display: flex; align-items: center; justify-content: center; min-height: 60vh; }

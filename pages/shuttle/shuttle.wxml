@@ -40,7 +40,9 @@
       <view class="stops-list">
         <view class="stop-item" wx:for="{{stops}}" wx:key="*this">
           <view class="stop-marker">
-            <view class="stop-dot {{index === 0 ? 'stop-dot--start' : (index === stops.length - 1 ? 'stop-dot--end' : '')}}"></view>
+            <view
+              class="stop-dot {{index === 0 ? 'stop-dot--start' : (index === stops.length - 1 ? 'stop-dot--end' : '')}}"
+            ></view>
             <view wx:if="{{index !== stops.length - 1}}" class="stop-line"></view>
           </view>
           <text class="stop-name">{{item}}</text>

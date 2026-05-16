@@ -1,190 +1,27 @@
-/* 班车信息页样式 */
-
-.shuttle-section {
-  margin: 0 32rpx 48rpx;
-}
-
-.route-header {
-  padding: 48rpx 32rpx;
-  text-align: center;
-}
-
-.route-name {
-  font-size: 36rpx;
-  font-weight: 700;
-  color: var(--md-on-surface);
-  display: block;
-  margin-bottom: 24rpx;
-  letter-spacing: -0.4rpx;
-}
-
-.route-chips {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 16rpx;
-}
-
-/* 时刻表 */
-.time-list {
-  padding: 16rpx 0;
-}
-
-.time-item {
-  display: flex;
-  align-items: center;
-  padding: 20rpx 32rpx;
-  position: relative;
-}
-
-.time-item::after {
-  content: '';
-  position: absolute;
-  left: 32rpx;
-  right: 32rpx;
-  bottom: 0;
-  height: 1rpx;
-  background: var(--md-outline-variant);
-  transform: scaleY(0.5);
-}
-
-.time-item:last-child::after {
-  display: none;
-}
-
-.time-marker {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-right: 24rpx;
-}
-
-.time-dot {
-  width: 20rpx;
-  height: 20rpx;
-  border-radius: 50%;
-  flex-shrink: 0;
-}
-
-.time-dot--upcoming {
-  background: var(--md-primary);
-}
-
-.time-dot--soon {
-  background: var(--md-tertiary);
-  border: 4rpx solid var(--md-primary-container);
-  box-sizing: border-box;
-}
-
-.time-dot--passed {
-  background: var(--md-surface-variant);
-}
-
-.time-info {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-}
-
-.time-text {
-  font-size: 30rpx;
-  font-weight: 600;
-  color: var(--md-primary);
-}
-
-.time-item.passed .time-text {
-  color: var(--md-on-surface-variant);
-  text-decoration: line-through;
-}
-
-.time-status {
-  font-size: 22rpx;
-  color: var(--md-on-surface-variant);
-  margin-top: 4rpx;
-}
-
-/* 站点 */
-.stops-list {
-  padding: 24rpx 32rpx;
-}
-
-.stop-item {
-  display: flex;
-  align-items: center;
-  padding: 16rpx 0;
-  position: relative;
-}
-
-.stop-marker {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-right: 24rpx;
-  min-height: 48rpx;
-}
-
-.stop-dot {
-  width: 20rpx;
-  height: 20rpx;
-  border-radius: 50%;
-  background: var(--md-outline-variant);
-  flex-shrink: 0;
-}
-
-.stop-dot--start {
-  background: var(--md-primary);
-}
-
-.stop-dot--end {
-  background: var(--md-outline);
-}
-
-.stop-line {
-  width: 2rpx;
-  flex: 1;
-  min-height: 32rpx;
-  background: var(--md-outline-variant);
-}
-
-.stop-name {
-  font-size: 30rpx;
-  color: var(--md-on-surface-variant);
-  font-weight: 500;
-}
-
-/* 联系 */
-.contact-row {
-  padding: 24rpx 32rpx;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.contact-info {
-  display: flex;
-  flex-direction: column;
-}
-
-.contact-label {
-  font-size: 24rpx;
-  color: var(--md-on-surface-variant);
-  margin-bottom: 4rpx;
-}
-
-.contact-phone {
-  font-size: 32rpx;
-  font-weight: 600;
-  color: var(--md-primary);
-}
-
-.contact-action {
-  padding: 16rpx 36rpx;
-  border-radius: 9999rpx;
-  background: var(--md-primary);
-}
-
-.contact-action-text {
-  font-size: 26rpx;
-  color: var(--md-on-primary);
-  font-weight: 500;
-}
+/* 班车信息 — 彩色容器风格 */ .shuttle-section { margin: 0 40rpx 40rpx; } /* 路线信息卡片 */ .route-header { padding:
+40rpx; background: var(--md-primary); border-radius: 28rpx; position: relative; overflow: hidden; } /* 装饰圆 */
+.route-header::after { content: ''; position: absolute; right: -80rpx; bottom: -80rpx; width: 240rpx; height: 240rpx;
+border-radius: 50%; background: var(--md-secondary-container); opacity: 0.25; } .route-name { font-size: 40rpx;
+font-weight: 700; color: var(--md-on-primary); position: relative; z-index: 1; display: block; margin-bottom: 16rpx; }
+.route-chips { display: flex; gap: 16rpx; flex-wrap: wrap; position: relative; z-index: 1; } /* 分区标题 */
+.md-section-title { font-size: 32rpx; font-weight: 700; color: var(--md-on-surface); margin-bottom: 20rpx; display:
+block; letter-spacing: -0.2rpx; } /* 时刻表 */ .time-list { padding: 24rpx 32rpx; } .time-item { display: flex;
+align-items: center; padding: 24rpx 0; border-bottom: 1rpx solid var(--md-outline-variant); } .time-item:last-child {
+border-bottom: none; } .time-marker { width: 48rpx; display: flex; align-items: center; justify-content: center;
+margin-right: 24rpx; } .time-dot { width: 16rpx; height: 16rpx; border-radius: 50%; background: var(--md-outline); }
+.time-dot--soon { background: var(--md-primary); } .time-dot--passed { background: var(--md-outline-variant); }
+.time-info { flex: 1; display: flex; align-items: center; justify-content: space-between; } .time-text { font-size:
+32rpx; font-weight: 600; color: var(--md-on-surface); } .time-status { font-size: 24rpx; font-weight: 500; padding: 4rpx
+16rpx; border-radius: 9999rpx; } .time-item.soon .time-status { background: var(--md-primary-container); color:
+var(--md-on-primary-container); } .time-item.passed .time-status { background: var(--md-surface-container); color:
+var(--md-on-surface-variant); } /* 站点列表 */ .stops-list { padding: 24rpx 32rpx; } .stop-item { display: flex;
+align-items: center; padding: 20rpx 0; } .stop-marker { position: relative; width: 48rpx; display: flex; flex-direction:
+column; align-items: center; margin-right: 24rpx; } .stop-dot { width: 20rpx; height: 20rpx; border-radius: 50%;
+background: var(--md-outline); border: 4rpx solid var(--md-surface); } .stop-dot--start { background: var(--md-primary);
+} .stop-dot--end { background: var(--md-primary); } .stop-line { position: absolute; top: 28rpx; bottom: -28rpx; width:
+4rpx; background: var(--md-outline-variant); } .stop-name { font-size: 30rpx; color: var(--md-on-surface); font-weight:
+500; } /* 联系方式 */ .contact-row { display: flex; align-items: center; justify-content: space-between; padding: 32rpx;
+} .contact-info { display: flex; flex-direction: column; gap: 8rpx; } .contact-label { font-size: 24rpx; color:
+var(--md-on-surface-variant); } .contact-phone { font-size: 32rpx; font-weight: 600; color: var(--md-primary); }
+.contact-action { padding: 12rpx 32rpx; background: var(--md-primary-container); border-radius: 9999rpx; }
+.contact-action-text { font-size: 26rpx; font-weight: 600; color: var(--md-on-primary-container); }

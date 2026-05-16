@@ -7,3 +7,10 @@ services-seed.json
 news-notice-seed.json
 property-cert-seed.json
 activity-import.json
+
+# Harness / Lint
+.eslintcache
+.prettiercache
+design-prototype/
+TODO.md
+.agents/

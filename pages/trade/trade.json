@@ -1,9 +1,3 @@
-{
-  "navigationBarTitleText": "闲置交易",
-  "enablePullDownRefresh": true,
-  "usingComponents": {
-    "md-chip": "/components/md3/md-chip/md-chip",
-    "md-fab": "/components/md3/md-fab/md-fab",
-    "md-empty-state": "/components/md3/md-empty-state/md-empty-state"
-  }
-}
+{ "navigationBarTitleText": "闲置交易", "enablePullDownRefresh": true, "usingComponents": { "md-chip":
+"/components/md3/md-chip/md-chip", "md-fab": "/components/md3/md-fab/md-fab", "md-empty-state":
+"/components/md3/md-empty-state/md-empty-state" } }

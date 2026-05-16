@@ -1,7 +1,12 @@
 <view class="md-app-bar {{transparent ? 'md-app-bar--transparent' : ''}}">
   <view class="md-app-bar__status" style="height: {{statusBarHeight}}px;"></view>
   <view class="md-app-bar__content" style="height: {{navBarHeight}}px;">
-    <view wx:if="{{showBack}}" class="md-app-bar__back" style="top: {{menuButtonTop}}px; height: {{menuButtonHeight}}px;" bindtap="onBackTap">
+    <view
+      wx:if="{{showBack}}"
+      class="md-app-bar__back"
+      style="top: {{menuButtonTop}}px; height: {{menuButtonHeight}}px;"
+      bindtap="onBackTap"
+    >
       <view class="md-app-bar__back-arrow"></view>
     </view>
     <view class="md-app-bar__title-wrap">

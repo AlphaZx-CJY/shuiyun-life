@@ -47,8 +47,5 @@
 </view>
 
 <view class="page-container empty-fallback" wx:else>
-  <md-empty-state
-    icon="/images/icons/material/storefront-on.svg"
-    headline="商品信息加载失败"
-  />
+  <md-empty-state icon="/images/icons/material/storefront-on.svg" headline="商品信息加载失败" />
 </view>
