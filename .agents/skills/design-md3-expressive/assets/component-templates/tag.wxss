@@ -1,0 +1,6 @@
+/* MD3 Expressive Tag 样式 */ /* variant 可选: primary / secondary / tertiary / error */ .md-tag { display: inline-flex;
+align-items: center; padding: 8rpx 20rpx; border-radius: 8rpx; font-size: 24rpx; font-weight: 500; line-height: 1.4; }
+.md-tag--primary { background-color: var(--md-primary-container); color: var(--md-on-primary-container); }
+.md-tag--secondary { background-color: var(--md-secondary-container); color: var(--md-on-secondary-container); }
+.md-tag--tertiary { background-color: var(--md-tertiary-container); color: var(--md-on-tertiary-container); }
+.md-tag--error { background-color: var(--md-error-container); color: var(--md-on-error-container); }

@@ -1,0 +1,5 @@
+/* MD3 Expressive Text Field 样式 */ .md-field { margin-bottom: 24rpx; } .md-field__label { display: block;
+margin-bottom: 12rpx; font-size: 28rpx; font-weight: 500; color: var(--md-on-surface); } .md-field__input { width: 100%;
+height: 96rpx; padding: 0 24rpx; border-radius: 16rpx; background-color: var(--md-surface-container-low); color:
+var(--md-on-surface); font-size: 28rpx; line-height: 1.5; caret-color: var(--md-primary); box-sizing: border-box; }
+.md-field__input::placeholder { color: var(--md-on-surface-variant); }

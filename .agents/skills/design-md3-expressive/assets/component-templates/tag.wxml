@@ -1,0 +1,4 @@
+<!-- MD3 Expressive Tag / Chip 模板 -->
+<view class="md-tag {{variant ? 'md-tag--' + variant : ''}}">
+  <text class="md-tag__text">{{text}}</text>
+</view>

@@ -1,0 +1,5 @@
+<!-- MD3 Expressive Button 模板 -->
+<!-- 用法: 复制到页面 WXML 中，修改 type 和 text -->
+<view class="md-btn {{type ? 'md-btn--' + type : 'md-btn--filled'}}" bindtap="onTap">
+  <text class="md-btn__text">{{text}}</text>
+</view>

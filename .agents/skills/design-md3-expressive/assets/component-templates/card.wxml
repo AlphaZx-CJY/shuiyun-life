@@ -1,0 +1,17 @@
+<!-- MD3 Expressive Card 模板 -->
+<!-- 用法: 复制到页面 WXML 中，替换 content 和 action 区域 -->
+<view class="md-card">
+  <view class="md-card__media" wx:if="{{cover}}">
+    <image src="{{cover}}" mode="aspectFill" lazy-load />
+  </view>
+  <view class="md-card__content">
+    <text class="md-card__title">{{title}}</text>
+    <text class="md-card__subtitle" wx:if="{{subtitle}}">{{subtitle}}</text>
+    <view class="md-card__body">
+      <slot name="body" />
+    </view>
+  </view>
+  <view class="md-card__actions" wx:if="{{showActions}}">
+    <slot name="actions" />
+  </view>
+</view>

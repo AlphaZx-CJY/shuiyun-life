@@ -1,0 +1,11 @@
+<!-- MD3 Expressive Text Field 模板 -->
+<view class="md-field">
+  <text class="md-field__label" wx:if="{{label}}">{{label}}</text>
+  <input
+    class="md-field__input"
+    type="{{type || 'text'}}"
+    placeholder="{{placeholder}}"
+    value="{{value}}"
+    bindinput="onInput"
+  />
+</view>

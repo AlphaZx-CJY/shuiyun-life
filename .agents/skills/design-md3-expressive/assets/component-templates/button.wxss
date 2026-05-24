@@ -1,0 +1,8 @@
+/* MD3 Expressive Button 样式 */ /* type 可选: filled / tonal / outlined / text / elevated */ .md-btn { display:
+inline-flex; align-items: center; justify-content: center; height: 96rpx; padding: 0 48rpx; border-radius: 9999rpx;
+font-size: 32rpx; font-weight: 500; line-height: 1; transition: transform 100ms ease-out; } .md-btn:active { transform:
+scale(0.96); } .md-btn--filled { background-color: var(--md-primary); color: var(--md-on-primary); } .md-btn--tonal {
+background-color: var(--md-primary-container); color: var(--md-on-primary-container); } .md-btn--outlined {
+background-color: transparent; color: var(--md-primary); border: 2rpx solid var(--md-outline); } .md-btn--text {
+background-color: transparent; color: var(--md-primary); height: 72rpx; padding: 0 24rpx; } .md-btn--elevated {
+background-color: var(--md-surface-container-low); color: var(--md-primary); } .md-btn__text { display: inline-block; }
