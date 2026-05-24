@@ -1,8 +1,10 @@
 # 新长宁水韵名邸生活号
 
+[![GitHub](https://img.shields.io/badge/GitHub-AlphaZx--CJY%2Fshuiyun--life-4C662B?logo=github)](https://github.com/AlphaZx-CJY/shuiyun-life)
+
 ## 项目简介
 
-为「新长宁水韵名邸」小区打造的微信小程序生活号，面向小区居民提供周边生活信息、闲置交易、新闻资讯、缴费知识、活动安排、班车信息、社区心声、意见反馈和使用指南等功能。全部内容支持通过 **微信云开发数据库 CMS** 动态更新，无需修改代码即可维护小程序内容。
+为「新长宁水韵名邸」小区打造的**开源**微信小程序生活号，面向小区居民提供周边生活信息、闲置交易、新闻资讯、缴费知识、活动安排、班车信息、社区心声、意见反馈和使用指南等功能。全部内容支持通过 **微信云开发数据库 CMS** 动态更新，无需修改代码即可维护小程序内容。
 
 ## 技术栈
 
@@ -24,29 +26,29 @@ shuiyun-life/
 ├── project.private.config.json # 本地私有配置（不提交Git）
 ├── custom-tab-bar/           # 自定义 TabBar（Material Symbols SVG）
 │
-├── pages/                    # 页面目录（10 个页面）
+├── pages/                    # 页面目录（14 个页面）
 │   ├── index/               # 首页（班车卡片、快捷入口、社区通知、最近活动）
 │   ├── discover/            # 发现（聚合资讯/周边/缴费/活动/心声的 Feed 流）
 │   ├── detail/              # 通用详情页（新闻/缴费/活动/指南共用）
-│   ├── trade/               # 闲置交易列表
+│   ├── service/             # 周边生活服务列表
+│   ├── trade/               # 闲置交易列表（瀑布流双列）
 │   ├── trade-detail/        # 交易详情
 │   ├── trade-publish/       # 发布闲置
+│   ├── voice/               # 社区心声列表
+│   ├── voice-publish/       # 发布社区心声
+│   ├── my-voice/            # 我的心声（个人发布管理）
+│   ├── my-trade/            # 我的闲置（个人发布管理）
 │   ├── shuttle/             # 班车信息
-│   ├── profile/             # 我的（个人中心）
-│   ├── feedback/            # 小程序意见反馈
-│   └── voice-publish/       # 发布社区心声
+│   ├── guide/               # 使用指南 / 运营帮助
+│   ├── profile/             # 更多（个人中心 + 开源入口）
+│   └── feedback/            # 小程序意见反馈
 │
 ├── components/              # 公共组件
-│   └── md3/                 # MD3 基础组件库
+│   └── md3/                 # MD3 基础组件库（5 个）
 │       ├── md-app-bar/
-│       ├── md-button/
-│       ├── md-card/
-│       ├── md-chip/
-│       ├── md-divider/
 │       ├── md-empty-state/
 │       ├── md-fab/
 │       ├── md-icon/
-│       ├── md-list-item/
 │       └── md-text-field/
 │
 ├── services/                # 服务层
@@ -59,24 +61,24 @@ shuiyun-life/
 ├── utils/                   # 工具函数
 │   └── util.ts
 │
-├── images/                  # 图片资源
-│   ├── icons/              # TabBar 图标（Material Symbols SVG）
-│   └── material/           # Material Symbols 着色 SVG 图标
-│
-└── guides-seed.json         # 使用指南种子数据（JSON Lines）
+└── images/                  # 图片资源
+    ├── icons/              # TabBar 与分类图标（Material Symbols SVG）
+    └── material/           # Material Symbols 着色 SVG 图标
 ```
 
 ## 功能模块
 
-1. **首页** — 班车 Hero 卡片、快捷入口（周边生活/缴费知识/社区活动/闲置交易）、社区通知列表、最近活动卡片
+1. **首页** — 班车 Hero 卡片、快捷入口（周边生活/社区心声）、社区通知列表、最近活动卡片
 2. **发现** — 聚合资讯/周边生活/缴费知识/活动安排/社区心声的 Feed 流，Pill 分类筛选，彩色容器卡片
-3. **通用详情** — 新闻资讯、缴费知识、活动安排、使用指南共用详情页，支持 rich-text 渲染 HTML 内容
-4. **闲置交易** — 商品列表、分类筛选、大图卡片、详情页、用户发布（本地缓存 + 云端双通道）
-5. **班车信息** — 班车时刻表、站点列表、动态状态计算（已发车/即将发车/未发车）、联系方式
-6. **个人中心** — 头像、联系物业、小程序反馈、使用指南入口
-7. **社区心声** — 居民发布建议与问题，在发现页 Feed 中展示
-8. **意见反馈** — 用户提交反馈到云数据库 `feedback` 集合
+3. **通用详情** — 新闻资讯、缴费知识、活动安排、使用指南共用详情页，支持 rich-text 渲染 HTML 内容，含云存储图片链接自动解析
+4. **周边生活** — 小区周边商家/服务信息列表
+5. **闲置交易** — 瀑布流双列商品列表、分类筛选、大图卡片、详情页、用户发布（本地缓存 + 云端双通道）、分类图标回退
+6. **社区心声** — 居民发布建议与问题，在发现页 Feed 中展示
+7. **我的心声 / 我的闲置** — 个人发布内容管理，支持编辑和删除
+8. **班车信息** — 班车时刻表、站点列表、动态状态计算（已发车/即将发车/未发车）、联系方式
 9. **使用指南** — CMS 驱动的操作手册，指导运营人员更新内容
+10. **意见反馈** — 用户提交反馈到云数据库 `feedback` 集合
+11. **开源代码** — 个人中心提供 GitHub 仓库入口，支持一键复制链接
 
 ## CMS 内容管理
 
@@ -99,15 +101,9 @@ shuiyun-life/
 | `feedback`        | 用户反馈记录 | 自动增长   |
 | `voices`          | 社区心声     | 自动增长   |
 
-### 使用指南导入
+### 数据导入
 
-运营操作手册已预置在 `guides-seed.json` 中，导入方式：
-
-1. 打开微信开发者工具 → 云开发 → 数据库
-2. 创建集合 `guides`
-3. 点击「导入 JSON」→ 选择 `guides-seed.json`
-
-导入后，运营人员可在小程序「我的 → 使用指南」中查看完整的 CMS 操作手册。
+在云控制台数据库中创建集合后，可通过「导入 JSON」批量导入初始数据。
 
 ## 开发说明
 
@@ -132,6 +128,21 @@ npm run check && npm test
 
 已配置 husky + lint-staged 预提交钩子，任何一步失败将阻止提交。
 
+## 开源协议
+
+本项目采用 [MIT License](LICENSE) 开源，欢迎 Star 和提交 Issue。
+
+- GitHub 仓库：https://github.com/AlphaZx-CJY/shuiyun-life
+- 问题反馈：https://github.com/AlphaZx-CJY/shuiyun-life/issues
+
 ## 版本
 
-v2.0.0 — MD3 Expressive 风格 + 通用详情页重构 + Feed 流聚合 + Harness 工程体系
+**v2.0.0** — MD3 Expressive 风格 + 通用详情页重构 + Feed 流聚合 + Harness 工程体系
+
+近期主要变更：
+
+- 活动内容数据结构重构（`startDate`/`endDate` 替代多条记录合并）
+- 新增"我的心声""我的闲置"个人发布管理
+- 闲置交易页瀑布流双列布局 + 分类图标回退
+- 清理未使用组件（md-card、md-chip、md-divider、md-list-item）
+- 更多页面增加开源代码入口
