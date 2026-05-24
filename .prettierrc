@@ -6,7 +6,7 @@
   "printWidth": 120,
   "overrides": [
     {
-      "files": ["*.wxml", "*.wxss", "*.json"],
+      "files": ["*.wxml", "*.wxss"],
       "options": {
         "parser": "html"
       }
