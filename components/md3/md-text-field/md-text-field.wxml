@@ -1,5 +1,7 @@
 <view class="md-field {{error ? 'md-field--error' : ''}}">
-  <text wx:if="{{label}}" class="md-field__label">{{label}}</text>
+  <text wx:if="{{label}}" class="md-field__label"
+    >{{label}}<text wx:if="{{required}}" class="md-field__required">*</text></text
+  >
   <view class="md-field__input-wrap">
     <input
       wx:if="{{!multiline}}"

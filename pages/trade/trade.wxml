@@ -16,29 +16,81 @@
     </scroll-view>
   </view>
 
-  <!-- 交易列表 -->
-  <view class="trade-list" wx:if="{{tradeList.length > 0}}">
-    <view class="trade-card" wx:for="{{tradeList}}" wx:key="id" data-id="{{item.id}}" bindtap="onTradeTap">
-      <view
-        class="trade-color-area {{item.category === 'furniture' ? 'trade-color--primary' : item.category === 'appliance' ? 'trade-color--tertiary' : item.category === 'baby' ? 'trade-color--baby' : item.category === 'books' ? 'trade-color--secondary' : 'trade-color--other'}}"
-      >
-        <md-icon
-          name="/images/icons/material/{{item.category === 'furniture' ? 'chair' : item.category === 'appliance' ? 'tv' : item.category === 'baby' ? 'child_care' : item.category === 'books' ? 'book' : 'electric_bolt'}}.svg"
-          size="56"
-          color="currentColor"
-        />
-      </view>
-      <view class="trade-info">
-        <text class="trade-title">{{item.title}}</text>
-        <view class="trade-price-row">
-          <text class="trade-price">¥{{item.price}}</text>
-          <text class="trade-original" wx:if="{{item.originalPrice}}">¥{{item.originalPrice}}</text>
+  <!-- Skeleton (initial load) -->
+  <view class="trade-waterfall" wx:if="{{loading && allTrades.length === 0}}">
+    <view class="trade-column">
+      <view class="trade-card skeleton-card" wx:for="{{[1,2]}}" wx:key="*this">
+        <view class="skeleton-image"></view>
+        <view class="skeleton-info">
+          <view class="skeleton-line skeleton-line--short"></view>
+          <view class="skeleton-line skeleton-line--medium"></view>
         </view>
-        <view class="trade-meta-row">
-          <text class="trade-seller">{{item.seller}}</text>
-          <text class="trade-discount" wx:if="{{item.originalPrice}}"
-            >省{{Math.round((1 - item.price / item.originalPrice) * 100)}}%</text
-          >
+      </view>
+    </view>
+    <view class="trade-column">
+      <view class="trade-card skeleton-card" wx:for="{{[1,2]}}" wx:key="*this">
+        <view class="skeleton-image"></view>
+        <view class="skeleton-info">
+          <view class="skeleton-line skeleton-line--short"></view>
+          <view class="skeleton-line skeleton-line--medium"></view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 交易列表 — 双列瀑布流 -->
+  <view class="trade-waterfall" wx:if="{{tradeList.length > 0}}">
+    <view class="trade-column">
+      <view class="trade-card" wx:for="{{leftColumn}}" wx:key="id" data-id="{{item.id}}" bindtap="onTradeTap">
+        <view
+          class="trade-color-area {{item.category === 'furniture' ? 'trade-color--primary' : item.category === 'appliance' ? 'trade-color--tertiary' : item.category === 'baby' ? 'trade-color--baby' : item.category === 'books' ? 'trade-color--secondary' : 'trade-color--other'}}"
+          wx:if="{{!item.images.length}}"
+        >
+          <md-icon
+            name="/images/icons/material/{{item.category === 'furniture' ? 'chair' : item.category === 'appliance' ? 'tv' : item.category === 'baby' ? 'child_care' : item.category === 'books' ? 'book' : 'electric_bolt'}}.svg"
+            size="48"
+            color="currentColor"
+          />
+        </view>
+        <image wx:if="{{item.images.length}}" class="trade-card-image" src="{{item.images[0]}}" mode="aspectFill" />
+        <view class="trade-info">
+          <text class="trade-category">{{item.categoryName}}</text>
+          <text class="trade-title">{{item.title}}</text>
+          <view class="trade-price-row">
+            <text class="trade-price">¥{{item.price}}</text>
+            <text class="trade-original" wx:if="{{item.originalPrice}}">¥{{item.originalPrice}}</text>
+          </view>
+          <view class="trade-meta-row">
+            <text class="trade-seller">{{item.seller}}</text>
+            <text class="trade-discount" wx:if="{{item.discount > 0}}">省{{item.discount}}%</text>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="trade-column">
+      <view class="trade-card" wx:for="{{rightColumn}}" wx:key="id" data-id="{{item.id}}" bindtap="onTradeTap">
+        <view
+          class="trade-color-area {{item.category === 'furniture' ? 'trade-color--primary' : item.category === 'appliance' ? 'trade-color--tertiary' : item.category === 'baby' ? 'trade-color--baby' : item.category === 'books' ? 'trade-color--secondary' : 'trade-color--other'}}"
+          wx:if="{{!item.images.length}}"
+        >
+          <md-icon
+            name="/images/icons/material/{{item.category === 'furniture' ? 'chair' : item.category === 'appliance' ? 'tv' : item.category === 'baby' ? 'child_care' : item.category === 'books' ? 'book' : 'electric_bolt'}}.svg"
+            size="48"
+            color="currentColor"
+          />
+        </view>
+        <image wx:if="{{item.images.length}}" class="trade-card-image" src="{{item.images[0]}}" mode="aspectFill" />
+        <view class="trade-info">
+          <text class="trade-category">{{item.categoryName}}</text>
+          <text class="trade-title">{{item.title}}</text>
+          <view class="trade-price-row">
+            <text class="trade-price">¥{{item.price}}</text>
+            <text class="trade-original" wx:if="{{item.originalPrice}}">¥{{item.originalPrice}}</text>
+          </view>
+          <view class="trade-meta-row">
+            <text class="trade-seller">{{item.seller}}</text>
+            <text class="trade-discount" wx:if="{{item.discount > 0}}">省{{item.discount}}%</text>
+          </view>
         </view>
       </view>
     </view>
@@ -46,7 +98,7 @@
 
   <!-- 空状态 -->
   <md-empty-state
-    wx:if="{{tradeList.length === 0}}"
+    wx:if="{{tradeList.length === 0 && !loading}}"
     icon="/images/icons/material/storefront-off.svg"
     headline="暂无闲置物品"
     supportingText="快去发布第一件闲置吧"

@@ -1,36 +1,59 @@
 <md-app-bar title="商品详情" showBack="{{true}}" />
 
-<view class="page-container" wx:if="{{trade}}">
+<!-- 骨架图 -->
+<view class="page-container" wx:if="{{loading}}">
+  <view class="skeleton-gallery"></view>
+  <view class="skeleton-info-block">
+    <view class="skeleton-line skeleton-line--short"></view>
+    <view class="skeleton-line skeleton-line--medium"></view>
+    <view class="skeleton-line skeleton-line--long"></view>
+  </view>
+  <view class="skeleton-desc-block">
+    <view class="skeleton-line skeleton-line--short"></view>
+    <view class="skeleton-line skeleton-line--long"></view>
+    <view class="skeleton-line skeleton-line--long"></view>
+  </view>
+</view>
+
+<!-- 内容区域 -->
+<view class="page-container" wx:elif="{{trade}}">
   <!-- 图片区域 -->
   <view class="detail-gallery">
-    <image
-      wx:if="{{trade.images.length}}"
-      class="detail-main-image"
-      src="{{trade.images[0]}}"
-      mode="aspectFill"
-      bindtap="onImageTap"
-    />
+    <swiper
+      wx:if="{{trade.images.length > 0}}"
+      class="detail-gallery-swiper"
+      indicator-dots="{{trade.images.length > 1}}"
+      circular
+    >
+      <swiper-item wx:for="{{trade.images}}" wx:key="*this">
+        <image
+          class="detail-main-image"
+          src="{{item}}"
+          mode="aspectFill"
+          data-current="{{item}}"
+          bindtap="onImageTap"
+        />
+      </swiper-item>
+    </swiper>
     <view wx:else class="detail-main-image detail-main-image--placeholder">
       <image class="detail-placeholder-icon" src="/images/icons/material/storefront-on.svg" mode="aspectFit" />
     </view>
   </view>
 
   <!-- 信息卡片 -->
-  <md-card shape="large">
-    <view class="detail-info-card">
-      <text class="detail-trade-title">{{trade.title}}</text>
-      <view class="detail-price-row">
-        <text class="detail-price">¥{{trade.price}}</text>
-        <text class="detail-original" wx:if="{{trade.originalPrice}}">原价 ¥{{trade.originalPrice}}</text>
-        <text class="discount-badge" wx:if="{{trade.discount}}">{{trade.discount}}% off</text>
-      </view>
-      <view class="detail-meta-row">
-        <text class="detail-meta-text">{{trade.seller}}</text>
-        <text class="detail-meta-text">{{trade.location}}</text>
-        <text class="detail-meta-text">{{trade.time}}</text>
-      </view>
+  <view class="detail-info-card">
+    <text class="detail-trade-title">{{trade.title}}</text>
+    <view class="detail-price-row">
+      <text class="detail-price">¥{{trade.price}}</text>
+      <text class="detail-original" wx:if="{{trade.originalPrice}}">原价 ¥{{trade.originalPrice}}</text>
+      <text class="discount-badge" wx:if="{{trade.discount}}">省{{trade.discount}}%</text>
     </view>
-  </md-card>
+    <view class="detail-meta-row">
+      <text class="detail-meta-text">{{trade.seller}}</text>
+      <text class="detail-meta-text">{{trade.location}}</text>
+      <text class="detail-meta-text">{{trade.time}}</text>
+    </view>
+  </view>
 
   <!-- 商品描述 -->
   <view class="detail-desc-section">
@@ -46,6 +69,7 @@
   </view>
 </view>
 
+<!-- 加载失败 -->
 <view class="page-container empty-fallback" wx:else>
   <md-empty-state icon="/images/icons/material/storefront-on.svg" headline="商品信息加载失败" />
 </view>

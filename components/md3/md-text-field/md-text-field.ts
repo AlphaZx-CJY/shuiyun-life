@@ -8,6 +8,7 @@ Component({
     error: { type: Boolean, value: false },
     errorText: { type: String, value: '' },
     multiline: { type: Boolean, value: false },
+    required: { type: Boolean, value: false },
   },
   methods: {
     onInput(e: WechatMiniprogram.Input) {

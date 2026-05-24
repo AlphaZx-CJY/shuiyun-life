@@ -4,7 +4,7 @@
   <view class="form-body">
     <!-- 商品图片 -->
     <view class="form-item">
-      <text class="form-label">商品图片 <text class="form-optional">（最多3张）</text></text>
+      <text class="form-label">商品图片 <text class="form-optional">（最多6张）</text></text>
       <view class="image-upload-row">
         <view class="image-thumb-wrap" wx:for="{{images}}" wx:key="*this">
           <image class="image-thumb" src="{{item}}" mode="aspectFill" bindtap="onPreviewImage" data-index="{{index}}" />
@@ -12,7 +12,7 @@
             <text class="image-remove-icon">×</text>
           </view>
         </view>
-        <view wx:if="{{images.length < 3}}" class="image-upload-btn" bindtap="onChooseImage">
+        <view wx:if="{{images.length < 6}}" class="image-upload-btn" bindtap="onChooseImage">
           <text class="image-upload-plus">+</text>
         </view>
       </view>
@@ -21,11 +21,12 @@
     <!-- 商品标题 -->
     <view class="form-item">
       <md-text-field
-        label="商品标题 *"
+        label="商品标题"
         placeholder="例如：宜家双人沙发，9成新"
         value="{{form.title}}"
         data-field="title"
         maxlength="50"
+        required
         bind:input="onInputChange"
       />
     </view>
@@ -52,15 +53,14 @@
       <text class="form-label">售价 <text class="form-required">*</text></text>
       <view class="form-price-row">
         <text class="form-price-symbol">¥</text>
-        <view class="form-price-field">
-          <md-text-field
-            placeholder="0.00"
-            type="digit"
-            value="{{form.price}}"
-            data-field="price"
-            bind:input="onInputChange"
-          />
-        </view>
+        <input
+          class="form-price-input"
+          placeholder="0.00"
+          type="digit"
+          value="{{form.price}}"
+          data-field="price"
+          bindinput="onInputChange"
+        />
       </view>
     </view>
 
@@ -69,15 +69,14 @@
       <text class="form-label">原价</text>
       <view class="form-price-row">
         <text class="form-price-symbol">¥</text>
-        <view class="form-price-field">
-          <md-text-field
-            placeholder="0.00"
-            type="digit"
-            value="{{form.originalPrice}}"
-            data-field="originalPrice"
-            bind:input="onInputChange"
-          />
-        </view>
+        <input
+          class="form-price-input"
+          placeholder="0.00"
+          type="digit"
+          value="{{form.originalPrice}}"
+          data-field="originalPrice"
+          bindinput="onInputChange"
+        />
       </view>
     </view>
 
@@ -97,10 +96,11 @@
     <!-- 联系人 -->
     <view class="form-item">
       <md-text-field
-        label="联系人 *"
+        label="联系人"
         placeholder="例如：3号楼王先生"
         value="{{form.seller}}"
         data-field="seller"
+        required
         bind:input="onInputChange"
       />
     </view>
@@ -108,12 +108,13 @@
     <!-- 联系电话 -->
     <view class="form-item">
       <md-text-field
-        label="联系电话 *"
+        label="联系电话"
         placeholder="请输入手机号"
         type="number"
         value="{{form.phone}}"
         data-field="phone"
         maxlength="11"
+        required
         bind:input="onInputChange"
       />
     </view>

@@ -38,6 +38,7 @@ export interface TradeItem {
   category: Exclude<TradeCategory, 'all'>;
   images: string[];
   seller: string;
+  phone?: string;
   time: string;
   location: string;
   description: string;

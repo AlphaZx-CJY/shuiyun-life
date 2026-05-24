@@ -15,9 +15,10 @@ picker */ .form-picker { display: flex; align-items: center; justify-content: sp
 border-top: 3rpx solid var(--md-outline); border-right: 3rpx solid var(--md-outline); transform: rotate(45deg); } /*
 价格行 */ .form-price-row { display: flex; align-items: center; gap: 16rpx; height: 96rpx; padding: 0 32rpx; background:
 var(--md-surface-container-low); border-radius: 20rpx; border: 1rpx solid var(--md-outline-variant); }
-.form-price-symbol { font-size: 32rpx; color: var(--md-on-surface-variant); font-weight: 500; } .form-price-field {
-flex: 1; } /* 操作按钮 */ .form-actions { display: flex; gap: 24rpx; padding: 0 40rpx 48rpx; } .form-btn { flex: 1;
-height: 96rpx; border-radius: 9999rpx; display: flex; align-items: center; justify-content: center; font-size: 32rpx;
-font-weight: 600; transition: opacity 100ms ease; } .form-btn:active { opacity: 0.85; } .form-btn--primary { background:
-var(--md-primary); color: var(--md-on-primary); } .form-btn--secondary { background: var(--md-surface-container); color:
+.form-price-symbol { font-size: 32rpx; color: var(--md-on-surface-variant); font-weight: 500; } .form-price-input {
+flex: 1; height: 96rpx; font-size: 30rpx; color: var(--md-on-surface); background: transparent; } /* 操作按钮 */
+.form-actions { display: flex; gap: 24rpx; padding: 0 40rpx 48rpx; } .form-btn { flex: 1; height: 96rpx; border-radius:
+9999rpx; display: flex; align-items: center; justify-content: center; font-size: 32rpx; font-weight: 600; transition:
+opacity 100ms ease; } .form-btn:active { opacity: 0.85; } .form-btn--primary { background: var(--md-primary); color:
+var(--md-on-primary); } .form-btn--secondary { background: var(--md-surface-container); color:
 var(--md-on-surface-variant); }

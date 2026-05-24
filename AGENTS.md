@@ -55,7 +55,7 @@ npm run format
 | 框架    | 原生微信小程序（WXML + WXSS + TypeScript）                                         |
 | UI 风格 | **Material Design 3**（Primary `#4C662B` + 背景 `#F9FAEF` + On Surface `#1A1C16`） |
 | 后端    | 微信云开发（云数据库 12 个集合）                                                   |
-| 语言    | TypeScript 6.x，严格模式，目标 ES2015 / CommonJS                                   |
+| 语言    | TypeScript 6.x，严格模式，目标 ES2017 / CommonJS                                   |
 | 类型    | `@types/wechat-miniprogram`                                                        |
 
 ---
@@ -159,6 +159,7 @@ shuiyun-life/
 - `compileType`: `miniprogram`
 - `libVersion`: `3.4.0`
 - `useCompilerPlugins`: `["typescript"]`
+- `enhance`: `false`（禁用增强编译，避免 Babel 引入缺失的 `@babel/runtime` helper）
 - `editorSetting`: 缩进为空格，tabSize 为 2
 - **AppID 字段使用占位符** `touristappid`，真实 AppID 不在版本控制中
 

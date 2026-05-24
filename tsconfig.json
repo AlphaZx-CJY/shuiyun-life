@@ -1,4 +1,4 @@
-{ "compilerOptions": { "target": "ES2015", "module": "CommonJS", "lib": ["ES2016", "DOM"], "strict": true,
+{ "compilerOptions": { "target": "ES2017", "module": "CommonJS", "lib": ["ES2017", "DOM"], "strict": true,
 "esModuleInterop": true, "skipLibCheck": true, "forceConsistentCasingInFileNames": true, "noEmit": true, "typeRoots":
 ["./node_modules/@types"], "types": ["wechat-miniprogram"] }, "include": [ "app.ts", "env.example.ts", "utils/**/*.ts",
 "types/**/*.ts", "data/**/*.ts", "services/**/*.ts", "pages/**/*.ts", "components/**/*.ts" ], "exclude": [

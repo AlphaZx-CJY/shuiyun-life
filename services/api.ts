@@ -201,17 +201,15 @@ export function getTradeCategories(): Category[] {
 }
 
 export async function getTradeList(): Promise<TradeItem[]> {
-  const published = getPublishedTrades();
-  const cloudData = await safeQuery<TradeItem>('trades', { enabled: true }, { orderBy: [{ field: 'time', desc: true }] });
-  return [...published, ...cloudData];
+  return safeQuery<TradeItem>('trades', { enabled: true }, { orderBy: [{ field: 'createTime', desc: true }] });
 }
 
 /** 统一处理 TradeDetail 的图片兼容（image → images）和折扣计算 */
 function normalizeTradeDetail(item: TradeItem): TradeDetail {
   const detail: TradeDetail = { ...item };
-  detail.discount = detail.originalPrice > 0
-    ? Math.round((detail.originalPrice - detail.price) / detail.originalPrice * 100)
-    : 0;
+  if (detail.originalPrice > 0) {
+    detail.discount = Math.round((detail.originalPrice - detail.price) / detail.originalPrice * 100);
+  }
   if ((detail as TradeItem & { image?: string }).image && !detail.images) {
     detail.images = [(detail as TradeItem & { image?: string }).image!];
   }
@@ -222,12 +220,6 @@ function normalizeTradeDetail(item: TradeItem): TradeDetail {
 }
 
 export async function getTradeDetail(id: number | string): Promise<TradeDetail | null> {
-  const published = getPublishedTrades();
-  const found = published.find((item) => String(item.id) === String(id));
-  if (found) {
-    return normalizeTradeDetail(found);
-  }
-
   try {
     const data = await cloud.query<TradeDetail & { _id: string }>('trades', { _id: String(id) }, { limit: 1 });
     if (data.length === 0) return null;
@@ -239,17 +231,34 @@ export async function getTradeDetail(id: number | string): Promise<TradeDetail |
   }
 }
 
-export function getPublishedTrades(): TradeItem[] {
-  return wx.getStorageSync('publishedTrades') as TradeItem[] || [];
-}
-
-export function savePublishedTrade(trade: TradeItem): void {
-  let published = getPublishedTrades();
-  published.unshift(trade);
-  if (published.length > 50) {
-    published = published.slice(0, 50);
+export async function savePublishedTrade(trade: TradeItem, localImages: string[]): Promise<void> {
+  // 1. 上传图片到云存储
+  let imageFileIDs: string[] = [];
+  if (localImages.length > 0) {
+    const uploadTasks = localImages.map((path) =>
+      wx.cloud.uploadFile({
+        cloudPath: `trades/${Date.now()}-${Math.random().toString(36).slice(2)}.jpg`,
+        filePath: path,
+      }),
+    );
+    const results = await Promise.all(uploadTasks);
+    imageFileIDs = results.map((res) => res.fileID);
   }
-  wx.setStorageSync('publishedTrades', published);
+
+  // 2. 写入云数据库
+  await cloud.add('trades', {
+    title: trade.title,
+    price: trade.price,
+    originalPrice: trade.originalPrice,
+    category: trade.category,
+    images: imageFileIDs,
+    seller: trade.seller,
+    phone: trade.phone || '',
+    location: trade.location,
+    description: trade.description,
+    enabled: true,
+    createTime: cloud.db.serverDate(),
+  });
 }
 
 /** ========== 周边生活 ========== */

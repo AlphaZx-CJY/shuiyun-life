@@ -7,6 +7,9 @@ interface ITradeData {
   activeCategory: TradeCategory;
   tradeList: TradeItem[];
   allTrades: TradeItem[];
+  leftColumn: TradeItem[];
+  rightColumn: TradeItem[];
+  loading: boolean;
 }
 
 Page<ITradeData, WechatMiniprogram.IAnyObject>({
@@ -22,6 +25,9 @@ Page<ITradeData, WechatMiniprogram.IAnyObject>({
     activeCategory: 'all',
     tradeList: [],
     allTrades: [],
+    leftColumn: [],
+    rightColumn: [],
+    loading: false,
   },
 
   onLoad() {
@@ -32,7 +38,6 @@ Page<ITradeData, WechatMiniprogram.IAnyObject>({
     if (typeof this.getTabBar === 'function' && this.getTabBar()) {
       this.getTabBar().setData({ selected: 2 });
     }
-    this.mergePublishedTrades();
   },
 
   onPullDownRefresh() {
@@ -48,8 +53,30 @@ Page<ITradeData, WechatMiniprogram.IAnyObject>({
   },
 
   async loadTradeData() {
-    const trades = await api.getTradeList();
-    this.setData({ allTrades: trades, tradeList: trades });
+    this.setData({ loading: true });
+    try {
+      const trades = await api.getTradeList();
+      const tradesWithMeta = trades.map((item) => ({
+        ...item,
+        discount: item.originalPrice > 0 ? Math.round((1 - item.price / item.originalPrice) * 100) : 0,
+        categoryName: this.data.categories.find((c) => c.id === item.category)?.name || '',
+      }));
+      this.setData({ allTrades: tradesWithMeta, tradeList: tradesWithMeta, loading: false });
+      this.splitColumns(tradesWithMeta);
+    } catch (err) {
+      console.error('loadTradeData failed', err);
+      this.setData({ loading: false });
+    }
+  },
+
+  splitColumns(list: TradeItem[]) {
+    const left: TradeItem[] = [];
+    const right: TradeItem[] = [];
+    list.forEach((item, index) => {
+      if (index % 2 === 0) left.push(item);
+      else right.push(item);
+    });
+    this.setData({ leftColumn: left, rightColumn: right });
   },
 
   onCategoryTap(e: WechatMiniprogram.TouchEvent) {
@@ -59,12 +86,14 @@ Page<ITradeData, WechatMiniprogram.IAnyObject>({
   },
 
   filterTrades(category: TradeCategory) {
+    let filtered: TradeItem[];
     if (category === 'all') {
-      this.setData({ tradeList: this.data.allTrades });
-      return;
+      filtered = this.data.allTrades;
+    } else {
+      filtered = this.data.allTrades.filter((item: TradeItem) => item.category === category);
     }
-    const filtered = this.data.allTrades.filter((item: TradeItem) => item.category === category);
     this.setData({ tradeList: filtered });
+    this.splitColumns(filtered);
   },
 
   onTradeTap(e: WechatMiniprogram.TouchEvent) {
@@ -74,15 +103,5 @@ Page<ITradeData, WechatMiniprogram.IAnyObject>({
 
   onPublishTap() {
     wx.navigateTo({ url: '/pages/trade-publish/trade-publish' });
-  },
-
-  async mergePublishedTrades() {
-    const published = api.getPublishedTrades();
-    if (published.length === 0) return;
-
-    const baseTrades = await api.getTradeList();
-    const merged = [...published, ...baseTrades];
-    this.setData({ allTrades: merged, tradeList: merged });
-    this.filterTrades(this.data.activeCategory);
   },
 });

@@ -55,7 +55,7 @@ Page<ITradePublishData, WechatMiniprogram.IAnyObject>({
   },
 
   onChooseImage() {
-    const remain = 3 - this.data.images.length;
+    const remain = 6 - this.data.images.length;
     if (remain <= 0) return;
     wx.chooseMedia({
       count: remain,
@@ -83,7 +83,7 @@ Page<ITradePublishData, WechatMiniprogram.IAnyObject>({
     });
   },
 
-  onSubmit() {
+  async onSubmit() {
     const { form, categories, categoryIndex, images } = this.data;
 
     if (!form.title.trim()) {
@@ -102,6 +102,11 @@ Page<ITradePublishData, WechatMiniprogram.IAnyObject>({
       wx.showToast({ title: '请输入联系电话', icon: 'none' });
       return;
     }
+    const phoneRegex = /^1[3-9]\d{9}$/;
+    if (!phoneRegex.test(form.phone.trim())) {
+      wx.showToast({ title: '请输入正确的11位手机号', icon: 'none' });
+      return;
+    }
 
     const trade: TradeItem = {
       id: Date.now(),
@@ -111,23 +116,28 @@ Page<ITradePublishData, WechatMiniprogram.IAnyObject>({
       category: categories[categoryIndex].id as TradeItem['category'],
       images: images,
       seller: form.seller.trim(),
+      phone: form.phone.trim(),
       time: '刚刚',
       location: form.location.trim() || '小区',
       description: form.description.trim() || '暂无描述',
     };
 
-    api.savePublishedTrade(trade);
-
-    wx.showToast({
-      title: '发布成功',
-      icon: 'success',
-      duration: 1500,
-      success: () => {
-        setTimeout(() => {
-          wx.navigateBack();
-        }, 1500);
-      },
-    });
+    try {
+      await api.savePublishedTrade(trade, images);
+      wx.showToast({
+        title: '发布成功',
+        icon: 'success',
+        duration: 1500,
+        success: () => {
+          setTimeout(() => {
+            wx.navigateBack();
+          }, 1500);
+        },
+      });
+    } catch (err) {
+      console.error('publish failed', err);
+      wx.showToast({ title: '发布失败，请重试', icon: 'none' });
+    }
   },
 
   onCancel() {
