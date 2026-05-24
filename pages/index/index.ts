@@ -19,30 +19,32 @@ interface IIndexData {
   recentSchedules: IRecentSchedule[];
   routeName: string;
   runNote: string;
-  nextShuttle: ShuttleTime | null;
-  shuttleModalVisible: boolean;
+  nextShuttle: (ShuttleTime & { minutesUntil?: number; allPassed?: boolean; hoursUntil?: number; remainingMinutes?: number; firstShuttleTime?: string }) | null;
+  shuttleSchedule: (ShuttleTime & { status: string; minutesUntil: number })[];
+  timeRow1: (ShuttleTime & { status: string; minutesUntil: number })[];
+  timeRow2: (ShuttleTime & { status: string; minutesUntil: number })[];
   shuttleStops: string[];
-  shuttleSchedule: ShuttleTime[];
   shuttleContactPhone: string;
+  shuttleModalVisible: boolean;
 }
 
 Page<IIndexData, WechatMiniprogram.IAnyObject>({
   data: {
     quickEntries: [
-      { id: 1, label: '周边生活', path: '/pages/discover/discover', tab: 'service', icon: 'storefront' },
-      { id: 2, label: '缴费知识', path: '/pages/discover/discover', tab: 'payment', icon: 'receipt_long' },
-      { id: 3, label: '社区活动', path: '/pages/discover/discover', tab: 'schedule', icon: 'event' },
-      { id: 4, label: '闲置交易', path: '/pages/trade/trade', icon: 'sync_alt' },
+      { id: 1, label: '周边生活', path: '/pages/service/service', icon: 'storefront' },
+      { id: 2, label: '社区心声', path: '/pages/voice/voice', icon: 'article' },
     ],
     noticeNews: [],
     recentSchedules: [],
     routeName: '',
     runNote: '',
     nextShuttle: null,
-    shuttleModalVisible: false,
-    shuttleStops: [],
     shuttleSchedule: [],
+    timeRow1: [],
+    timeRow2: [],
+    shuttleStops: [],
     shuttleContactPhone: '',
+    shuttleModalVisible: false,
   },
 
   onLoad() {
@@ -53,6 +55,7 @@ Page<IIndexData, WechatMiniprogram.IAnyObject>({
     if (typeof this.getTabBar === 'function' && this.getTabBar()) {
       this.getTabBar().setData({ selected: 0 });
     }
+    this.updateShuttleStatus();
   },
 
   onPullDownRefresh() {
@@ -69,7 +72,7 @@ Page<IIndexData, WechatMiniprogram.IAnyObject>({
 
   async loadData() {
     try {
-      const [noticeNewsArr, policyNewsArr, aroundNewsArr, recentSchedulesRaw, routeName, runNote, shuttleSchedule, shuttleStops, shuttleContactPhone] = await Promise.all([
+      const [noticeNewsArr, policyNewsArr, aroundNewsArr, recentSchedulesRaw, routeName, runNote, shuttleScheduleRaw, shuttleStops, shuttleContactPhone] = await Promise.all([
         api.getLatestNewsByCategory('notice', 1),
         api.getLatestNewsByCategory('policy', 1),
         api.getLatestNewsByCategory('around', 1),
@@ -81,7 +84,32 @@ Page<IIndexData, WechatMiniprogram.IAnyObject>({
         api.getShuttleContactPhone(),
       ]);
       const noticeNews = [...noticeNewsArr, ...policyNewsArr, ...aroundNewsArr];
-      const nextShuttle = shuttleSchedule.find((s: ShuttleTime) => s.status !== 'passed') || shuttleSchedule[shuttleSchedule.length - 1] || null;
+      const now = new Date();
+      const currentTime = now.getHours() * 60 + now.getMinutes();
+      const allPassed = shuttleScheduleRaw.length > 0 && shuttleScheduleRaw.every((s: ShuttleTime) => s.status === 'passed');
+      let nextShuttle = shuttleScheduleRaw.find((s: ShuttleTime) => s.status !== 'passed') || shuttleScheduleRaw[shuttleScheduleRaw.length - 1] || null;
+      const shuttleSchedule = shuttleScheduleRaw.map((item: ShuttleTime) => {
+        const [h, m] = item.time.split(':').map(Number);
+        const itemTime = h * 60 + m;
+        const diff = itemTime - currentTime;
+        return {
+          ...item,
+          status: itemTime < currentTime ? 'passed' : (diff <= 30 ? 'soon' : 'upcoming'),
+          minutesUntil: diff > 0 ? diff : 0,
+        } as ShuttleTime & { status: string; minutesUntil: number };
+      });
+      const half = Math.ceil(shuttleSchedule.length / 2);
+      const timeRow1 = shuttleSchedule.slice(0, half);
+      const timeRow2 = shuttleSchedule.slice(half);
+      const firstShuttleTime = shuttleScheduleRaw.length > 0 ? shuttleScheduleRaw[0].time : '';
+      if (nextShuttle) {
+        const [h, m] = nextShuttle.time.split(':').map(Number);
+        const itemTime = h * 60 + m;
+        const minutesUntil = itemTime - currentTime;
+        const hoursUntil = Math.floor(minutesUntil / 60);
+        const remainingMinutes = minutesUntil % 60;
+        nextShuttle = { ...nextShuttle, minutesUntil: minutesUntil > 0 ? minutesUntil : 0, allPassed, hoursUntil, remainingMinutes, firstShuttleTime } as ShuttleTime & { minutesUntil?: number; allPassed?: boolean; hoursUntil?: number; remainingMinutes?: number; firstShuttleTime?: string };
+      }
       const today = new Date().toISOString().slice(0, 10);
       const tomorrow = new Date(Date.now() + 86400000).toISOString().slice(0, 10);
       const recentSchedules = recentSchedulesRaw.map((s) => {
@@ -90,10 +118,29 @@ Page<IIndexData, WechatMiniprogram.IAnyObject>({
         if (s.date === tomorrow) dateLabel = '明天';
         return { ...s, dateLabel };
       });
-      this.setData({ noticeNews, recentSchedules, routeName, runNote, shuttleSchedule, shuttleStops, shuttleContactPhone, nextShuttle });
+      this.setData({ noticeNews, recentSchedules, routeName, runNote, nextShuttle, shuttleSchedule, timeRow1, timeRow2, shuttleStops, shuttleContactPhone });
     } catch (err) {
       console.error('loadData failed', err);
     }
+  },
+
+  updateShuttleStatus() {
+    const now = new Date();
+    const currentTime = now.getHours() * 60 + now.getMinutes();
+    const { shuttleSchedule } = this.data;
+    if (shuttleSchedule.length === 0) return;
+    const updated = shuttleSchedule.map((item) => {
+      const [h, m] = item.time.split(':').map(Number);
+      const itemTime = h * 60 + m;
+      const diff = itemTime - currentTime;
+      return {
+        ...item,
+        status: itemTime < currentTime ? 'passed' : (diff <= 30 ? 'soon' : 'upcoming'),
+        minutesUntil: diff > 0 ? diff : 0,
+      } as ShuttleTime & { status: string; minutesUntil: number };
+    });
+    const half = Math.ceil(updated.length / 2);
+    this.setData({ shuttleSchedule: updated, timeRow1: updated.slice(0, half), timeRow2: updated.slice(half) });
   },
 
   onShuttleBannerTap() {
@@ -104,20 +151,21 @@ Page<IIndexData, WechatMiniprogram.IAnyObject>({
     this.setData({ shuttleModalVisible: false });
   },
 
+  onModalSheetTap() {
+    // 阻止事件冒泡，防止点击弹窗内容时关闭
+  },
+
+  preventTouchMove() {
+    // 阻止弹窗显示时底层页面滚动
+  },
+
   onShuttleCallTap() {
     const { shuttleContactPhone } = this.data;
     if (shuttleContactPhone) {
       wx.makePhoneCall({
         phoneNumber: shuttleContactPhone,
-        fail: () => {
-          wx.showToast({ title: '拨打电话失败', icon: 'none' });
-        },
       });
     }
-  },
-
-  onShuttleSheetTap() {
-    // 阻止事件冒泡，防止点击弹窗内容时关闭弹窗
   },
 
   onEntryTap(e: WechatMiniprogram.TouchEvent) {
@@ -139,6 +187,7 @@ Page<IIndexData, WechatMiniprogram.IAnyObject>({
   },
 
   onMoreNoticeTap() {
+    wx.setStorageSync('discover_tab', 'news');
     wx.switchTab({ url: '/pages/discover/discover' });
   },
 

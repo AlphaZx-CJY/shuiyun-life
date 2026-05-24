@@ -22,7 +22,11 @@
       <view
         class="trade-color-area {{item.category === 'furniture' ? 'trade-color--primary' : item.category === 'appliance' ? 'trade-color--tertiary' : item.category === 'baby' ? 'trade-color--baby' : item.category === 'books' ? 'trade-color--secondary' : 'trade-color--other'}}"
       >
-        <md-icon name="/images/icons/material/storefront-on.svg" size="56" color="currentColor" />
+        <md-icon
+          name="/images/icons/material/{{item.category === 'furniture' ? 'chair' : item.category === 'appliance' ? 'tv' : item.category === 'baby' ? 'child_care' : item.category === 'books' ? 'book' : 'electric_bolt'}}.svg"
+          size="56"
+          color="currentColor"
+        />
       </view>
       <view class="trade-info">
         <text class="trade-title">{{item.title}}</text>

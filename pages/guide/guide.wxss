@@ -1,0 +1,10 @@
+/* 使用指南页 */ .guide-list { padding: 0 40rpx; } .guide-card { display: flex; gap: 28rpx; background:
+var(--md-surface); border-radius: 28rpx; padding: 28rpx; margin-bottom: 28rpx; transition: transform 100ms ease-out; }
+.guide-card:active { transform: scale(0.98); } .guide-icon-box { width: 120rpx; height: 120rpx; border-radius: 24rpx;
+flex-shrink: 0; display: flex; align-items: center; justify-content: center; background: var(--md-secondary-container);
+} .guide-icon-box md-icon { color: var(--md-on-secondary-container); } .guide-content { flex: 1; display: flex;
+flex-direction: column; justify-content: center; min-width: 0; } .guide-header { display: flex; align-items: center;
+gap: 16rpx; margin-bottom: 12rpx; } .guide-tag { font-size: 22rpx; font-weight: 500; padding: 4rpx 16rpx; border-radius:
+8rpx; background: var(--md-secondary-container); color: var(--md-on-secondary-container); } .guide-date { font-size:
+24rpx; color: var(--md-on-surface-variant); } .guide-title { font-size: 30rpx; font-weight: 600; color:
+var(--md-on-surface); line-height: 1.4; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }

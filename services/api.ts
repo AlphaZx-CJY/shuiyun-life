@@ -13,6 +13,7 @@ import type {
   ProfileItem,
   Category,
   ContactItem,
+  GuideItem,
   GuideDetail,
   VoiceItem,
 } from '../types/data';
@@ -20,12 +21,12 @@ import type {
 /** 通用安全查询：自动映射 _id → id，出错返回空数组 */
 async function safeQuery<T extends { id?: number | string; _id?: string }>(
   collection: string,
-  where?: Record<string, any>,
+  where?: Record<string, unknown>,
   options?: cloud.QueryOptions,
 ): Promise<T[]> {
   try {
     const data = await cloud.query<T>(collection, where, options);
-    return data.map((item) => ({ ...item, id: (item as any).id ?? item._id }));
+    return data.map((item) => ({ ...item, id: item.id ?? item._id }));
   } catch (e) {
     console.error(`[cloud] ${collection} query failed:`, e);
     return [];
@@ -33,11 +34,11 @@ async function safeQuery<T extends { id?: number | string; _id?: string }>(
 }
 
 /** 从对象中收集所有 cloud:// 开头的 fileID */
-function collectCloudIds(obj: any): string[] {
+function collectCloudIds(obj: unknown): string[] {
   const ids: string[] = [];
   const seen = new Set<string>();
 
-  function walk(val: any) {
+  function walk(val: unknown) {
     if (typeof val === 'string') {
       if (val.startsWith('cloud://') && !seen.has(val)) {
         ids.push(val);
@@ -54,7 +55,7 @@ function collectCloudIds(obj: any): string[] {
     } else if (Array.isArray(val)) {
       val.forEach(walk);
     } else if (val && typeof val === 'object') {
-      Object.keys(val).forEach((key) => walk(val[key]));
+      Object.keys(val).forEach((key) => walk((val as Record<string, unknown>)[key]));
     }
   }
 
@@ -64,7 +65,7 @@ function collectCloudIds(obj: any): string[] {
 
 /** 根据映射表替换对象中的 cloudId */
 function replaceCloudIds<T>(obj: T, urlMap: Map<string, string>): T {
-  function walk(val: any): any {
+  function walk(val: unknown): unknown {
     if (typeof val === 'string') {
       let result = val;
       if (val.startsWith('cloud://') && urlMap.has(val)) {
@@ -81,16 +82,16 @@ function replaceCloudIds<T>(obj: T, urlMap: Map<string, string>): T {
     } else if (Array.isArray(val)) {
       return val.map(walk);
     } else if (val && typeof val === 'object') {
-      const result: any = {};
+      const result: Record<string, unknown> = {};
       for (const k of Object.keys(val)) {
-        result[k] = walk(val[k]);
+        result[k] = walk((val as Record<string, unknown>)[k]);
       }
       return result;
     }
     return val;
   }
 
-  return walk(obj);
+  return walk(obj) as T;
 }
 
 /** 将对象中所有 cloud:// fileID 转换为临时 HTTPS URL */
@@ -154,10 +155,10 @@ export async function getLatestNewsByCategory(category: string, count = 1): Prom
 
 export async function getNewsDetail(_id: number | string): Promise<NewsDetail | null> {
   try {
-    const data = await cloud.query<NewsDetail>('news', { _id: String(_id) }, { limit: 1 });
+    const data = await cloud.query<NewsDetail & { _id: string }>('news', { _id: String(_id) }, { limit: 1 });
     if (data.length === 0) return null;
     const item = data[0];
-    const detail = { ...item, id: (item as any).id ?? (item as any)._id, content: markdownToHtml(item.content) };
+    const detail = { ...item, id: item.id ?? item._id, content: markdownToHtml(item.content) };
     return resolveCloudUrls(detail);
   } catch (e) {
     console.error('[cloud] news detail query failed:', e);
@@ -165,19 +166,25 @@ export async function getNewsDetail(_id: number | string): Promise<NewsDetail | 
   }
 }
 
-export async function submitVoice(type: string, content: string, contact: string, deadline: string): Promise<void> {
+export async function submitVoice(type: string, content: string, contact: string, deadline: string, images?: string[]): Promise<void> {
   await cloud.add('voices', {
     type,
     content,
     contact,
     expired: false,
     deadline,
+    images: images || [],
     createTime: cloud.db.serverDate(),
   });
 }
 
 export async function getVoiceList(): Promise<VoiceItem[]> {
   return safeQuery<VoiceItem>('voices', {}, { orderBy: [{ field: 'createTime', desc: true }] });
+}
+
+export async function getVoiceDetail(id: string): Promise<VoiceItem | null> {
+  const list = await safeQuery<VoiceItem>('voices', { _id: id });
+  return list[0] || null;
 }
 
 /** ========== 闲置交易 ========== */
@@ -199,34 +206,33 @@ export async function getTradeList(): Promise<TradeItem[]> {
   return [...published, ...cloudData];
 }
 
+/** 统一处理 TradeDetail 的图片兼容（image → images）和折扣计算 */
+function normalizeTradeDetail(item: TradeItem): TradeDetail {
+  const detail: TradeDetail = { ...item };
+  detail.discount = detail.originalPrice > 0
+    ? Math.round((detail.originalPrice - detail.price) / detail.originalPrice * 100)
+    : 0;
+  if ((detail as TradeItem & { image?: string }).image && !detail.images) {
+    detail.images = [(detail as TradeItem & { image?: string }).image!];
+  }
+  if (!detail.images) {
+    detail.images = [];
+  }
+  return detail;
+}
+
 export async function getTradeDetail(id: number | string): Promise<TradeDetail | null> {
   const published = getPublishedTrades();
   const found = published.find((item) => String(item.id) === String(id));
   if (found) {
-    const detail: TradeDetail = { ...found };
-    detail.discount = Math.round((detail.originalPrice - detail.price) / detail.originalPrice * 100);
-    if ((detail as TradeItem & { image?: string }).image && !detail.images) {
-      detail.images = [(detail as TradeItem & { image?: string }).image!];
-    }
-    if (!detail.images) {
-      detail.images = [];
-    }
-    return detail;
+    return normalizeTradeDetail(found);
   }
 
   try {
-    const data = await cloud.query<TradeDetail>('trades', { _id: String(id) }, { limit: 1 });
+    const data = await cloud.query<TradeDetail & { _id: string }>('trades', { _id: String(id) }, { limit: 1 });
     if (data.length === 0) return null;
     const item = data[0];
-    const detail: TradeDetail = { ...item, id: (item as any).id ?? (item as any)._id };
-    detail.discount = Math.round((detail.originalPrice - detail.price) / detail.originalPrice * 100);
-    if ((detail as TradeItem & { image?: string }).image && !detail.images) {
-      detail.images = [(detail as TradeItem & { image?: string }).image!];
-    }
-    if (!detail.images) {
-      detail.images = [];
-    }
-    return detail;
+    return normalizeTradeDetail({ ...item, id: item.id ?? item._id });
   } catch (e) {
     console.error('[cloud] trade detail query failed:', e);
     return null;
@@ -249,7 +255,11 @@ export function savePublishedTrade(trade: TradeItem): void {
 /** ========== 周边生活 ========== */
 
 export async function getServiceList(_category: string): Promise<ServiceItem[]> {
-  return safeQuery<ServiceItem>('services', { enabled: true, category: _category }, { orderBy: [{ field: 'sort', desc: false }] });
+  const where: Record<string, unknown> = { enabled: true };
+  if (_category !== 'all') {
+    where.category = _category;
+  }
+  return safeQuery<ServiceItem>('services', where, { orderBy: [{ field: 'sort', desc: false }] });
 }
 
 export async function getServiceDetail(_id: number | string): Promise<ServiceItem | null> {
@@ -286,10 +296,10 @@ export async function getPaymentList(): Promise<PaymentItem[]> {
 
 export async function getPaymentDetail(_id: number | string): Promise<PaymentDetail | null> {
   try {
-    const data = await cloud.query<PaymentDetail>('payments', { _id: String(_id) }, { limit: 1 });
+    const data = await cloud.query<PaymentDetail & { _id: string }>('payments', { _id: String(_id) }, { limit: 1 });
     if (data.length === 0) return null;
     const item = data[0];
-    const detail = { ...item, id: (item as any).id ?? (item as any)._id, content: markdownToHtml(item.content) };
+    const detail = { ...item, id: item.id ?? item._id, content: markdownToHtml(item.content) };
     return resolveCloudUrls(detail);
   } catch (e) {
     console.error('[cloud] payment detail query failed:', e);
@@ -358,7 +368,7 @@ export function getProfileItems(): ProfileItem[] {
     { id: 1, title: '关于我们', icon: '/images/icons/profile/info.svg', path: '' },
     { id: 2, title: '小程序反馈', icon: '/images/icons/profile/feedback.svg', path: '/pages/feedback/feedback' },
     { id: 3, title: '联系物业', icon: '/images/icons/profile/call.svg', path: '' },
-    { id: 4, title: '使用指南', icon: '/images/icons/profile/help.svg', path: '/pages/discover/discover' },
+    { id: 4, title: '使用指南', icon: '/images/icons/profile/help.svg', path: '/pages/guide/guide' },
   ];
 }
 
@@ -376,9 +386,13 @@ export async function submitFeedback(type: string, content: string, contact: str
   });
 }
 
+export async function getGuideList(): Promise<GuideItem[]> {
+  return safeQuery<GuideItem>('guides', { enabled: true }, { orderBy: [{ field: 'sort', desc: false }] });
+}
+
 export async function getGuideDetail(_id: number | string): Promise<GuideDetail | null> {
   try {
-    const data = await cloud.query<any>('guides', { _id: String(_id) }, { limit: 1 });
+    const data = await cloud.query<GuideDetail & { id?: string; _id?: string }>('guides', { _id: String(_id) }, { limit: 1 });
     if (data.length === 0) return null;
     const item = data[0];
     const detail = { ...item, id: item.id ?? item._id, content: markdownToHtml(item.content) };

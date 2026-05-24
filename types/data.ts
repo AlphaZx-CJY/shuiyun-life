@@ -71,6 +71,7 @@ export type JumpType = 'miniprogram' | 'officialAccount';
 export interface ServiceItem {
   id: number | string;
   name: string;
+  category: string;
   address: string;
   distance: string;
   hours: string | string[];
@@ -123,6 +124,7 @@ export interface PaymentDetail {
 export interface ShuttleTime {
   time: string;
   status: ShuttleStatus;
+  minutesUntil?: number;
 }
 
 /** ========== 个人中心 ========== */
@@ -152,6 +154,7 @@ export interface VoiceItem {
   expired: boolean;
   deadline: string;
   createTime: Date;
+  images?: string[];
 }
 
 /** ========== 使用指南 ========== */
@@ -176,7 +179,6 @@ export interface DiscoverItem {
   summary: string;
   date: string;
   tag: string;
-  icon: string;
   containerClass: string;
   url: string;
 }

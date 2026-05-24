@@ -15,11 +15,6 @@ App<{ globalData: IAppGlobalData }>({
     const systemInfo = wx.getSystemInfoSync();
     this.globalData!.systemInfo = systemInfo;
 
-    wx.setNavigationBarColor({
-      frontColor: '#000000',
-      backgroundColor: '#F2F2F7',
-    });
-
     // 初始化云开发环境
     wx.cloud.init({
       env: CLOUD_ENV,
@@ -28,10 +23,19 @@ App<{ globalData: IAppGlobalData }>({
   },
 
   onShow() {
-    console.log('App Show');
+    // App Show
   },
 
   onHide() {
-    console.log('App Hide');
+    // App Hide
+  },
+
+  onError(err: string) {
+    console.error('[app] global error:', err);
+  },
+
+  onPageNotFound(res: WechatMiniprogram.OnPageNotFoundCallbackResult) {
+    console.warn('[app] page not found:', res.path);
+    wx.redirectTo({ url: '/pages/index/index' });
   },
 });

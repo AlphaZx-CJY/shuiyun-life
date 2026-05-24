@@ -169,7 +169,9 @@ function runTests() {
         const content = fs.readFileSync(filePath, 'utf8');
         const imgMatches = content.matchAll(/["']\/images\/[^"']+["']/g);
         for (const m of imgMatches) {
-          const imgPath = m[0].slice(1, -1).substring(1); // remove quotes and leading /
+          const raw = m[0].slice(1, -1);
+          if (raw.includes('{{')) continue; // skip template expressions
+          const imgPath = raw.substring(1); // remove leading /
           assert(allImages.has(imgPath), `Referenced image exists: ${imgPath}`);
         }
       });

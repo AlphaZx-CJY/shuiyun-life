@@ -20,19 +20,13 @@
   <view class="feed-list" wx:if="{{filteredList.length > 0}}">
     <view class="feed-card" wx:for="{{filteredList}}" wx:key="id" data-url="{{item.url}}" bindtap="onFeedTap">
       <view class="feed-icon-box feed-icon--primary" wx:if="{{item.type === 'news'}}">
-        <md-icon name="/images/icons/material/article-on.svg" size="32" color="currentColor" />
-      </view>
-      <view class="feed-icon-box feed-icon--secondary" wx:elif="{{item.type === 'service'}}">
-        <md-icon name="/images/icons/material/storefront-on.svg" size="32" color="currentColor" />
+        <md-icon name="/images/icons/material/article-on.svg" size="56" color="currentColor" />
       </view>
       <view class="feed-icon-box feed-icon--payment" wx:elif="{{item.type === 'payment'}}">
-        <md-icon name="/images/icons/material/article-on.svg" size="32" color="currentColor" />
+        <md-icon name="/images/icons/material/receipt_long-on.svg" size="56" color="currentColor" />
       </view>
       <view class="feed-icon-box feed-icon--tertiary" wx:elif="{{item.type === 'schedule'}}">
-        <md-icon name="/images/icons/material/event-on.svg" size="32" color="currentColor" />
-      </view>
-      <view class="feed-icon-box feed-icon--voice" wx:elif="{{item.type === 'voice'}}">
-        <md-icon name="/images/icons/material/article-on.svg" size="32" color="currentColor" />
+        <md-icon name="/images/icons/material/event-on.svg" size="56" color="currentColor" />
       </view>
       <view class="feed-content">
         <view class="feed-header">

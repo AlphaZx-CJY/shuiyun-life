@@ -10,12 +10,19 @@
     <view class="hero-card">
       <view class="hero-content">
         <view class="hero-label">
-          <md-icon name="/images/icons/material/directions_bus-on.svg" size="14" color="rgba(255,255,255,0.8)" />
+          <md-icon name="/images/icons/material/directions_bus-on.svg" size="28" color="rgba(255,255,255,0.8)" />
           {{routeName}}
         </view>
-        <view class="hero-countdown">{{nextShuttle.time}}</view>
-        <view class="hero-sub">{{nextShuttle.status === 'soon' ? '即将发车' : '下一班车'}}</view>
-        <view class="hero-times">
+        <view class="hero-countdown"
+          >{{nextShuttle.allPassed ? '今日已结束' : (nextShuttle.minutesUntil > 0 ? (nextShuttle.minutesUntil > 100 ?
+          '还有 ' + nextShuttle.hoursUntil + ' 小时 ' + nextShuttle.remainingMinutes + ' 分钟' : '还有 ' +
+          nextShuttle.minutesUntil + ' 分钟') : nextShuttle.time)}}</view
+        >
+        <view class="hero-sub"
+          >{{nextShuttle.allPassed ? '班车服务已结束' : (nextShuttle.status === 'soon' ? '即将发车' :
+          (nextShuttle.minutesUntil > 0 ? '下一班车' : '末班车'))}}</view
+        >
+        <view class="hero-times" wx:if="{{!nextShuttle.allPassed}}">
           <view class="hero-time-pill {{nextShuttle.status === 'soon' ? 'hero-time-pill--highlight' : ''}}">
             <text class="hero-time-value">{{nextShuttle.time}}</text>
             <text wx:if="{{nextShuttle.status === 'soon'}}" class="hero-time-label">即将发车</text>
@@ -42,32 +49,20 @@
     </view>
   </view>
 
-  <!-- 快捷入口 -->
+  <!-- 社区服务 -->
   <view class="section-header">
-    <text class="section-title">快捷入口</text>
+    <text class="section-title">社区服务</text>
   </view>
-  <view class="quick-row">
-    <view
-      class="quick-item"
-      wx:for="{{quickEntries}}"
-      wx:key="id"
-      data-path="{{item.path}}"
-      data-tab="{{item.tab}}"
-      bindtap="onEntryTap"
-    >
-      <view class="quick-icon-wrap" wx:if="{{item.id === 1}}">
-        <md-icon name="/images/icons/material/storefront-on.svg" size="56" color="currentColor" />
-      </view>
-      <view class="quick-icon-wrap" wx:elif="{{item.id === 2}}">
-        <md-icon name="/images/icons/material/receipt_long-on.svg" size="56" color="currentColor" />
-      </view>
-      <view class="quick-icon-wrap" wx:elif="{{item.id === 3}}">
-        <md-icon name="/images/icons/material/event-on.svg" size="56" color="currentColor" />
-      </view>
-      <view class="quick-icon-wrap" wx:elif="{{item.id === 4}}">
-        <md-icon name="/images/icons/material/sync_alt-on.svg" size="56" color="currentColor" />
-      </view>
-      <text class="quick-label">{{item.label}}</text>
+  <view class="quick-entry-bar">
+    <!-- 周边生活：大椭圆 Pill -->
+    <view class="quick-entry-pill" data-path="/pages/service/service" bindtap="onEntryTap">
+      <md-icon name="/images/icons/material/storefront-outlined.svg" size="40" color="currentColor" />
+      <text class="quick-entry-pill-text">周边生活</text>
+    </view>
+    <!-- 心声：大圆角正方形 Squircle -->
+    <view class="quick-entry-squircle" data-path="/pages/voice/voice" bindtap="onEntryTap">
+      <md-icon name="/images/icons/material/article-on.svg" size="40" color="currentColor" />
+      <text class="quick-entry-squircle-text">心声</text>
     </view>
   </view>
 
@@ -95,41 +90,64 @@
     <text class="empty-state__text">当前没有活动信息</text>
   </view>
 
-  <!-- 班车弹窗 -->
-  <view class="modal-overlay" wx:if="{{shuttleModalVisible}}" bindtap="onShuttleModalClose">
-    <view class="modal-sheet" catchtap="onShuttleSheetTap">
-      <view class="modal-sheet__header">
-        <md-icon name="/images/icons/material/directions_bus-on.svg" size="40" color="var(--md-on-surface)" />
-        <text class="modal-sheet__title">{{routeName}}</text>
-      </view>
-
-      <!-- 站点 -->
-      <view class="modal-section" wx:if="{{shuttleStops.length > 0}}">
-        <text class="modal-section__label">站点</text>
-        <view class="modal-pills">
-          <view class="modal-pill" wx:for="{{shuttleStops}}" wx:key="*this">{{item}}</view>
+  <!-- 班车信息弹窗 -->
+  <view
+    class="modal-overlay {{shuttleModalVisible ? '' : 'modal-overlay--hidden'}}"
+    bindtap="onShuttleModalClose"
+    catchtouchmove="preventTouchMove"
+  >
+    <view class="modal-sheet" catchtap="onModalSheetTap">
+      <!-- 弹窗头部 -->
+      <view class="modal-header">
+        <text class="modal-title">班车信息</text>
+        <view class="modal-close" bindtap="onShuttleModalClose">
+          <md-icon name="/images/icons/material/close.svg" size="24" color="currentColor" />
         </view>
       </view>
 
-      <!-- 时刻表 -->
-      <view class="modal-section" wx:if="{{shuttleSchedule.length > 0}}">
-        <text class="modal-section__label">时刻表</text>
-        <view class="time-grid">
-          <view
-            class="time-grid__item {{item.status === 'soon' ? 'time-grid__item--highlight' : ''}}"
-            wx:for="{{shuttleSchedule}}"
-            wx:key="time"
-          >
-            <text class="time-grid__value">{{item.time}}</text>
-            <text wx:if="{{item.status === 'soon'}}" class="time-grid__label">即将发车</text>
+      <!-- 弹窗内容 -->
+      <view class="modal-body">
+        <!-- 路线信息条 -->
+        <view class="shuttle-info-bar">
+          <text class="shuttle-info-name">{{routeName}}</text>
+          <text class="shuttle-info-tag">{{runNote}}</text>
+        </view>
+
+        <!-- 下一班车 Hero — 弹窗视觉焦点 -->
+        <view class="next-shuttle" wx:if="{{nextShuttle}}">
+          <block wx:if="{{!nextShuttle.allPassed}}">
+            <text class="next-shuttle-label">下一班车</text>
+            <text class="next-shuttle-time">{{nextShuttle.time}}</text>
+            <text class="next-shuttle-countdown" wx:if="{{nextShuttle.minutesUntil > 0}}">
+              {{nextShuttle.minutesUntil > 100 ? '还有 ' + nextShuttle.hoursUntil + ' 小时 ' +
+              nextShuttle.remainingMinutes + ' 分钟' : '还有 ' + nextShuttle.minutesUntil + ' 分钟'}}
+            </text>
+          </block>
+          <block wx:if="{{nextShuttle.allPassed}}">
+            <text class="next-shuttle-time">今日已结束</text>
+            <text class="next-shuttle-countdown">明日 {{nextShuttle.firstShuttleTime}} 恢复</text>
+          </block>
+        </view>
+
+        <!-- 全天时刻 — 次重点参考信息 -->
+        <view class="time-rows">
+          <view class="time-row">
+            <view class="time-pill time-pill--{{item.status}}" wx:for="{{timeRow1}}" wx:key="time">
+              <text class="time-pill-text">{{item.time}}</text>
+            </view>
+          </view>
+          <view class="time-row">
+            <view class="time-pill time-pill--{{item.status}}" wx:for="{{timeRow2}}" wx:key="time">
+              <text class="time-pill-text">{{item.time}}</text>
+            </view>
           </view>
         </view>
-      </view>
 
-      <!-- 咨询电话 -->
-      <view class="modal-contact" wx:if="{{shuttleContactPhone}}" bindtap="onShuttleCallTap">
-        <md-icon name="/images/icons/material/call-on.svg" size="32" color="var(--md-on-surface-variant)" />
-        <text class="modal-contact__text">咨询电话：{{shuttleContactPhone}}</text>
+        <!-- 联系方式 — 底部按钮 -->
+        <view class="contact-btn" wx:if="{{shuttleContactPhone}}" bindtap="onShuttleCallTap">
+          <md-icon name="/images/icons/material/call-on.svg" size="20" color="currentColor" />
+          <text class="contact-btn-text">{{shuttleContactPhone}}</text>
+        </view>
       </view>
     </view>
   </view>

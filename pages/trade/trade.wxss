@@ -1,7 +1,7 @@
 /* 闲置交易页 — 彩色容器卡片 */ .category-pill-bar { padding: 16rpx 40rpx 24rpx; position: sticky; top: 0; z-index: 10;
 background: var(--md-background); } .category-scroll { white-space: nowrap; } .category-pill-list { display:
 inline-flex; gap: 8rpx; padding: 8rpx; background: var(--md-surface-container); border-radius: 9999rpx; }
-.category-pill-item { padding: 12rpx 28rpx; border-radius: 9999rpx; font-size: 26rpx; font-weight: 500; color:
+.category-pill-item { padding: 16rpx 36rpx; border-radius: 9999rpx; font-size: 28rpx; font-weight: 500; color:
 var(--md-on-surface-variant); white-space: nowrap; transition: background-color 100ms ease-out, color 100ms ease-out; }
 .category-pill-item--active { background: var(--md-primary); color: var(--md-on-primary); } /* 交易卡片列表 */
 .trade-list { padding: 0 40rpx; } .trade-card { background: var(--md-surface); border-radius: 28rpx; overflow: hidden;

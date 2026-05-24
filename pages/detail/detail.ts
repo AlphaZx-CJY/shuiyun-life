@@ -1,4 +1,5 @@
 import * as api from '../../services/api';
+import { formatDate } from '../../utils/util';
 
 interface DetailConfig {
   color: string;
@@ -12,6 +13,7 @@ const CONFIG: Record<string, DetailConfig> = {
   payment: { color: 'payment', icon: 'receipt_long', title: '缴费' },
   guide: { color: 'secondary', icon: 'menu_book', title: '指南' },
   service: { color: 'secondary', icon: 'storefront', title: '周边' },
+  voice: { color: 'secondary', icon: 'article', title: '心声' },
 };
 
 interface IDetailData {
@@ -21,6 +23,7 @@ interface IDetailData {
   meta: string;
   content: string;
   tag: string;
+  images: string[];
   loading: boolean;
 }
 
@@ -32,6 +35,7 @@ Page<IDetailData, WechatMiniprogram.IAnyObject>({
     meta: '',
     content: '',
     tag: '',
+    images: [],
     loading: true,
   },
 
@@ -123,6 +127,20 @@ Page<IDetailData, WechatMiniprogram.IAnyObject>({
           }
           break;
         }
+        case 'voice': {
+          const data = await api.getVoiceDetail(id);
+          if (data) {
+            this.setData({
+              title: data.type,
+              meta: `发布于 ${formatDate(data.createTime)} · 截止 ${formatDate(data.deadline)}`,
+              content: data.content.replace(/\n/g, '<br>'),
+              images: data.images || [],
+              tag: data.type || '心声',
+              loading: false,
+            });
+          }
+          break;
+        }
         default:
           this.setData({ loading: false });
       }
@@ -132,10 +150,19 @@ Page<IDetailData, WechatMiniprogram.IAnyObject>({
     }
   },
 
+  onPreviewImage(e: WechatMiniprogram.TouchEvent) {
+    const { index } = e.currentTarget.dataset as { index: number };
+    wx.previewImage({
+      current: this.data.images[index],
+      urls: this.data.images,
+    });
+  },
+
   onShareAppMessage(): WechatMiniprogram.Page.ICustomShareContent {
     return {
       title: this.data.title || '详情',
       path: `/pages/detail/detail?type=${this.data.type}&id=`,
     };
   },
+
 });

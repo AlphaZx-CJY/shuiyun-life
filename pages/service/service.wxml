@@ -1,0 +1,62 @@
+<md-app-bar title="周边生活" showBack="{{true}}" />
+
+<view class="page-container page-container--with-tabbar">
+  <!-- 分类筛选 -->
+  <view class="category-pill-bar">
+    <scroll-view class="category-scroll" scroll-x enhanced show-scrollbar="{{false}}">
+      <view class="category-pill-list">
+        <view
+          class="category-pill-item {{activeCategory === item.id ? 'category-pill-item--active' : ''}}"
+          wx:for="{{categories}}"
+          wx:key="id"
+          data-id="{{item.id}}"
+          bindtap="onCategoryTap"
+        >
+          {{item.name}}
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+
+  <!-- 可滚动内容区 -->
+  <view class="service-scroll-wrap">
+    <view class="service-list" wx:if="{{serviceList.length > 0}}">
+      <view
+        class="service-card"
+        wx:for="{{serviceList}}"
+        wx:key="id"
+        data-phone="{{item.phone}}"
+        data-name="{{item.name}}"
+        data-address="{{item.address}}"
+        data-longitude="{{item.location.longitude}}"
+        data-latitude="{{item.location.latitude}}"
+        bindtap="onCardTap"
+      >
+        <view class="service-icon-box">
+          <md-icon name="/images/icons/material/{{item.icon}}.svg" size="48" color="currentColor" />
+        </view>
+        <view class="service-content">
+          <view class="service-header">
+            <text class="service-name">{{item.name}}</text>
+            <text class="service-distance">{{item.distance}}</text>
+          </view>
+          <text class="service-address">{{item.address}}</text>
+          <view class="service-tags" wx:if="{{item.tags.length > 0}}">
+            <text class="service-tag" wx:for="{{item.tags}}" wx:for-item="tag" wx:key="*this">{{tag}}</text>
+          </view>
+          <view class="service-hours" wx:if="{{item.hourList.length > 0}}">
+            <text class="service-hours-text" wx:for="{{item.hourList}}" wx:for-item="h" wx:key="*this">{{h}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 空状态 -->
+    <md-empty-state
+      wx:if="{{serviceList.length === 0 && !loading}}"
+      icon="/images/icons/material/storefront-off.svg"
+      headline="暂无周边信息"
+      supportingText="该分类下暂时没有内容"
+    />
+  </view>
+</view>

@@ -1,14 +1,25 @@
-/* 通用详情页 — 彩色容器风格 */ /* Hero 区域 */ .detail-hero { width: 100%; height: 440rpx; display: flex; align-items:
-center; justify-content: center; position: relative; overflow: hidden; } /* 装饰圆 */ .detail-hero-decor { position:
-absolute; border-radius: 50%; opacity: 0.2; } .detail-hero-decor--1 { right: -120rpx; top: -80rpx; width: 360rpx;
-height: 360rpx; background: var(--md-secondary-container); } .detail-hero-decor--2 { left: -80rpx; bottom: -120rpx;
-width: 280rpx; height: 280rpx; background: var(--md-tertiary-container); } /* 颜色映射 */ .detail-hero--primary {
-background: var(--md-primary); } .detail-hero--secondary { background: var(--md-secondary); } .detail-hero--tertiary {
-background: var(--md-tertiary); } .detail-hero--payment { background: var(--md-payment-on-container); } /* 标题区 */
-.detail-header { padding: 48rpx 40rpx; background: var(--md-surface); } .detail-tag { display: inline-block; background:
-var(--md-tag-bg); color: var(--md-tag-text); font-size: 22rpx; font-weight: 500; padding: 6rpx 20rpx; border-radius:
-16rpx; margin-bottom: 20rpx; } .detail-title { font-size: 48rpx; font-weight: 800; color: var(--md-on-surface);
-line-height: 1.2; margin-bottom: 16rpx; letter-spacing: -0.6rpx; display: block; } .detail-meta { font-size: 26rpx;
-color: var(--md-on-surface-variant); } /* 正文 */ .detail-content { padding: 0 40rpx 80rpx; background:
+/* 通用详情页 — 彩色容器风格 */ /* Hero 区域 */ .detail-hero { width: 100%; min-height: 440rpx; display: flex;
+flex-direction: column; align-items: center; justify-content: center; position: relative; overflow: hidden; padding:
+48rpx 40rpx; box-sizing: border-box; } /* 装饰圆 */ .detail-hero-decor { position: absolute; border-radius: 50%;
+opacity: 0.2; } .detail-hero-decor--1 { right: -120rpx; top: -80rpx; width: 360rpx; height: 360rpx; background:
+var(--md-secondary-container); } .detail-hero-decor--2 { left: -80rpx; bottom: -120rpx; width: 280rpx; height: 280rpx;
+background: var(--md-tertiary-container); } /* 背景图标 */ .detail-hero-icon { position: absolute; top: 50%; left: 50%;
+transform: translate(-50%, -50%); z-index: 0; } /* Hero 文字内容 */ .detail-hero-content { position: relative; z-index:
+1; text-align: center; width: 100%; } .detail-hero-tag { display: inline-block; background: rgba(255, 255, 255, 0.2);
+color: rgba(255, 255, 255, 0.9); font-size: 24rpx; font-weight: 500; padding: 8rpx 24rpx; border-radius: 9999rpx;
+margin-bottom: 24rpx; backdrop-filter: blur(8rpx); } .detail-hero-title { font-size: 48rpx; font-weight: 800; color:
+var(--md-on-primary); line-height: 1.25; margin-bottom: 16rpx; display: block; text-shadow: 0 2rpx 8rpx rgba(0, 0, 0,
+0.15); } .detail-hero-meta { font-size: 28rpx; color: rgba(255, 255, 255, 0.8); display: block; } /* 颜色映射 */
+.detail-hero--primary { background: var(--md-primary); } .detail-hero--secondary { background: var(--md-secondary); }
+.detail-hero--tertiary { background: var(--md-tertiary); } .detail-hero--payment { background:
+var(--md-payment-on-container); } /* 正文 */ .detail-content { padding: 48rpx 40rpx 80rpx; background:
 var(--md-surface); } .detail-content rich-text { font-size: 30rpx; color: var(--md-on-surface); line-height: 1.85; }
-.detail-empty { padding: 80rpx 0; text-align: center; font-size: 28rpx; color: var(--md-on-surface-variant); }
+.detail-images { display: flex; flex-wrap: wrap; gap: 20rpx; margin-top: 32rpx; } .detail-image { width: calc(50% -
+10rpx); height: 240rpx; border-radius: 20rpx; background: var(--md-surface-container); } .detail-empty { padding: 80rpx
+0; text-align: center; font-size: 28rpx; color: var(--md-on-surface-variant); } /* Skeleton */ @keyframes skeleton-pulse
+{ 0%, 100% { opacity: 1; } 50% { opacity: 0.55; } } .skeleton-hero-block { background: rgba(255, 255, 255, 0.25);
+border-radius: 8rpx; animation: skeleton-pulse 1.6s ease-in-out infinite; } .skeleton-hero-block--tag { width: 120rpx;
+height: 40rpx; margin: 0 auto 24rpx; } .skeleton-hero-block--title { width: 70%; height: 56rpx; margin: 0 auto 20rpx; }
+.skeleton-hero-block--meta { width: 50%; height: 36rpx; margin: 0 auto; } .skeleton-line--full { width: 100%; height:
+32rpx; border-radius: 8rpx; background: var(--md-surface-container); animation: skeleton-pulse 1.6s ease-in-out
+infinite; margin-bottom: 20rpx; }

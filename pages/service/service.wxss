@@ -1,0 +1,24 @@
+/* 周边生活页 */ .page-container { display: flex; flex-direction: column; height: 100vh; } .service-scroll-wrap { flex:
+1; overflow-y: auto; -webkit-overflow-scrolling: touch; } .category-pill-bar { padding: 16rpx 40rpx 24rpx; position:
+sticky; top: 0; z-index: 10; background: var(--md-background); } .category-scroll { white-space: nowrap; }
+.category-pill-list { display: inline-flex; gap: 8rpx; padding: 8rpx; background: var(--md-surface-container);
+border-radius: 9999rpx; } .category-pill-item { padding: 16rpx 36rpx; border-radius: 9999rpx; font-size: 28rpx;
+font-weight: 500; color: var(--md-on-surface-variant); white-space: nowrap; transition: background-color 100ms ease-out,
+color 100ms ease-out; } .category-pill-item--active { background: var(--md-primary); color: var(--md-on-primary); }
+.service-list { padding: 0 40rpx; } .service-card { display: flex; gap: 28rpx; background: var(--md-surface);
+border-radius: 28rpx; padding: 28rpx; margin-bottom: 28rpx; transition: transform 100ms ease-out; } .service-card:active
+{ transform: scale(0.98); } .service-icon-box { width: 120rpx; height: 120rpx; border-radius: 24rpx; flex-shrink: 0;
+display: flex; align-items: center; justify-content: center; background: var(--md-secondary-container); }
+.service-icon-box md-icon { color: var(--md-on-secondary-container); } .service-content { flex: 1; display: flex;
+flex-direction: column; min-width: 0; } .service-header { display: flex; align-items: center; justify-content:
+space-between; margin-bottom: 12rpx; } .service-name { font-size: 30rpx; font-weight: 600; color: var(--md-on-surface);
+} .service-distance { font-size: 24rpx; color: var(--md-on-surface-variant); flex-shrink: 0; } .service-address {
+font-size: 26rpx; color: var(--md-on-surface-variant); line-height: 1.4; margin-bottom: 12rpx; overflow: hidden;
+text-overflow: ellipsis; white-space: nowrap; } .service-tags { display: flex; flex-wrap: wrap; gap: 8rpx;
+margin-bottom: 12rpx; } .service-tag { font-size: 22rpx; font-weight: 500; padding: 4rpx 16rpx; border-radius: 8rpx;
+background: var(--md-primary-container); color: var(--md-on-primary-container); } .service-hours { display: flex;
+flex-direction: column; gap: 4rpx; margin-bottom: 16rpx; } .service-hours-text { font-size: 24rpx; color:
+var(--md-on-surface-variant); } .service-actions { display: flex; gap: 16rpx; } .service-btn { display: flex;
+align-items: center; gap: 8rpx; padding: 12rpx 24rpx; border-radius: 9999rpx; background: var(--md-surface-container);
+transition: background-color 100ms ease-out; } .service-btn:active { background: var(--md-surface-container-high); }
+.service-btn-text { font-size: 26rpx; font-weight: 500; color: var(--md-primary); }

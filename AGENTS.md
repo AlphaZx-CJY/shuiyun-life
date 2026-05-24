@@ -44,7 +44,7 @@ npm run format
 - **仓库**：https://github.com/AlphaZx-CJY/shuiyun-life
 - **小程序名称**：水韵名邸
 - **设计风格**：Material Design 3 Expressive（绿色主题，seed `#63A002`）
-- **设计规范**：详见 `DESIGN.md`（Material 3 Expressive 完整规范，包含形状系统、颜色、排版、图标、布局、原生组件重置等）
+- **设计规范**：详见 `.agents/skills/design-md3-expressive/`（Material 3 Expressive 设计令牌、形状系统、组件模板）
 
 ---
 
@@ -73,36 +73,28 @@ shuiyun-life/
 ├── project.private.config.json # 本地私有配置（不提交 Git）
 ├── sitemap.json                # 搜索索引规则
 ├── package.json                # NPM 清单（仅开发依赖）
-├── GUIDE.md                    # 开发使用指南（面向技术人员）
 ├── guides-seed.json            # 使用指南种子数据（JSON Lines，导入 guides 集合）
 │
-├── pages/                      # 页面目录（10 个页面）
+├── pages/                      # 页面目录（9 个页面）
 │   ├── index/                  # 首页：快捷入口、社区通知、最近活动、班车卡片
 │   ├── discover/               # 发现：聚合资讯/周边/缴费/活动/心声的 Feed 流
 │   ├── detail/                 # 通用详情页（替代原 news-detail/payment-detail/schedule-detail/guide-detail）
 │   ├── trade/                  # 闲置交易列表
 │   ├── trade-detail/           # 交易详情
 │   ├── trade-publish/          # 发布闲置
-│   ├── shuttle/                # 班车信息
 │   ├── profile/                # 我的（个人中心）
 │   ├── feedback/               # 意见反馈表单
 │   └── voice-publish/          # 发布社区心声
 │
 ├── components/                 # 公共组件
-│   ├── nav-bar/                # 自定义导航栏
-│   ├── news-card/              # 新闻卡片
-│   ├── schedule-item/          # 活动条目
-│   ├── service-item/           # 生活服务条目
 │   └── md3/                    # MD3 基础组件库
 │       ├── md-app-bar/
-│       ├── md-button/
 │       ├── md-card/
 │       ├── md-chip/
 │       ├── md-divider/
 │       ├── md-empty-state/
 │       ├── md-fab/
 │       ├── md-icon/
-│       ├── md-list-item/
 │       └── md-text-field/
 │
 ├── services/                   # 服务层
@@ -135,6 +127,17 @@ shuiyun-life/
 - 使用 **自定义 TabBar**（`custom-tab-bar/` 组件，`app.json` 配置 `"custom": true`，Material Symbols SVG 图标）
 - 开启云开发：`"cloud": true`
 - 启用样式版本 v2 与懒加载组件
+
+### `app.ts`
+
+- 云开发环境初始化：`wx.cloud.init({ env: CLOUD_ENV, traceUser: true })`
+- 全局数据：`userInfo`、`systemInfo`
+- 通过 `env.ts` 导入敏感配置（`CLOUD_ENV`）
+
+### `env.example.ts`
+
+- 敏感配置模板，包含 `APPID` 和 `CLOUD_ENV`
+- 复制为 `env.ts` 后填入真实值，已被 `.gitignore` 排除
 
 ### `app.wxss`
 
@@ -216,6 +219,7 @@ shuiyun-life/
 | `feedback_config` | 反馈配置 | `title`, `content`, `contactInfo`, `enabled`                       |
 | `guides`          | 使用指南 | `title`, `content`(HTML), `tag`, `date`, `sort`, `enabled`         |
 | `feedback`        | 用户反馈 | `type`, `content`, `contact`, `status`, `createTime`               |
+| `voices`          | 社区心声 | `type`, `content`, `contact`, `expired`, `deadline`, `createTime`  |
 
 ---
 
@@ -227,7 +231,7 @@ shuiyun-life/
 2. 导入本项目目录。
 3. 复制 `env.example.ts` 为 `env.ts`，填入真实 **AppID** 和 **云环境 ID**。
 4. 在开发者工具中点击「云开发」按钮开通云服务。
-5. 在云控制台数据库中创建上述 13 个集合。
+5. 在云控制台数据库中创建上述 12 个集合。
 
 ### 开发运行
 
@@ -272,7 +276,7 @@ shuiyun-life/
 | 通用详情   | `pages/detail/detail`               | `news`/`schedules`/`payments`/`guides`            | 彩色容器 Hero + rich-text 内容渲染        |
 | 闲置交易   | `pages/trade/trade`                 | `trades` 集合 + 本地缓存                          | 彩色容器大图卡片、分类筛选、发布          |
 | 更多       | `pages/profile/profile`             | `contacts` + 硬编码                               | 头像、联系物业、小程序反馈、使用指南      |
-| 班车信息   | `pages/shuttle/shuttle`             | `shuttle_config` + `shuttle_times`                | 时刻表、站点、动态状态计算                |
+| 班车信息   | `pages/index/index`（首页弹窗）     | `shuttle_config` + `shuttle_times`                | 时刻表、站点、动态状态计算                |
 | 小程序反馈 | `pages/feedback/feedback`           | 写入 `feedback` 集合                              | 针对小程序的建议与问题，picker + textarea |
 | 发布心声   | `pages/voice-publish/voice-publish` | 写入 `voices` 集合                                | 社区心声发布表单                          |
 
@@ -298,7 +302,7 @@ shuiyun-life/
 
 ## AI 助手操作规范（每次修改后必做检查）
 
-1. **文档同步检查**：每次执行操作后，检查修改内容是否涉及 `README.md`、`AGENTS.md` 或 **DESIGN.md** 中已记录的架构、目录、配置、技术栈、设计风格等描述。如有不一致，必须同步更新对应的 `.md` 文件，确保文档与实际代码保持同步。
+1. **文档同步检查**：每次执行操作后，检查修改内容是否涉及 `README.md`、`AGENTS.md` 或 Skill 文档中已记录的架构、目录、配置、技术栈、设计风格等描述。如有不一致，必须同步更新对应的文档，确保文档与实际代码保持同步。
 
 2. **冗余文件清理**：执行修改后，检查项目中是否产生了不再被引用的文件（例如：被替换的图标、废弃的组件、空目录、临时字体文件、已弃用的样式等）。如有冗余文件，必须进行删除，保持仓库整洁，避免包体积膨胀。
 
@@ -308,8 +312,8 @@ shuiyun-life/
    - **全局一致性**：检查 `app.json`、`app.wxss` 中的全局配置变更是否导致个别页面布局异常。
    - 如发现遮挡，必须调整对应页面的 WXSS 布局参数。
 
-4. **前端修改必须遵循 DESIGN.md**：
-   所有前端 UI 调整（新增页面、修改样式、调整布局、更换图标等）必须以 **`DESIGN.md`** 为最终依据。包括但不限于：形状系统、颜色变量、排版字号、图标规范（禁止 emoji）、布局风格、组件形状、动画性能、原生组件重置。禁止在局部 WXSS 中硬编码色值、字号、间距或圆角。
+4. **前端修改必须遵循 Skill 设计规范**：
+   所有前端 UI 调整（新增页面、修改样式、调整布局、更换图标等）必须以 **`.agents/skills/design-md3-expressive/`** 中的设计规范为最终依据。包括但不限于：形状系统、颜色变量、排版字号、图标规范（禁止 emoji）、布局风格、组件形状、动画性能、原生组件重置。禁止在局部 WXSS 中硬编码色值、字号、间距或圆角。
 
 5. **每次修改后必须运行 Harness 验证**：
 
@@ -348,7 +352,7 @@ shuiyun-life/
 
 ## 给 AI 助手的特别提醒
 
-- **前端 UI 设计以 `DESIGN.md` 为唯一依据**，修改样式前必须先阅读 `DESIGN.md` 的相关章节。
+- **前端 UI 设计以 `.agents/skills/design-md3-expressive/` 为唯一依据**，修改样式前必须先阅读 Skill 中的设计规范。
 - 修改页面或组件时，请同时检查对应的 `.json` 文件是否需要调整 `usingComponents`。
 - 新增页面后，必须先在 `app.json` 的 `pages` 数组中注册路由。
 - 修改 `services/api.ts` 时请注意保持返回类型与 `types/data.ts` 一致。

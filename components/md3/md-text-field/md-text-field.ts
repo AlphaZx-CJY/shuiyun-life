@@ -10,7 +10,7 @@ Component({
     multiline: { type: Boolean, value: false },
   },
   methods: {
-    onInput(e: any) {
+    onInput(e: WechatMiniprogram.Input) {
       this.triggerEvent('input', { value: e.detail.value });
     },
   },

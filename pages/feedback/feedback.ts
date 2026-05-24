@@ -23,12 +23,12 @@ Page<IFeedbackData, WechatMiniprogram.IAnyObject>({
     this.setData({ typeIndex: Number(e.detail.value) });
   },
 
-  onContentInput(e: WechatMiniprogram.TouchEvent) {
-    this.setData({ content: (e.detail as any).value as string });
+  onContentInput(e: WechatMiniprogram.CustomEvent<{ value: string }>) {
+    this.setData({ content: e.detail.value });
   },
 
-  onContactInput(e: WechatMiniprogram.TouchEvent) {
-    this.setData({ contact: (e.detail as any).value as string });
+  onContactInput(e: WechatMiniprogram.CustomEvent<{ value: string }>) {
+    this.setData({ contact: e.detail.value });
   },
 
   async onSubmit() {

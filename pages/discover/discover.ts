@@ -12,10 +12,8 @@ interface IDiscoverData {
 const CATEGORIES = [
   { id: 'all', name: '全部' },
   { id: 'news', name: '资讯' },
-  { id: 'service', name: '周边' },
   { id: 'schedule', name: '活动' },
   { id: 'payment', name: '缴费' },
-  { id: 'voice', name: '心声' },
 ];
 
 Page<IDiscoverData, WechatMiniprogram.IAnyObject>({
@@ -59,12 +57,10 @@ Page<IDiscoverData, WechatMiniprogram.IAnyObject>({
   async loadData() {
     this.setData({ loading: true });
     try {
-      const [newsList, serviceList, paymentList, scheduleList, voiceList] = await Promise.all([
+      const [newsList, paymentList, scheduleList] = await Promise.all([
         api.getNewsList(),
-        api.getServiceList('all'),
         api.getPaymentList(),
         api.getSchedules(),
-        api.getVoiceList(),
       ]);
 
       const feedList: DiscoverItem[] = [
@@ -78,17 +74,6 @@ Page<IDiscoverData, WechatMiniprogram.IAnyObject>({
           icon: 'article',
           containerClass: 'feed-icon--primary',
           url: `/pages/detail/detail?type=news&id=${item.id}`,
-        })),
-        ...serviceList.map((item) => ({
-          id: item.id,
-          type: 'service' as const,
-          title: item.name,
-          summary: item.address,
-          date: '常开',
-          tag: '周边',
-          icon: 'storefront',
-          containerClass: 'feed-icon--secondary',
-          url: `/pages/detail/detail?type=service&id=${item.id}`,
         })),
         ...paymentList.map((item) => ({
           id: item.id,
@@ -111,17 +96,6 @@ Page<IDiscoverData, WechatMiniprogram.IAnyObject>({
           icon: 'event',
           containerClass: 'feed-icon--tertiary',
           url: `/pages/detail/detail?type=schedule&id=${item.id}`,
-        })),
-        ...voiceList.map((item) => ({
-          id: item.id,
-          type: 'voice' as const,
-          title: item.type,
-          summary: item.content.slice(0, 40) + (item.content.length > 40 ? '...' : ''),
-          date: new Date(item.createTime).toISOString().slice(0, 10),
-          tag: '心声',
-          icon: 'chat',
-          containerClass: 'feed-icon--voice',
-          url: `/pages/detail/detail?type=voice&id=${item.id}`,
         })),
       ];
 
@@ -149,4 +123,6 @@ Page<IDiscoverData, WechatMiniprogram.IAnyObject>({
       wx.navigateTo({ url });
     }
   },
+
+
 });

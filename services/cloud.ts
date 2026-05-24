@@ -26,15 +26,15 @@ export interface QueryOptions {
  * @param options 排序与分页选项
  * @returns Promise<查询结果数组>
  */
-export function query<T = any>(
+export function query<T = unknown>(
   collection: string,
-  where?: Record<string, any>,
+  where?: Record<string, unknown>,
   options?: QueryOptions,
 ): Promise<T[]> {
   return new Promise((resolve, reject) => {
-    let queryRef: any = db.collection(collection);
+    let queryRef: DB.Query = db.collection(collection);
     if (where) {
-      queryRef = queryRef.where(where);
+      queryRef = queryRef.where(where as DB.IQueryCondition);
     }
     if (options?.orderBy) {
       options.orderBy.forEach((o) => {
@@ -45,8 +45,8 @@ export function query<T = any>(
       queryRef = queryRef.limit(options.limit);
     }
     queryRef.get({
-      success: (res: { data: T[] }) => resolve(res.data as T[]),
-      fail: (err: any) => reject(err),
+      success: (res) => resolve(res.data as T[]),
+      fail: (err) => reject(err),
     });
   });
 }
@@ -57,7 +57,7 @@ export function query<T = any>(
  * @param data 文档数据
  * @returns Promise<新增结果>
  */
-export function add<T = any>(collection: string, data: Record<string, any>): Promise<T> {
+export function add<T = unknown>(collection: string, data: Record<string, unknown>): Promise<T> {
   return new Promise((resolve, reject) => {
     db.collection(collection).add({
       data,
@@ -77,8 +77,8 @@ export function add<T = any>(collection: string, data: Record<string, any>): Pro
 export function update(
   collection: string,
   docId: string,
-  data: Record<string, any>,
-): Promise<any> {
+  data: Record<string, unknown>,
+): Promise<DB.IUpdateResult> {
   return new Promise((resolve, reject) => {
     db.collection(collection).doc(docId).update({
       data,

@@ -1,8 +1,9 @@
 <md-app-bar title="意见反馈" showBack="{{true}}" />
 
 <view class="page-container">
-  <md-card shape="large" class="feedback-card">
-    <view class="form-group">
+  <view class="form-body">
+    <!-- 反馈类型 -->
+    <view class="form-item">
       <text class="form-label">反馈类型</text>
       <picker mode="selector" range="{{types}}" value="{{typeIndex}}" bindchange="onTypeChange">
         <view class="form-picker">
@@ -12,34 +13,31 @@
       </picker>
     </view>
 
-    <md-divider inset />
-
-    <view class="form-group">
-      <text class="form-label">反馈内容</text>
-      <textarea
-        class="form-textarea"
+    <!-- 反馈内容 -->
+    <view class="form-item">
+      <md-text-field
+        label="反馈内容 *"
         placeholder="请描述您在使用小程序时遇到的问题或建议..."
-        maxlength="500"
-        bindinput="onContentInput"
         value="{{content}}"
-      ></textarea>
+        maxlength="500"
+        multiline
+        bind:input="onContentInput"
+      />
       <text class="form-counter">{{content.length}}/500</text>
     </view>
 
-    <md-divider inset />
-
-    <view class="form-group">
-      <text class="form-label">联系方式（选填）</text>
-      <input
-        class="form-input"
+    <!-- 联系方式 -->
+    <view class="form-item">
+      <md-text-field
+        label="联系方式（选填）"
         placeholder="手机号或微信号，方便我们回复您"
-        bindinput="onContactInput"
         value="{{contact}}"
+        bind:input="onContactInput"
       />
     </view>
-  </md-card>
+  </view>
 
-  <view class="feedback-actions">
+  <view class="form-actions">
     <view class="btn-pill btn-pill--primary {{submitting ? 'btn-pill--disabled' : ''}}" bindtap="onSubmit">
       {{submitting ? '提交中...' : '提交反馈'}}
     </view>

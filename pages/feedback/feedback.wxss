@@ -1,17 +1,12 @@
-/* 意见反馈 — 简洁表单风格 */ .feedback-card { margin: 32rpx 40rpx; padding: 32rpx; background: var(--md-surface);
-border-radius: 28rpx; } .form-group { margin-bottom: 32rpx; } .form-group:last-child { margin-bottom: 0; } .form-label {
-font-size: 28rpx; font-weight: 500; color: var(--md-on-surface); margin-bottom: 16rpx; display: block; } /* picker */
-.form-picker { display: flex; align-items: center; justify-content: space-between; height: 96rpx; padding: 0 32rpx;
-background: var(--md-surface-container-low); border-radius: 20rpx; border: 1rpx solid var(--md-outline-variant); }
-.form-picker-text { font-size: 30rpx; color: var(--md-on-surface); } .picker-arrow { width: 16rpx; height: 16rpx;
-border-top: 3rpx solid var(--md-outline); border-right: 3rpx solid var(--md-outline); transform: rotate(45deg); } /*
-textarea */ .form-textarea { width: 100%; min-height: 240rpx; padding: 24rpx; background:
-var(--md-surface-container-low); border-radius: 20rpx; border: 1rpx solid var(--md-outline-variant); font-size: 30rpx;
-color: var(--md-on-surface); box-sizing: border-box; } .form-counter { text-align: right; font-size: 22rpx; color:
-var(--md-on-surface-variant); margin-top: 8rpx; display: block; } /* input */ .form-input { width: 100%; height: 96rpx;
-padding: 0 32rpx; background: var(--md-surface-container-low); border-radius: 20rpx; border: 1rpx solid
-var(--md-outline-variant); font-size: 30rpx; color: var(--md-on-surface); box-sizing: border-box; } /* 提交按钮 */
-.feedback-actions { margin: 0 40rpx 48rpx; } .btn-pill { width: 100%; height: 96rpx; border-radius: 9999rpx; display:
-flex; align-items: center; justify-content: center; font-size: 32rpx; font-weight: 600; transition: opacity 100ms ease;
-} .btn-pill:active { opacity: 0.85; } .btn-pill--primary { background: var(--md-primary); color: var(--md-on-primary); }
+/* 意见反馈 — Material 3 表单风格 */ .form-body { padding: 32rpx 40rpx; } .form-item { margin-bottom: 32rpx; }
+.form-item:last-child { margin-bottom: 0; } .form-label { font-size: 28rpx; font-weight: 500; color:
+var(--md-on-surface); margin-bottom: 16rpx; display: block; } /* picker */ .form-picker { display: flex; align-items:
+center; justify-content: space-between; height: 96rpx; padding: 0 32rpx; background: var(--md-surface-container-low);
+border-radius: 16rpx; border: 1rpx solid var(--md-outline-variant); } .form-picker-text { font-size: 30rpx; color:
+var(--md-on-surface); } .picker-arrow { width: 16rpx; height: 16rpx; border-top: 3rpx solid var(--md-outline);
+border-right: 3rpx solid var(--md-outline); transform: rotate(45deg); } /* counter */ .form-counter { text-align: right;
+font-size: 22rpx; color: var(--md-on-surface-variant); margin-top: 8rpx; display: block; } /* 提交按钮 */ .form-actions
+{ margin: 0 40rpx 48rpx; } .btn-pill { width: 100%; height: 96rpx; border-radius: 9999rpx; display: flex; align-items:
+center; justify-content: center; font-size: 32rpx; font-weight: 600; transition: opacity 100ms ease; } .btn-pill:active
+{ opacity: 0.85; } .btn-pill--primary { background: var(--md-primary); color: var(--md-on-primary); }
 .btn-pill--disabled { opacity: 0.5; pointer-events: none; }

@@ -48,7 +48,7 @@ Page<ITradePublishData, WechatMiniprogram.IAnyObject>({
     this.setData({ categoryIndex: Number(e.detail.value) });
   },
 
-  onInputChange(e: WechatMiniprogram.Input) {
+  onInputChange(e: WechatMiniprogram.CustomEvent<{ value: string }>) {
     const { field } = e.currentTarget.dataset as { field: keyof TradeForm };
     const { value } = e.detail;
     this.setData({ [`form.${field}`]: value } as unknown as Partial<ITradePublishData>);
@@ -61,8 +61,8 @@ Page<ITradePublishData, WechatMiniprogram.IAnyObject>({
       count: remain,
       mediaType: ['image'],
       sourceType: ['album', 'camera'],
-      success: (res: any) => {
-        const newImages = res.tempFiles.map((f: any) => f.tempFilePath);
+      success: (res) => {
+        const newImages = res.tempFiles.map((f) => f.tempFilePath);
         this.setData({ images: [...this.data.images, ...newImages] });
       },
     });
