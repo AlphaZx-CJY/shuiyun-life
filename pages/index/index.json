@@ -3,7 +3,6 @@
   "enablePullDownRefresh": true,
   "usingComponents": {
     "md-app-bar": "/components/md3/md-app-bar/md-app-bar",
-    "md-card": "/components/md3/md-card/md-card",
     "md-icon": "/components/md3/md-icon/md-icon"
   }
 }
