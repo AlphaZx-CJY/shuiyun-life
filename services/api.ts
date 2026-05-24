@@ -118,13 +118,22 @@ async function resolveCloudUrls<T>(data: T): Promise<T> {
 
 export async function getRecentSchedules(limit = 5): Promise<Pick<ScheduleItem, 'id' | 'title' | 'time' | 'location' | 'status' | 'date'>[]> {
   const today = new Date().toISOString().slice(0, 10);
-  const data = await safeQuery<ScheduleItem>('schedules', { enabled: true, date: cloud.db.command.gte(today) }, { orderBy: [{ field: 'date', desc: false }, { field: 'time', desc: false }], limit });
+  const data = await safeQuery<ScheduleItem>('schedules', { enabled: true, date: cloud.db.command.gte(today) }, { orderBy: [{ field: 'date', desc: false }, { field: 'time', desc: false }] });
+  const merged = mergeScheduleRanges(data);
   const now = new Date();
-  return data.map((s) => {
-    const itemDateTime = new Date(`${s.date}T${s.time}`);
-    const status = itemDateTime < now ? 'ended' : 'upcoming';
-    return { id: s.id, title: s.title, time: s.time, location: s.location, status, date: s.date };
-  });
+  return merged
+    .filter((s) => {
+      const dates = s.date.split(' ~ ');
+      const endDate = dates[dates.length - 1]!;
+      return endDate >= today;
+    })
+    .slice(0, limit)
+    .map((s) => {
+      const startDate = s.date.split(' ~ ')[0]!;
+      const itemDateTime = new Date(`${startDate}T${s.time}`);
+      const status = itemDateTime < now ? 'ended' : 'upcoming';
+      return { id: s.id, title: s.title, time: s.time, location: s.location, status, date: s.date };
+    });
 }
 
 export async function getShuttlePreview(count = 5): Promise<ShuttleTime[]> {
@@ -337,16 +346,49 @@ export async function getServiceDetail(_id: number | string): Promise<ServiceIte
   }
 }
 
+/** 合并跨天活动：按 title+location+time 分组，连续日期合并为范围字符串 */
+function mergeScheduleRanges(items: ScheduleItem[]): ScheduleItem[] {
+  if (items.length === 0) return [];
+  const groupMap = new Map<string, ScheduleItem[]>();
+  items.forEach((item) => {
+    const key = `${item.title}|${item.location}|${item.time}`;
+    if (!groupMap.has(key)) {
+      groupMap.set(key, []);
+    }
+    groupMap.get(key)!.push(item);
+  });
+
+  return Array.from(groupMap.values()).map((group) => {
+    const sorted = group.sort((a, b) => (a.date < b.date ? -1 : a.date > b.date ? 1 : 0));
+    const first = sorted[0]!;
+    if (sorted.length === 1) return first;
+    const last = sorted[sorted.length - 1]!;
+    const dateRange = first.date === last.date ? first.date : `${first.date} ~ ${last.date}`;
+    return { ...first, date: dateRange };
+  });
+}
+
 /** ========== 活动安排 ========== */
 
 export async function getSchedules(): Promise<ScheduleItem[]> {
-  return safeQuery<ScheduleItem>('schedules', { enabled: true }, { orderBy: [{ field: 'date', desc: false }, { field: 'time', desc: false }] });
+  const data = await safeQuery<ScheduleItem>('schedules', { enabled: true }, { orderBy: [{ field: 'date', desc: false }, { field: 'time', desc: false }] });
+  return mergeScheduleRanges(data);
 }
 
 export async function getScheduleDetail(_id: number | string): Promise<ScheduleItem | null> {
   try {
-    const data = await safeQuery<ScheduleItem>('schedules', { _id });
-    return data[0] ?? null;
+    const list = await safeQuery<ScheduleItem>('schedules', { _id });
+    if (list.length === 0) return null;
+    const item = list[0]!;
+    const related = await safeQuery<ScheduleItem>('schedules', {
+      title: item.title,
+      location: item.location,
+      time: item.time,
+      enabled: true,
+    }, { orderBy: [{ field: 'date', desc: false }] });
+    const merged = mergeScheduleRanges(related);
+    const result = merged[0] ?? item;
+    return resolveCloudUrls(result);
   } catch (e) {
     console.error('[api] getScheduleDetail failed:', e);
     return null;

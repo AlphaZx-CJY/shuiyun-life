@@ -1,4 +1,5 @@
 import * as api from '../../services/api';
+import { SCHEDULE_TYPE_MAP } from '../../types/data';
 import type { DiscoverItem } from '../../types/data';
 
 interface IDiscoverData {
@@ -92,7 +93,7 @@ Page<IDiscoverData, WechatMiniprogram.IAnyObject>({
           title: item.title,
           summary: `${item.date} ${item.time} · ${item.location}`,
           date: item.date,
-          tag: item.type || '活动',
+          tag: SCHEDULE_TYPE_MAP[item.type] || item.type || '活动',
           icon: 'event',
           containerClass: 'feed-icon--tertiary',
           url: `/pages/detail/detail?type=schedule&id=${item.id}`,

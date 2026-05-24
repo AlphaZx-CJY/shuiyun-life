@@ -46,4 +46,9 @@
     headline="暂无心声"
     supportingText="还没有发布过心声，快去发布第一条吧"
   />
+
+  <!-- 帮助提示 -->
+  <view class="help-tip" wx:if="{{voiceList.length === 0 && !loading}}">
+    <text class="help-tip-text">提示：清理缓存、换设备或重新安装小程序后，已发布的内容可能不再显示在此处。</text>
+  </view>
 </view>

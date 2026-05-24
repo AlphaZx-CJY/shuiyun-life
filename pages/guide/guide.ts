@@ -23,7 +23,7 @@ Page<IGuideData, WechatMiniprogram.IAnyObject>({
 
   onShareAppMessage(): WechatMiniprogram.Page.ICustomShareContent {
     return {
-      title: '水韵名邸 - 使用指南',
+      title: '水韵名邸 - 运营帮助',
       path: '/pages/guide/guide',
     };
   },

@@ -1,4 +1,5 @@
 import * as api from '../../services/api';
+import { SCHEDULE_TYPE_MAP } from '../../types/data';
 import { formatDate } from '../../utils/util';
 
 interface DetailConfig {
@@ -73,7 +74,7 @@ Page<IDetailData, WechatMiniprogram.IAnyObject>({
               title: data.title,
               meta: `${data.date} ${data.time} · ${data.location}`,
               content: data.description,
-              tag: data.type || '活动',
+              tag: SCHEDULE_TYPE_MAP[data.type] || data.type || '活动',
               loading: false,
             });
           }

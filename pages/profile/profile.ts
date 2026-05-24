@@ -16,17 +16,24 @@ Page<IProfileData, WechatMiniprogram.IAnyObject>({
       { title: '我的心声', icon: '/images/icons/material/article-on.svg', path: '/pages/my-voice/my-voice' },
       { title: '我的闲置', icon: '/images/icons/material/storefront-on.svg', path: '/pages/my-trade/my-trade' },
     ],
-    serviceItems: [],
-    contactItems: [],
+    serviceItems: [
+      { id: 1, title: '关于小程序', icon: '/images/icons/profile/info.svg', path: '' },
+      { id: 2, title: '小程序反馈', icon: '/images/icons/profile/feedback.svg', path: '/pages/feedback/feedback' },
+      { id: 4, title: '运营帮助', icon: '/images/icons/profile/help.svg', path: '/pages/guide/guide' },
+    ],
+    contactItems: [
+      { id: 3, title: '联系物业', icon: '/images/icons/profile/call.svg', path: '' },
+    ],
     contacts: [],
   },
 
-  async onLoad() {
-    const allItems = api.getProfileItems();
-    const serviceItems = allItems.filter((item) => item.id !== 3);
-    const contactItems = allItems.filter((item) => item.id === 3);
+  onLoad() {
+    this.loadContacts();
+  },
+
+  async loadContacts() {
     const contacts = await api.getContacts();
-    this.setData({ serviceItems, contactItems, contacts });
+    this.setData({ contacts });
   },
 
   onShow() {

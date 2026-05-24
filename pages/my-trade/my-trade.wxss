@@ -27,4 +27,6 @@ var(--md-surface-container); } /* 骨架图 */ @keyframes skeleton-pulse { 0%, 1
 background: var(--md-surface-container); animation: skeleton-pulse 1.6s ease-in-out infinite; border-radius: 20rpx 20rpx
 0 0; } .skeleton-card .skeleton-info { padding: 20rpx 24rpx; display: flex; flex-direction: column; gap: 16rpx; }
 .skeleton-line { height: 32rpx; border-radius: 8rpx; background: var(--md-surface-container); animation: skeleton-pulse
-1.6s ease-in-out infinite; } .skeleton-line--short { width: 40%; } .skeleton-line--medium { width: 60%; }
+1.6s ease-in-out infinite; } .skeleton-line--short { width: 40%; } .skeleton-line--medium { width: 60%; } /* 帮助提示 */
+.help-tip { margin: 32rpx 40rpx 0; padding: 24rpx; background: var(--md-surface-container); border-radius: 16rpx; }
+.help-tip-text { font-size: 24rpx; color: var(--md-on-surface-variant); line-height: 1.5; display: block; }

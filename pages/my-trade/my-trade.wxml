@@ -39,7 +39,7 @@
         >
           <md-icon
             name="/images/icons/material/{{item.category === 'furniture' ? 'chair' : item.category === 'appliance' ? 'tv' : item.category === 'baby' ? 'child_care' : item.category === 'books' ? 'book' : 'electric_bolt'}}.svg"
-            size="48"
+            size="64"
             color="currentColor"
           />
         </view>
@@ -82,7 +82,7 @@
         >
           <md-icon
             name="/images/icons/material/{{item.category === 'furniture' ? 'chair' : item.category === 'appliance' ? 'tv' : item.category === 'baby' ? 'child_care' : item.category === 'books' ? 'book' : 'electric_bolt'}}.svg"
-            size="48"
+            size="64"
             color="currentColor"
           />
         </view>
@@ -118,4 +118,9 @@
     headline="暂无闲置物品"
     supportingText="还没有发布过闲置，快去发布第一件吧"
   />
+
+  <!-- 帮助提示 -->
+  <view class="help-tip" wx:if="{{tradeList.length === 0 && !loading}}">
+    <text class="help-tip-text">提示：清理缓存、换设备或重新安装小程序后，已发布的内容可能不再显示在此处。</text>
+  </view>
 </view>

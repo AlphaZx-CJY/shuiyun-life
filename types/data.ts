@@ -92,9 +92,24 @@ export interface ServiceItem {
 
 /** ========== 活动安排 ========== */
 
+export const SCHEDULE_TYPE_MAP: Record<string, string> = {
+  community: '社区活动',
+  sports: '体育活动',
+  culture: '文化活动',
+  volunteer: '志愿服务',
+  lecture: '讲座培训',
+  entertainment: '休闲娱乐',
+  health: '健康医疗',
+  education: '亲子教育',
+  party: '节日庆典',
+  meeting: '业主大会',
+  other: '其他活动',
+};
+
 export interface ScheduleItem {
   id: number | string;
   title: string;
+  /** date 可能为单天日期（如 2024-02-10），也可能是跨天范围（如 2024-02-10 ~ 2024-02-12） */
   date: string;
   time: string;
   location: string;
