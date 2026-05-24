@@ -35,8 +35,15 @@
         />
       </swiper-item>
     </swiper>
-    <view wx:else class="detail-main-image detail-main-image--placeholder">
-      <image class="detail-placeholder-icon" src="/images/icons/material/storefront-on.svg" mode="aspectFit" />
+    <view
+      wx:else
+      class="detail-main-image detail-main-image--placeholder {{trade.category === 'furniture' ? 'detail-color--primary' : trade.category === 'appliance' ? 'detail-color--tertiary' : trade.category === 'baby' ? 'detail-color--baby' : trade.category === 'books' ? 'detail-color--secondary' : 'detail-color--other'}}"
+    >
+      <md-icon
+        name="/images/icons/material/{{trade.category === 'furniture' ? 'chair' : trade.category === 'appliance' ? 'tv' : trade.category === 'baby' ? 'child_care' : trade.category === 'books' ? 'book' : 'electric_bolt'}}.svg"
+        size="80"
+        color="currentColor"
+      />
     </view>
   </view>
 

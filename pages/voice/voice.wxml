@@ -4,7 +4,7 @@
   <!-- 固定头部：搜索栏 + 归档开关 -->
   <view class="fixed-header" style="top: {{appBarHeight}}px">
     <view class="search-bar">
-      <md-icon name="/images/icons/material/search.svg" size="32" color="currentColor" />
+      <md-icon name="/images/icons/material/search.svg" size="40" color="currentColor" />
       <input
         class="search-input"
         type="text"

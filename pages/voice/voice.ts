@@ -38,6 +38,14 @@ Page<IVoiceData, WechatMiniprogram.IAnyObject>({
     this.loadData();
   },
 
+  onShow() {
+    const needRefresh = wx.getStorageSync('voiceListNeedRefresh');
+    if (needRefresh) {
+      wx.removeStorageSync('voiceListNeedRefresh');
+      this.loadData();
+    }
+  },
+
   onPullDownRefresh() {
     this.setData({ refreshing: true });
     this.loadData();

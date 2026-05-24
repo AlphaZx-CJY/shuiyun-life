@@ -7,6 +7,7 @@ interface IVoicePublishData {
   deadline: string;
   images: string[];
   submitting: boolean;
+  editId: string | null;
 }
 
 Page<IVoicePublishData, WechatMiniprogram.IAnyObject>({
@@ -17,6 +18,28 @@ Page<IVoicePublishData, WechatMiniprogram.IAnyObject>({
     deadline: '',
     images: [],
     submitting: false,
+    editId: null,
+  },
+
+  async onLoad(options: Record<string, string>) {
+    const { id } = options;
+    if (id) {
+      this.setData({ editId: id });
+      try {
+        const detail = await api.getVoiceDetail(id);
+        if (detail) {
+          this.setData({
+            type: detail.type,
+            content: detail.content,
+            contact: detail.contact,
+            deadline: detail.deadline,
+            images: detail.images || [],
+          });
+        }
+      } catch (err) {
+        console.error('load voice detail failed', err);
+      }
+    }
   },
 
   onTypeInput(e: WechatMiniprogram.CustomEvent<{ value: string }>) {
@@ -64,20 +87,24 @@ Page<IVoicePublishData, WechatMiniprogram.IAnyObject>({
     });
   },
 
-  async uploadImagesToCloud(tempPaths: string[]): Promise<string[]> {
-    if (tempPaths.length === 0) return [];
-    const uploads = tempPaths.map((path) =>
+  async uploadImagesToCloud(paths: string[]): Promise<string[]> {
+    const localPaths = paths.filter((p) => p.startsWith('http://tmp/') || p.startsWith('wxfile://'));
+    const cloudPaths = paths.filter((p) => p.startsWith('cloud://'));
+
+    if (localPaths.length === 0) return paths;
+
+    const uploads = localPaths.map((path) =>
       wx.cloud.uploadFile({
         cloudPath: `voices/${Date.now()}_${Math.random().toString(36).slice(2)}.${path.split('.').pop() || 'jpg'}`,
         filePath: path,
       }),
     );
     const results = await Promise.all(uploads);
-    return results.map((res) => res.fileID);
+    return [...cloudPaths, ...results.map((res) => res.fileID)];
   },
 
   async onSubmit() {
-    const { type, content, contact, deadline, images, submitting } = this.data;
+    const { type, content, contact, deadline, images, submitting, editId } = this.data;
     if (submitting) return;
     if (!type.trim()) {
       wx.showToast({ title: '请填写诉求类型', icon: 'none' });
@@ -93,18 +120,29 @@ Page<IVoicePublishData, WechatMiniprogram.IAnyObject>({
     }
 
     this.setData({ submitting: true });
-    wx.showLoading({ title: '上传中...' });
+    wx.showLoading({ title: editId ? '保存中...' : '上传中...' });
 
     try {
       const fileIDs = await this.uploadImagesToCloud(images);
-      await api.submitVoice(type.trim(), content.trim(), contact.trim(), deadline, fileIDs);
+      if (editId) {
+        await api.updateVoice(editId, {
+          type: type.trim(),
+          content: content.trim(),
+          contact: contact.trim(),
+          deadline,
+          images: fileIDs,
+        });
+      } else {
+        await api.submitVoice(type.trim(), content.trim(), contact.trim(), deadline, fileIDs);
+      }
       wx.hideLoading();
-      wx.showToast({ title: '发布成功', icon: 'success' });
+      wx.showToast({ title: editId ? '保存成功' : '发布成功', icon: 'success' });
+      wx.setStorageSync('voiceListNeedRefresh', true);
       setTimeout(() => wx.navigateBack(), 1500);
     } catch (err) {
       wx.hideLoading();
       console.error('submit voice failed', err);
-      wx.showToast({ title: '发布失败，请重试', icon: 'none' });
+      wx.showToast({ title: '操作失败，请重试', icon: 'none' });
       this.setData({ submitting: false });
     }
   },

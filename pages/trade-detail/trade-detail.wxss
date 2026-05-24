@@ -8,12 +8,16 @@ infinite; } .skeleton-line--short { width: 30%; } .skeleton-line--medium { width
 border-radius: 28rpx; overflow: hidden; } .detail-main-image { width: 100%; height: 500rpx; border-radius: 28rpx;
 background: var(--md-surface-container); display: block; } .detail-main-image--placeholder { background:
 var(--md-primary-container); display: flex; align-items: center; justify-content: center; position: relative; overflow:
-hidden; } /* 装饰圆 */ .detail-main-image--placeholder::after { content: ''; position: absolute; right: -60rpx; bottom:
--60rpx; width: 200rpx; height: 200rpx; border-radius: 50%; background: rgba(255, 255, 255, 0.2); }
-.detail-placeholder-icon { width: 120rpx; height: 120rpx; opacity: 0.5; position: relative; z-index: 1; } /* 信息卡片 */
-.detail-info-card { margin: 32rpx 40rpx; padding: 32rpx; border-radius: 28rpx; } .detail-trade-title { font-size: 36rpx;
-font-weight: 700; color: var(--md-on-surface); line-height: 1.4; display: block; } .detail-price-row { display: flex;
-align-items: baseline; gap: 20rpx; margin-top: 20rpx; } .detail-price { font-size: 48rpx; font-weight: 800; color:
+hidden; } .detail-color--primary { background: var(--md-primary-container); } .detail-color--secondary { background:
+var(--md-secondary-container); } .detail-color--tertiary { background: var(--md-tertiary-container); }
+.detail-color--baby { background: var(--md-voice-container); } .detail-color--other { background:
+var(--md-payment-container); } /* 装饰圆 */ .detail-main-image--placeholder::after { content: ''; position: absolute;
+right: -60rpx; bottom: -60rpx; width: 200rpx; height: 200rpx; border-radius: 50%; background: rgba(255, 255, 255, 0.2);
+} .detail-placeholder-icon { width: 120rpx; height: 120rpx; opacity: 0.5; position: relative; z-index: 1; }
+.detail-main-image--placeholder md-icon { width: 120rpx; height: 120rpx; position: relative; z-index: 1; } /* 信息卡片
+*/ .detail-info-card { margin: 32rpx 40rpx; padding: 32rpx; border-radius: 28rpx; } .detail-trade-title { font-size:
+36rpx; font-weight: 700; color: var(--md-on-surface); line-height: 1.4; display: block; } .detail-price-row { display:
+flex; align-items: baseline; gap: 20rpx; margin-top: 20rpx; } .detail-price { font-size: 48rpx; font-weight: 800; color:
 var(--md-primary); } .detail-original { font-size: 26rpx; color: var(--md-on-surface-variant); text-decoration:
 line-through; } .discount-badge { padding: 6rpx 16rpx; border-radius: 9999rpx; background: var(--md-tag-bg); color:
 var(--md-tag-text); font-size: 22rpx; font-weight: 600; } .detail-meta-row { display: flex; gap: 24rpx; flex-wrap: wrap;

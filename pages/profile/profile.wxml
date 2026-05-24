@@ -8,10 +8,49 @@
     <text class="profile-address">新长宁水韵名邸</text>
   </view>
 
-  <!-- 功能列表 -->
+  <!-- 我的 -->
+  <text class="profile-section-title">我的</text>
   <view class="profile-section">
     <view class="profile-list">
-      <view class="profile-list-item" wx:for="{{aboutItems}}" wx:key="id" data-item="{{item}}" bindtap="onItemTap">
+      <view
+        class="profile-list-item"
+        wx:for="{{myItems}}"
+        wx:key="title"
+        data-path="{{item.path}}"
+        bindtap="onMyItemTap"
+      >
+        <view class="profile-list-left">
+          <view class="profile-list-icon">
+            <md-icon name="{{item.icon}}" size="40" color="currentColor" />
+          </view>
+          <text class="profile-list-title">{{item.title}}</text>
+        </view>
+        <text class="profile-list-arrow">›</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 物业服务 -->
+  <text class="profile-section-title">物业服务</text>
+  <view class="profile-section">
+    <view class="profile-list">
+      <view class="profile-list-item" wx:for="{{contactItems}}" wx:key="id" data-item="{{item}}" bindtap="onItemTap">
+        <view class="profile-list-left">
+          <view class="profile-list-icon">
+            <md-icon name="{{item.icon}}" size="40" color="currentColor" />
+          </view>
+          <text class="profile-list-title">{{item.title}}</text>
+        </view>
+        <text class="profile-list-arrow">›</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 关于 -->
+  <text class="profile-section-title">关于</text>
+  <view class="profile-section">
+    <view class="profile-list">
+      <view class="profile-list-item" wx:for="{{serviceItems}}" wx:key="id" data-item="{{item}}" bindtap="onItemTap">
         <view class="profile-list-left">
           <view class="profile-list-icon">
             <md-icon name="{{item.icon}}" size="40" color="currentColor" />

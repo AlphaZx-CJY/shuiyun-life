@@ -1,7 +1,7 @@
 /* 社区心声页 */ .fixed-header { position: fixed; left: 0; right: 0; z-index: 10; background: var(--md-surface);
 padding: 20rpx 0 28rpx; } .scroll-wrap { position: fixed; left: 0; right: 0; bottom: calc(120rpx +
 env(safe-area-inset-bottom)); overflow: hidden; } .voice-scroll-wrap { height: 100%; } /* 搜索栏 */ .search-bar {
-display: flex; align-items: center; gap: 16rpx; margin: 0 40rpx 16rpx; padding: 16rpx 24rpx; height: 80rpx; box-sizing:
+display: flex; align-items: center; gap: 16rpx; margin: 0 40rpx 28rpx; padding: 16rpx 24rpx; height: 80rpx; box-sizing:
 border-box; background: var(--md-surface-container); border-radius: 16rpx; } .search-bar md-icon { color:
 var(--md-on-surface-variant); flex-shrink: 0; } .search-input { flex: 1; font-size: 28rpx; color: var(--md-on-surface);
 } .search-input::placeholder { color: var(--md-on-surface-variant); } .search-clear { width: 40rpx; height: 40rpx;

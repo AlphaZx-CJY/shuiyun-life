@@ -1,9 +1,10 @@
 { "pages": [ "pages/index/index", "pages/discover/discover", "pages/service/service", "pages/guide/guide",
 "pages/detail/detail", "pages/trade/trade", "pages/trade-detail/trade-detail", "pages/trade-publish/trade-publish",
-"pages/profile/profile", "pages/feedback/feedback", "pages/voice/voice", "pages/voice-publish/voice-publish" ],
-"window": { "backgroundTextStyle": "dark", "navigationBarBackgroundColor": "#F9FAEF", "navigationBarTitleText":
-"水韵好生活", "navigationBarTextStyle": "black", "backgroundColor": "#F9FAEF", "navigationStyle": "default" }, "tabBar":
-{ "custom": true, "color": "#44483D", "selectedColor": "#4C662B", "backgroundColor": "#EEEFE3", "borderStyle": "white",
-"list": [ { "pagePath": "pages/index/index", "text": "首页" }, { "pagePath": "pages/discover/discover", "text": "发现"
-}, { "pagePath": "pages/trade/trade", "text": "交易" }, { "pagePath": "pages/profile/profile", "text": "更多" } ] },
-"cloud": true, "sitemapLocation": "sitemap.json", "lazyCodeLoading": "requiredComponents" }
+"pages/profile/profile", "pages/feedback/feedback", "pages/voice/voice", "pages/voice-publish/voice-publish",
+"pages/my-voice/my-voice", "pages/my-trade/my-trade" ], "window": { "backgroundTextStyle": "dark",
+"navigationBarBackgroundColor": "#F9FAEF", "navigationBarTitleText": "水韵好生活", "navigationBarTextStyle": "black",
+"backgroundColor": "#F9FAEF", "navigationStyle": "default" }, "tabBar": { "custom": true, "color": "#44483D",
+"selectedColor": "#4C662B", "backgroundColor": "#EEEFE3", "borderStyle": "white", "list": [ { "pagePath":
+"pages/index/index", "text": "首页" }, { "pagePath": "pages/discover/discover", "text": "发现" }, { "pagePath":
+"pages/trade/trade", "text": "交易" }, { "pagePath": "pages/profile/profile", "text": "更多" } ] }, "cloud": true,
+"sitemapLocation": "sitemap.json", "lazyCodeLoading": "requiredComponents" }

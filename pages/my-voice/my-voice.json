@@ -1,0 +1,2 @@
+{ "navigationBarTitleText": "我的心声", "usingComponents": { "md-icon": "/components/md3/md-icon/md-icon",
+"md-empty-state": "/components/md3/md-empty-state/md-empty-state" } }

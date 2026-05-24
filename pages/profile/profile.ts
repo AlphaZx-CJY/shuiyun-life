@@ -3,21 +3,30 @@ import type { ContactItem } from '../../types/data';
 
 interface IProfileData {
   version: string;
-  aboutItems: ReturnType<typeof api.getProfileItems>;
+  myItems: { title: string; icon: string; path: string }[];
+  serviceItems: ReturnType<typeof api.getProfileItems>;
+  contactItems: ReturnType<typeof api.getProfileItems>;
   contacts: ContactItem[];
 }
 
 Page<IProfileData, WechatMiniprogram.IAnyObject>({
   data: {
     version: '2.0.0',
-    aboutItems: [],
+    myItems: [
+      { title: '我的心声', icon: '/images/icons/material/article-on.svg', path: '/pages/my-voice/my-voice' },
+      { title: '我的闲置', icon: '/images/icons/material/storefront-on.svg', path: '/pages/my-trade/my-trade' },
+    ],
+    serviceItems: [],
+    contactItems: [],
     contacts: [],
   },
 
   async onLoad() {
-    const aboutItems = api.getProfileItems();
+    const allItems = api.getProfileItems();
+    const serviceItems = allItems.filter((item) => item.id !== 3);
+    const contactItems = allItems.filter((item) => item.id === 3);
     const contacts = await api.getContacts();
-    this.setData({ aboutItems, contacts });
+    this.setData({ serviceItems, contactItems, contacts });
   },
 
   onShow() {
@@ -31,6 +40,13 @@ Page<IProfileData, WechatMiniprogram.IAnyObject>({
       title: '新长宁水韵名邸生活号',
       path: '/pages/index/index',
     };
+  },
+
+  onMyItemTap(e: WechatMiniprogram.TouchEvent) {
+    const { path } = e.currentTarget.dataset as { path: string };
+    if (path) {
+      wx.navigateTo({ url: path });
+    }
   },
 
   onItemTap(e: WechatMiniprogram.TouchEvent) {

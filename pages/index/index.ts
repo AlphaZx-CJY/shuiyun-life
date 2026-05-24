@@ -26,6 +26,7 @@ interface IIndexData {
   shuttleStops: string[];
   shuttleContactPhone: string;
   shuttleModalVisible: boolean;
+  isReady: boolean;
 }
 
 Page<IIndexData, WechatMiniprogram.IAnyObject>({
@@ -45,9 +46,11 @@ Page<IIndexData, WechatMiniprogram.IAnyObject>({
     shuttleStops: [],
     shuttleContactPhone: '',
     shuttleModalVisible: false,
+    isReady: false,
   },
 
   onLoad() {
+    this.setData({ isReady: false });
     this.loadData();
   },
 
@@ -118,9 +121,10 @@ Page<IIndexData, WechatMiniprogram.IAnyObject>({
         if (s.date === tomorrow) dateLabel = '明天';
         return { ...s, dateLabel };
       });
-      this.setData({ noticeNews, recentSchedules, routeName, runNote, nextShuttle, shuttleSchedule, timeRow1, timeRow2, shuttleStops, shuttleContactPhone });
+      this.setData({ noticeNews, recentSchedules, routeName, runNote, nextShuttle, shuttleSchedule, timeRow1, timeRow2, shuttleStops, shuttleContactPhone, isReady: true });
     } catch (err) {
       console.error('loadData failed', err);
+      this.setData({ isReady: true });
     }
   },
 

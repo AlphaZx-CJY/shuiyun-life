@@ -32,6 +32,15 @@
     </view>
   </view>
 
+  <!-- 班车骨架 -->
+  <view class="hero-skeleton" wx:elif="{{!isReady}}">
+    <view class="skeleton-hero-card">
+      <view class="skeleton-line skeleton-line--short" style="width: 30%; margin-bottom: 20rpx"></view>
+      <view class="skeleton-line skeleton-line--long" style="width: 60%; margin-bottom: 16rpx"></view>
+      <view class="skeleton-line skeleton-line--medium" style="width: 40%"></view>
+    </view>
+  </view>
+
   <!-- 社区通知 -->
   <view class="section-header">
     <text class="section-title">社区通知</text>
@@ -44,7 +53,19 @@
         <text class="notification-date">{{item.date}}</text>
       </view>
     </view>
-    <view class="empty-state empty-state--small" wx:if="{{noticeNews.length === 0}}">
+    <!-- 通知骨架 -->
+    <view
+      class="notification-card skeleton-card"
+      wx:if="{{!isReady && noticeNews.length === 0}}"
+      wx:for="{{[1,2]}}"
+      wx:key="*this"
+    >
+      <view class="notification-content">
+        <view class="skeleton-line skeleton-line--long" style="margin-bottom: 12rpx"></view>
+        <view class="skeleton-line skeleton-line--short" style="width: 30%"></view>
+      </view>
+    </view>
+    <view class="empty-state empty-state--small" wx:if="{{isReady && noticeNews.length === 0}}">
       <text class="empty-state__text">暂无社区通知</text>
     </view>
   </view>
@@ -86,7 +107,19 @@
       </view>
     </view>
   </scroll-view>
-  <view class="empty-state empty-state--small" wx:if="{{recentSchedules.length === 0}}">
+  <!-- 活动骨架 -->
+  <view class="event-scroll" wx:if="{{!isReady && recentSchedules.length === 0}}">
+    <view class="event-list">
+      <view class="event-card skeleton-card" wx:for="{{[1,2]}}" wx:key="*this">
+        <view class="skeleton-color-area"></view>
+        <view class="event-info">
+          <view class="skeleton-line skeleton-line--short" style="margin-bottom: 12rpx; width: 40%"></view>
+          <view class="skeleton-line skeleton-line--medium" style="width: 70%"></view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="empty-state empty-state--small" wx:if="{{isReady && recentSchedules.length === 0}}">
     <text class="empty-state__text">当前没有活动信息</text>
   </view>
 

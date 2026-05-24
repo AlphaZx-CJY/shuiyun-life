@@ -1,0 +1,49 @@
+<view class="page-container page-container--with-tabbar">
+  <!-- 骨架图 -->
+  <view class="voice-list" wx:if="{{loading && voiceList.length === 0}}">
+    <view class="voice-card skeleton-card" wx:for="{{[1,2,3]}}" wx:key="*this">
+      <view class="skeleton-icon"></view>
+      <view class="skeleton-content">
+        <view class="skeleton-line skeleton-line--short"></view>
+        <view class="skeleton-line skeleton-line--long"></view>
+        <view class="skeleton-line skeleton-line--medium"></view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 心声列表 -->
+  <view class="voice-list" wx:if="{{voiceList.length > 0}}">
+    <view
+      class="voice-card"
+      wx:for="{{voiceList}}"
+      wx:key="id"
+      data-id="{{item.id}}"
+      data-title="{{item.content}}"
+      bindtap="onVoiceTap"
+      bindlongpress="onVoiceLongPress"
+    >
+      <view class="voice-icon-box">
+        <md-icon name="/images/icons/material/article-on.svg" size="56" color="currentColor" />
+      </view>
+      <view class="voice-content">
+        <view class="voice-header">
+          <text class="voice-tag">{{item.type}}</text>
+          <text class="voice-date">{{item.createTime}}</text>
+        </view>
+        <text class="voice-title">{{item.content}}</text>
+        <view class="voice-meta">
+          <text class="voice-deadline">截止 {{item.deadline}}</text>
+          <text wx:if="{{item.expired}}" class="voice-expired">已过期</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 空状态 -->
+  <md-empty-state
+    wx:if="{{voiceList.length === 0 && !loading}}"
+    icon="/images/icons/material/article-off.svg"
+    headline="暂无心声"
+    supportingText="还没有发布过心声，快去发布第一条吧"
+  />
+</view>

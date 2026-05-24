@@ -38,6 +38,11 @@ Page<ITradeData, WechatMiniprogram.IAnyObject>({
     if (typeof this.getTabBar === 'function' && this.getTabBar()) {
       this.getTabBar().setData({ selected: 2 });
     }
+    const needRefresh = wx.getStorageSync('tradeListNeedRefresh');
+    if (needRefresh) {
+      wx.removeStorageSync('tradeListNeedRefresh');
+      this.loadTradeData();
+    }
   },
 
   onPullDownRefresh() {
@@ -60,6 +65,7 @@ Page<ITradeData, WechatMiniprogram.IAnyObject>({
         ...item,
         discount: item.originalPrice > 0 ? Math.round((1 - item.price / item.originalPrice) * 100) : 0,
         categoryName: this.data.categories.find((c) => c.id === item.category)?.name || '',
+        imageError: false,
       }));
       this.setData({ allTrades: tradesWithMeta, tradeList: tradesWithMeta, loading: false });
       this.splitColumns(tradesWithMeta);
@@ -103,5 +109,19 @@ Page<ITradeData, WechatMiniprogram.IAnyObject>({
 
   onPublishTap() {
     wx.navigateTo({ url: '/pages/trade-publish/trade-publish' });
+  },
+
+  onImageError(e: WechatMiniprogram.TouchEvent) {
+    const { id } = e.currentTarget.dataset as { id: string };
+    const updateList = (list: TradeItem[]) =>
+      list.map((item) =>
+        String(item.id) === id ? { ...item, imageError: true } : item,
+      );
+    this.setData({
+      tradeList: updateList(this.data.tradeList),
+      leftColumn: updateList(this.data.leftColumn),
+      rightColumn: updateList(this.data.rightColumn),
+      allTrades: updateList(this.data.allTrades),
+    });
   },
 });

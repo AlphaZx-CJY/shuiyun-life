@@ -6,6 +6,7 @@ interface ITradePublishData {
   categoryIndex: number;
   images: string[];
   form: TradeForm;
+  editId: string | null;
 }
 
 Page<ITradePublishData, WechatMiniprogram.IAnyObject>({
@@ -28,12 +29,39 @@ Page<ITradePublishData, WechatMiniprogram.IAnyObject>({
       phone: '',
       location: '',
     },
+    editId: null,
   },
 
-  onLoad() {
+  async onLoad(options: Record<string, string>) {
     const userInfo = wx.getStorageSync('userInfo') as WechatMiniprogram.UserInfo | undefined;
     if (userInfo && userInfo.nickName) {
       this.setData({ 'form.seller': userInfo.nickName });
+    }
+
+    const { id } = options;
+    if (id) {
+      this.setData({ editId: id });
+      try {
+        const detail = await api.getTradeDetail(id);
+        if (detail) {
+          const categoryIndex = this.data.categories.findIndex((c) => c.id === detail.category);
+          this.setData({
+            categoryIndex: categoryIndex >= 0 ? categoryIndex : 0,
+            images: detail.images || [],
+            form: {
+              title: detail.title,
+              price: String(detail.price),
+              originalPrice: String(detail.originalPrice || ''),
+              description: detail.description,
+              seller: detail.seller,
+              phone: detail.phone || '',
+              location: detail.location,
+            },
+          });
+        }
+      } catch (err) {
+        console.error('load trade detail failed', err);
+      }
     }
   },
 
@@ -83,8 +111,24 @@ Page<ITradePublishData, WechatMiniprogram.IAnyObject>({
     });
   },
 
+  async uploadImagesToCloud(paths: string[]): Promise<string[]> {
+    const localPaths = paths.filter((p) => p.startsWith('http://tmp/') || p.startsWith('wxfile://'));
+    const cloudPaths = paths.filter((p) => p.startsWith('cloud://'));
+
+    if (localPaths.length === 0) return paths;
+
+    const uploads = localPaths.map((path) =>
+      wx.cloud.uploadFile({
+        cloudPath: `trades/${Date.now()}-${Math.random().toString(36).slice(2)}.jpg`,
+        filePath: path,
+      }),
+    );
+    const results = await Promise.all(uploads);
+    return [...cloudPaths, ...results.map((res) => res.fileID)];
+  },
+
   async onSubmit() {
-    const { form, categories, categoryIndex, images } = this.data;
+    const { form, categories, categoryIndex, images, editId } = this.data;
 
     if (!form.title.trim()) {
       wx.showToast({ title: '请输入商品标题', icon: 'none' });
@@ -108,35 +152,39 @@ Page<ITradePublishData, WechatMiniprogram.IAnyObject>({
       return;
     }
 
-    const trade: TradeItem = {
-      id: Date.now(),
-      title: form.title.trim(),
-      price: parseFloat(form.price) || 0,
-      originalPrice: parseFloat(form.originalPrice) || 0,
-      category: categories[categoryIndex].id as TradeItem['category'],
-      images: images,
-      seller: form.seller.trim(),
-      phone: form.phone.trim(),
-      time: '刚刚',
-      location: form.location.trim() || '小区',
-      description: form.description.trim() || '暂无描述',
-    };
+    wx.showLoading({ title: editId ? '保存中...' : '上传中...' });
 
     try {
-      await api.savePublishedTrade(trade, images);
-      wx.showToast({
-        title: '发布成功',
-        icon: 'success',
-        duration: 1500,
-        success: () => {
-          setTimeout(() => {
-            wx.navigateBack();
-          }, 1500);
-        },
-      });
+      const fileIDs = await this.uploadImagesToCloud(images);
+      const trade: TradeItem = {
+        id: Date.now(),
+        title: form.title.trim(),
+        price: parseFloat(form.price) || 0,
+        originalPrice: parseFloat(form.originalPrice) || 0,
+        category: categories[categoryIndex].id as TradeItem['category'],
+        images: fileIDs,
+        seller: form.seller.trim(),
+        phone: form.phone.trim(),
+        time: '刚刚',
+        location: form.location.trim() || '小区',
+        description: form.description.trim() || '暂无描述',
+      };
+
+      if (editId) {
+        await api.updateTrade(editId, trade);
+        wx.hideLoading();
+        wx.showToast({ title: '保存成功', icon: 'success', duration: 1500 });
+      } else {
+        await api.savePublishedTrade(trade, []);
+        wx.hideLoading();
+        wx.showToast({ title: '发布成功', icon: 'success', duration: 1500 });
+      }
+      wx.setStorageSync('tradeListNeedRefresh', true);
+      setTimeout(() => wx.navigateBack(), 1500);
     } catch (err) {
+      wx.hideLoading();
       console.error('publish failed', err);
-      wx.showToast({ title: '发布失败，请重试', icon: 'none' });
+      wx.showToast({ title: '操作失败，请重试', icon: 'none' });
     }
   },
 

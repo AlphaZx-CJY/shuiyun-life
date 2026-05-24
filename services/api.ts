@@ -166,8 +166,8 @@ export async function getNewsDetail(_id: number | string): Promise<NewsDetail | 
   }
 }
 
-export async function submitVoice(type: string, content: string, contact: string, deadline: string, images?: string[]): Promise<void> {
-  await cloud.add('voices', {
+export async function submitVoice(type: string, content: string, contact: string, deadline: string, images?: string[]): Promise<string> {
+  const res = await cloud.add('voices', {
     type,
     content,
     contact,
@@ -176,15 +176,43 @@ export async function submitVoice(type: string, content: string, contact: string
     images: images || [],
     createTime: cloud.db.serverDate(),
   });
+  const docId = (res as unknown as { _id: string })._id;
+  const ids = wx.getStorageSync<string[]>('myVoiceIds') || [];
+  wx.setStorageSync('myVoiceIds', [...ids, docId]);
+  return docId;
 }
 
 export async function getVoiceList(): Promise<VoiceItem[]> {
-  return safeQuery<VoiceItem>('voices', {}, { orderBy: [{ field: 'createTime', desc: true }] });
+  const data = await safeQuery<VoiceItem>('voices', {}, { orderBy: [{ field: 'createTime', desc: true }] });
+  return data.map((item) => ({ ...item, id: (item as unknown as { _id: string })._id }));
 }
 
 export async function getVoiceDetail(id: string): Promise<VoiceItem | null> {
   const list = await safeQuery<VoiceItem>('voices', { _id: id });
   return list[0] || null;
+}
+
+export async function updateVoice(id: string, data: Partial<VoiceItem>): Promise<void> {
+  await cloud.update('voices', id, data as Record<string, unknown>);
+}
+
+export async function deleteVoice(id: string): Promise<void> {
+  await cloud.remove('voices', id);
+  const ids = wx.getStorageSync<string[]>('myVoiceIds') || [];
+  wx.setStorageSync('myVoiceIds', ids.filter((docId) => docId !== id));
+}
+
+export async function getMyVoiceList(): Promise<VoiceItem[]> {
+  const ids = wx.getStorageSync<string[]>('myVoiceIds') || [];
+  if (ids.length === 0) return [];
+  const data = await safeQuery<VoiceItem>('voices', { _id: cloud.db.command.in(ids) });
+  const result = data.map((item) => ({ ...item, id: (item as unknown as { _id: string })._id }));
+  const returnedIds = new Set(result.map((item) => String(item.id)));
+  const validIds = ids.filter((id) => returnedIds.has(id));
+  if (validIds.length !== ids.length) {
+    wx.setStorageSync('myVoiceIds', validIds);
+  }
+  return result;
 }
 
 /** ========== 闲置交易 ========== */
@@ -201,7 +229,8 @@ export function getTradeCategories(): Category[] {
 }
 
 export async function getTradeList(): Promise<TradeItem[]> {
-  return safeQuery<TradeItem>('trades', { enabled: true }, { orderBy: [{ field: 'createTime', desc: true }] });
+  const data = await safeQuery<TradeItem>('trades', { enabled: true }, { orderBy: [{ field: 'createTime', desc: true }] });
+  return resolveCloudUrls(data.map((item) => ({ ...item, id: (item as unknown as { _id: string })._id })));
 }
 
 /** 统一处理 TradeDetail 的图片兼容（image → images）和折扣计算 */
@@ -231,7 +260,7 @@ export async function getTradeDetail(id: number | string): Promise<TradeDetail |
   }
 }
 
-export async function savePublishedTrade(trade: TradeItem, localImages: string[]): Promise<void> {
+export async function savePublishedTrade(trade: TradeItem, localImages: string[]): Promise<string> {
   // 1. 上传图片到云存储
   let imageFileIDs: string[] = [];
   if (localImages.length > 0) {
@@ -246,7 +275,7 @@ export async function savePublishedTrade(trade: TradeItem, localImages: string[]
   }
 
   // 2. 写入云数据库
-  await cloud.add('trades', {
+  const res = await cloud.add('trades', {
     title: trade.title,
     price: trade.price,
     originalPrice: trade.originalPrice,
@@ -259,6 +288,33 @@ export async function savePublishedTrade(trade: TradeItem, localImages: string[]
     enabled: true,
     createTime: cloud.db.serverDate(),
   });
+  const docId = (res as unknown as { _id: string })._id;
+  const ids = wx.getStorageSync<string[]>('myTradeIds') || [];
+  wx.setStorageSync('myTradeIds', [...ids, docId]);
+  return docId;
+}
+
+export async function updateTrade(id: string, data: Partial<TradeItem>): Promise<void> {
+  await cloud.update('trades', id, data as Record<string, unknown>);
+}
+
+export async function deleteTrade(id: string): Promise<void> {
+  await cloud.remove('trades', id);
+  const ids = wx.getStorageSync<string[]>('myTradeIds') || [];
+  wx.setStorageSync('myTradeIds', ids.filter((docId) => docId !== id));
+}
+
+export async function getMyTradeList(): Promise<TradeItem[]> {
+  const ids = wx.getStorageSync<string[]>('myTradeIds') || [];
+  if (ids.length === 0) return [];
+  const data = await safeQuery<TradeItem>('trades', { _id: cloud.db.command.in(ids) });
+  const result = data.map((item) => ({ ...item, id: (item as unknown as { _id: string })._id }));
+  const returnedIds = new Set(result.map((item) => String(item.id)));
+  const validIds = ids.filter((id) => returnedIds.has(id));
+  if (validIds.length !== ids.length) {
+    wx.setStorageSync('myTradeIds', validIds);
+  }
+  return resolveCloudUrls(result);
 }
 
 /** ========== 周边生活 ========== */
@@ -374,7 +430,7 @@ export async function getShuttleRunNote(): Promise<string> {
 
 export function getProfileItems(): ProfileItem[] {
   return [
-    { id: 1, title: '关于我们', icon: '/images/icons/profile/info.svg', path: '' },
+    { id: 1, title: '关于小程序', icon: '/images/icons/profile/info.svg', path: '' },
     { id: 2, title: '小程序反馈', icon: '/images/icons/profile/feedback.svg', path: '/pages/feedback/feedback' },
     { id: 3, title: '联系物业', icon: '/images/icons/profile/call.svg', path: '' },
     { id: 4, title: '使用指南', icon: '/images/icons/profile/help.svg', path: '/pages/guide/guide' },

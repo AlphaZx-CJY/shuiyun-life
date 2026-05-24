@@ -79,4 +79,13 @@ font-weight: 600; color: var(--md-on-surface); } .time-pill--soon .time-pill-tex
 联系方式 — 底部按钮（弱化但不失按钮形态） */ .contact-btn { display: flex; align-items: center; justify-content: center;
 gap: 8rpx; padding: 20rpx 0; background: var(--md-surface-container); border-radius: 16rpx; } .contact-btn md-icon {
 color: var(--md-on-surface-variant); } .contact-btn-text { font-size: 26rpx; font-weight: 500; color:
-var(--md-on-surface); }
+var(--md-on-surface); } /* ========== Skeleton ========== */ @keyframes skeleton-pulse { 0%, 100% { opacity: 1; } 50% {
+opacity: 0.55; } } .skeleton-line { height: 28rpx; border-radius: 8rpx; background: var(--md-surface-container);
+animation: skeleton-pulse 1.6s ease-in-out infinite; } .skeleton-line--short { width: 30%; } .skeleton-line--medium {
+width: 50%; } .skeleton-line--long { width: 80%; } /* 班车 Hero 骨架 */ .hero-skeleton { margin: 0 40rpx 32rpx; }
+.skeleton-hero-card { background: var(--md-surface-container); border-radius: 28rpx; padding: 32rpx; } /* 通知骨架 */
+.notification-card.skeleton-card { background: var(--md-surface); } .notification-card.skeleton-card .skeleton-line {
+background: var(--md-surface-container-high); } /* 活动骨架 */ .skeleton-color-area { width: 160rpx; height: 160rpx;
+border-radius: 24rpx; background: var(--md-surface-container); flex-shrink: 0; animation: skeleton-pulse 1.6s
+ease-in-out infinite; } .event-card.skeleton-card .event-info { justify-content: center; } .event-card.skeleton-card
+.skeleton-line { background: var(--md-surface-container-high); }

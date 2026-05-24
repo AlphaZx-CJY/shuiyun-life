@@ -42,6 +42,9 @@ export interface TradeItem {
   time: string;
   location: string;
   description: string;
+  imageError?: boolean;
+  categoryName?: string;
+  discount?: number;
 }
 
 export interface TradeDetail extends TradeItem {

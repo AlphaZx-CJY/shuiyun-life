@@ -1,23 +1,6 @@
 <view class="page-container page-container--with-tabbar">
-  <!-- 分类筛选 -->
-  <view class="category-pill-bar">
-    <scroll-view class="category-scroll" scroll-x enhanced show-scrollbar="{{false}}">
-      <view class="category-pill-list">
-        <view
-          class="category-pill-item {{activeCategory === item.id ? 'category-pill-item--active' : ''}}"
-          wx:for="{{categories}}"
-          wx:key="id"
-          data-id="{{item.id}}"
-          bindtap="onCategoryTap"
-        >
-          {{item.name}}
-        </view>
-      </view>
-    </scroll-view>
-  </view>
-
-  <!-- Skeleton (initial load) -->
-  <view class="trade-waterfall" wx:if="{{loading && allTrades.length === 0}}">
+  <!-- 骨架图 -->
+  <view class="trade-waterfall" wx:if="{{loading && tradeList.length === 0}}">
     <view class="trade-column">
       <view class="trade-card skeleton-card" wx:for="{{[1,2]}}" wx:key="*this">
         <view class="skeleton-image"></view>
@@ -41,7 +24,15 @@
   <!-- 交易列表 — 双列瀑布流 -->
   <view class="trade-waterfall" wx:if="{{tradeList.length > 0}}">
     <view class="trade-column">
-      <view class="trade-card" wx:for="{{leftColumn}}" wx:key="id" data-id="{{item.id}}" bindtap="onTradeTap">
+      <view
+        class="trade-card"
+        wx:for="{{leftColumn}}"
+        wx:key="id"
+        data-id="{{item.id}}"
+        data-title="{{item.title}}"
+        bindtap="onTradeTap"
+        bindlongpress="onTradeLongPress"
+      >
         <view
           class="trade-color-area {{item.category === 'furniture' ? 'trade-color--primary' : item.category === 'appliance' ? 'trade-color--tertiary' : item.category === 'baby' ? 'trade-color--baby' : item.category === 'books' ? 'trade-color--secondary' : 'trade-color--other'}}"
           wx:if="{{!item.images || !item.images.length || item.imageError}}"
@@ -76,7 +67,15 @@
       </view>
     </view>
     <view class="trade-column">
-      <view class="trade-card" wx:for="{{rightColumn}}" wx:key="id" data-id="{{item.id}}" bindtap="onTradeTap">
+      <view
+        class="trade-card"
+        wx:for="{{rightColumn}}"
+        wx:key="id"
+        data-id="{{item.id}}"
+        data-title="{{item.title}}"
+        bindtap="onTradeTap"
+        bindlongpress="onTradeLongPress"
+      >
         <view
           class="trade-color-area {{item.category === 'furniture' ? 'trade-color--primary' : item.category === 'appliance' ? 'trade-color--tertiary' : item.category === 'baby' ? 'trade-color--baby' : item.category === 'books' ? 'trade-color--secondary' : 'trade-color--other'}}"
           wx:if="{{!item.images || !item.images.length || item.imageError}}"
@@ -117,11 +116,6 @@
     wx:if="{{tradeList.length === 0 && !loading}}"
     icon="/images/icons/material/storefront-off.svg"
     headline="暂无闲置物品"
-    supportingText="快去发布第一件闲置吧"
+    supportingText="还没有发布过闲置，快去发布第一件吧"
   />
-
-  <!-- 发布 FAB -->
-  <view class="fab-wrap">
-    <md-fab icon="/images/icons/material/storefront-on.svg" bind:tap="onPublishTap" />
-  </view>
 </view>

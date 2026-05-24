@@ -88,5 +88,23 @@ export function update(
   });
 }
 
+/**
+ * 删除文档
+ * @param collection 集合名称
+ * @param docId 文档 _id
+ * @returns Promise<删除结果>
+ */
+export function remove(
+  collection: string,
+  docId: string,
+): Promise<unknown> {
+  return new Promise((resolve, reject) => {
+    db.collection(collection).doc(docId).remove({
+      success: (res) => resolve(res),
+      fail: (err) => reject(err),
+    });
+  });
+}
+
 /** 导出原始数据库实例，供高级查询使用 */
 export { db };
