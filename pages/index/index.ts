@@ -116,9 +116,12 @@ Page<IIndexData, WechatMiniprogram.IAnyObject>({
       const today = new Date().toISOString().slice(0, 10);
       const tomorrow = new Date(Date.now() + 86400000).toISOString().slice(0, 10);
       const recentSchedules = recentSchedulesRaw.map((s) => {
-        let dateLabel = s.date.slice(5).replace('-', '/');
-        if (s.date === today) dateLabel = '今天';
-        if (s.date === tomorrow) dateLabel = '明天';
+        const startDate = s.date.split(' ~ ')[0]!;
+        let dateLabel = s.date.includes(' ~ ')
+          ? s.date.split(' ~ ').map((d) => d.slice(5).replace('-', '/')).join(' ~ ')
+          : s.date.slice(5).replace('-', '/');
+        if (startDate === today) dateLabel = '今天';
+        if (startDate === tomorrow) dateLabel = '明天';
         return { ...s, dateLabel };
       });
       this.setData({ noticeNews, recentSchedules, routeName, runNote, nextShuttle, shuttleSchedule, timeRow1, timeRow2, shuttleStops, shuttleContactPhone, isReady: true });

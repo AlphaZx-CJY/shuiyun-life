@@ -109,7 +109,11 @@ export const SCHEDULE_TYPE_MAP: Record<string, string> = {
 export interface ScheduleItem {
   id: number | string;
   title: string;
-  /** date 可能为单天日期（如 2024-02-10），也可能是跨天范围（如 2024-02-10 ~ 2024-02-12） */
+  /** 活动开始日期 YYYY-MM-DD */
+  startDate: string;
+  /** 活动结束日期 YYYY-MM-DD，不填则默认等于 startDate */
+  endDate?: string;
+  /** 计算后的展示日期，如 "2024-02-10" 或 "2024-02-10 ~ 2024-02-12" */
   date: string;
   time: string;
   location: string;

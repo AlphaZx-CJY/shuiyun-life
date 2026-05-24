@@ -20,6 +20,7 @@ Page<IProfileData, WechatMiniprogram.IAnyObject>({
       { id: 1, title: '关于小程序', icon: '/images/icons/profile/info.svg', path: '' },
       { id: 2, title: '小程序反馈', icon: '/images/icons/profile/feedback.svg', path: '/pages/feedback/feedback' },
       { id: 4, title: '运营帮助', icon: '/images/icons/profile/help.svg', path: '/pages/guide/guide' },
+      { id: 5, title: '开源代码', icon: '/images/icons/profile/github.svg', path: '' },
     ],
     contactItems: [
       { id: 3, title: '联系物业', icon: '/images/icons/profile/call.svg', path: '' },
@@ -87,6 +88,24 @@ Page<IProfileData, WechatMiniprogram.IAnyObject>({
       case 4:
         wx.navigateTo({ url: item.path });
         break;
+      case 5: {
+        const repoUrl = 'https://github.com/AlphaZx-CJY/shuiyun-life';
+        wx.showModal({
+          title: '开源代码',
+          content: `本项目已在 GitHub 开源，欢迎 Star 和提交 Issue。\n\n${repoUrl}`,
+          confirmText: '复制链接',
+          cancelText: '关闭',
+          success: (res) => {
+            if (res.confirm) {
+              wx.setClipboardData({
+                data: repoUrl,
+                success: () => wx.showToast({ title: '已复制', icon: 'success' }),
+              });
+            }
+          },
+        });
+        break;
+      }
     }
   },
 });

@@ -65,6 +65,6 @@
   <!-- 版本信息 -->
   <view class="version-info">
     <text>水韵名邸生活号 v{{version}}</text>
-    <text>由个人维护</text>
+    <text>由个人维护 · 本项目已在 GitHub 开源</text>
   </view>
 </view>
