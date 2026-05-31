@@ -47,6 +47,12 @@ Page<IServiceData, WechatMiniprogram.IAnyObject>({
     this.loadData();
   },
 
+  onShow() {
+    if (typeof this.getTabBar === 'function' && this.getTabBar()) {
+      this.getTabBar().setData({ selected: 2 });
+    }
+  },
+
   onShareAppMessage(): WechatMiniprogram.Page.ICustomShareContent {
     return {
       title: '水韵名邸 - 周边生活',
