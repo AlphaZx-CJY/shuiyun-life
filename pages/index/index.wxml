@@ -70,22 +70,24 @@
     </view>
   </view>
 
-  <!-- 社区服务 -->
-  <view class="section-header">
-    <text class="section-title">社区服务</text>
-  </view>
-  <view class="quick-entry-bar">
-    <!-- 周边生活：大椭圆 Pill -->
-    <view class="quick-entry-pill" data-path="/pages/service/service" bindtap="onEntryTap">
-      <md-icon name="/images/icons/material/storefront-outlined.svg" size="40" color="currentColor" />
-      <text class="quick-entry-pill-text">周边生活</text>
+  <!-- 社区服务（已屏蔽） -->
+  <block wx:if="{{false}}">
+    <view class="section-header">
+      <text class="section-title">社区服务</text>
     </view>
-    <!-- 心声：大圆角正方形 Squircle -->
-    <view class="quick-entry-squircle" data-path="/pages/voice/voice" bindtap="onEntryTap">
-      <md-icon name="/images/icons/material/article-on.svg" size="40" color="currentColor" />
-      <text class="quick-entry-squircle-text">心声</text>
+    <view class="quick-entry-bar">
+      <!-- 周边生活：大椭圆 Pill -->
+      <view class="quick-entry-pill" data-path="/pages/service/service" bindtap="onEntryTap">
+        <md-icon name="/images/icons/material/storefront-outlined.svg" size="40" color="currentColor" />
+        <text class="quick-entry-pill-text">周边生活</text>
+      </view>
+      <!-- 心声：大圆角正方形 Squircle -->
+      <view class="quick-entry-squircle" data-path="/pages/voice/voice" bindtap="onEntryTap">
+        <md-icon name="/images/icons/material/article-on.svg" size="40" color="currentColor" />
+        <text class="quick-entry-squircle-text">心声</text>
+      </view>
     </view>
-  </view>
+  </block>
 
   <!-- 最近活动 -->
   <view class="section-header">
