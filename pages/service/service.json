@@ -1,3 +1,8 @@
-{ "navigationBarTitleText": "周边生活", "navigationStyle": "custom", "enablePullDownRefresh": false, "usingComponents":
-{ "md-app-bar": "/components/md3/md-app-bar/md-app-bar", "md-empty-state":
-"/components/md3/md-empty-state/md-empty-state", "md-icon": "/components/md3/md-icon/md-icon" } }
+{
+  "navigationBarTitleText": "周边",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "md-empty-state": "/components/md3/md-empty-state/md-empty-state",
+    "md-icon": "/components/md3/md-icon/md-icon"
+  }
+}
